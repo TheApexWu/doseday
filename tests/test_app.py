@@ -102,3 +102,10 @@ def test_status_lists_the_newest_ten_events(server):
     events = call(url, "/status")[1]["events"]
     assert [e["text"] for e in events] == [f"line {i}" for i in range(2, 12)]
     assert set(events[0]) == {"id", "t", "text"}
+
+
+def test_status_shows_the_grip_progress_of_a_real_action(server):
+    _, url = server()
+    call(url, "/cmd", {"action": "place", "day": "wed", "pill": "tums"})
+    wait_result(url, 1)
+    assert [e["text"] for e in call(url, "/status")[1]["events"]] == ["Got it."]
