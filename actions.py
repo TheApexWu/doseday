@@ -73,6 +73,8 @@ def joint_positions(values):
 
 def cartesian_pose(end, x: float, y: float, z: float):
     """HARDWARE-ONLY. Tests replace this so they never import the SDK. Keeps the measured orientation."""
+    # theta is read back here, and AGENTS.md says not to trust read-back theta at the gripper-down pole.
+    # TODO(SO-101): command the last commanded theta before any hardware run.
     from viam.proto.common import Pose
     return Pose(x=x, y=y, z=z, o_x=end.o_x, o_y=end.o_y, o_z=end.o_z, theta=end.theta)
 
