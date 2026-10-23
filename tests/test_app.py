@@ -16,6 +16,7 @@ def server(monkeypatch):
     monkeypatch.setattr(actions, "SETTLE_POLL_S", 0.0)
     monkeypatch.setattr(actions, "PRESS_HOLD_S", 0.0)
     monkeypatch.setattr(actions, "CAMERA_SETTLE_S", 0.0)
+    monkeypatch.setattr(actions, "ARRIVE_POLL_S", 0.0)
 
     def start(move_s=0.0):
         ctl = app.Controller(app.fake_station(move_s))

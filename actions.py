@@ -41,6 +41,26 @@ CAMERA_SETTLE_S = 2.0
 JAW_HELD_MIN = 3.0
 
 
+# move_to_joint_positions sometimes returns before the arm has started: on 23 Oct, 2 of 6 timed 15-degree returns came
+# back in 0.03-0.08 s with the arm still 15 deg from target, then it arrived on its own. Trust the joints, not the call.
+ARRIVE_TOL_DEG, ARRIVE_STEADY_READS, ARRIVE_POLL_S = 1.0, 3, 0.1
+
+
+async def wait_arrival(arm, target, speed: float, timeout: float | None = None) -> bool:
+    """Poll joint angles until every joint is within ARRIVE_TOL_DEG of target for ARRIVE_STEADY_READS reads in a row.
+    False if that does not happen within the time the move should take, with margin."""
+    now = list((await arm.get_joint_positions()).values)
+    budget = timeout or max(abs(t - c) for t, c in zip(target, now)) / max(speed, 1.0) * 1.5 + 2.0
+    t0, steady = time.monotonic(), 0
+    while steady < ARRIVE_STEADY_READS:
+        if time.monotonic() - t0 > budget:
+            return False
+        await asyncio.sleep(ARRIVE_POLL_S)
+        now = list((await arm.get_joint_positions()).values)
+        steady = steady + 1 if max(abs(t - c) for t, c in zip(target, now)) <= ARRIVE_TOL_DEG else 0
+    return True
+
+
 class Refused(Exception):
     """A reason the station says out loud instead of acting."""
 
@@ -104,6 +124,11 @@ class Station:
             # a refused move can still have moved another joint, so log where the arm really is
             self.log({"move": name, "error": f"{type(e).__name__}: {str(e)[:160]}", "at": await self.joints()})
             raise
+        if not await wait_arrival(self.arm, target, speed, timeout):
+            self.log({"move": name, "not_arrived": True, "at": await self.joints()})
+            if timeout:  # a capped press is expected to stop short against the lid
+                return
+            raise Refused(f"the arm did not reach {name}, so I stopped")
         self.log({"move": name, "at": await self.joints()})
 
     async def jaw(self) -> float:
