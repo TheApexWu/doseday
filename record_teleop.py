@@ -38,14 +38,17 @@ async def main(seconds: float, teleop_on: bool):
             w.writerow(["t", *[f"L{i}" for i in range(5)], *[f"F{i}" for i in range(5)], "x", "y", "z", "o_x", "o_y", "o_z", "theta", "jaw_pct"])
             t0 = time.monotonic()
             while (t := time.monotonic() - t0) < seconds:
-                lj = (await leader.get_joint_positions()).values
-                fj = (await follower.get_joint_positions()).values
-                p = await follower.get_end_position()
-                g = (await jaw.do_command({"command": "get_position"}))["position_percentage"]
-                w.writerow([round(t, 2), *[round(v, 2) for v in lj], *[round(v, 2) for v in fj],
-                            *[round(v, 1) for v in (p.x, p.y, p.z)], *[round(v, 3) for v in (p.o_x, p.o_y, p.o_z)], round(p.theta, 1), round(g, 1)])
-                f.flush()
-                print(f"{t:5.1f}s  follower {[round(v) for v in fj]}  tip x{p.x:6.0f} y{p.y:6.0f} z{p.z:6.0f}  jaw {g:4.0f}%  lag {max(abs(a-b) for a,b in zip(lj,fj)):4.1f}°", flush=True)
+                try:
+                    lj = (await leader.get_joint_positions()).values
+                    fj = (await follower.get_joint_positions()).values
+                    p = await follower.get_end_position()
+                    g = (await jaw.do_command({"command": "get_position"}))["position_percentage"]
+                    w.writerow([round(t, 2), *[round(v, 2) for v in lj], *[round(v, 2) for v in fj],
+                                *[round(v, 1) for v in (p.x, p.y, p.z)], *[round(v, 3) for v in (p.o_x, p.o_y, p.o_z)], round(p.theta, 1), round(g, 1)])
+                    f.flush()
+                    print(f"{t:5.1f}s  follower {[round(v) for v in fj]}  tip x{p.x:6.0f} y{p.y:6.0f} z{p.z:6.0f}  jaw {g:4.0f}%  lag {max(abs(a-b) for a,b in zip(lj,fj)):4.1f}°", flush=True)
+                except Exception as e:  # one bad serial read must not end the session
+                    print(f"{t:5.1f}s  read failed: {str(e)[:80]}", flush=True)
                 await asyncio.sleep(max(0, 1 / HZ - (time.monotonic() - t0 - t)))
     finally:
         if teleop_on:
