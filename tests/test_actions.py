@@ -12,6 +12,7 @@ def no_sdk(monkeypatch):
     monkeypatch.setattr(actions, "joint_positions", lambda v: v)
     monkeypatch.setattr(actions, "SETTLE_POLL_S", 0.0)
     monkeypatch.setattr(actions, "PRESS_HOLD_S", 0.0)
+    monkeypatch.setattr(actions, "CAMERA_SETTLE_S", 0.0)
 
 
 def rig(tmp_path, label="tums", stops_at=12.0, poses=None, allow_open=True, **kw):
@@ -149,3 +150,24 @@ def test_halt_stops_and_restores_torque(tmp_path):
     st, arm, _ = rig(tmp_path)
     run(st.halt())
     assert arm.stopped and torque(arm) == [actions.FULL_TORQUE]
+
+
+def test_identification_photo_waits_for_the_camera_to_catch_up(tmp_path, monkeypatch):
+    monkeypatch.setattr(actions, "CAMERA_SETTLE_S", 0.05)
+    events = []
+    st, arm, _ = rig(tmp_path)
+    real_sleep, real_images = actions.asyncio.sleep, st.camera.get_images
+
+    async def sleep(s):
+        events.append(("sleep", s))
+        await real_sleep(0)
+
+    async def images():
+        events.append(("frame",))
+        return await real_images()
+
+    monkeypatch.setattr(actions.asyncio, "sleep", sleep)
+    st.camera.get_images = images
+    run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    i = events.index(("frame",))
+    assert events[i - 1] == ("sleep", 0.05)  # the frame is taken only after the settle wait

@@ -32,6 +32,9 @@ PRESS_HOLD_S = 0.3
 PRESS_TIMEOUT_S = 5.0   # a press that stalls against the tab never settles; lift anyway
 OPEN_PCT, CLOSED_PCT, GRIP_SQUEEZE_PCT = 30.0, 0.0, 1.0
 SETTLE_TOL, SETTLE_READS, SETTLE_POLL_S, SETTLE_TIMEOUT_S = 0.5, 3, 0.1, 6.0
+# The wrist camera's frames trail the arm: after a move returns, frames kept changing for 1.0-1.9 s before matching the
+# settled view (23 Oct, two 25-degree base turns). Any photo the station acts on waits this long after a move.
+CAMERA_SETTLE_S = 2.0
 # Grip check by where the closing jaw stopped. Empty closes end at 0.7-2.0% (23 Oct); a rigid pill stops the jaw
 # higher (to confirm with a Tums on the arm). The wrist-camera hold score cannot judge white pills: the white
 # jaws fill 35-92% of its gap region on empty frames (23 Oct), so it only ever worked for coloured candy.
@@ -118,6 +121,7 @@ class Station:
         return last
 
     async def frame(self) -> np.ndarray:
+        await asyncio.sleep(CAMERA_SETTLE_S)  # a frame taken sooner can still show the arm mid-move
         imgs, _ = await self.camera.get_images()
         img = cv2.imdecode(np.frombuffer(imgs[0].data, np.uint8), cv2.IMREAD_COLOR)
         if img is None:
