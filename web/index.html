@@ -28,6 +28,7 @@
   .row { display:flex; gap:10px; }
   .row button { flex:1; }
   .place { background:#1d1d00; border-color:var(--accent); color:var(--accent); }
+  .small { font-size:18px; font-weight:400; }
   section { padding:0 16px 24px; }
   #log { list-style:none; padding:0; margin:0; font-size:20px; }
   #log li { padding:8px 0; border-bottom:1px solid var(--line); }
@@ -45,7 +46,7 @@
 </header>
 <main id="days"></main>
 <section>
-  <p class="hint">Say: “open Wednesday”, “put Tums in Monday”, “close Friday”, “go home”, or “stop”.</p>
+  <p class="hint">Lids start open. Say: “put Tums in Monday”, “close Friday”, “go home”, or “stop”.</p>
   <ul id="log" aria-live="polite"></ul>
 </section>
 <script>
@@ -69,7 +70,10 @@ async function post(path, body) {
 
 function cmd(action, day, pill) {
   const words = action === "place" ? `Putting ${pill} in ${NAMES[day]}` :
-                action === "home" ? "Going home" : `${action === "open" ? "Opening" : "Closing"} ${NAMES[day]}`;
+                action === "home" ? "Going home" :
+                action === "opened" ? `Marking ${NAMES[day]} open` :
+                action === "open" ? `Lids start open. Please open ${NAMES[day]} by hand` : `Closing ${NAMES[day]}`;
+  if (action === "open") { say(words); return; }
   say(words);
   return post("/cmd", {action, day, pill});
 }
@@ -80,7 +84,7 @@ function build() {
     const card = document.createElement("div");
     card.className = "day";
     card.innerHTML = `<h2>${NAMES[d]} <span class="lid" id="lid-${d}">lid ?</span></h2>
-      <div class="row"><button data-a="open">Open</button><button data-a="close">Close</button></div>
+      <div class="row"><button data-a="close">Close lid</button><button data-a="opened" class="small">Opened by hand</button></div>
       ${PILLS.map(p => `<button class="place" data-a="place" data-p="${p}">+ ${p[0].toUpperCase()+p.slice(1)}</button>`).join("")}`;
     card.querySelectorAll("button").forEach(b => b.onclick = () => cmd(b.dataset.a, d, b.dataset.p));
     main.appendChild(card);

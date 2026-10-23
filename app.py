@@ -22,7 +22,7 @@ import actions
 
 HERE = Path(__file__).parent
 PAGE = HERE / "web" / "index.html"
-ACTIONS = {"open", "close", "place", "home"}
+ACTIONS = {"open", "close", "place", "home", "opened"}
 
 
 class Controller:
@@ -73,7 +73,7 @@ class Controller:
 def validate(cmd: dict) -> str | None:
     if cmd.get("action") not in ACTIONS:
         return f"action must be one of {sorted(ACTIONS)}"
-    if cmd["action"] in {"open", "close", "place"}:
+    if cmd["action"] in {"open", "close", "place", "opened"}:
         try:
             actions.check_day(cmd.get("day", ""))
         except actions.Refused as r:

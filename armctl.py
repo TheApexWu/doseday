@@ -7,13 +7,18 @@
   python armctl.py where           joints + gripper tip pose + jaw, once
   python armctl.py align [speed]   follower moves slowly to the leader's current pose (default 30 deg/s), so teleop can start without a jump
   python armctl.py watch           live tip x/y/z and jaw twice a second until Ctrl-C (reads only)
+  python armctl.py teach <name>    save the follower's current joints as <name> in taught_joints.json
+  python armctl.py goto <name>     move the follower to a taught pose slowly (30 deg/s)
+  python armctl.py poses           list taught poses
   python armctl.py jaw <pct>       set the follower jaw (0-95) and wait until it settles; works in any mode
 
 Logging runs separately and never changes modes:
   python record_teleop.py 120 --no-teleop
 """
 import asyncio
+import json
 import sys
+from pathlib import Path
 
 from viam.robot.client import RobotClient
 from viam.components.arm import Arm
@@ -94,6 +99,33 @@ async def main(cmd, args):
                     await asyncio.sleep(0.5)
             except (KeyboardInterrupt, asyncio.CancelledError):
                 print()
+        elif cmd in ("teach", "goto", "poses"):
+            path = Path(__file__).with_name("taught_joints.json")
+            poses = json.loads(path.read_text()) if path.exists() else {}
+            if cmd == "poses":
+                for name in sorted(poses):
+                    print(f"{name:20s} {[round(v, 1) for v in poses[name]]}")
+            elif not args:
+                sys.exit(f"{cmd} needs a pose name, e.g. tray_hover, drop_wed_hover, lid_wed_press")
+            elif cmd == "teach":
+                joints = [round(v, 2) for v in (await follower.get_joint_positions()).values]
+                note = " (replaced)" if args[0] in poses else ""
+                poses[args[0]] = joints
+                path.write_text(json.dumps(poses, indent=1, sort_keys=True))
+                print(f"taught {args[0]} = {joints}{note}; {len(poses)} poses")
+            else:
+                if args[0] not in poses:
+                    sys.exit(f"{args[0]} is not taught; `python armctl.py poses` lists them")
+                await teleop.do_command({"command": "stop"})
+                await follower.do_command({"command": "exit_manual_mode"})
+                lims = await joint_limits(follower)
+                target = [min(max(v, lo + 0.5), hi - 0.5) for v, (lo, hi) in zip(poses[args[0]], lims)]
+                await follower.do_command({"set_speed": 30})
+                try:
+                    await follower.move_to_joint_positions(JointPositions(values=target))
+                finally:
+                    await follower.do_command({"set_speed": 50})
+                print(f"at {args[0]}: {[round(v, 1) for v in (await follower.get_joint_positions()).values]}")
         elif cmd == "jaw":
             if not args or not 0 <= float(args[0]) <= 95:
                 sys.exit("jaw needs a percentage 0-95 (95 is the open limit)")

@@ -14,10 +14,10 @@ def no_sdk(monkeypatch):
     monkeypatch.setattr(actions, "PRESS_HOLD_S", 0.0)
 
 
-def rig(tmp_path, label="tums", stops_at=12.0, poses=None, **kw):
+def rig(tmp_path, label="tums", stops_at=12.0, poses=None, allow_open=True, **kw):
     arm, grip = fakes.FakeArm(), fakes.FakeGripper(stops_at)
     st = actions.Station(arm, grip, fakes.FakeCamera(), poses or fakes.poses(), fakes.LIMITS,
-                         tmp_path / "s.jsonl", identify=fakes.tray(label), **kw)
+                         tmp_path / "s.jsonl", identify=fakes.tray(label), allow_open=allow_open, **kw)
     return st, arm, grip
 
 
@@ -73,11 +73,28 @@ def test_unknown_day_and_action_refuse(tmp_path):
     assert arm.moves == []
 
 
-def test_place_right_pill_opens_lid_grips_and_drops_in_that_day(tmp_path):
+def test_opening_is_off_by_default_and_lids_start_open(tmp_path):
+    st, arm, _ = rig(tmp_path, allow_open=False)
+    assert set(st.lid.values()) == {"open"}
+    r = run(st.run({"action": "open", "day": "wed"}))
+    assert r == {"ok": False, "say": "I don't open lids; please open Wednesday by hand"} and arm.moves == []
+
+
+def test_place_into_a_closed_day_refuses_until_marked_open_by_hand(tmp_path):
+    st, arm, _ = rig(tmp_path, allow_open=False)
+    run(st.run({"action": "close", "day": "thu"}))
+    n = len(arm.moves)
+    assert run(st.run({"action": "place", "pill": "tums", "day": "thu"}))["say"] == "Thursday is closed; open it by hand first"
+    assert not any(m for m in visited(st, arm)[n:] if m.startswith(("tray_down", "drop_")))
+    assert run(st.run({"action": "opened", "day": "thu"}))["say"] == "Thursday marked open"
+    assert run(st.run({"action": "place", "pill": "tums", "day": "thu"}))["ok"] is True
+
+
+def test_place_right_pill_grips_and_drops_in_that_day(tmp_path):
     st, arm, grip = rig(tmp_path, label="tums", stops_at=12.0)
     assert run(st.run({"action": "place", "pill": "Tums", "day": "tue"})) == {"ok": True, "say": "tums placed in Tuesday"}
     seq = visited(st, arm)
-    assert seq.index("tab_tue_press") < seq.index("tray_down") < seq.index("drop_tue_hover")
+    assert "tab_tue_press" not in seq and seq.index("tray_down") < seq.index("drop_tue_hover")
     assert seq[-1] == "tray_hover"
     assert 12.0 - actions.GRIP_SQUEEZE_PCT in grip.sets  # backed off to where the pill stopped the jaw
 
@@ -86,7 +103,7 @@ def test_place_wrong_known_pill_leaves_it_and_never_reaches_a_compartment(tmp_pa
     st, arm, _ = rig(tmp_path, label="magnesium")
     r = run(st.run({"action": "place", "pill": "tums", "day": "tue"}))
     assert r == {"ok": False, "say": "that pill is magnesium, not tums; I left it on the tray"}
-    assert not any(n.startswith(("drop_", "tab_")) for n in visited(st, arm))
+    assert not any(n.startswith(("drop_", "tab_", "tray_down")) for n in visited(st, arm))
 
 
 def test_place_unknown_pill_goes_to_the_reject_cup(tmp_path):

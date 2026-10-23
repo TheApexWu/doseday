@@ -55,13 +55,13 @@ def test_page_is_served(server):
         assert b"Doseday" in r.read()
 
 
-def test_open_then_place_run_in_order_and_report(server):
+def test_place_then_close_run_in_order_and_report(server):
     ctl, url = server()
-    assert call(url, "/cmd", {"action": "open", "day": "wed"})[0] == 200
     assert call(url, "/cmd", {"action": "place", "day": "wed", "pill": "tums"})[0] == 200
+    assert call(url, "/cmd", {"action": "close", "day": "wed"})[0] == 200
     res = wait_result(url, 2)
-    assert [r["say"] for r in reversed(res)] == ["Wednesday is open", "tums placed in Wednesday"]
-    assert call(url, "/status")[1]["lids"]["wed"] == "open"
+    assert [r["say"] for r in reversed(res)] == ["tums placed in Wednesday", "Wednesday is closed"]
+    assert call(url, "/status")[1]["lids"]["wed"] == "closed"
 
 
 def test_wrong_pill_is_refused_out_loud(server):
@@ -82,7 +82,7 @@ def test_bad_commands_are_rejected_before_the_queue(server, body):
 def test_stop_cancels_the_running_action_and_empties_the_queue(server):
     ctl, url = server(move_s=0.3)
     call(url, "/cmd", {"action": "place", "day": "fri", "pill": "tums"})
-    call(url, "/cmd", {"action": "open", "day": "sat"})
+    call(url, "/cmd", {"action": "close", "day": "sat"})
     time.sleep(0.5)
     assert call(url, "/stop", {})[1]["say"] == "stopped"
     res = wait_result(url, 1)
@@ -91,4 +91,4 @@ def test_stop_cancels_the_running_action_and_empties_the_queue(server):
     torque = [c["value"] for c in ctl.station.arm.commands if c.get("command") == "set_torque_limit"]
     assert torque[-1] == actions.FULL_TORQUE
     time.sleep(0.5)
-    assert len(call(url, "/status")[1]["results"]) == 1  # the queued open never ran
+    assert len(call(url, "/status")[1]["results"]) == 1  # the queued close never ran

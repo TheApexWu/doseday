@@ -5,7 +5,7 @@ manual mode holds the arm there. Names (days: sun mon tue wed thu fri sat):
   home
   tray_hover, tray_down              the pick slot; the wrist camera at tray_hover sees the slot
   reject_hover                       above the reject cup
-  tab_<day>_hover, tab_<day>_press   fingertip on the black dot of the latch tab: pressing it opens the lid
+  tab_<day>_hover, tab_<day>_press   fingertip on the latch tab's black dot (opening is off unless allow_open)
   lid_<day>_hover, lid_<day>_press   on the open lid: pressing it shuts the lid
   drop_<day>_hover                   above the open compartment
 An action whose poses are not taught yet refuses and names the missing pose.
@@ -61,11 +61,14 @@ def joint_positions(values):
 
 class Station:
     def __init__(self, arm, gripper, camera, poses: dict, limits, log_path: Path, identify=None,
-                 open_pct: float = OPEN_PCT, unverified: bool = False):
+                 open_pct: float = OPEN_PCT, unverified: bool = False, allow_open: bool = False):
         self.arm, self.gripper, self.camera = arm, gripper, camera
         self.poses, self.limits, self.log_path = poses, limits, log_path
         self.identify, self.open_pct, self.unverified = identify, open_pct, unverified
-        self.lid = {d: "unknown" for d in DAYS}
+        # Opening by pressing the latch tab is off by default: it worked by teleop (run 03) but was judged too
+        # forceful to risk in a demo (23 Oct). Lids start open; the arm only closes them.
+        self.allow_open = allow_open
+        self.lid = {d: "open" for d in DAYS}
 
     def log(self, entry: dict):
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -136,6 +139,8 @@ class Station:
 
     async def open_lid(self, day: str) -> str:
         d = check_day(day)
+        if not self.allow_open:
+            raise Refused(f"I don't open lids; please open {DAY_NAMES[d]} by hand")
         await self.jaw_to(CLOSED_PCT)  # closed jaw = fingertip
         await self.press("tab", d)
         self.lid[d] = "open"
@@ -195,8 +200,7 @@ class Station:
         if label != pill:
             raise Refused(f"that pill is {label}, not {pill}; I left it on the tray")
         if self.lid[d] != "open":
-            await self.move("tray_hover", MOVE_SPEED)
-            await self.open_lid(d)
+            raise Refused(f"{DAY_NAMES[d]} is closed; open it by hand first")
         await self.jaw_to(self.open_pct)
         await self.move("tray_hover", MOVE_SPEED)
         await self.grip()
@@ -205,6 +209,11 @@ class Station:
         self.log({"placed": pill, "day": d})
         await self.move("tray_hover", MOVE_SPEED)
         return f"{pill} placed in {DAY_NAMES[d]}"
+
+    def mark_open(self, day: str) -> str:
+        d = check_day(day)
+        self.lid[d] = "open"
+        return f"{DAY_NAMES[d]} marked open"
 
     async def go_home(self) -> str:
         await self.move("home", MOVE_SPEED)
@@ -227,6 +236,8 @@ class Station:
                 say = await self.place(cmd.get("pill"), cmd.get("day"))
             elif action == "home":
                 say = await self.go_home()
+            elif action == "opened":  # a person opened the lid by hand
+                say = self.mark_open(cmd.get("day"))
             else:
                 raise Refused(f"I don't know how to {action!r}")
             return {"ok": True, "say": say}
