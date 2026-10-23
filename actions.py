@@ -61,9 +61,11 @@ def joint_positions(values):
 
 class Station:
     def __init__(self, arm, gripper, camera, poses: dict, limits, log_path: Path, identify=None,
-                 open_pct: float = OPEN_PCT, unverified: bool = False, allow_open: bool = False):
+                 open_pct: float = OPEN_PCT, unverified: bool = False, allow_open: bool = False,
+                 poses_path: Path | None = None, read_limits=None):
         self.arm, self.gripper, self.camera = arm, gripper, camera
         self.poses, self.limits, self.log_path = poses, limits, log_path
+        self.poses_path, self.read_limits = poses_path, read_limits
         self.identify, self.open_pct, self.unverified = identify, open_pct, unverified
         # Opening by pressing the latch tab is off by default: it worked by teleop (run 03) but was judged too
         # forceful to risk in a demo (23 Oct). Lids start open; the arm only closes them.
@@ -271,9 +273,21 @@ class Station:
         if failure is not None:
             raise failure
 
+    async def refresh(self):
+        """Taught poses and joint limits can change while the station runs (armctl teach; the shoulder floor
+        moved on 23 Oct), so both are read again before each action."""
+        if self.poses_path is not None:
+            try:
+                self.poses = load_poses(self.poses_path)
+            except json.JSONDecodeError as e:
+                raise Refused(f"the taught poses file is unreadable ({e.msg}); not moving") from e
+        if self.read_limits is not None:
+            self.limits = await self.read_limits()
+
     async def run(self, cmd: dict) -> dict:
         action = cmd.get("action")
         try:
+            await self.refresh()
             if action == "open":
                 say = await self.open_lid(cmd.get("day"))
             elif action == "close":

@@ -158,7 +158,8 @@ def real_station(unverified: bool):
         return actions.Station(arm, Gripper.from_robot(robot, "follower-gripper"),
                                Camera.from_robot(robot, "follower-cam"), actions.load_poses(),
                                await joint_limits(arm), HERE / "logs" / f"station-{time.strftime('%H%M%S')}.jsonl",
-                               identify=ident, unverified=unverified)
+                               identify=ident, unverified=unverified, poses_path=actions.POSES,
+                               read_limits=lambda: joint_limits(arm))
     return make
 
 

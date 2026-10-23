@@ -1,5 +1,6 @@
 """actions.Station on fake hardware: move order, gentle presses, refusals that keep the wrong pill out."""
 import asyncio
+import json
 
 import pytest
 
@@ -149,6 +150,39 @@ def test_halt_stops_and_restores_torque(tmp_path):
     st, arm, _ = rig(tmp_path)
     run(st.halt())
     assert arm.stopped and torque(arm) == [actions.FULL_TORQUE]
+
+
+def test_a_pose_taught_during_the_run_reaches_the_next_action(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    taught = tmp_path / "taught_joints.json"
+    poses = fakes.poses()
+    taught.write_text(json.dumps(poses))
+    st.poses_path = taught
+    poses["home"] = [50.0, 0.0, 0.0, 0.0, 0.0]  # armctl teach rewrites the file while the app runs
+    taught.write_text(json.dumps(poses))
+    run(st.run({"action": "home"}))
+    assert arm.moves[-1][0] == 50.0
+
+
+def test_joint_limits_are_read_again_before_the_next_action(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    st.poses["home"] = [0.0, -104.3, 0.0, 0.0, 0.0]
+
+    async def tighter_shoulder():  # the arm's own limits moved during the day (23 Oct)
+        return [(-110.0, 110.0), (-90.0, 100.0), (-96.8, 96.8), (-95.0, 95.0), (-157.2, 162.8)]
+
+    st.read_limits = tighter_shoulder
+    run(st.run({"action": "home"}))
+    assert arm.moves[-1][1] == -89.5
+
+
+def test_an_unreadable_taught_file_refuses_without_moving(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    taught = tmp_path / "taught_joints.json"
+    taught.write_text('{"home": [0.0,')  # a teach caught mid-write
+    st.poses_path = taught
+    assert run(st.run({"action": "home"}))["ok"] is False
+    assert arm.moves == []
 
 
 def test_halt_restores_full_torque_even_when_the_stop_raises(tmp_path):
