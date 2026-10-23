@@ -79,16 +79,19 @@ class Folder:
 class ViamCam:
     """HARDWARE-ONLY. Works for an arm-mounted or a fixed camera; no arm required."""
     def __init__(self):
+        from viam.components.camera import Camera  # noqa: F401  the SDK only builds clients for types imported before connect
         from arm import connect
         self.loop = asyncio.new_event_loop()
         self.robot = self.loop.run_until_complete(connect())
 
     def frame(self) -> np.ndarray:
+        return decode_viam(self.loop.run_until_complete(self._images()))
+
+    async def _images(self):
         from viam.components.camera import Camera
         cam = Camera.from_robot(self.robot, CAMERA)
-        imgs, _ = self.loop.run_until_complete(
-            cam.get_images(filter_source_names=[CAMERA_SOURCE]) if CAMERA_SOURCE else cam.get_images())
-        return decode_viam(imgs)
+        imgs, _ = await (cam.get_images(filter_source_names=[CAMERA_SOURCE]) if CAMERA_SOURCE else cam.get_images())
+        return imgs
 
     def close(self):
         try:

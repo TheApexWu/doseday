@@ -5,6 +5,7 @@
   python armctl.py teleop          leader goes limp, follower copies it (follower jumps to the leader's pose first)
   python armctl.py off             stop teleop + leave manual mode: both arms stiff and holding
   python armctl.py where           joints + gripper tip pose + jaw, once
+  python armctl.py align [speed]   follower moves slowly to the leader's current pose (default 30 deg/s), so teleop can start without a jump
   python armctl.py jaw <pct>       set the follower jaw (0-95) and wait until it settles; works in any mode
 
 Logging runs separately and never changes modes:
@@ -17,8 +18,11 @@ from viam.robot.client import RobotClient
 from viam.components.arm import Arm
 from viam.components.gripper import Gripper
 from viam.services.generic import Generic
+from viam.proto.component.arm import JointPositions
 
 from record_teleop import load_env
+
+SHOULDER_MIN = -104.8  # rest pose sits just past the -104.88 software limit; the arm refuses targets below it
 
 
 async def connect():
@@ -54,6 +58,24 @@ async def main(cmd, args):
             p = await follower.get_end_position()
             jaw = (await Gripper.from_robot(robot, "follower-gripper").do_command({"command": "get_position"}))["position_percentage"]
             print(f"joints {[round(v, 1) for v in j]}  tip x{p.x:.0f} y{p.y:.0f} z{p.z:.0f}  jaw {jaw:.0f}%")
+        elif cmd == "align":
+            speed = float(args[0]) if args else 30.0
+            if not 12 <= speed <= 60:
+                sys.exit("align speed must be 12-60 deg/s (below 12 the servos misbehave; above 60 is not careful)")
+            await teleop.do_command({"command": "stop"})
+            await follower.do_command({"command": "exit_manual_mode"})
+            target = list((await Arm.from_robot(robot, "leader-arm").get_joint_positions()).values)
+            target[1] = max(target[1], SHOULDER_MIN)
+            before = list((await follower.get_joint_positions()).values)
+            print("leader  ", [round(v, 1) for v in target])
+            print("follower", [round(v, 1) for v in before], f"(max gap {max(abs(a - b) for a, b in zip(target, before)):.1f} deg)")
+            await follower.do_command({"set_speed": speed})
+            try:
+                await follower.move_to_joint_positions(JointPositions(values=target))
+            finally:
+                await follower.do_command({"set_speed": 50})  # back to the configured default
+                after = list((await follower.get_joint_positions()).values)
+                print("aligned ", [round(v, 1) for v in after], f"(max error {max(abs(a - b) for a, b in zip(target, after)):.1f} deg)")
         elif cmd == "jaw":
             if not args or not 0 <= float(args[0]) <= 95:
                 sys.exit("jaw needs a percentage 0-95 (95 is the open limit)")
