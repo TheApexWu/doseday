@@ -1,0 +1,8 @@
+{
+  "schedule": {
+    "Mon-AM": {"oval": 1, "capsule": 1}, "Mon-PM": {"oval": 1},
+    "Tue-AM": {"oval": 1, "capsule": 1}, "Tue-PM": {"oval": 1},
+    "Wed-AM": {"oval": 1, "capsule": 1}, "Wed-PM": {"oval": 1}
+  },
+  "stock": {"oval": 30, "capsule": 4}
+}
