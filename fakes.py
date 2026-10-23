@@ -19,10 +19,16 @@ def poses() -> dict:
     return out
 
 
+DEFAULT_TCP = (200.0, 0.0, 200.0)  # fingertip (x, y, z) at a pose the fake was not given a tcp for
+
+
 class FakeArm:
-    def __init__(self, move_s: float = 0.0):
+    def __init__(self, move_s: float = 0.0, tcp: dict | None = None):
         self.at, self.moves, self.commands, self.stopped, self.move_s = [0.0] * 5, [], [], False, move_s
         self.fail_on = None  # joints list that raises when commanded
+        self.tcp = tcp or {}  # joints tuple -> fingertip (x, y, z) at that taught pose
+        self.end = DEFAULT_TCP  # what get_end_position reports: joint moves set it, move_to_position overwrites it
+        self.cartesian, self.fail_cartesian = [], False  # xyz of each move_to_position; True makes it raise
 
     async def get_joint_positions(self):
         return SimpleNamespace(values=list(self.at))
@@ -34,9 +40,17 @@ class FakeArm:
         if self.move_s:
             await asyncio.sleep(self.move_s)
         self.at = list(target)
+        self.end = self.tcp.get(tuple(target), DEFAULT_TCP)
+
+    async def move_to_position(self, pose, **_):
+        if self.fail_cartesian:
+            raise RuntimeError("cartesian move refused")
+        self.cartesian.append((pose.x, pose.y, pose.z))
+        self.end = (pose.x, pose.y, pose.z)
 
     async def get_end_position(self):
-        return SimpleNamespace(x=200.0, y=0.0, z=200.0 + self.at[1])
+        x, y, z = self.end
+        return SimpleNamespace(x=x, y=y, z=z, o_x=0.0, o_y=0.0, o_z=-1.0, theta=0.0)
 
     async def do_command(self, cmd):
         self.commands.append(cmd)
