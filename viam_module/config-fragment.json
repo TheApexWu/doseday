@@ -1,0 +1,52 @@
+{
+  "modules": [
+    {
+      "name": "doseday_multi_color",
+      "type": "local",
+      "executable_path": "/opt/viam/doseday/viam_module/run.sh"
+    }
+  ],
+  "components": [
+    {
+      "api": "rdk:component:camera",
+      "model": "transform",
+      "name": "multi-color-overlay",
+      "attributes": {
+        "source": "follower-cam",
+        "pipeline": [
+          {
+            "type": "detections",
+            "attributes": {
+              "detector_name": "multi-color-detector",
+              "confidence_threshold": 0.5,
+              "valid_labels": [
+                "red",
+                "black",
+                "orange",
+                "green",
+                "blue",
+                "cyan",
+                "purple"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "services": [
+    {
+      "api": "rdk:service:vision",
+      "model": "doseday:vision:multi-color-detector",
+      "name": "multi-color-detector",
+      "attributes": {
+        "camera_name": "follower-cam",
+        "min_area_px": 200,
+        "saturation_min": 80,
+        "value_min": 50,
+        "black_value_max": 45,
+        "max_area_fraction": 0.25
+      }
+    }
+  ]
+}
