@@ -6,6 +6,7 @@
   python armctl.py off             stop teleop + leave manual mode: both arms stiff and holding
   python armctl.py where           joints + gripper tip pose + jaw, once
   python armctl.py align [speed]   follower moves slowly to the leader's current pose (default 30 deg/s), so teleop can start without a jump
+  python armctl.py watch           live tip x/y/z and jaw twice a second until Ctrl-C (reads only)
   python armctl.py jaw <pct>       set the follower jaw (0-95) and wait until it settles; works in any mode
 
 Logging runs separately and never changes modes:
@@ -83,6 +84,16 @@ async def main(cmd, args):
                 await follower.do_command({"set_speed": 50})  # back to the configured default
                 after = list((await follower.get_joint_positions()).values)
                 print("aligned ", [round(v, 1) for v in after], f"(max error {max(abs(a - b) for a, b in zip(target, after)):.1f} deg)")
+        elif cmd == "watch":
+            jaw = Gripper.from_robot(robot, "follower-gripper")
+            try:
+                while True:
+                    p = await follower.get_end_position()
+                    pct = (await jaw.do_command({"command": "get_position"}))["position_percentage"]
+                    print(f"\rtip x {p.x:6.1f}  y {p.y:6.1f}  z {p.z:6.1f} mm   jaw {pct:4.1f}%   ", end="", flush=True)
+                    await asyncio.sleep(0.5)
+            except (KeyboardInterrupt, asyncio.CancelledError):
+                print()
         elif cmd == "jaw":
             if not args or not 0 <= float(args[0]) <= 95:
                 sys.exit("jaw needs a percentage 0-95 (95 is the open limit)")
