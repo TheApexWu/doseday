@@ -3,6 +3,7 @@
   python app.py                  connects to pi-arm1 (keys from .env), serves http://localhost:8000
   python app.py --fake           no robot: fake arm, for the page and rehearsals
   python app.py --unverified     place pills without enrolled photos (demo only; says so in the log)
+  python app.py --claude         identify each pill with Claude vision + measured features (needs ANTHROPIC_API_KEY)
 
 Commands queue and run one at a time on the arm. STOP cancels the running action, stops the arm, empties the
 queue and restores full servo torque.
@@ -133,7 +134,7 @@ def fake_station(move_s: float = 0.4):
     return make
 
 
-def real_station(unverified: bool):
+def real_station(unverified: bool, use_claude: bool = False):
     """HARDWARE-ONLY. One connection for the whole session; poses from taught_joints.json."""
     async def make():
         from viam.components.arm import Arm
@@ -146,8 +147,13 @@ def real_station(unverified: bool):
         await arm.do_command({"command": "exit_manual_mode"})
         ident = None
         try:
-            import identify
-            ident = identify.Gallery(identify.Features()).identify
+            if use_claude:
+                import identify_claude
+                ident = identify_claude.ClaudeIdentifier().identify
+                print("identify: Claude vision + measured features, must agree")
+            else:
+                import identify
+                ident = identify.Gallery(identify.Features()).identify
         except SystemExit as e:  # no enrolled photos yet
             print(f"identify off: {e}")
         return actions.Station(arm, Gripper.from_robot(robot, "follower-gripper"),
@@ -162,8 +168,9 @@ if __name__ == "__main__":
     ap.add_argument("--port", type=int, default=8000)
     ap.add_argument("--fake", action="store_true")
     ap.add_argument("--unverified", action="store_true")
+    ap.add_argument("--claude", action="store_true")
     a = ap.parse_args()
-    ctl = Controller(fake_station() if a.fake else real_station(a.unverified))
+    ctl = Controller(fake_station() if a.fake else real_station(a.unverified, a.claude))
     print(f"Doseday on http://localhost:{a.port}  ({'fake arm' if a.fake else 'pi-arm1'}; "
           f"{len(ctl.station.poses)} taught poses)", flush=True)
     make_server(ctl, a.port).serve_forever()

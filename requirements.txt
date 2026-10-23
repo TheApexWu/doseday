@@ -3,3 +3,4 @@ numpy
 viam-sdk>=0.84   # only for live runs; tests and --dry-run do not import it
 pytest
 requests
+anthropic>=1,<2   # only for --claude identification
