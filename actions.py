@@ -32,10 +32,33 @@ PRESS_HOLD_S = 0.3
 PRESS_TIMEOUT_S = 5.0   # a press that stalls against the tab never settles; lift anyway
 OPEN_PCT, CLOSED_PCT, GRIP_SQUEEZE_PCT = 30.0, 0.0, 1.0
 SETTLE_TOL, SETTLE_READS, SETTLE_POLL_S, SETTLE_TIMEOUT_S = 0.5, 3, 0.1, 6.0
+# The wrist camera's frames trail the arm: after a move returns, frames kept changing for 1.0-1.9 s before matching the
+# settled view (23 Oct, two 25-degree base turns). Any photo the station acts on waits this long after a move.
+CAMERA_SETTLE_S = 2.0
 # Grip check by where the closing jaw stopped. Empty closes end at 0.7-2.0% (23 Oct); a rigid pill stops the jaw
 # higher (to confirm with a Tums on the arm). The wrist-camera hold score cannot judge white pills: the white
 # jaws fill 35-92% of its gap region on empty frames (23 Oct), so it only ever worked for coloured candy.
 JAW_HELD_MIN = 3.0
+
+
+# move_to_joint_positions sometimes returns before the arm has started: on 23 Oct, 2 of 6 timed 15-degree returns came
+# back in 0.03-0.08 s with the arm still 15 deg from target, then it arrived on its own. Trust the joints, not the call.
+ARRIVE_TOL_DEG, ARRIVE_STEADY_READS, ARRIVE_POLL_S = 1.0, 3, 0.1
+
+
+async def wait_arrival(arm, target, speed: float, timeout: float | None = None) -> bool:
+    """Poll joint angles until every joint is within ARRIVE_TOL_DEG of target for ARRIVE_STEADY_READS reads in a row.
+    False if that does not happen within the time the move should take, with margin."""
+    now = list((await arm.get_joint_positions()).values)
+    budget = timeout or max(abs(t - c) for t, c in zip(target, now)) / max(speed, 1.0) * 1.5 + 2.0
+    t0, steady = time.monotonic(), 0
+    while steady < ARRIVE_STEADY_READS:
+        if time.monotonic() - t0 > budget:
+            return False
+        await asyncio.sleep(ARRIVE_POLL_S)
+        now = list((await arm.get_joint_positions()).values)
+        steady = steady + 1 if max(abs(t - c) for t, c in zip(target, now)) <= ARRIVE_TOL_DEG else 0
+    return True
 
 
 class Refused(Exception):
@@ -101,6 +124,11 @@ class Station:
             # a refused move can still have moved another joint, so log where the arm really is
             self.log({"move": name, "error": f"{type(e).__name__}: {str(e)[:160]}", "at": await self.joints()})
             raise
+        if not await wait_arrival(self.arm, target, speed, timeout):
+            self.log({"move": name, "not_arrived": True, "at": await self.joints()})
+            if timeout:  # a capped press is expected to stop short against the lid
+                return
+            raise Refused(f"the arm did not reach {name}, so I stopped")
         self.log({"move": name, "at": await self.joints()})
 
     async def jaw(self) -> float:
@@ -118,6 +146,7 @@ class Station:
         return last
 
     async def frame(self) -> np.ndarray:
+        await asyncio.sleep(CAMERA_SETTLE_S)  # a frame taken sooner can still show the arm mid-move
         imgs, _ = await self.camera.get_images()
         img = cv2.imdecode(np.frombuffer(imgs[0].data, np.uint8), cv2.IMREAD_COLOR)
         if img is None:

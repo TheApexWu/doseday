@@ -12,6 +12,8 @@ def no_sdk(monkeypatch):
     monkeypatch.setattr(actions, "joint_positions", lambda v: v)
     monkeypatch.setattr(actions, "SETTLE_POLL_S", 0.0)
     monkeypatch.setattr(actions, "PRESS_HOLD_S", 0.0)
+    monkeypatch.setattr(actions, "CAMERA_SETTLE_S", 0.0)
+    monkeypatch.setattr(actions, "ARRIVE_POLL_S", 0.0)
 
 
 def rig(tmp_path, label="tums", stops_at=12.0, poses=None, allow_open=True, **kw):
@@ -149,3 +151,49 @@ def test_halt_stops_and_restores_torque(tmp_path):
     st, arm, _ = rig(tmp_path)
     run(st.halt())
     assert arm.stopped and torque(arm) == [actions.FULL_TORQUE]
+
+
+def test_identification_photo_waits_for_the_camera_to_catch_up(tmp_path, monkeypatch):
+    monkeypatch.setattr(actions, "CAMERA_SETTLE_S", 0.05)
+    events = []
+    st, arm, _ = rig(tmp_path)
+    real_sleep, real_images = actions.asyncio.sleep, st.camera.get_images
+
+    async def sleep(s):
+        events.append(("sleep", s))
+        await real_sleep(0)
+
+    async def images():
+        events.append(("frame",))
+        return await real_images()
+
+    monkeypatch.setattr(actions.asyncio, "sleep", sleep)
+    st.camera.get_images = images
+    run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    i = events.index(("frame",))
+    assert events[i - 1] == ("sleep", 0.05)  # the frame is taken only after the settle wait
+
+
+def test_move_waits_for_the_arm_when_the_call_returns_early(tmp_path):
+    st, arm, grip = rig(tmp_path, stops_at=12.0)
+    arm.early_return = 4  # each move "finishes" at once; the arm gets there 4 reads later
+    closes = []
+    real = grip.do_command
+
+    async def spy(cmd):
+        if cmd.get("command") == "set_position" and cmd["percentage"] == 0.0:
+            closes.append(list(arm.at))  # where the arm really is when the jaw closes
+        return await real(cmd)
+
+    grip.do_command = spy
+    assert run(st.run({"action": "place", "pill": "tums", "day": "wed"}))["ok"] is True
+    assert closes and closes[0] == st.clamp(st.poses["tray_down"])  # closed only after really reaching the pill
+
+
+def test_move_that_never_arrives_stops_the_action(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    arm.at = [-90.0, 0.0, 0.0, 0.0, 0.0]  # far from every fake pose (they sit 1 deg apart, inside the tolerance)
+    arm.early_return = -1  # returns at once and never arrives
+    r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert r == {"ok": False, "say": "the arm did not reach tray_hover, so I stopped"}
+    assert len(arm.moves) == 1

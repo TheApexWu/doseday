@@ -27,6 +27,7 @@ from viam.services.generic import Generic
 from viam.proto.component.arm import JointPositions
 
 from record_teleop import load_env
+from actions import wait_arrival
 
 
 
@@ -85,6 +86,8 @@ async def main(cmd, args):
             await follower.do_command({"set_speed": speed})
             try:
                 await follower.move_to_joint_positions(JointPositions(values=target))
+                if not await wait_arrival(follower, target, speed):
+                    print("warning: the follower did not reach the leader's pose in time")
             finally:
                 await follower.do_command({"set_speed": 50})  # back to the configured default
                 after = list((await follower.get_joint_positions()).values)
@@ -123,6 +126,8 @@ async def main(cmd, args):
                 await follower.do_command({"set_speed": 30})
                 try:
                     await follower.move_to_joint_positions(JointPositions(values=target))
+                    if not await wait_arrival(follower, target, 30):
+                        print(f"warning: the follower did not reach {args[0]} in time")
                 finally:
                     await follower.do_command({"set_speed": 50})
                 print(f"at {args[0]}: {[round(v, 1) for v in (await follower.get_joint_positions()).values]}")

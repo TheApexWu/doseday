@@ -23,14 +23,22 @@ class FakeArm:
     def __init__(self, move_s: float = 0.0):
         self.at, self.moves, self.commands, self.stopped, self.move_s = [0.0] * 5, [], [], False, move_s
         self.fail_on = None  # joints list that raises when commanded
+        self.early_return, self.pending, self.pending_reads = 0, None, 0
 
     async def get_joint_positions(self):
+        if self.pending is not None:  # arrive a few reads after an early return; never if pending_reads < 0
+            self.pending_reads -= 1
+            if self.pending_reads == 0:
+                self.at, self.pending = self.pending, None
         return SimpleNamespace(values=list(self.at))
 
     async def move_to_joint_positions(self, target):
         if self.fail_on is not None and list(target) == self.fail_on:
             raise RuntimeError("servo overload")
         self.moves.append(list(target))
+        if self.early_return:  # the real module sometimes returns before the arm has moved
+            self.pending, self.pending_reads = list(target), self.early_return
+            return
         if self.move_s:
             await asyncio.sleep(self.move_s)
         self.at = list(target)
