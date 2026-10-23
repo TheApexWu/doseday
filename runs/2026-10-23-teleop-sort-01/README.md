@@ -23,7 +23,7 @@ Reproduce: `python analyze_run.py runs/2026-10-23-teleop-sort-01`
 | Transports pick → drop area | 7 | `analyze_run.py` (tip x ≤ 200 mm, then ≥ 250 mm) |
 | Transports carrying candy | **6 of 7** | camera hold score > 0.15 during the move; the empty one is at 103 s (jaw closed to 1.4%, score 0.00) |
 | Closures at the pick spot with nothing between the jaws | 7 (49, 52, 78, 85, 90, 97, 102 s) | read by hand from `per_second.csv`; 1 Hz frames, so a quick regrab can be missed |
-| First-try grab rate | about **6 / 13 closures ≈ 46%** | from the two rows above; approximate |
+| First-try grab rate | **6 / 17 attempts = 35%** | per-attempt analysis in `ANALYSIS.md` (the 1 Hz table first suggested ~46%; it misses quick regrabs) |
 | Jaw opening used | 0.7–18.2% | the leader trigger never opened the follower past ~18% |
 | Jaw reading while holding | 2.6–9.8% | a dark M&M held at 2.6%, close to an empty close (0.7–2.0%) |
 | Tip height at pick | z 91–104 mm | |
