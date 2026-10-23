@@ -1,0 +1,5 @@
+opencv-python>=4.8   # cv2.aruco.ArucoDetector is in the main module since 4.7
+numpy
+viam-sdk>=0.84   # only for live runs; tests and --dry-run do not import it
+pytest
+requests

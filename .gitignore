@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+logs/
+*.plan.png
+.env
+.env.*
+.DS_Store
+sample/
+data/
+.venv/
+poses.json
+calib.json
+pills.json
