@@ -11,3 +11,4 @@ data/
 poses.json
 calib.json
 pills.json
+taught_joints.json

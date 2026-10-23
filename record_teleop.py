@@ -1,7 +1,9 @@
 """Teleop + live recorder. Starts leader->follower mirroring, logs both arms at ~10 Hz to CSV, always stops teleop on exit.
 
-usage: python record_teleop.py [seconds] [--no-teleop]
-  --no-teleop  only record (e.g. while someone moves the follower in manual mode)
+usage: python record_teleop.py [seconds] [--no-teleop] [--follower-only]
+  --no-teleop      only record (e.g. while someone moves the follower in manual mode)
+  --follower-only  skip leader reads: teleop already reads the leader 100 times a second on the same serial
+                   line, and the extra reads lined up with "read 39 of 48 bytes" timeouts on 23 Oct
 """
 import asyncio, csv, signal, sys, time
 from datetime import datetime
@@ -21,7 +23,7 @@ def load_env(path=HERE / ".env"):
     return {k.strip(): v.strip().strip("'\"") for k, v in pairs}
 
 
-async def main(seconds: float, teleop_on: bool):
+async def main(seconds: float, teleop_on: bool, follower_only: bool = False):
     env = load_env()
     robot = await RobotClient.at_address(env["VIAM_ADDRESS"], RobotClient.Options.with_api_key(
         api_key=env["VIAM_API_KEY"], api_key_id=env["VIAM_API_KEY_ID"]))
@@ -39,8 +41,8 @@ async def main(seconds: float, teleop_on: bool):
             t0 = time.monotonic()
             while (t := time.monotonic() - t0) < seconds:
                 try:
-                    lj = (await leader.get_joint_positions()).values
                     fj = (await follower.get_joint_positions()).values
+                    lj = fj if follower_only else (await leader.get_joint_positions()).values
                     p = await follower.get_end_position()
                     g = (await jaw.do_command({"command": "get_position"}))["position_percentage"]
                     # servo load is only reported while the follower is in manual mode; blank otherwise
@@ -65,6 +67,6 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTERM, lambda *_: (_ for _ in ()).throw(KeyboardInterrupt))
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     try:
-        asyncio.run(main(float(args[0]) if args else 60, "--no-teleop" not in sys.argv))
+        asyncio.run(main(float(args[0]) if args else 60, "--no-teleop" not in sys.argv, "--follower-only" in sys.argv))
     except KeyboardInterrupt:
         pass
