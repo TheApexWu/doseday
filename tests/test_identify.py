@@ -91,3 +91,20 @@ def test_size_wobble_within_camera_noise_still_names_the_pill(gallery_dir):
     ellipse(img, 320, 240, 62, 27, 40, OVAL_C)
     g = identify.Gallery(identify.Features(), root=gallery_dir, limit=0.9)
     assert [r["label"] for r in g.identify(img)] == ["magnesium"]
+
+
+def test_organizer_sized_blob_is_scenery_not_a_reject(gallery_dir):
+    img = table()
+    cv2.rectangle(img, (20, 200), (620, 300), (200, 200, 200), -1)  # the organizer: ~60,000 px
+    g = identify.Gallery(identify.Features(), root=gallery_dir)
+    labels = sorted(r["label"] for r in g.identify(img))
+    assert labels.count("not_pill") == 1 and "unknown" in labels  # the blue capsule is still refused
+
+
+def test_blob_cut_off_by_the_frame_edge_is_skipped(gallery_dir):
+    img = mat(noise=3, seed=7)
+    ellipse(img, 320, 470, 60, 60, 0, (225, 225, 225))  # the jaws enter from the bottom edge
+    ellipse(img, 200, 200, 40, 40, 0, ROUND_C)
+    g = identify.Gallery(identify.Features(), root=gallery_dir)
+    got = {r["label"]: r.get("reason") for r in g.identify(img)}
+    assert got == {"not_pill": "edge", "tums": None}

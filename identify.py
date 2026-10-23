@@ -27,6 +27,10 @@ HERE = Path(__file__).parent
 DATA = HERE / "data"
 LIMIT_MARGIN = 1.5  # unknown when farther than this times the worst leave-one-out match in the gallery
 NOT_PILLS = {"scene", "reject", "unknown"}
+# Over 10x the largest enrolled pill is scenery (the organizer measured 44x a Tums on 23 Oct). Tighter would
+# swallow a wrong pill that should be refused out loud: a 25 mm tablet is only ~2.4x a 16 mm Tums.
+SIZE_GATE = 10.0
+EDGE_PX = 2  # a blob touching the frame edge is the jaw, tape, or a pill cut off: re-photograph, don't judge
 
 
 def crops(img: np.ndarray, pad: int = 6):
@@ -97,7 +101,7 @@ class Dino:
 
 class Gallery:
     def __init__(self, engine, root: Path = DATA, limit: float | None = None):
-        self.engine, self.labels, vecs = engine, [], []
+        self.engine, self.labels, vecs, areas = engine, [], [], []
         for d in sorted(p for p in root.iterdir() if p.is_dir() and p.name not in NOT_PILLS):
             for f in sorted([*d.glob("*.png"), *d.glob("*.jpg")]):
                 found = crops(cv2.imread(str(f)))
@@ -105,10 +109,12 @@ class Gallery:
                     continue
                 pill, crop = enrol_pick(found, cv2.imread(str(f)).shape)
                 vecs.append(engine.raw(pill, crop))
+                areas.append(pill.area_px)
                 self.labels.append(d.name)
         if len(set(self.labels)) < 1 or len(vecs) < 2:
             raise SystemExit(f"gallery in {root} needs photos in data/<label>/ (found {len(vecs)})")
         self.vecs = np.array(vecs)
+        self.area_lo, self.area_hi = min(areas) / SIZE_GATE, max(areas) * SIZE_GATE
         engine.fit(self.vecs)
         self.limit = limit if limit is not None else max(LIMIT_MARGIN * self.leave_one_out(), engine.min_limit)
 
@@ -124,15 +130,26 @@ class Gallery:
         return worst
 
     def name(self, pill, crop) -> dict:
+        where = {"cx": round(pill.cx, 1), "cy": round(pill.cy, 1), "area_px": round(pill.area_px)}
+        # the organizer, the jaws and tape are blobs too; "unknown" would send them to the reject cup
+        if not self.area_lo <= pill.area_px <= self.area_hi:
+            return {"label": "not_pill", "reason": "size", **where}
+        if self.touches_edge(pill, crop):
+            return {"label": "not_pill", "reason": "edge", **where}
         d = self.engine.dist(self.engine.raw(pill, crop), self.vecs)
         i = int(np.argmin(d))
         known = d[i] <= self.limit
         return {"label": self.labels[i] if known else "unknown", "nearest": self.labels[i],
-                "dist": round(float(d[i]), 4), "limit": round(self.limit, 4),
-                "cx": round(pill.cx, 1), "cy": round(pill.cy, 1)}
+                "dist": round(float(d[i]), 4), "limit": round(self.limit, 4), **where}
 
     def identify(self, img: np.ndarray) -> list[dict]:
+        self.shape = img.shape
         return [self.name(p, c) for p, c in crops(img)]
+
+    def touches_edge(self, pill, _crop) -> bool:
+        h, w = self.shape[:2]
+        xs, ys = [q[0] for q in pill.box_px], [q[1] for q in pill.box_px]
+        return min(xs) <= EDGE_PX or min(ys) <= EDGE_PX or max(xs) >= w - 1 - EDGE_PX or max(ys) >= h - 1 - EDGE_PX
 
 
 def make_engine(name: str):
