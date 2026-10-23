@@ -65,7 +65,8 @@ TESTS.md.
 1. **T-1:** `python arm.py ping`. Note the connect time and the resource names.
 2. **T0:** find the gripper percentages that open and close (`set_position`), and write them into
    `GRIPPER_OPEN_PCT` and `GRIPPER_CLOSE_PCT` in `arm.py`. Never call `grab()`.
-3. **T1:** copy `poses.example.json` to `poses.json`. Teach `photo` and `touch-0`, `touch-1`, `touch-2`. Run
+3. **T1:** copy `poses.example.json` to `poses.json`. Its coordinates are zero placeholders, not measured poses, so
+   teach every name before any move. Teach `photo` and `touch-0`, `touch-1`, `touch-2`. Run
    `python demo.py calibrate --touch 0 1 2`, then `python demo.py crosshair --tags 3 4`.
 4. **T2:** `python demo.py run --dry-run --image <photo>` in each lighting, and check the `.plan.png`.
 
