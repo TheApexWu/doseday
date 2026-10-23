@@ -96,3 +96,18 @@ def test_a_dropped_stop_connection_counts_as_a_failed_stop():
     out = page(op="stop_button", stop=[{"reject": True}] * 3)
     assert "Stopped" not in out["spoken"] and "may still be moving" in out["alarm"]
     assert out["unhandled"] == []
+
+
+def test_a_single_day_command_posts_its_day():
+    out = page(op="utter", text="put tums in monday")
+    assert posts(out, "/cmd")[0]["body"] == {"action": "place", "day": "mon", "pill": "tums"}
+
+
+def test_a_command_naming_two_days_is_refused_and_not_posted():
+    out = page(op="utter", text="put tums in monday or friday")
+    assert posts(out, "/cmd") == [] and out["spoken"]
+
+
+def test_a_spoken_correction_to_another_day_is_refused_and_not_posted():
+    out = page(op="utter", text="put tums in tuesday, no, monday")
+    assert posts(out, "/cmd") == [] and out["spoken"]

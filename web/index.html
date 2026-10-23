@@ -145,11 +145,14 @@ function parse(text) {
   const t = text.toLowerCase();
   if (/\b(stop|halt|freeze)\b/.test(t)) return {stop: true};
   if (/\bhome\b/.test(t)) return {action: "home"};
-  let day = null;
+  const days = new Set();
   const today = new Date().getDay();
-  if (/\btoday\b/.test(t)) day = DAYS[today];
-  else if (/\btomorrow\b/.test(t)) day = DAYS[(today + 1) % 7];
-  else for (const d of DAYS) if (new RegExp(`\\b${NAMES[d].toLowerCase()}|\\b${d}\\b`).test(t)) day = d;
+  if (/\btoday\b/.test(t)) days.add(DAYS[today]);
+  if (/\btomorrow\b/.test(t)) days.add(DAYS[(today + 1) % 7]);
+  for (const d of DAYS) if (new RegExp(`\\b${NAMES[d].toLowerCase()}|\\b${d}\\b`).test(t)) days.add(d);
+  // two days in one utterance is a correction or an ambiguity: refuse, never guess which one was meant
+  if (days.size > 1) return {error: "I heard more than one day. Say one day."};
+  const day = days.size ? [...days][0] : null;
   const pill = PILLS.find(p => t.includes(p)) || (/\btum/.test(t) ? "tums" : null);
   let action = null;
   if (pill && /\b(put|place|add|fill|load|give)\b/.test(t)) action = "place";
@@ -166,6 +169,7 @@ function setupMic() {
   rec.onresult = e => {
     const text = e.results[0][0].transcript;
     const c = parse(text);
+    if (c.error) { say(c.error); return; }
     if (c.stop) { stopArm(); return; }
     if (!c.action || (c.action !== "home" && !c.day)) { say(`Sorry, I heard "${text}". Say a day and open, close, or a pill.`); return; }
     cmd(c.action, c.day, c.pill);
