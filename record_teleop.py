@@ -35,7 +35,7 @@ async def main(seconds: float, teleop_on: bool):
             print("teleop:", await teleop.do_command({"command": "start"}))
         with out.open("w", newline="") as f:
             w = csv.writer(f)
-            w.writerow(["t", *[f"L{i}" for i in range(5)], *[f"F{i}" for i in range(5)], "x", "y", "z", "o_x", "o_y", "o_z", "theta", "jaw_pct"])
+            w.writerow(["t", *[f"L{i}" for i in range(5)], *[f"F{i}" for i in range(5)], "x", "y", "z", "o_x", "o_y", "o_z", "theta", "jaw_pct", *[f"load{i}" for i in range(5)]])
             t0 = time.monotonic()
             while (t := time.monotonic() - t0) < seconds:
                 try:
@@ -43,8 +43,11 @@ async def main(seconds: float, teleop_on: bool):
                     fj = (await follower.get_joint_positions()).values
                     p = await follower.get_end_position()
                     g = (await jaw.do_command({"command": "get_position"}))["position_percentage"]
+                    # servo load is only reported while the follower is in manual mode; blank otherwise
+                    st = await follower.get_status() if hasattr(follower, "get_status") else {}
+                    loads = [j.get("load", "") for j in (st.get("manual_mode") or {}).get("joints", [])] or [""] * 5
                     w.writerow([round(t, 2), *[round(v, 2) for v in lj], *[round(v, 2) for v in fj],
-                                *[round(v, 1) for v in (p.x, p.y, p.z)], *[round(v, 3) for v in (p.o_x, p.o_y, p.o_z)], round(p.theta, 1), round(g, 1)])
+                                *[round(v, 1) for v in (p.x, p.y, p.z)], *[round(v, 3) for v in (p.o_x, p.o_y, p.o_z)], round(p.theta, 1), round(g, 1), *loads])
                     f.flush()
                     print(f"{t:5.1f}s  follower {[round(v) for v in fj]}  tip x{p.x:6.0f} y{p.y:6.0f} z{p.z:6.0f}  jaw {g:4.0f}%  lag {max(abs(a-b) for a,b in zip(lj,fj)):4.1f}°", flush=True)
                 except Exception as e:  # one bad serial read must not end the session
