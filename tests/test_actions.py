@@ -115,6 +115,23 @@ def test_place_unknown_pill_goes_to_the_reject_cup(tmp_path):
     assert "reject_hover" in seq and not any(n.startswith("drop_") for n in seq)
 
 
+def test_an_edge_pill_counts_toward_the_one_pill_check(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    st.identify = lambda _img: [{"label": "tums", "cx": 300, "cy": 240},
+                                {"label": "not_pill", "reason": "edge", "cx": 2, "cy": 200}]
+    r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert r == {"ok": False, "say": "I see 2 pills on the tray; put one at a time"}
+    assert not any(n.startswith(("drop_", "tray_down")) for n in visited(st, arm))
+
+
+def test_a_lone_edge_pill_is_not_reported_as_an_empty_tray(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    st.identify = lambda _img: [{"label": "not_pill", "reason": "edge", "cx": 2, "cy": 200}]
+    r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert r == {"ok": False, "say": "a pill is at the edge of the tray; move it in"}
+    assert arm.moves[-1:] == [st.clamp(st.poses["tray_hover"])]  # refused before any grip
+
+
 def test_place_refuses_after_two_failed_grips(tmp_path):
     st, arm, grip = rig(tmp_path, stops_at=[1.0, 1.0])  # closed on nothing twice
     st.lid["wed"] = "open"

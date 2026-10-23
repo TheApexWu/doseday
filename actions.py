@@ -187,12 +187,15 @@ class Station:
                 self.log({"look": "unverified", "assumed": wanted})
                 return wanted
             raise Refused("no pill photos are enrolled, so I can't check which pill this is")
-        seen = [r for r in self.identify(await self.frame()) if r["label"] != "not_pill"]
+        # a blob cut off by the frame edge may be a second pill, so it counts toward the one-pill check
+        seen = [r for r in self.identify(await self.frame()) if r["label"] != "not_pill" or r.get("reason") == "edge"]
         self.log({"look": seen})
         if not seen:
             raise Refused("the tray is empty")
         if len(seen) > 1:
             raise Refused(f"I see {len(seen)} pills on the tray; put one at a time")
+        if seen[0].get("reason") == "edge":
+            raise Refused("a pill is at the edge of the tray; move it in")
         return seen[0]["label"]
 
     async def grip(self) -> int:
