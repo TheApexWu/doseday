@@ -133,3 +133,19 @@ def test_torque_is_restored_when_the_stroke_fails(kin):
     with pytest.raises(RuntimeError):
         asyncio.run(box.run_stroke(arm, wps))
     assert arm.calls[-1] == ("cmd", {"command": "set_torque_limit", "value": 1000})
+
+
+def test_station_closes_with_the_stroke_once_a_box_is_registered(tmp_path):
+    import actions
+    import fakes
+    (tmp_path / "box.json").write_text(__import__("json").dumps(__import__("dataclasses").asdict(box.demo_box())))
+    arm = fakes.FakeArm()
+    st = actions.Station(arm, fakes.FakeGripper(), fakes.FakeCamera(), {}, fakes.LIMITS, tmp_path / "log.jsonl",
+                         box_path=tmp_path / "box.json")
+    asyncio.run(st.refresh())
+    assert asyncio.run(st.close_lid("wed")) == "Wednesday is closed" and st.lid["wed"] == "closed"
+    assert len(arm.moves) > 10  # the dense stroke, not a two-pose press
+    assert arm.commands[-1] == {"command": "set_torque_limit", "value": 1000}
+    with pytest.raises(actions.Refused, match="Sunday"):
+        asyncio.run(st.close_lid("sun"))
+    assert st.lid["sun"] == "open"  # refused before anything moved

@@ -43,6 +43,10 @@ class FakeArm:
             await asyncio.sleep(self.move_s)
         self.at = list(target)
 
+    async def move_through_joint_positions(self, path, options=None):
+        for p in path:
+            await self.move_to_joint_positions(list(p.values))
+
     async def get_end_position(self):
         return SimpleNamespace(x=200.0, y=0.0, z=200.0 + self.at[1])
 
