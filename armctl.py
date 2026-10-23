@@ -22,7 +22,13 @@ from viam.proto.component.arm import JointPositions
 
 from record_teleop import load_env
 
-SHOULDER_MIN = -104.8  # rest pose sits just past the -104.88 software limit; the arm refuses targets below it
+
+
+async def joint_limits(arm) -> list[tuple[float, float]]:
+    """Limits from the arm's own kinematics: they changed mid-day on 23 Oct (shoulder -104.88 -> -100), so never hardcode them."""
+    import json
+    data = (await arm.get_kinematics())[1]
+    return [(j["min"], j["max"]) for j in json.loads(data)["joints"]]
 
 
 async def connect():
@@ -65,7 +71,8 @@ async def main(cmd, args):
             await teleop.do_command({"command": "stop"})
             await follower.do_command({"command": "exit_manual_mode"})
             target = list((await Arm.from_robot(robot, "leader-arm").get_joint_positions()).values)
-            target[1] = max(target[1], SHOULDER_MIN)
+            lims = await joint_limits(follower)
+            target = [min(max(v, lo + 0.5), hi - 0.5) for v, (lo, hi) in zip(target, lims)]
             before = list((await follower.get_joint_positions()).values)
             print("leader  ", [round(v, 1) for v in target])
             print("follower", [round(v, 1) for v in before], f"(max gap {max(abs(a - b) for a, b in zip(target, before)):.1f} deg)")
