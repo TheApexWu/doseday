@@ -165,7 +165,7 @@ def real_station(unverified: bool, use_claude: bool = False):
                                Camera.from_robot(robot, "follower-cam"), actions.load_poses(),
                                await joint_limits(arm), HERE / "logs" / f"station-{time.strftime('%H%M%S')}.jsonl",
                                identify=ident, unverified=unverified, poses_path=actions.POSES,
-                               read_limits=lambda: joint_limits(arm))
+                               read_limits=lambda: joint_limits(arm), box_path=HERE / "box.json")
     return make
 
 

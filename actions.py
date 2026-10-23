@@ -85,8 +85,10 @@ def joint_positions(values):
 class Station:
     def __init__(self, arm, gripper, camera, poses: dict, limits, log_path: Path, identify=None,
                  open_pct: float = OPEN_PCT, unverified: bool = False, allow_open: bool = False,
-                 poses_path: Path | None = None, read_limits=None):
+                 poses_path: Path | None = None, read_limits=None, box_path: Path | None = None):
         self.arm, self.gripper, self.camera = arm, gripper, camera
+        # A registered box (box.py mark/fit) replaces the taught lid poses with the planned flip stroke
+        self.box_path, self.box, self.kin = box_path, None, None
         self.poses, self.limits, self.log_path = poses, limits, log_path
         self.poses_path, self.read_limits = poses_path, read_limits
         self.identify, self.open_pct, self.unverified = identify, open_pct, unverified
@@ -204,9 +206,33 @@ class Station:
 
     async def close_lid(self, day: str) -> str:
         d = check_day(day)
+        if self.box is not None:
+            return await self._stroke_close(d)
         self.need(f"lid_{d}_hover", f"lid_{d}_press")
         await self.jaw_to(CLOSED_PCT)
         await self._latch("lid", d, "closed")
+        return f"{DAY_NAMES[d]} is closed"
+
+    async def _stroke_close(self, d: str) -> str:
+        """Swing the open lid shut from behind and press it (box.py). Same lid bookkeeping as a press: unknown
+        from the first move, closed only once the press point was reached."""
+        import box
+        try:
+            waypoints = box.plan(self.kin, self.box, d, await self.joints())
+        except ValueError as e:
+            raise Refused(f"I can't reach {DAY_NAMES[d]}'s lid from here ({e})") from e
+        await self.jaw_to(CLOSED_PCT)
+        self.lid[d] = "unknown"
+        self.log({"stroke": d, "waypoints": [w["name"] for w in waypoints]})
+        try:
+            pressed = await box.run_stroke(self.arm, waypoints)
+        except BaseException:
+            self.lid[d] = "unknown"
+            raise
+        self.log({"stroke": d, "pressed": pressed, "at": await self.joints()})
+        if not pressed:
+            raise Refused(f"{DAY_NAMES[d]}'s lid did not reach the press point; check it by hand")
+        self.lid[d] = "closed"
         return f"{DAY_NAMES[d]} is closed"
 
     async def look(self, wanted: str) -> str:
@@ -315,6 +341,12 @@ class Station:
                 raise Refused(f"the taught poses file is unreadable ({e.msg}); not moving") from e
         if self.read_limits is not None:
             self.limits = await self.read_limits()
+        if self.box_path is not None:
+            import box
+            if self.box_path.exists():
+                self.box, self.kin = box.Box.load(self.box_path), self.kin or box.Kinematics()
+            else:
+                self.box = None
 
     async def run(self, cmd: dict) -> dict:
         action = cmd.get("action")
