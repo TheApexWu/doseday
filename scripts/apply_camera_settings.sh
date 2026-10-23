@@ -27,6 +27,7 @@ if [[ ! -e "$CAMERA_DEVICE" ]]; then
 fi
 
 controls="$(v4l2-ctl -d "$CAMERA_DEVICE" --list-ctrls 2>/dev/null)"
+rejected=""
 
 set_control() {
   local name="$1"
@@ -37,7 +38,10 @@ set_control() {
     return
   fi
 
-  v4l2-ctl -d "$CAMERA_DEVICE" --set-ctrl="${name}=${value}"
+  # keep going: a rejected control must not skip the settings after it (the service would stop there)
+  if ! v4l2-ctl -d "$CAMERA_DEVICE" --set-ctrl="${name}=${value}"; then
+    rejected="$rejected $name"
+  fi
 }
 
 set_control auto_exposure 1
@@ -50,5 +54,10 @@ set_control gamma "$CAMERA_GAMMA"
 set_control saturation "$CAMERA_SATURATION"
 set_control backlight_compensation 0
 set_control power_line_frequency "$CAMERA_POWER_LINE_FREQUENCY"
+
+if [[ -n "$rejected" ]]; then
+  echo "camera-settings: rejected:$rejected" >&2
+  exit 1
+fi
 
 echo "camera-settings: applied settings to $CAMERA_DEVICE"
