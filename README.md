@@ -5,6 +5,8 @@ A robot arm that sorts single pills from a matte black mat into a 7-day organize
 The demo uses candy or vitamins only. Nothing in this repository is medical advice, and the code is not validated
 for handling medication.
 
+**Start here (23 Oct):** [`docs/DAY1-FINDINGS.md`](docs/DAY1-FINDINGS.md) has what works on the arm, what was measured and what is open. Recordings are in [`runs/`](runs/), one folder per session with a README.
+
 ## What it does
 
 1. Enroll one example of each pill type (closed set, up to 5 types).
