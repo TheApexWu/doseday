@@ -12,3 +12,5 @@ poses.json
 calib.json
 pills.json
 taught_joints.json
+box.json
+box_marks.json
