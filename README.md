@@ -27,9 +27,9 @@ Offline runs need no arm and no Viam SDK. See `docs/ONBOARDING.md`.
 
 ## Portal vision smoke test
 
-The `multi-color-detector` Viam vision service is a portal smoke test and is not connected to arm planning or
-motion. In the Viam app, open **CONTROL**, select `multi-color-detector`, and choose `follower-cam` to test the
-service, or open `multi-color-overlay` to see persistent combined boxes.
+The optional `demo-anything-detector` Viam vision service is a portal-only smoke test. It returns one
+`demo-object` box around the camera frame and is not connected to arm planning or motion. In the Viam app,
+open **CONTROL**, select `demo-anything-detector`, and choose `follower-cam` to see the overlay.
 
 To verify the same service from the SDK without moving the arm:
 
@@ -60,25 +60,6 @@ The defaults select 60 Hz anti-flicker. Persistent site overrides can be placed 
 `/etc/default/doseday-camera-settings`, for example `CAMERA_EXPOSURE=80` or
 `CAMERA_POWER_LINE_FREQUENCY=1` for a 50 Hz location. The other settings can also be overridden with the
 environment variables declared at the top of the script.
-
-## Simultaneous color detections
-
-`viam_module` provides one Viam vision service that reports red, black, orange, green, blue, cyan, and purple
-boxes in the same response. Its transform camera, `multi-color-overlay`, keeps all labels visible in one stream.
-On the robot, prepare the module once:
-
-```
-cd /opt/viam/doseday
-./viam_module/setup.sh
-```
-
-Merge the arrays from `viam_module/config-fragment.json` into the matching arrays in the machine configuration,
-removing the old `demo-anything-detector` service first. The absolute `executable_path` must match the repository's
-location on the robot. Open `multi-color-overlay` under **CONTROL** to see the combined stream.
-
-Black regions larger than one quarter of the frame are deliberately discarded so the black mat does not become
-one full-frame detection. A black object must be placed on the light mat zone; black-on-black cannot be segmented
-by color alone.
 
 ## Docs
 
