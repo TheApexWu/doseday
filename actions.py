@@ -41,6 +41,8 @@ CAMERA_SETTLE_S = 2.0
 # higher (to confirm with a Tums on the arm). The wrist-camera hold score cannot judge white pills: the white
 # jaws fill 35-92% of its gap region on empty frames (23 Oct), so it only ever worked for coloured candy.
 JAW_HELD_MIN = 3.0
+# A miss reopens, lifts to tray_hover and re-checks the tray before the next try.
+GRIP_ATTEMPTS = 3
 EVENTS_KEPT = 50  # the page reads the newest 10; the bound keeps a long session from growing without limit
 
 
@@ -181,20 +183,26 @@ class Station:
             raise Refused(f"I see {len(seen)} pills on the tray; put one at a time")
         return seen[0]["label"]
 
-    async def grip(self) -> int:
-        """Pick from tray_down; held when the pill stops the closing jaw. One retry. Returns the attempt that held."""
-        for attempt in (1, 2):
+    async def grip(self, label: str) -> int:
+        """Pick from tray_down; held when the pill stops the closing jaw. A miss reopens, lifts and re-checks the
+        tray before the next try, up to GRIP_ATTEMPTS. Returns the attempt that held."""
+        for attempt in range(1, GRIP_ATTEMPTS + 1):
             await self.move("tray_down", DESCEND_SPEED)
             stopped = await self.jaw_to(CLOSED_PCT)
             self.log({"grip": attempt, "jaw_stopped": round(stopped, 1)})
             if stopped >= JAW_HELD_MIN:
+                self.say("Got it.")
                 # hold just inside where the pill stopped the jaw: a 0% goal against a pill stalls the servo
                 await self.jaw_to(stopped - GRIP_SQUEEZE_PCT)
                 await self.move("tray_hover", DESCEND_SPEED)
                 return attempt
+            more = attempt < GRIP_ATTEMPTS
+            self.say("Missed it. Trying again." if more else "Missed it.")
             await self.jaw_to(self.open_pct)
             await self.move("tray_hover", DESCEND_SPEED)
-        raise Refused("I could not grip the pill after two tries")
+            if more:
+                await self.look(label)  # look() photographs after CAMERA_SETTLE_S, so the lift's lag has passed
+        raise Refused(f"I could not grip the pill after {GRIP_ATTEMPTS} tries")
 
     async def place(self, pill: str, day: str) -> str:
         d = check_day(day)
@@ -205,7 +213,7 @@ class Station:
         label = await self.look(pill)
         if label == "unknown":
             self.need("reject_hover")
-            await self.grip()
+            await self.grip(label)
             await self.move("reject_hover", MOVE_SPEED)
             await self.jaw_to(self.open_pct)
             await self.move("tray_hover", MOVE_SPEED)
@@ -216,7 +224,7 @@ class Station:
             raise Refused(f"{DAY_NAMES[d]} is closed; open it by hand first")
         await self.jaw_to(self.open_pct)
         await self.move("tray_hover", MOVE_SPEED)
-        await self.grip()
+        await self.grip(label)
         await self.move(f"drop_{d}_hover", MOVE_SPEED)
         await self.jaw_to(self.open_pct)
         self.log({"placed": pill, "day": d})

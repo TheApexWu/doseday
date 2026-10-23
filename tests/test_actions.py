@@ -1,5 +1,6 @@
 """actions.Station on fake hardware: move order, gentle presses, refusals that keep the wrong pill out."""
 import asyncio
+import json
 
 import pytest
 
@@ -25,6 +26,14 @@ def rig(tmp_path, label="tums", stops_at=12.0, poses=None, allow_open=True, **kw
 def visited(st, arm):
     by_joints = {tuple(st.clamp(j)): n for n, j in st.poses.items()}
     return [by_joints[tuple(m)] for m in arm.moves]
+
+
+def texts(st):
+    return [e["text"] for e in st.events]
+
+
+def logged(st):
+    return [json.loads(line) for line in st.log_path.read_text().splitlines()]
 
 
 def run(coro):
@@ -115,12 +124,32 @@ def test_place_unknown_pill_goes_to_the_reject_cup(tmp_path):
     assert "reject_hover" in seq and not any(n.startswith("drop_") for n in seq)
 
 
-def test_place_refuses_after_two_failed_grips(tmp_path):
-    st, arm, grip = rig(tmp_path, stops_at=[1.0, 1.0])  # closed on nothing twice
+def test_place_refuses_after_three_failed_grips(tmp_path):
+    st, arm, _ = rig(tmp_path, stops_at=[1.0, 1.0, 1.0])  # closed on nothing three times
     st.lid["wed"] = "open"
     r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
-    assert r == {"ok": False, "say": "I could not grip the pill after two tries"}
-    assert visited(st, arm).count("tray_down") == 2 and "drop_wed_hover" not in visited(st, arm)
+    assert r == {"ok": False, "say": "I could not grip the pill after 3 tries"}
+    assert visited(st, arm).count("tray_down") == 3 and "drop_wed_hover" not in visited(st, arm)
+    assert texts(st) == ["Missed it. Trying again.", "Missed it. Trying again.", "Missed it."]
+
+
+def test_a_miss_then_a_hold_on_the_third_try_narrates_each_retry(tmp_path):
+    st, arm, _ = rig(tmp_path, stops_at=[1.0, 1.0, 11.0])
+    r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert r == {"ok": True, "say": "tums placed in Wednesday"}
+    assert texts(st) == ["Missed it. Trying again.", "Missed it. Trying again.", "Got it."]
+    assert [e["grip"] for e in logged(st) if "grip" in e] == [1, 2, 3]
+    assert "drop_wed_hover" in visited(st, arm)
+
+
+def test_a_miss_that_empties_the_tray_refuses_before_the_next_try(tmp_path):
+    st, arm, _ = rig(tmp_path, stops_at=[1.0, 11.0])
+    seen = iter([[{"label": "tums"}], []])  # the pill is there at the first look and gone after the miss
+    st.identify = lambda _img: next(seen)
+    r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert r == {"ok": False, "say": "the tray is empty"}
+    assert visited(st, arm).count("tray_down") == 1 and "drop_wed_hover" not in visited(st, arm)
+    assert texts(st) == ["Missed it. Trying again."]
 
 
 def test_second_grip_attempt_can_succeed(tmp_path):
