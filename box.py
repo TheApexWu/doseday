@@ -5,6 +5,7 @@ one registration (two touched points) instead of re-teaching each pose by hand.
   python box.py mark fri        same on Friday (Sunday and Saturday stay untouched)
   python box.py fit             box.json from the two marks; refuses marks that disagree with the measured pitch
   python box.py today           box.json from the 23 Oct lid-closing demo (run 04) instead of marks
+  python box.py poses           drop_<day>_hover joint poses for Mon-Fri into taught_joints.json
   python box.py show            the box, and each day's stroke as jaw-tip points
   python box.py stroke wed thu [--raise 25]   run strokes; --raise N runs them N mm clear of the box (dry run)
 
@@ -287,6 +288,16 @@ if __name__ == "__main__":
         b = Box.from_marks(m["mon"], m["fri"])
         b.save()
         print(json.dumps(asdict(b)))
+    elif cmd == "poses":
+        # drop_<day>_hover for Mon-Fri into taught_joints.json, computed from box.json (the station's place() uses them)
+        from actions import POSES, load_poses
+        kin, b, poses = Kinematics(), Box.load(), load_poses()
+        for d in ROBOT_DAYS:
+            seed = plan(kin, b, d, [0.0, 15.0, -10.0, 80.0, HEADING])[-1]["joints"]
+            name, behind, above, lean = DROP
+            poses[f"drop_{d}_hover"] = kin.ik(b.point(d, behind, above), lean, seed)
+            print(f"drop_{d}_hover", poses[f"drop_{d}_hover"], "tip", [round(float(v)) for v in b.point(d, behind, above)])
+        POSES.write_text(json.dumps(poses, indent=1, sort_keys=True))
     elif cmd == "show":
         kin, b = Kinematics(), Box.load()
         print(json.dumps(asdict(b)))
