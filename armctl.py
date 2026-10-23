@@ -5,6 +5,7 @@
   python armctl.py teleop          leader goes limp, follower copies it (follower jumps to the leader's pose first)
   python armctl.py off             stop teleop + leave manual mode: both arms stiff and holding
   python armctl.py where           joints + gripper tip pose + jaw, once
+  python armctl.py jaw <pct>       set the follower jaw (0-95) and wait until it settles; works in any mode
 
 Logging runs separately and never changes modes:
   python record_teleop.py 120 --no-teleop
@@ -53,6 +54,18 @@ async def main(cmd, args):
             p = await follower.get_end_position()
             jaw = (await Gripper.from_robot(robot, "follower-gripper").do_command({"command": "get_position"}))["position_percentage"]
             print(f"joints {[round(v, 1) for v in j]}  tip x{p.x:.0f} y{p.y:.0f} z{p.z:.0f}  jaw {jaw:.0f}%")
+        elif cmd == "jaw":
+            if not args or not 0 <= float(args[0]) <= 95:
+                sys.exit("jaw needs a percentage 0-95 (95 is the open limit)")
+            jaw = Gripper.from_robot(robot, "follower-gripper")
+            await jaw.do_command({"command": "set_position", "percentage": float(args[0])})
+            last, still = None, 0
+            while still < 3:  # set_position returns before the jaw settles on this deployment
+                await asyncio.sleep(0.1)
+                now = (await jaw.do_command({"command": "get_position"}))["position_percentage"]
+                still = still + 1 if last is not None and abs(now - last) < 0.5 else 0
+                last = now
+            print(f"jaw settled at {last:.1f}%")
         elif cmd != "status":
             sys.exit(__doc__)
         print(await state(robot))
