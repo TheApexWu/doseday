@@ -151,6 +151,18 @@ def test_halt_stops_and_restores_torque(tmp_path):
     assert arm.stopped and torque(arm) == [actions.FULL_TORQUE]
 
 
+def test_halt_restores_full_torque_even_when_the_stop_raises(tmp_path):
+    st, arm, _ = rig(tmp_path)
+
+    async def stop_fails():
+        raise RuntimeError("serial timeout")
+
+    arm.stop = stop_fails
+    with pytest.raises(RuntimeError):
+        run(st.halt())
+    assert torque(arm) == [actions.FULL_TORQUE]
+
+
 class CapWriteFails(fakes.FakeArm):
     """The first capped write changes the register and then the reply fails, as a serial timeout can."""
     def __init__(self):

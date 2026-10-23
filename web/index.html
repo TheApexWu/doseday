@@ -34,6 +34,7 @@
   #log li { padding:8px 0; border-bottom:1px solid var(--line); }
   #log .ok { color:var(--ok); } #log .bad { color:var(--bad); }
   .hint { color:var(--dim); font-size:18px; }
+  #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 16px; }
   @media (max-width:600px) { body { font-size:20px; } h1 { font-size:28px; } }
 </style>
 </head>
@@ -44,6 +45,7 @@
   <button id="mic" aria-label="Speak a command">🎤 Speak</button>
   <button id="stop" aria-label="Stop the robot now">STOP</button>
 </header>
+<div id="alarm" role="alert" hidden></div>
 <main id="days"></main>
 <section>
   <p class="hint">Lids start open. Say: “put Tums in Monday”, “close Friday”, “go home”, or “stop”.</p>
@@ -68,6 +70,33 @@ async function post(path, body) {
   return j;
 }
 
+const STOP_TRIES = 3;
+const STOP_FAILED = "STOP FAILED. The arm may still be moving.";
+
+async function sendStop() {
+  try {
+    const r = await fetch("/stop", {method:"POST"});
+    const j = await r.json().catch(() => ({}));
+    return r.ok && j.ok === true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// "Stopped" is said only after the server confirms; a failure stays on screen until a stop succeeds.
+async function stopArm() {
+  say("Stopping");
+  let done = false;
+  for (let i = 0; i < STOP_TRIES && !done; i++) done = await sendStop();
+  if (done) { showAlarm(""); say("Stopped"); return; }
+  showAlarm(STOP_FAILED); say(STOP_FAILED);
+}
+
+function showAlarm(text) {
+  const el = document.getElementById("alarm");
+  el.textContent = text; el.hidden = !text;
+}
+
 function cmd(action, day, pill) {
   const words = action === "place" ? `Putting ${pill} in ${NAMES[day]}` :
                 action === "home" ? "Going home" :
@@ -89,7 +118,7 @@ function build() {
     card.querySelectorAll("button").forEach(b => b.onclick = () => cmd(b.dataset.a, d, b.dataset.p));
     main.appendChild(card);
   }
-  document.getElementById("stop").onclick = () => { say("Stopping"); post("/stop"); };
+  document.getElementById("stop").onclick = stopArm;
 }
 
 async function poll() {
@@ -137,7 +166,7 @@ function setupMic() {
   rec.onresult = e => {
     const text = e.results[0][0].transcript;
     const c = parse(text);
-    if (c.stop) { say("Stopping"); post("/stop"); return; }
+    if (c.stop) { stopArm(); return; }
     if (!c.action || (c.action !== "home" && !c.day)) { say(`Sorry, I heard "${text}". Say a day and open, close, or a pill.`); return; }
     cmd(c.action, c.day, c.pill);
   };

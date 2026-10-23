@@ -249,10 +249,27 @@ class Station:
         return "home"
 
     async def halt(self):
-        """STOP button: stop the arm, then put full torque back in case a press was cut off mid-way."""
-        await self.arm.stop()
-        await self.arm.do_command({"command": "set_torque_limit", "value": FULL_TORQUE})
-        self.log({"halt": await self.joints()})
+        """STOP button: stop the arm, then put full torque back in case a press was cut off mid-way. Both steps
+        are attempted even if the first raises; the first failure is re-raised so the page never reports a stop
+        that did not happen."""
+        failure = None
+        try:
+            await self.arm.stop()
+        except Exception as e:
+            failure = e
+            self.log({"halt_error": "stop", "error": f"{type(e).__name__}: {str(e)[:160]}"})
+        try:
+            await self.arm.do_command({"command": "set_torque_limit", "value": FULL_TORQUE})
+        except Exception as e:
+            failure = failure or e
+            self.log({"halt_error": "torque", "error": f"{type(e).__name__}: {str(e)[:160]}"})
+        try:
+            at = await self.joints()
+        except Exception:
+            at = None
+        self.log({"halt": at})
+        if failure is not None:
+            raise failure
 
     async def run(self, cmd: dict) -> dict:
         action = cmd.get("action")

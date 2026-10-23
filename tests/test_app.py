@@ -79,6 +79,17 @@ def test_bad_commands_are_rejected_before_the_queue(server, body):
     assert code == 400 and j["ok"] is False and ctl.q.qsize() == 0
 
 
+def test_a_failed_stop_still_gets_a_reply_that_says_so(server):
+    ctl, url = server()
+
+    async def stop_fails():
+        raise RuntimeError("serial timeout")
+
+    ctl.station.arm.stop = stop_fails
+    code, j = call(url, "/stop", {})
+    assert code == 500 and j["ok"] is False and "may still be moving" in j["say"]
+
+
 def test_stop_cancels_the_running_action_and_empties_the_queue(server):
     ctl, url = server(move_s=0.3)
     call(url, "/cmd", {"action": "place", "day": "fri", "pill": "tums"})

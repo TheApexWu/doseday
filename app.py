@@ -98,7 +98,11 @@ def make_server(ctl: Controller, port: int) -> ThreadingHTTPServer:
             except json.JSONDecodeError:
                 return self._json({"error": "body is not JSON"}, 400)
             if self.path == "/stop":
-                ctl.stop()
+                try:
+                    ctl.stop()
+                except Exception as e:  # a dropped connection reads as "no reply", so answer with the failure
+                    return self._json({"ok": False, "say": "STOP failed. The arm may still be moving.",
+                                       "error": f"{type(e).__name__}: {str(e)[:160]}"}, 500)
                 return self._json({"ok": True, "say": "stopped"})
             if self.path == "/cmd":
                 err = validate(body)
