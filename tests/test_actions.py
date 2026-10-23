@@ -171,3 +171,11 @@ def test_identification_photo_waits_for_the_camera_to_catch_up(tmp_path, monkeyp
     run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
     i = events.index(("frame",))
     assert events[i - 1] == ("sleep", 0.05)  # the frame is taken only after the settle wait
+
+
+def test_events_keep_only_the_newest_lines(tmp_path, monkeypatch):
+    monkeypatch.setattr(actions, "EVENTS_KEPT", 3)
+    st, _, _ = rig(tmp_path)
+    for i in range(5):
+        st.say(f"line {i}")
+    assert [(e["id"], e["text"]) for e in st.events] == [(3, "line 2"), (4, "line 3"), (5, "line 4")]

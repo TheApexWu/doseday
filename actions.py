@@ -11,8 +11,10 @@ manual mode holds the arm there. Names (days: sun mon tue wed thu fri sat):
 An action whose poses are not taught yet refuses and names the missing pose.
 """
 import asyncio
+import itertools
 import json
 import time
+from collections import deque
 from pathlib import Path
 
 import cv2
@@ -39,6 +41,7 @@ CAMERA_SETTLE_S = 2.0
 # higher (to confirm with a Tums on the arm). The wrist-camera hold score cannot judge white pills: the white
 # jaws fill 35-92% of its gap region on empty frames (23 Oct), so it only ever worked for coloured candy.
 JAW_HELD_MIN = 3.0
+EVENTS_KEPT = 50  # the page reads the newest 10; the bound keeps a long session from growing without limit
 
 
 class Refused(Exception):
@@ -72,11 +75,17 @@ class Station:
         # forceful to risk in a demo (23 Oct). Lids start open; the arm only closes them.
         self.allow_open = allow_open
         self.lid = {d: "open" for d in DAYS}
+        self.events = deque(maxlen=EVENTS_KEPT)
+        self._event_ids = itertools.count(1)
 
     def log(self, entry: dict):
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
         with self.log_path.open("a") as f:
             f.write(json.dumps({"t": round(time.time(), 3), **entry}) + "\n")
+
+    def say(self, text: str):
+        """Progress line for the page while an action runs; run() reports the final result."""
+        self.events.append({"id": next(self._event_ids), "t": round(time.time(), 3), "text": text})
 
     def need(self, *names):
         missing = [n for n in names if n not in self.poses]

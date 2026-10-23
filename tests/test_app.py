@@ -93,3 +93,12 @@ def test_stop_cancels_the_running_action_and_empties_the_queue(server):
     assert torque[-1] == actions.FULL_TORQUE
     time.sleep(0.5)
     assert len(call(url, "/status")[1]["results"]) == 1  # the queued close never ran
+
+
+def test_status_lists_the_newest_ten_events(server):
+    ctl, url = server()
+    for i in range(12):
+        ctl.station.say(f"line {i}")
+    events = call(url, "/status")[1]["events"]
+    assert [e["text"] for e in events] == [f"line {i}" for i in range(2, 12)]
+    assert set(events[0]) == {"id", "t", "text"}

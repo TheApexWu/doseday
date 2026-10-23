@@ -68,7 +68,7 @@ class Controller:
 
     def status(self) -> dict:
         return {"busy": self.current, "queued": self.q.qsize(), "results": list(self.results),
-                "lids": self.station.lid, "days": list(actions.DAYS)}
+                "events": list(self.station.events)[-10:], "lids": self.station.lid, "days": list(actions.DAYS)}
 
 
 def validate(cmd: dict) -> str | None:
