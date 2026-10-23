@@ -1,0 +1,13 @@
+[Unit]
+Description=Apply Doseday camera settings
+After=systemd-udev-settle.service
+Wants=systemd-udev-settle.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/default/doseday-camera-settings
+ExecStart=/usr/local/libexec/doseday/apply_camera_settings.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
