@@ -1,0 +1,149 @@
+{
+ "A_ping": "{'success': True}",
+ "A_controller_status": "{'has_controller': True, 'config': 'Controllers: [/dev/ttyACM2@1000000(refs:1,cal:custom) /dev/ttyACM1@1000000(refs:1,cal:custom)]', 'arm_servo_ids': [1.0, 2.0, 3.0, 4.0, 5.0], 'ref_count': 2.0}",
+ "A_diagnose": "{'success': False, 'error': 'ping failed for servo 6: servo 6 ping failed: context canceled'}",
+ "B": [
+  {
+   "from": -15,
+   "base": -10.11,
+   "x": 198.2,
+   "y": 28.2,
+   "img_diff": 3.6
+  },
+  {
+   "from": 15,
+   "base": -6.77,
+   "x": 199.5,
+   "y": 19.6,
+   "img_diff": 5.1
+  },
+  {
+   "from": -15,
+   "base": -10.11,
+   "x": 198.2,
+   "y": 28.2,
+   "img_diff": 6.8
+  },
+  {
+   "from": 15,
+   "base": -7.21,
+   "x": 199.4,
+   "y": 20.6,
+   "img_diff": 6.9
+  },
+  {
+   "from": -15,
+   "base": -10.11,
+   "x": 198.2,
+   "y": 28.2,
+   "img_diff": 6.1
+  },
+  {
+   "from": 15,
+   "base": -10.11,
+   "x": 198.2,
+   "y": 28.2,
+   "img_diff": 6.1
+  }
+ ],
+ "C": [
+  {
+   "joint": 0,
+   "cmd": -2.1,
+   "got": -2.29,
+   "err": -0.18,
+   "back_err": 1.41,
+   "t_out": 0.55,
+   "t_back": 0.02,
+   "tip_z_there": 199
+  },
+  {
+   "joint": 1,
+   "cmd": -27.5,
+   "got": -27.34,
+   "err": 0.18,
+   "back_err": -1.85,
+   "t_out": 0.55,
+   "t_back": 0.03,
+   "tip_z_there": 216
+  },
+  {
+   "joint": 2,
+   "cmd": 2.0,
+   "got": 2.29,
+   "err": 0.26,
+   "back_err": 0.18,
+   "t_out": 0.57,
+   "t_back": 0.54,
+   "tip_z_there": 218
+  },
+  {
+   "joint": 3,
+   "cmd": 81.6,
+   "got": 81.67,
+   "err": 0.09,
+   "back_err": -1.93,
+   "t_out": 0.52,
+   "t_back": 0.05,
+   "tip_z_there": 200
+  },
+  {
+   "joint": 4,
+   "cmd": 1.9,
+   "got": 1.85,
+   "err": -0.09,
+   "back_err": 1.67,
+   "t_out": 0.52,
+   "t_back": 0.06,
+   "tip_z_there": 198
+  }
+ ],
+ "D": [
+  {
+   "cycle": 0,
+   "target": 30.0,
+   "settled": 27.47,
+   "secs": 1.05
+  },
+  {
+   "cycle": 0,
+   "target": 0.0,
+   "settled": 0.56,
+   "secs": 0.94
+  },
+  {
+   "cycle": 1,
+   "target": 30.0,
+   "settled": 27.4,
+   "secs": 1.29
+  },
+  {
+   "cycle": 1,
+   "target": 0.0,
+   "settled": 0.7,
+   "secs": 1.06
+  },
+  {
+   "cycle": 2,
+   "target": 30.0,
+   "settled": 27.4,
+   "secs": 1.2
+  },
+  {
+   "cycle": 2,
+   "target": 0.0,
+   "settled": 0.7,
+   "secs": 1.22
+  }
+ ],
+ "E": {
+  "consecutive_diffs": [
+   7.14,
+   13.34,
+   9.41,
+   8.3,
+   5.54
+  ],
+  "median_brightness": 0.337
+ }
+}
