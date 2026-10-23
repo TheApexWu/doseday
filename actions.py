@@ -1,4 +1,4 @@
-"""Doseday robot actions: open or close a day's lid, place a pill in a day. Every move goes to a taught pose.
+"""Doseday robot actions: open or close a day's lid, place a pill in a day. Every move goes to a taught pose, except a grip retry, which may shift the pick a few mm (NUDGE_MM).
 
 Poses live in taught_joints.json (joint degrees). Save one with `python armctl.py teach <name>` while teleop or
 manual mode holds the arm there. Names (days: sun mon tue wed thu fri sat):
@@ -43,6 +43,10 @@ CAMERA_SETTLE_S = 2.0
 JAW_HELD_MIN = 3.0
 # A miss reopens, lifts to tray_hover and re-checks the tray before the next try.
 GRIP_ATTEMPTS = 3
+# Retry n picks NUDGE_MM (capped at NUDGE_CAP_MM) from the taught tray_down, in the next direction each time.
+NUDGE_MM = 3.0  # 0 turns nudging off
+NUDGE_CAP_MM = 4.0
+NUDGE_STEPS = ((1, 0), (0, 1), (-1, 0), (0, -1))  # +x, +y, -x, -y
 EVENTS_KEPT = 50  # the page reads the newest 10; the bound keeps a long session from growing without limit
 
 
@@ -65,6 +69,12 @@ def joint_positions(values):
     """HARDWARE-ONLY. Tests replace this so they never import the SDK."""
     from viam.proto.component.arm import JointPositions
     return JointPositions(values=values)
+
+
+def cartesian_pose(end, x: float, y: float, z: float):
+    """HARDWARE-ONLY. Tests replace this so they never import the SDK. Keeps the measured orientation."""
+    from viam.proto.common import Pose
+    return Pose(x=x, y=y, z=z, o_x=end.o_x, o_y=end.o_y, o_z=end.o_z, theta=end.theta)
 
 
 class Station:
@@ -183,11 +193,29 @@ class Station:
             raise Refused(f"I see {len(seen)} pills on the tray; put one at a time")
         return seen[0]["label"]
 
+    async def nudge(self, attempt: int):
+        """Retry only, with the arm at the taught tray_down: moves a few mm in x or y at the measured height, so the
+        retry picks from another spot. A refused Cartesian move sends the arm back to the taught pose."""
+        if NUDGE_MM <= 0:
+            return
+        end = await self.arm.get_end_position()
+        dx, dy = NUDGE_STEPS[(attempt - 2) % len(NUDGE_STEPS)]
+        step = min(NUDGE_MM, NUDGE_CAP_MM)
+        x, y, z = end.x + dx * step, end.y + dy * step, end.z  # z stays at the measured height: never lower
+        self.log({"nudge": attempt, "commanded": [round(x, 2), round(y, 2), round(z, 2), round(end.theta, 2)]})
+        try:
+            await self.arm.move_to_position(cartesian_pose(end, x, y, z))
+        except Exception as e:  # noqa: BLE001 - any refusal falls back to the taught pose
+            self.log({"nudge": attempt, "error": f"{type(e).__name__}: {str(e)[:120]}"})
+            await self.move("tray_down", DESCEND_SPEED)
+
     async def grip(self, label: str) -> int:
         """Pick from tray_down; held when the pill stops the closing jaw. A miss reopens, lifts and re-checks the
         tray before the next try, up to GRIP_ATTEMPTS. Returns the attempt that held."""
         for attempt in range(1, GRIP_ATTEMPTS + 1):
             await self.move("tray_down", DESCEND_SPEED)
+            if attempt > 1:
+                await self.nudge(attempt)
             stopped = await self.jaw_to(CLOSED_PCT)
             self.log({"grip": attempt, "jaw_stopped": round(stopped, 1)})
             if stopped >= JAW_HELD_MIN:

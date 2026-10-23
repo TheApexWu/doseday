@@ -1,6 +1,7 @@
 """actions.Station on fake hardware: move order, gentle presses, refusals that keep the wrong pill out."""
 import asyncio
 import json
+from types import SimpleNamespace
 
 import pytest
 
@@ -11,6 +12,7 @@ import fakes
 @pytest.fixture(autouse=True)
 def no_sdk(monkeypatch):
     monkeypatch.setattr(actions, "joint_positions", lambda v: v)
+    monkeypatch.setattr(actions, "cartesian_pose", lambda _end, x, y, z: SimpleNamespace(x=x, y=y, z=z))
     monkeypatch.setattr(actions, "SETTLE_POLL_S", 0.0)
     monkeypatch.setattr(actions, "PRESS_HOLD_S", 0.0)
     monkeypatch.setattr(actions, "CAMERA_SETTLE_S", 0.0)
@@ -21,6 +23,12 @@ def rig(tmp_path, label="tums", stops_at=12.0, poses=None, allow_open=True, **kw
     st = actions.Station(arm, grip, fakes.FakeCamera(), poses or fakes.poses(), fakes.LIMITS,
                          tmp_path / "s.jsonl", identify=fakes.tray(label), allow_open=allow_open, **kw)
     return st, arm, grip
+
+
+def nudge_rig(tmp_path, stops_at, **kw):
+    st, arm, _ = rig(tmp_path, stops_at=stops_at, **kw)
+    arm.tcp[tuple(st.clamp(st.poses["tray_down"]))] = (212.0, -6.0, 181.0)  # the fingertip measures here at tray_down
+    return st, arm
 
 
 def visited(st, arm):
@@ -208,3 +216,36 @@ def test_events_keep_only_the_newest_lines(tmp_path, monkeypatch):
     for i in range(5):
         st.say(f"line {i}")
     assert [(e["id"], e["text"]) for e in st.events] == [(3, "line 2"), (4, "line 3"), (5, "line 4")]
+
+
+def test_a_retry_moves_3mm_from_the_taught_tray_down_by_default(tmp_path):
+    st, arm = nudge_rig(tmp_path, stops_at=[1.0, 11.0])
+    assert run(st.run({"action": "place", "pill": "tums", "day": "wed"}))["ok"] is True
+    assert arm.cartesian == [(215.0, -6.0, 181.0)]  # +3 mm in x from the measured pose; the height is kept
+
+
+def test_retries_nudge_by_the_cap_and_never_dip_below_tray_down(tmp_path, monkeypatch):
+    monkeypatch.setattr(actions, "NUDGE_MM", 10.0)  # asks for more than NUDGE_CAP_MM allows
+    st, arm = nudge_rig(tmp_path, stops_at=[1.0, 1.0, 11.0])
+    assert run(st.run({"action": "place", "pill": "tums", "day": "wed"}))["ok"] is True
+    assert len(arm.cartesian) == 2  # one nudge per retry; the taught first try has none
+    for x, y, z in arm.cartesian:
+        assert max(abs(x - 212.0), abs(y + 6.0)) == pytest.approx(actions.NUDGE_CAP_MM)
+        assert z >= 181.0  # the measured height at tray_down
+
+
+def test_nudge_off_sends_no_cartesian_moves(tmp_path, monkeypatch):
+    monkeypatch.setattr(actions, "NUDGE_MM", 0.0)
+    st, arm = nudge_rig(tmp_path, stops_at=[1.0, 11.0])
+    assert run(st.run({"action": "place", "pill": "tums", "day": "wed"}))["ok"] is True
+    assert visited(st, arm).count("tray_down") == 2  # the retry still happens, at the taught pose
+    assert arm.cartesian == []
+
+
+def test_a_refused_nudge_falls_back_to_the_taught_pose(tmp_path):
+    st, arm = nudge_rig(tmp_path, stops_at=[1.0, 11.0])
+    arm.fail_cartesian = True
+    assert run(st.run({"action": "place", "pill": "tums", "day": "wed"}))["ok"] is True
+    assert arm.cartesian == []
+    # attempt 1 at tray_down, the lift, attempt 2 at tray_down, then the refused nudge re-sends the taught pose
+    assert visited(st, arm)[2:6] == ["tray_down", "tray_hover", "tray_down", "tray_down"]
