@@ -151,6 +151,36 @@ def test_halt_stops_and_restores_torque(tmp_path):
     assert arm.stopped and torque(arm) == [actions.FULL_TORQUE]
 
 
+class CapWriteFails(fakes.FakeArm):
+    """The first capped write changes the register and then the reply fails, as a serial timeout can."""
+    def __init__(self):
+        super().__init__()
+        self.torque, self.failed = actions.FULL_TORQUE, False
+
+    async def do_command(self, cmd):
+        if cmd.get("command") == "set_torque_limit":
+            self.torque = cmd["value"]
+            if cmd["value"] == actions.PRESS_TORQUE and not self.failed:
+                self.failed = True
+                raise RuntimeError("serial timeout")
+        return await super().do_command(cmd)
+
+
+def test_a_failed_capped_write_still_restores_full_torque(tmp_path):
+    arm = CapWriteFails()
+    st = actions.Station(arm, fakes.FakeGripper(), fakes.FakeCamera(), fakes.poses(), fakes.LIMITS,
+                         tmp_path / "s.jsonl", allow_open=True)
+    with pytest.raises(RuntimeError):
+        run(st.run({"action": "open", "day": "wed"}))
+    assert arm.torque == actions.FULL_TORQUE
+
+
+def test_place_restores_full_torque_before_its_first_move(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert torque(arm)[:1] == [actions.FULL_TORQUE]
+
+
 def test_close_checks_the_lid_poses_before_the_jaw_moves(tmp_path):
     p = fakes.poses()
     del p["lid_mon_press"]

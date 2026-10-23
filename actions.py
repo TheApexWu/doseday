@@ -128,8 +128,9 @@ class Station:
         hover, down = f"{kind}_{day}_hover", f"{kind}_{day}_press"
         self.need(hover, down)
         await self.move(hover, MOVE_SPEED)
-        await self.arm.do_command({"command": "set_torque_limit", "value": PRESS_TORQUE})
         try:
+            # inside the try: a capped write that fails after changing the register must still be restored
+            await self.arm.do_command({"command": "set_torque_limit", "value": PRESS_TORQUE})
             await self.move(down, PRESS_SPEED, timeout=PRESS_TIMEOUT_S)
             await asyncio.sleep(PRESS_HOLD_S)
             await self.move(hover, PRESS_SPEED)
@@ -189,6 +190,8 @@ class Station:
         d = check_day(day)
         pill = (pill or "").strip().lower()
         self.need("tray_hover", "tray_down", f"drop_{d}_hover")
+        # a press whose restore failed leaves the register capped; a placement must not inherit that
+        await self.arm.do_command({"command": "set_torque_limit", "value": FULL_TORQUE})
         await self.jaw_to(self.open_pct)
         await self.move("tray_hover", MOVE_SPEED)
         label = await self.look(pill)
