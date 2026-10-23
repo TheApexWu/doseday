@@ -53,11 +53,12 @@
 const DAYS = ["sun","mon","tue","wed","thu","fri","sat"];
 const NAMES = {sun:"Sunday",mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday"};
 const PILLS = ["tums","magnesium"];
-let lastSpoken = 0;
+let lastSpoken = 0, lastEventId = 0, primed = false;
 
-function say(text) {
+// A final result cancels what is being said; a progress line (interrupt = false) queues behind it.
+function say(text, interrupt = true) {
   if (!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
+  if (interrupt) speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text); u.rate = 0.95; speechSynthesis.speak(u);
 }
 
@@ -104,6 +105,11 @@ async function poll() {
     }
     document.getElementById("log").innerHTML = s.results.map(r =>
       `<li class="${r.ok ? "ok" : "bad"}">${r.t} · ${r.say}</li>`).join("");
+    const evs = s.events || [];
+    // Lines from before this page opened stay silent: the first poll only catches up.
+    if (primed) evs.filter(e => e.id > lastEventId).forEach(e => say(e.text, false));
+    primed = true;
+    lastEventId = Math.max(lastEventId, ...evs.map(e => e.id));
     const newest = s.results[0];
     if (newest && newest.id > lastSpoken) { lastSpoken = newest.id; say(newest.say); }
   } catch (e) {
