@@ -25,7 +25,7 @@ import vision
 
 HERE = Path(__file__).parent
 DATA = HERE / "data"
-LIMIT_MARGIN = 1.5  # unknown when farther than this times the worst leave-one-out match in the gallery
+LIMIT_MARGIN = 1.5  # unknown when farther than this times the typical leave-one-out match in the gallery
 NOT_PILLS = {"scene", "reject", "unknown"}
 # Over 10x the largest enrolled pill is scenery (the organizer measured 44x a Tums on 23 Oct). Tighter would
 # swallow a wrong pill that should be refused out loud: a 25 mm tablet is only ~2.4x a 16 mm Tums.
@@ -101,7 +101,7 @@ class Dino:
 
 class Gallery:
     def __init__(self, engine, root: Path = DATA, limit: float | None = None):
-        self.engine, self.labels, vecs, areas = engine, [], [], []
+        self.engine, self.labels, self.paths, vecs, areas = engine, [], [], [], []
         for d in sorted(p for p in root.iterdir() if p.is_dir() and p.name not in NOT_PILLS):
             for f in sorted([*d.glob("*.png"), *d.glob("*.jpg")]):
                 found = crops(cv2.imread(str(f)))
@@ -111,23 +111,36 @@ class Gallery:
                 vecs.append(engine.raw(pill, crop))
                 areas.append(pill.area_px)
                 self.labels.append(d.name)
+                self.paths.append(f)
         if len(set(self.labels)) < 1 or len(vecs) < 2:
             raise SystemExit(f"gallery in {root} needs photos in data/<label>/ (found {len(vecs)})")
         self.vecs = np.array(vecs)
         self.area_lo, self.area_hi = min(areas) / SIZE_GATE, max(areas) * SIZE_GATE
         engine.fit(self.vecs)
-        self.limit = limit if limit is not None else max(LIMIT_MARGIN * self.leave_one_out(), engine.min_limit)
+        loo = self.leave_one_out()
+        typical = float(np.nanmedian(loo)) if np.isfinite(loo).any() else 0.0
+        self.limit = limit if limit is not None else max(LIMIT_MARGIN * typical, engine.min_limit)
+        self.warn_far_photos(loo)
 
-    def leave_one_out(self) -> float:
-        """Worst distance from an enrolled photo to its nearest same-label neighbour."""
-        worst = 0.0
+    def leave_one_out(self) -> np.ndarray:
+        """Per enrolled photo: distance to its nearest same-label photo (nan when its label has no other photo)."""
+        out = np.full(len(self.labels), np.nan)
         for i, v in enumerate(self.vecs):
             d = self.engine.dist(v, self.vecs)
-            d[i] = np.inf
             same = [d[j] for j, lab in enumerate(self.labels) if lab == self.labels[i] and j != i]
             if same:
-                worst = max(worst, float(min(same)))
-        return worst
+                out[i] = min(same)
+        return out
+
+    def warn_far_photos(self, loo: np.ndarray):
+        """A photo far from its own label (wrong light, tape, a second pill) is an outlier to review. The limit
+        uses the median, so one such photo no longer loosens the gate for every label."""
+        if not np.isfinite(loo).any():
+            return
+        worst = int(np.nanargmax(loo))
+        if loo[worst] > self.limit:
+            print(f"warning: {self.paths[worst]} is {loo[worst]:.2f} from its nearest {self.labels[worst]} photo, "
+                  f"past the limit {self.limit:.2f}; check it for an outlier", file=sys.stderr)
 
     def name(self, pill, crop) -> dict:
         where = {"cx": round(pill.cx, 1), "cy": round(pill.cy, 1), "area_px": round(pill.area_px)}

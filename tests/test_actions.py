@@ -1,5 +1,6 @@
 """actions.Station on fake hardware: move order, gentle presses, refusals that keep the wrong pill out."""
 import asyncio
+import json
 
 import pytest
 
@@ -116,6 +117,23 @@ def test_place_unknown_pill_goes_to_the_reject_cup(tmp_path):
     assert "reject_hover" in seq and not any(n.startswith("drop_") for n in seq)
 
 
+def test_an_edge_pill_counts_toward_the_one_pill_check(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    st.identify = lambda _img: [{"label": "tums", "cx": 300, "cy": 240},
+                                {"label": "not_pill", "reason": "edge", "cx": 2, "cy": 200}]
+    r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert r == {"ok": False, "say": "I see 2 pills on the tray; put one at a time"}
+    assert not any(n.startswith(("drop_", "tray_down")) for n in visited(st, arm))
+
+
+def test_a_lone_edge_pill_is_not_reported_as_an_empty_tray(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    st.identify = lambda _img: [{"label": "not_pill", "reason": "edge", "cx": 2, "cy": 200}]
+    r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert r == {"ok": False, "say": "a pill is at the edge of the tray; move it in"}
+    assert arm.moves[-1:] == [st.clamp(st.poses["tray_hover"])]  # refused before any grip
+
+
 def test_place_refuses_after_two_failed_grips(tmp_path):
     st, arm, grip = rig(tmp_path, stops_at=[1.0, 1.0])  # closed on nothing twice
     st.lid["wed"] = "open"
@@ -197,3 +215,127 @@ def test_move_that_never_arrives_stops_the_action(tmp_path):
     r = run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
     assert r == {"ok": False, "say": "the arm did not reach tray_hover, so I stopped"}
     assert len(arm.moves) == 1
+
+
+def test_a_pose_taught_during_the_run_reaches_the_next_action(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    taught = tmp_path / "taught_joints.json"
+    poses = fakes.poses()
+    taught.write_text(json.dumps(poses))
+    st.poses_path = taught
+    poses["home"] = [50.0, 0.0, 0.0, 0.0, 0.0]  # armctl teach rewrites the file while the app runs
+    taught.write_text(json.dumps(poses))
+    run(st.run({"action": "home"}))
+    assert arm.moves[-1][0] == 50.0
+
+
+def test_joint_limits_are_read_again_before_the_next_action(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    st.poses["home"] = [0.0, -104.3, 0.0, 0.0, 0.0]
+
+    async def tighter_shoulder():  # the arm's own limits moved during the day (23 Oct)
+        return [(-110.0, 110.0), (-90.0, 100.0), (-96.8, 96.8), (-95.0, 95.0), (-157.2, 162.8)]
+
+    st.read_limits = tighter_shoulder
+    run(st.run({"action": "home"}))
+    assert arm.moves[-1][1] == -89.5
+
+
+def test_an_unreadable_taught_file_refuses_without_moving(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    taught = tmp_path / "taught_joints.json"
+    taught.write_text('{"home": [0.0,')  # a teach caught mid-write
+    st.poses_path = taught
+    assert run(st.run({"action": "home"}))["ok"] is False
+    assert arm.moves == []
+
+
+def test_halt_restores_full_torque_even_when_the_stop_raises(tmp_path):
+    st, arm, _ = rig(tmp_path)
+
+    async def stop_fails():
+        raise RuntimeError("serial timeout")
+
+    arm.stop = stop_fails
+    with pytest.raises(RuntimeError):
+        run(st.halt())
+    assert torque(arm) == [actions.FULL_TORQUE]
+
+
+class CapWriteFails(fakes.FakeArm):
+    """The first capped write changes the register and then the reply fails, as a serial timeout can."""
+    def __init__(self):
+        super().__init__()
+        self.torque, self.failed = actions.FULL_TORQUE, False
+
+    async def do_command(self, cmd):
+        if cmd.get("command") == "set_torque_limit":
+            self.torque = cmd["value"]
+            if cmd["value"] == actions.PRESS_TORQUE and not self.failed:
+                self.failed = True
+                raise RuntimeError("serial timeout")
+        return await super().do_command(cmd)
+
+
+def test_a_failed_capped_write_still_restores_full_torque(tmp_path):
+    arm = CapWriteFails()
+    st = actions.Station(arm, fakes.FakeGripper(), fakes.FakeCamera(), fakes.poses(), fakes.LIMITS,
+                         tmp_path / "s.jsonl", allow_open=True)
+    with pytest.raises(RuntimeError):
+        run(st.run({"action": "open", "day": "wed"}))
+    assert arm.torque == actions.FULL_TORQUE
+
+
+def test_place_restores_full_torque_before_its_first_move(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    run(st.run({"action": "place", "pill": "tums", "day": "wed"}))
+    assert torque(arm)[:1] == [actions.FULL_TORQUE]
+
+
+def fail_the_lift(arm, st, d):
+    """Let the press reach its pose, then make the lift fail the way a servo overload does."""
+    hover, down = st.clamp(st.poses[f"lid_{d}_hover"]), st.clamp(st.poses[f"lid_{d}_press"])
+    real_move = arm.move_to_joint_positions
+
+    async def move(target):
+        await real_move(target)
+        if list(target) == down:
+            arm.fail_on = hover
+
+    arm.move_to_joint_positions = move
+
+
+def test_a_lift_cut_short_after_the_press_leaves_the_lid_unknown(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    fail_the_lift(arm, st, "mon")
+    with pytest.raises(RuntimeError):
+        run(st.run({"action": "close", "day": "mon"}))
+    assert st.lid["mon"] == "unknown"
+    n = len(arm.moves)
+    assert run(st.run({"action": "place", "pill": "tums", "day": "mon"}))["ok"] is False
+    assert not any(m.startswith(("drop_", "tray_down")) for m in visited(st, arm)[n:])
+
+
+def test_a_press_that_stalls_is_reported_and_not_called_closed(tmp_path, monkeypatch):
+    monkeypatch.setattr(actions, "PRESS_TIMEOUT_S", 0.05)
+    st, arm, _ = rig(tmp_path)
+    arm.move_s = 0.2  # the press move outlasts its timeout; the hover and lift moves finish
+    r = run(st.run({"action": "close", "day": "mon"}))
+    assert r["ok"] is False and "press point" in r["say"]
+    assert st.lid["mon"] == "unknown"
+
+
+def test_close_checks_the_lid_poses_before_the_jaw_moves(tmp_path):
+    p = fakes.poses()
+    del p["lid_mon_press"]
+    st, arm, grip = rig(tmp_path, poses=p)
+    assert run(st.run({"action": "close", "day": "mon"})) == {"ok": False, "say": "position lid_mon_press is not taught yet"}
+    assert grip.sets == [] and arm.moves == []
+
+
+def test_open_checks_the_tab_poses_before_the_jaw_moves(tmp_path):
+    p = fakes.poses()
+    del p["tab_wed_press"]
+    st, arm, grip = rig(tmp_path, poses=p)
+    assert run(st.run({"action": "open", "day": "wed"}))["ok"] is False
+    assert grip.sets == [] and arm.moves == []

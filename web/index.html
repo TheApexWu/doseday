@@ -34,6 +34,7 @@
   #log li { padding:8px 0; border-bottom:1px solid var(--line); }
   #log .ok { color:var(--ok); } #log .bad { color:var(--bad); }
   .hint { color:var(--dim); font-size:18px; }
+  #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 16px; }
   @media (max-width:600px) { body { font-size:20px; } h1 { font-size:28px; } }
 </style>
 </head>
@@ -44,6 +45,7 @@
   <button id="mic" aria-label="Speak a command">🎤 Speak</button>
   <button id="stop" aria-label="Stop the robot now">STOP</button>
 </header>
+<div id="alarm" role="alert" hidden></div>
 <main id="days"></main>
 <section>
   <p class="hint">Lids start open. Say: “put Tums in Monday”, “close Friday”, “go home”, or “stop”.</p>
@@ -68,6 +70,33 @@ async function post(path, body) {
   return j;
 }
 
+const STOP_TRIES = 3;
+const STOP_FAILED = "STOP FAILED. The arm may still be moving.";
+
+async function sendStop() {
+  try {
+    const r = await fetch("/stop", {method:"POST"});
+    const j = await r.json().catch(() => ({}));
+    return r.ok && j.ok === true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// "Stopped" is said only after the server confirms; a failure stays on screen until a stop succeeds.
+async function stopArm() {
+  say("Stopping");
+  let done = false;
+  for (let i = 0; i < STOP_TRIES && !done; i++) done = await sendStop();
+  if (done) { showAlarm(""); say("Stopped"); return; }
+  showAlarm(STOP_FAILED); say(STOP_FAILED);
+}
+
+function showAlarm(text) {
+  const el = document.getElementById("alarm");
+  el.textContent = text; el.hidden = !text;
+}
+
 function cmd(action, day, pill) {
   const words = action === "place" ? `Putting ${pill} in ${NAMES[day]}` :
                 action === "home" ? "Going home" :
@@ -89,7 +118,7 @@ function build() {
     card.querySelectorAll("button").forEach(b => b.onclick = () => cmd(b.dataset.a, d, b.dataset.p));
     main.appendChild(card);
   }
-  document.getElementById("stop").onclick = () => { say("Stopping"); post("/stop"); };
+  document.getElementById("stop").onclick = stopArm;
 }
 
 async function poll() {
@@ -115,18 +144,26 @@ async function poll() {
 function parse(text) {
   const t = text.toLowerCase();
   if (/\b(stop|halt|freeze)\b/.test(t)) return {stop: true};
-  if (/\bhome\b/.test(t)) return {action: "home"};
-  let day = null;
+  // after the stop check on purpose: "no, stop" must still stop the arm
+  if (/\b(not|never|no|don'?t|do not)\b/.test(t)) return {error: "I heard 'not' or 'no'. Say the whole command again without it."};
+  const days = new Set();
   const today = new Date().getDay();
-  if (/\btoday\b/.test(t)) day = DAYS[today];
-  else if (/\btomorrow\b/.test(t)) day = DAYS[(today + 1) % 7];
-  else for (const d of DAYS) if (new RegExp(`\\b${NAMES[d].toLowerCase()}|\\b${d}\\b`).test(t)) day = d;
-  const pill = PILLS.find(p => t.includes(p)) || (/\btum/.test(t) ? "tums" : null);
-  let action = null;
-  if (pill && /\b(put|place|add|fill|load|give)\b/.test(t)) action = "place";
-  else if (/\b(open|unlock)\b/.test(t)) action = "open";
-  else if (/\b(close|shut|lock)\b/.test(t)) action = "close";
-  return {action, day, pill};
+  if (/\btoday\b/.test(t)) days.add(DAYS[today]);
+  if (/\btomorrow\b/.test(t)) days.add(DAYS[(today + 1) % 7]);
+  for (const d of DAYS) if (new RegExp(`\\b${NAMES[d].toLowerCase()}|\\b${d}\\b`).test(t)) days.add(d);
+  // two days in one utterance is a correction or an ambiguity: refuse, never guess which one was meant
+  if (days.size > 1) return {error: "I heard more than one day. Say one day."};
+  const pills = new Set(PILLS.filter(p => t.includes(p)));
+  if (/\btum/.test(t)) pills.add("tums");
+  if (pills.size > 1) return {error: "I heard more than one pill. Say one pill."};
+  const intents = [];
+  if (/\bhome\b/.test(t)) intents.push("home");
+  if (pills.size && /\b(put|place|add|fill|load|give)\b/.test(t)) intents.push("place");
+  if (/\b(open|unlock)\b/.test(t)) intents.push("open");
+  if (/\b(close|shut|lock)\b/.test(t)) intents.push("close");
+  if (intents.length > 1) return {error: "I heard more than one command. Say one at a time."};
+  if (intents[0] === "home") return {action: "home"};
+  return {action: intents[0] || null, day: days.size ? [...days][0] : null, pill: pills.size ? [...pills][0] : null};
 }
 
 function setupMic() {
@@ -137,7 +174,8 @@ function setupMic() {
   rec.onresult = e => {
     const text = e.results[0][0].transcript;
     const c = parse(text);
-    if (c.stop) { say("Stopping"); post("/stop"); return; }
+    if (c.error) { say(c.error); return; }
+    if (c.stop) { stopArm(); return; }
     if (!c.action || (c.action !== "home" && !c.day)) { say(`Sorry, I heard "${text}". Say a day and open, close, or a pill.`); return; }
     cmd(c.action, c.day, c.pill);
   };

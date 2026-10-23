@@ -84,7 +84,7 @@ def validate(cmd: dict) -> str | None:
     return None
 
 
-def make_server(ctl: Controller, port: int) -> ThreadingHTTPServer:
+def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> ThreadingHTTPServer:
     class H(BaseHTTPRequestHandler):
         def do_GET(self):
             if self.path in ("/", "/index.html"):
@@ -99,7 +99,11 @@ def make_server(ctl: Controller, port: int) -> ThreadingHTTPServer:
             except json.JSONDecodeError:
                 return self._json({"error": "body is not JSON"}, 400)
             if self.path == "/stop":
-                ctl.stop()
+                try:
+                    ctl.stop()
+                except Exception as e:  # a dropped connection reads as "no reply", so answer with the failure
+                    return self._json({"ok": False, "say": "STOP failed. The arm may still be moving.",
+                                       "error": f"{type(e).__name__}: {str(e)[:160]}"}, 500)
                 return self._json({"ok": True, "say": "stopped"})
             if self.path == "/cmd":
                 err = validate(body)
@@ -121,7 +125,8 @@ def make_server(ctl: Controller, port: int) -> ThreadingHTTPServer:
         def log_message(self, *_):
             pass
 
-    return ThreadingHTTPServer(("0.0.0.0", port), H)
+    # loopback: the page is served from this laptop, and nothing on the network may send arm commands
+    return ThreadingHTTPServer((host, port), H)
 
 
 def fake_station(move_s: float = 0.4):
@@ -159,7 +164,8 @@ def real_station(unverified: bool, use_claude: bool = False):
         return actions.Station(arm, Gripper.from_robot(robot, "follower-gripper"),
                                Camera.from_robot(robot, "follower-cam"), actions.load_poses(),
                                await joint_limits(arm), HERE / "logs" / f"station-{time.strftime('%H%M%S')}.jsonl",
-                               identify=ident, unverified=unverified)
+                               identify=ident, unverified=unverified, poses_path=actions.POSES,
+                               read_limits=lambda: joint_limits(arm))
     return make
 
 

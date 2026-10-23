@@ -51,6 +51,15 @@ def wait_result(url, n, timeout=10.0):
     raise AssertionError("no result")
 
 
+def test_control_server_listens_on_loopback_only():
+    ctl = app.Controller(app.fake_station(0.0))
+    srv = app.make_server(ctl, 0)
+    try:
+        assert srv.server_address[0] == "127.0.0.1"
+    finally:
+        srv.server_close()
+
+
 def test_page_is_served(server):
     _, url = server()
     with urllib.request.urlopen(url + "/", timeout=10) as r:
@@ -79,6 +88,17 @@ def test_bad_commands_are_rejected_before_the_queue(server, body):
     ctl, url = server()
     code, j = call(url, "/cmd", body)
     assert code == 400 and j["ok"] is False and ctl.q.qsize() == 0
+
+
+def test_a_failed_stop_still_gets_a_reply_that_says_so(server):
+    ctl, url = server()
+
+    async def stop_fails():
+        raise RuntimeError("serial timeout")
+
+    ctl.station.arm.stop = stop_fails
+    code, j = call(url, "/stop", {})
+    assert code == 500 and j["ok"] is False and "may still be moving" in j["say"]
 
 
 def test_stop_cancels_the_running_action_and_empties_the_queue(server):

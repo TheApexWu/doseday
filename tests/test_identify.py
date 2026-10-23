@@ -64,6 +64,29 @@ def test_enrolment_takes_the_centre_pill_not_the_biggest_blob(tmp_path):
     assert np.exp(g.vecs[:, 3]).max() < 2500  # log area column: pill ~1250 px, tape would be ~7000
 
 
+def write_gallery(root, extra_tums=None):
+    sets = {"tums": frames(ROUND_C, 40, 40, n=8, seed=1), "magnesium": frames(OVAL_C, 60, 26, n=8, seed=2)}
+    if extra_tums is not None:
+        sets["tums"].append(extra_tums)
+    for label, imgs in sets.items():
+        (root / label).mkdir(parents=True)
+        for i, img in enumerate(imgs):
+            cv2.imwrite(str(root / label / f"{i}.png"), img)
+
+
+def test_one_off_colour_enrolment_photo_does_not_loosen_the_limit(tmp_path, capsys):
+    clean, dirty = tmp_path / "clean", tmp_path / "dirty"
+    write_gallery(clean)
+    write_gallery(dirty, extra_tums=frames((0, 215, 255), 40, 40, n=1, seed=8)[0])  # the same tums in warm light
+    g_clean = identify.Gallery(identify.Features(), root=clean)
+    g_dirty = identify.Gallery(identify.Features(), root=dirty)
+    assert g_dirty.limit == pytest.approx(g_clean.limit)
+    between = mat(noise=3, seed=10)
+    ellipse(between, 320, 240, 40, 40, 0, (0, 175, 255))  # a tums between the two colours
+    assert [r["label"] for r in g_dirty.identify(between)] == ["unknown"]
+    assert "tums/8.png" in capsys.readouterr().err  # the warning names the photo far from its own label
+
+
 def test_empty_gallery_refuses_to_start(tmp_path):
     (tmp_path / "data").mkdir()
     with pytest.raises(SystemExit, match="needs photos"):
