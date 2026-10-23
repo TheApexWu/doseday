@@ -1,4 +1,5 @@
-"""Doseday robot actions: open or close a day's lid, place a pill in a day. Every move goes to a taught pose, except a grip retry, which may shift the pick a few mm (NUDGE_MM).
+"""Doseday robot actions: open or close a day's lid, place a pill in a day. Every move goes to a taught pose,
+except a grip retry, which may shift the pick a few mm (NUDGE_MM).
 
 Poses live in taught_joints.json (joint degrees). Save one with `python armctl.py teach <name>` while teleop or
 manual mode holds the arm there. Names (days: sun mon tue wed thu fri sat):
