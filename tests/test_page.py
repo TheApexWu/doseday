@@ -111,3 +111,33 @@ def test_a_command_naming_two_days_is_refused_and_not_posted():
 def test_a_spoken_correction_to_another_day_is_refused_and_not_posted():
     out = page(op="utter", text="put tums in tuesday, no, monday")
     assert posts(out, "/cmd") == [] and out["spoken"]
+
+
+def test_home_and_close_still_post_on_their_own():
+    assert posts(page(op="utter", text="go home"), "/cmd")[0]["body"] == {"action": "home"}
+    assert posts(page(op="utter", text="close friday"), "/cmd")[0]["body"]["day"] == "fri"
+
+
+def test_a_home_word_does_not_override_a_placement():
+    out = page(op="utter", text="put tums in monday before I get home")
+    assert posts(out, "/cmd") == [] and out["spoken"]
+
+
+def test_a_negated_command_is_refused_and_not_posted():
+    out = page(op="utter", text="do not close monday")
+    assert posts(out, "/cmd") == [] and out["spoken"]
+
+
+def test_a_negated_pill_is_refused_and_not_posted():
+    out = page(op="utter", text="put magnesium in monday, not tums")
+    assert posts(out, "/cmd") == [] and out["spoken"]
+
+
+def test_two_pills_in_one_command_are_refused_and_not_posted():
+    out = page(op="utter", text="put tums and magnesium in monday")
+    assert posts(out, "/cmd") == [] and out["spoken"]
+
+
+def test_a_stop_word_is_never_ignored_even_beside_a_negation():
+    out = page(op="utter", text="don't stop, put tums in monday", stop=[{"status": 200, "body": {"ok": True}}])
+    assert len(posts(out, "/stop")) == 1 and posts(out, "/cmd") == []

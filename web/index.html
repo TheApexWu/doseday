@@ -144,7 +144,8 @@ async function poll() {
 function parse(text) {
   const t = text.toLowerCase();
   if (/\b(stop|halt|freeze)\b/.test(t)) return {stop: true};
-  if (/\bhome\b/.test(t)) return {action: "home"};
+  // after the stop check on purpose: "no, stop" must still stop the arm
+  if (/\b(not|never|no|don'?t|do not)\b/.test(t)) return {error: "I heard 'not' or 'no'. Say the whole command again without it."};
   const days = new Set();
   const today = new Date().getDay();
   if (/\btoday\b/.test(t)) days.add(DAYS[today]);
@@ -152,13 +153,17 @@ function parse(text) {
   for (const d of DAYS) if (new RegExp(`\\b${NAMES[d].toLowerCase()}|\\b${d}\\b`).test(t)) days.add(d);
   // two days in one utterance is a correction or an ambiguity: refuse, never guess which one was meant
   if (days.size > 1) return {error: "I heard more than one day. Say one day."};
-  const day = days.size ? [...days][0] : null;
-  const pill = PILLS.find(p => t.includes(p)) || (/\btum/.test(t) ? "tums" : null);
-  let action = null;
-  if (pill && /\b(put|place|add|fill|load|give)\b/.test(t)) action = "place";
-  else if (/\b(open|unlock)\b/.test(t)) action = "open";
-  else if (/\b(close|shut|lock)\b/.test(t)) action = "close";
-  return {action, day, pill};
+  const pills = new Set(PILLS.filter(p => t.includes(p)));
+  if (/\btum/.test(t)) pills.add("tums");
+  if (pills.size > 1) return {error: "I heard more than one pill. Say one pill."};
+  const intents = [];
+  if (/\bhome\b/.test(t)) intents.push("home");
+  if (pills.size && /\b(put|place|add|fill|load|give)\b/.test(t)) intents.push("place");
+  if (/\b(open|unlock)\b/.test(t)) intents.push("open");
+  if (/\b(close|shut|lock)\b/.test(t)) intents.push("close");
+  if (intents.length > 1) return {error: "I heard more than one command. Say one at a time."};
+  if (intents[0] === "home") return {action: "home"};
+  return {action: intents[0] || null, day: days.size ? [...days][0] : null, pill: pills.size ? [...pills][0] : null};
 }
 
 function setupMic() {
