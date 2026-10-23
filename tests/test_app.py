@@ -49,6 +49,15 @@ def wait_result(url, n, timeout=10.0):
     raise AssertionError("no result")
 
 
+def test_control_server_listens_on_loopback_only():
+    ctl = app.Controller(app.fake_station(0.0))
+    srv = app.make_server(ctl, 0)
+    try:
+        assert srv.server_address[0] == "127.0.0.1"
+    finally:
+        srv.server_close()
+
+
 def test_page_is_served(server):
     _, url = server()
     with urllib.request.urlopen(url + "/", timeout=10) as r:

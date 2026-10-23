@@ -83,7 +83,7 @@ def validate(cmd: dict) -> str | None:
     return None
 
 
-def make_server(ctl: Controller, port: int) -> ThreadingHTTPServer:
+def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> ThreadingHTTPServer:
     class H(BaseHTTPRequestHandler):
         def do_GET(self):
             if self.path in ("/", "/index.html"):
@@ -124,7 +124,8 @@ def make_server(ctl: Controller, port: int) -> ThreadingHTTPServer:
         def log_message(self, *_):
             pass
 
-    return ThreadingHTTPServer(("0.0.0.0", port), H)
+    # loopback: the page is served from this laptop, and nothing on the network may send arm commands
+    return ThreadingHTTPServer((host, port), H)
 
 
 def fake_station(move_s: float = 0.4):
