@@ -161,15 +161,14 @@ async def live(args):
         cal = Calibration.load(args.calib)
         if cal.mat_only:
             raise SystemExit("REFUSED: mat-only calibration has no robot frame; run `calibrate --touch 0 1 2` with the arm")
-        if any(abs(poses["photo"][k] - cal.photo_pose[k]) > PHOTO_POSE_TOL_MM for k in ("x", "y", "z")):
-            raise SystemExit("photo pose in poses.json differs from the calibrated one: recalibrate")
         registry = Registry.load(args.pills)
     preflight(poses, inv)
+    if not args.sim and any(abs(poses["photo"][k] - cal.photo_pose[k]) > PHOTO_POSE_TOL_MM for k in ("x", "y", "z")):
+        raise SystemExit("photo pose in poses.json differs from the calibrated one: recalibrate")
     try:
         if a is None:
             robot = await connect()
             a = PillArm(robot, table_z=cal.table_z, limits=poses.get("limits"), yaw_align=not args.no_yaw)
-        await a.setup()
         misses: list = []          # [px, count] per pill location that failed
         streak = 0
         pending = None             # a pick the gripper could not confirm; the next photo decides it
@@ -373,8 +372,8 @@ async def crosshair(args):
             misses[t] = float(input(f"tag {t}: miss in mm from tag centre? ") or "nan")
             await a.move(x, y, cal.table_z + 20, FIXED_THETA, f"crosshair/{t}/up", straight=True)
         a.log({"crosshair_mm": misses})
-        worst = max(misses.values())
-        print(f"T1 misses mm {misses}: {'PASS' if worst <= args.t1_limit else 'FAIL'} (limit {args.t1_limit})")
+        verdict = "PASS" if t1_verdict(misses, args.t1_limit) else "FAIL"
+        print(f"T1 misses mm {misses}: {verdict} (limit {args.t1_limit})")
     except BaseException:
         if a is not None:
             await a.stop()
@@ -489,7 +488,7 @@ def main(argv=None):
     ap.add_argument("--touch", type=int, nargs="+", default=[0, 1, 2],
                     help="tag ids touched; 2 touches cannot see a sideways miss, so the default touches 3")
     ap.add_argument("--tags", type=int, nargs="+", default=[3, 4], help="crosshair: tags NOT used for touch-off")
-    ap.add_argument("--t1-limit", type=float, default=2.0, help="crosshair pass limit, mm (2 for Lite, 3 for xArm)")
+    ap.add_argument("--t1-limit", type=float, default=2.0, help="crosshair pass limit, mm")
     ap.add_argument("--out")
     ap.add_argument("--dir", help="enroll from every captured frame in this folder")
     ap.add_argument("--source", default="webcam:0", help="viam | webcam[:N] | dir:PATH (assist, mat-only calibrate)")
@@ -501,7 +500,7 @@ def main(argv=None):
     ap.add_argument("--sim-theta-sign", type=float, default=None, help="sim: the arm's TRUE wrist sign (try -1)")
     ap.add_argument("--sim-slip", type=float, default=0.0, help="sim: chance a well-aimed grip still misses")
     ap.add_argument("--sim-seed", type=int, default=0)
-    ap.add_argument("--sim-lite", action="store_true", help="sim: Lite gripper, no grip feedback (photo check decides)")
+    ap.add_argument("--sim-lite", action="store_true", help="sim: gripper with no grip feedback (photo check decides)")
     ap.add_argument("--approve-timeout", type=float, default=600)
     ap.add_argument("--data", default=str(HERE / "data"))
     ap.add_argument("--allow-foreign", action="store_true",
