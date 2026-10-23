@@ -163,3 +163,22 @@ def test_missing_pose_stops_before_moving(tmp_path):
 def test_importable_without_viam():
     code = "import pick, sys; assert not any(m.split('.')[0] == 'viam' for m in sys.modules)"
     subprocess.run([sys.executable, "-c", code], cwd=Path(pick.__file__).parent, check=True)
+
+
+class CandyGripper(FakeGripper):
+    """Candy stops the jaw at 8% however hard it is told to close."""
+
+    async def do_command(self, cmd):
+        if cmd["command"] == "set_position":
+            self.sets.append(cmd["percentage"])
+            self.pos = max(cmd["percentage"], 8.0)
+            return {"success": True}
+        return {"position_percentage": self.pos}
+
+
+def test_grip_backs_off_to_where_candy_stopped_the_jaw(tmp_path):
+    grip = CandyGripper()
+    p = pick.Picker(FakeArm(), grip, FakeCamera([True]), tmp_path / "p.jsonl")
+    asyncio.run(p.run(pick.check_poses(POSES), 1))
+    # close to 0, candy stops it at 8, then hold just inside 8 instead of stalling toward 0 for the carry
+    assert grip.sets[:3] == [pick.OPEN_PCT, pick.CLOSED_PCT, 8.0 - pick.GRIP_SQUEEZE_PCT]

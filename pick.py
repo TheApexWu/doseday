@@ -16,6 +16,7 @@ Every commanded and read-back joint vector is logged to logs/pick-<time>.jsonl.
 import argparse
 import asyncio
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -29,6 +30,9 @@ POSE_NAMES = ("pick_hover", "pick_down", "drop_hover")
 SHOULDER_MIN = -104.8  # calibrated limit is -104.88; the rest pose (-105.05) is past it and the arm refuses it
 SPEED_RANGE = (12.0, 180.0)  # below 12 deg/s the servos do not hold the commanded speed (module docs)
 OPEN_PCT, CLOSED_PCT = 18.0, 0.0  # 18% fit every M&M in run 01 and costs ~4 s less per cycle than 95%
+# Once candy stops the jaw, re-command just inside where it stopped: a 0% goal held against candy stalls the
+# servo for the whole carry, and stalled STS3215s overheat.
+GRIP_SQUEEZE_PCT = 1.0
 # Run 01: with empty jaws 20-35 mm over the mat, candy lying below scored 0.22-0.31; from 60 mm up, empty
 # scored <= 0.12 and held >= 0.20. So the hover must sit at least this far above the pick.
 MIN_CHECK_RISE_MM = 55.0
@@ -134,7 +138,9 @@ class Picker:
         for attempt in (1, 2):
             await self.move(poses["pick_down"], "pick_down", self.descend_speed)
             z_down = (await self.arm.get_end_position()).z
-            await self.jaw_to(CLOSED_PCT)
+            stopped = await self.jaw_to(CLOSED_PCT)
+            if stopped > CLOSED_PCT + GRIP_SQUEEZE_PCT:
+                await self.jaw_to(stopped - GRIP_SQUEEZE_PCT)
             await self.move(poses["pick_hover"], "lift", self.descend_speed)
             rise = (await self.arm.get_end_position()).z - z_down
             if rise < MIN_CHECK_RISE_MM:
@@ -174,7 +180,10 @@ async def _main(args):
     from viam.components.switch import Switch
 
     from arm import connect
+    from record_teleop import load_env
 
+    for k, v in load_env().items():  # keys live in .env, arm.connect reads the environment
+        os.environ.setdefault(k, v)
     robot = await connect()
     try:
         arm = Arm.from_robot(robot, "follower-arm")
