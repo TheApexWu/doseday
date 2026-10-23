@@ -86,7 +86,8 @@ class Station:
     async def joints(self) -> list[float]:
         return [round(v, 2) for v in (await self.arm.get_joint_positions()).values]
 
-    async def move(self, name: str, speed: float, timeout: float | None = None):
+    async def move(self, name: str, speed: float, timeout: float | None = None) -> bool:
+        """False when the move timed out (stalled) instead of reaching its pose."""
         self.need(name)
         target = self.clamp(self.poses[name])
         await self.arm.do_command({"set_speed": speed})
@@ -96,12 +97,13 @@ class Station:
             await (asyncio.wait_for(mv, timeout) if timeout else mv)
         except asyncio.TimeoutError:
             self.log({"move": name, "stalled": True, "at": await self.joints()})
-            return
+            return False
         except Exception as e:
             # a refused move can still have moved another joint, so log where the arm really is
             self.log({"move": name, "error": f"{type(e).__name__}: {str(e)[:160]}", "at": await self.joints()})
             raise
         self.log({"move": name, "at": await self.joints()})
+        return True
 
     async def jaw(self) -> float:
         return float((await self.gripper.do_command({"command": "get_position"}))["position_percentage"])
@@ -124,19 +126,41 @@ class Station:
             raise Refused("the camera frame did not decode")
         return img
 
-    async def press(self, kind: str, day: str):
+    async def press(self, kind: str, day: str, after_down=None) -> bool:
+        """Lower onto the press pose, hold, lift. Returns False when the press stalled short of the pose.
+        after_down(pressed) runs once the arm is on the pose and before the lift."""
         hover, down = f"{kind}_{day}_hover", f"{kind}_{day}_press"
         self.need(hover, down)
         await self.move(hover, MOVE_SPEED)
         try:
             # inside the try: a capped write that fails after changing the register must still be restored
             await self.arm.do_command({"command": "set_torque_limit", "value": PRESS_TORQUE})
-            await self.move(down, PRESS_SPEED, timeout=PRESS_TIMEOUT_S)
+            pressed = await self.move(down, PRESS_SPEED, timeout=PRESS_TIMEOUT_S)
+            if after_down is not None:
+                after_down(pressed)
             await asyncio.sleep(PRESS_HOLD_S)
             await self.move(hover, PRESS_SPEED)
         finally:
             # the register does not reset by itself; a capped arm cannot carry or hold reliably
             await self.arm.do_command({"command": "set_torque_limit", "value": FULL_TORQUE})
+        return pressed
+
+    async def _latch(self, kind: str, d: str, done: str):
+        """The lid stays 'unknown' from the first move. It becomes `done` only once the arm is on the press
+        pose, so a lift cut short after that point still leaves it unknown; a stalled press is an error."""
+        self.lid[d] = "unknown"
+
+        def on_down(pressed: bool):
+            if pressed:
+                self.lid[d] = done
+
+        try:
+            pressed = await self.press(kind, d, after_down=on_down)
+        except BaseException:
+            self.lid[d] = "unknown"
+            raise
+        if not pressed:
+            raise Refused(f"{DAY_NAMES[d]} did not reach the press point; check it by hand")
 
     async def open_lid(self, day: str) -> str:
         d = check_day(day)
@@ -144,16 +168,14 @@ class Station:
             raise Refused(f"I don't open lids; please open {DAY_NAMES[d]} by hand")
         self.need(f"tab_{d}_hover", f"tab_{d}_press")
         await self.jaw_to(CLOSED_PCT)  # closed jaw = fingertip
-        await self.press("tab", d)
-        self.lid[d] = "open"
+        await self._latch("tab", d, "open")
         return f"{DAY_NAMES[d]} is open"
 
     async def close_lid(self, day: str) -> str:
         d = check_day(day)
         self.need(f"lid_{d}_hover", f"lid_{d}_press")
         await self.jaw_to(CLOSED_PCT)
-        await self.press("lid", d)
-        self.lid[d] = "closed"
+        await self._latch("lid", d, "closed")
         return f"{DAY_NAMES[d]} is closed"
 
     async def look(self, wanted: str) -> str:
@@ -204,6 +226,8 @@ class Station:
             raise Refused("that pill is not one I know, so it went to the reject cup")
         if label != pill:
             raise Refused(f"that pill is {label}, not {pill}; I left it on the tray")
+        if self.lid[d] == "unknown":
+            raise Refused(f"{DAY_NAMES[d]} lid state is unknown; check it by hand, then press Close lid or Opened by hand")
         if self.lid[d] != "open":
             raise Refused(f"{DAY_NAMES[d]} is closed; open it by hand first")
         await self.jaw_to(self.open_pct)

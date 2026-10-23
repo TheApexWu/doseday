@@ -181,6 +181,39 @@ def test_place_restores_full_torque_before_its_first_move(tmp_path):
     assert torque(arm)[:1] == [actions.FULL_TORQUE]
 
 
+def fail_the_lift(arm, st, d):
+    """Let the press reach its pose, then make the lift fail the way a servo overload does."""
+    hover, down = st.clamp(st.poses[f"lid_{d}_hover"]), st.clamp(st.poses[f"lid_{d}_press"])
+    real_move = arm.move_to_joint_positions
+
+    async def move(target):
+        await real_move(target)
+        if list(target) == down:
+            arm.fail_on = hover
+
+    arm.move_to_joint_positions = move
+
+
+def test_a_lift_cut_short_after_the_press_leaves_the_lid_unknown(tmp_path):
+    st, arm, _ = rig(tmp_path)
+    fail_the_lift(arm, st, "mon")
+    with pytest.raises(RuntimeError):
+        run(st.run({"action": "close", "day": "mon"}))
+    assert st.lid["mon"] == "unknown"
+    n = len(arm.moves)
+    assert run(st.run({"action": "place", "pill": "tums", "day": "mon"}))["ok"] is False
+    assert not any(m.startswith(("drop_", "tray_down")) for m in visited(st, arm)[n:])
+
+
+def test_a_press_that_stalls_is_reported_and_not_called_closed(tmp_path, monkeypatch):
+    monkeypatch.setattr(actions, "PRESS_TIMEOUT_S", 0.05)
+    st, arm, _ = rig(tmp_path)
+    arm.move_s = 0.2  # the press move outlasts its timeout; the hover and lift moves finish
+    r = run(st.run({"action": "close", "day": "mon"}))
+    assert r["ok"] is False and "press point" in r["say"]
+    assert st.lid["mon"] == "unknown"
+
+
 def test_close_checks_the_lid_poses_before_the_jaw_moves(tmp_path):
     p = fakes.poses()
     del p["lid_mon_press"]
