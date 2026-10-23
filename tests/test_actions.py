@@ -149,3 +149,19 @@ def test_halt_stops_and_restores_torque(tmp_path):
     st, arm, _ = rig(tmp_path)
     run(st.halt())
     assert arm.stopped and torque(arm) == [actions.FULL_TORQUE]
+
+
+def test_close_checks_the_lid_poses_before_the_jaw_moves(tmp_path):
+    p = fakes.poses()
+    del p["lid_mon_press"]
+    st, arm, grip = rig(tmp_path, poses=p)
+    assert run(st.run({"action": "close", "day": "mon"})) == {"ok": False, "say": "position lid_mon_press is not taught yet"}
+    assert grip.sets == [] and arm.moves == []
+
+
+def test_open_checks_the_tab_poses_before_the_jaw_moves(tmp_path):
+    p = fakes.poses()
+    del p["tab_wed_press"]
+    st, arm, grip = rig(tmp_path, poses=p)
+    assert run(st.run({"action": "open", "day": "wed"}))["ok"] is False
+    assert grip.sets == [] and arm.moves == []

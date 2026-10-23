@@ -141,6 +141,7 @@ class Station:
         d = check_day(day)
         if not self.allow_open:
             raise Refused(f"I don't open lids; please open {DAY_NAMES[d]} by hand")
+        self.need(f"tab_{d}_hover", f"tab_{d}_press")
         await self.jaw_to(CLOSED_PCT)  # closed jaw = fingertip
         await self.press("tab", d)
         self.lid[d] = "open"
@@ -148,6 +149,7 @@ class Station:
 
     async def close_lid(self, day: str) -> str:
         d = check_day(day)
+        self.need(f"lid_{d}_hover", f"lid_{d}_press")
         await self.jaw_to(CLOSED_PCT)
         await self.press("lid", d)
         self.lid[d] = "closed"
