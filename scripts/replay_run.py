@@ -218,7 +218,7 @@ if __name__ == "__main__":
     if a.dry_run:
         asyncio.run(run(a.run_dir, [int(v) for v in a.picks.split(",")], a.speed, True))
         sys.exit(0)
-    # every live run records itself: joints, tip, jaw and wrist video, then an MP4 on the Desktop
+    # every live run records itself: joints, tip, jaw and wrist video, then an MP4 (copied to $DOSEDAY_FOOTAGE if set)
     import signal
     import subprocess
     import time

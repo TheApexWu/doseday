@@ -1160,4 +1160,4 @@
 179.7s  follower [9, -15, 13, 97, -465]  tip x   197 y   -24 z   180  jaw    0%  lag 462.7°
 179.8s  follower [8, -15, 13, 97, -472]  tip x   197 y   -24 z   180  jaw    0%  lag 469.8°
 179.9s  follower [9, -15, 13, 97, -472]  tip x   197 y   -24 z   180  jaw    0%  lag 469.5°
-saved /Users/amadeuswoo/dev/doseday/logs/teleop-131455.csv
+saved logs/teleop-131455.csv
