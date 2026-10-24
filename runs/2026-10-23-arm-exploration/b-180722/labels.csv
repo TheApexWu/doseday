@@ -1,0 +1,6 @@
+file,t_start,t_end,phase,target,outcome,evidence,notes
+motion.csv,0.0,14.1,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,14.3,15.3,release_open,,,auto: jaw rate / tip speed rule,
+motion.csv,15.4,105.5,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,105.6,106.4,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,106.6,172.9,idle,,,auto: jaw rate / tip speed rule,
