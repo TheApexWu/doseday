@@ -82,6 +82,7 @@ environment variables declared at the top of the script.
 |---|---|
 | `docs/ONBOARDING.md` | setup, repo tour, first hour on the arm |
 | `CONTROL.md` | control logic, safety gates, fallback plans |
+| `docs/GOVERNANCE.md` | caretaker approval, family and SMS notices, what pauses the arm |
 | `TESTS.md` | the numbered hardware tests (T-1 to T8) |
 | `AGENTS.md` | rules for changing the code |
 | `docs/TEAMWORK.md` | branches, merge rules, timeline |
