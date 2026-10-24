@@ -12,8 +12,9 @@ SO-101 arm under Viam. Nothing here has run on hardware yet; TESTS.md lists the 
 
 ## Rules
 
-- **Secrets:** only from the environment: `VIAM_ADDRESS`, `VIAM_API_KEY_ID`, `VIAM_API_KEY`, and the Telegram
-  variables read in `trust.py`. Never put them in code, `poses.json`, logs or commits.
+- **Secrets:** only from the environment: `VIAM_ADDRESS`, `VIAM_API_KEY_ID`, `VIAM_API_KEY`, the Telegram
+  variables read in `trust.py` and `notify.py`, and the Vonage variables in `notify.py`. Never put them in code,
+  `poses.json`, logs or commits. Logs hold message text, never keys.
 - **Moves:** every arm move goes through `PillArm.move`: limits check, then plan-only, then move, then log.
   New code must not call the `_hw_move` hook or the motion client directly.
 - **Plan-only first:** a move path calls `_hw_plan` before `_hw_move`, and has a test that a planner refusal means no move.
