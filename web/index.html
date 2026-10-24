@@ -7,120 +7,94 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#070707; --fg:#fff; --dim:#b8b8b8; --accent:#ffd400; --ok:#5cff8a; --bad:#ff6b6b; --info:#7fb8ff;
-          --card:#141414; --card2:#1c1c1c; --line:#3a3a3a; --r:18px; }
+  :root { --bg:#070707; --fg:#fff; --dim:#b8b8b8; --accent:#ffd400; --ok:#5cff8a; --bad:#ff6b6b;
+          --card:#141414; --card2:#1c1c1c; --line:#3a3a3a; --viam:#ff9d2e; --yolo:#7fb8ff; }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--fg); font:20px/1.35 "Atkinson Hyperlegible", system-ui, sans-serif; }
   button { font:inherit; font-weight:700; border:3px solid var(--fg); background:#222; color:var(--fg);
-           border-radius:14px; padding:12px 16px; cursor:pointer; min-height:60px; }
+           border-radius:14px; padding:10px 14px; cursor:pointer; min-height:56px; }
   button:focus-visible { outline:5px solid var(--accent); outline-offset:3px; }
   button:active { transform:translateY(1px); }
-  button:hover { filter:brightness(1.15); }
-  h2 { margin:0 0 12px; font-size:16px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); font-weight:700; }
+  h2 { margin:0 0 12px; font-size:16px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
 
-  header { display:flex; gap:14px; align-items:center; padding:14px 20px; border-bottom:2px solid var(--line);
-           flex-wrap:wrap; position:sticky; top:0; background:var(--bg); z-index:2; }
+  header { display:flex; gap:14px; align-items:center; padding:14px 20px; border-bottom:2px solid var(--line); flex-wrap:wrap; }
   .brand { display:flex; align-items:center; gap:12px; margin-right:auto; }
-  .brand svg { flex:none; }
   .brand h1 { margin:0; font-size:34px; color:var(--accent); line-height:1; }
-  .brand p { margin:2px 0 0; font-size:16px; color:var(--dim); }
-  .chip { display:inline-flex; align-items:center; gap:8px; border:2px solid var(--line); border-radius:999px;
-          padding:8px 14px; font-size:18px; font-weight:700; white-space:nowrap; }
-  .dot { width:12px; height:12px; border-radius:50%; background:var(--dim); flex:none; }
-  #status { min-width:200px; }
-  #status.ready .dot { background:var(--ok); }
+  #status { display:inline-flex; align-items:center; gap:10px; border:2px solid var(--line); border-radius:999px;
+            padding:8px 16px; font-size:20px; font-weight:700; }
+  #status::before { content:""; width:12px; height:12px; border-radius:50%; background:var(--ok); }
   #status.busy { border-color:var(--accent); color:var(--accent); }
-  #status.busy .dot { background:var(--accent); animation:pulse 1s infinite; }
+  #status.busy::before { background:var(--accent); animation:pulse 1s infinite; }
   #status.down { border-color:var(--bad); color:var(--bad); }
-  #status.down .dot { background:var(--bad); }
-  #mode { color:var(--info); border-color:#2a4a6e; }
-  #stop { background:#c00000; border-color:#ff9a9a; font-size:28px; min-width:170px; letter-spacing:.06em; }
+  #status.down::before { background:var(--bad); }
   #mic { background:#003d80; border-color:#7fb8ff; }
-  #mic.listening { background:var(--accent); color:#000; border-color:var(--accent); }
+  #mic.listening { background:var(--accent); color:#000; }
+  #stop { background:#c00000; border-color:#ff9a9a; font-size:28px; min-width:160px; }
   #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 20px; }
 
-  .wrap { padding:20px; display:grid; gap:20px; max-width:1680px; margin:0 auto; }
-  .top { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:20px; }
-  .card { background:var(--card); border:2px solid var(--line); border-radius:var(--r); padding:18px; min-width:0; }
+  .wrap { padding:20px; display:grid; gap:20px; max-width:1600px; margin:0 auto; }
+  .top { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:20px; }
+  .card { background:var(--card); border:2px solid var(--line); border-radius:18px; padding:18px; min-width:0; }
 
-  /* Now */
-  #now { display:flex; flex-direction:column; gap:14px; }
-  #now-title { font-size:40px; font-weight:700; line-height:1.15; }
+  [hidden] { display:none !important; }
+  /* the frame box hugs the image, so detection boxes in % of the frame land on it */
+  .cam { position:relative; background:#000; border:2px solid var(--line); border-radius:14px; overflow:hidden;
+         width:fit-content; max-width:100%; margin:0 auto; }
+  .cam img { display:block; max-width:100%; max-height:42vh; width:auto; height:auto; }
+  .cam .ph { width:min(560px, 80vw); aspect-ratio:4/3; max-height:42vh; display:grid; place-items:center; color:var(--dim); }
+  #boxes { position:absolute; inset:0; pointer-events:none; }
+  .box { position:absolute; border:4px solid; border-radius:6px; }
+  .box span { position:absolute; left:-4px; bottom:100%; font-size:15px; font-weight:700; color:#000; padding:1px 6px;
+              border-radius:4px 4px 0 0; white-space:nowrap; }
+  .box.viam { border-color:var(--viam); } .box.viam span { background:var(--viam); }
+  .box.yolov8 { border-color:var(--yolo); border-style:dashed; } .box.yolov8 span { background:var(--yolo); top:100%; bottom:auto; border-radius:0 0 4px 4px; }
+  .dets { list-style:none; margin:14px 0 0; padding:0; display:grid; gap:8px; }
+  .dets li { display:flex; justify-content:space-between; gap:12px; background:var(--card2); border-radius:12px; padding:10px 14px; }
+  .dets li b { text-align:right; }
+  .dets .viam span::before, .dets .yolov8 span::before { content:""; display:inline-block; width:14px; height:14px;
+      border-radius:3px; margin-right:10px; vertical-align:-1px; }
+  .dets .viam span::before { background:var(--viam); } .dets .yolov8 span::before { background:var(--yolo); }
+
+  #now { display:flex; flex-direction:column; gap:18px; }
+  #now-pill { display:flex; align-items:center; gap:18px; min-height:80px; }
+  #now-pill .name { font-size:44px; font-weight:700; line-height:1.1; }
+  #now-title { font-size:34px; font-weight:700; line-height:1.2; }
   #now-title.idle { color:var(--dim); }
-  .bar { height:10px; border-radius:6px; background:var(--card2); overflow:hidden; }
-  .bar i { display:block; height:100%; width:35%; background:var(--accent); border-radius:6px; }
-  .bar.on i { animation:slide 1.2s ease-in-out infinite; }
-  .bar.off i { width:0; }
-  #now-last { font-size:24px; }
+  #now-last { font-size:24px; margin-top:auto; }
   #now-last.ok { color:var(--ok); } #now-last.bad { color:var(--bad); }
-  .stats { display:flex; gap:12px; flex-wrap:wrap; margin-top:auto; }
-  .stat { background:var(--card2); border-radius:14px; padding:10px 16px; min-width:120px; }
-  .stat b { display:block; font-size:34px; line-height:1.1; }
-  .stat span { font-size:15px; color:var(--dim); text-transform:uppercase; letter-spacing:.08em; }
 
-  /* Pill check */
-  .check { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:16px; align-items:start; }
-  .cam { position:relative; aspect-ratio:4/3; background:#000; border:2px solid var(--line); border-radius:14px;
-         overflow:hidden; display:grid; place-items:center; }
-  .cam img { width:100%; height:100%; object-fit:cover; display:block; }
-  .cam .ph { color:var(--dim); font-size:18px; text-align:center; padding:12px; }
-  .cam .tag { position:absolute; left:8px; top:8px; background:rgba(0,0,0,.75); border-radius:8px; padding:3px 8px;
-              font-size:14px; color:var(--dim); }
-  #verdict { font-size:38px; font-weight:700; line-height:1.1; margin-bottom:10px; overflow-wrap:anywhere; }
-  #verdict.ok { color:var(--ok); } #verdict.bad { color:var(--bad); } #verdict.idle { color:var(--dim); font-size:26px; }
-  .votes { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
-  .votes li { display:flex; justify-content:space-between; gap:10px; background:var(--card2); border-radius:12px;
-              padding:10px 12px; font-size:18px; }
-  .votes li b { text-align:right; overflow-wrap:anywhere; }
-  .votes .y b { color:var(--ok); } .votes .n b { color:var(--bad); } .votes .s b { color:var(--dim); }
-  #reason { margin:12px 0 0; color:var(--dim); font-size:17px; border-left:4px solid var(--line); padding-left:10px; }
-  #reason:empty { display:none; }
+  /* the two demo pills: Tums are round, orange or red; magnesium is a white capsule */
+  .pill { display:inline-block; flex:none; }
+  .pill.tums { width:26px; height:26px; border-radius:50%; background:linear-gradient(90deg,#ff8a00 50%,#e0262b 50%); }
+  .pill.magnesium { width:38px; height:18px; border-radius:9px; background:#f4f4ef; }
+  .pill.big.tums { width:72px; height:72px; } .pill.big.magnesium { width:104px; height:48px; border-radius:24px; }
+  .pill.unknown { width:26px; height:26px; border-radius:50%; border:3px dashed var(--dim); }
 
-  /* Week */
-  .week-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
-  .week-head .hint { color:var(--dim); font-size:17px; margin:0 0 12px; }
   #days { display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:12px; }
-  .day { background:var(--card2); border:3px solid var(--line); border-radius:var(--r); padding:12px; display:flex;
+  .day { background:var(--card2); border:3px solid var(--line); border-radius:16px; padding:12px; display:flex;
          flex-direction:column; gap:10px; min-width:0; }
   .day.today { border-color:var(--accent); }
-  .day-top { display:flex; justify-content:space-between; align-items:center; gap:6px; }
-  .day h3 { margin:0; font-size:30px; line-height:1; }
-  .today-tag { font-size:13px; font-weight:700; background:var(--accent); color:#000; border-radius:6px; padding:3px 6px;
-               letter-spacing:.06em; display:none; }
-  .day.today .today-tag { display:inline-block; }
-  .tray { min-height:64px; border-radius:12px; background:#0b0b0b; border:2px dashed var(--line); display:flex;
+  .day h3 { margin:0; font-size:28px; line-height:1; }
+  .tray { min-height:60px; border-radius:12px; background:#0b0b0b; border:2px dashed var(--line); display:flex;
           flex-wrap:wrap; gap:6px; align-items:center; justify-content:center; padding:8px; }
-  .tray.closed { border-style:solid; border-color:#666; background:repeating-linear-gradient(135deg,#222 0 8px,#1a1a1a 8px 16px); }
-  .tray .empty { color:#777; font-size:15px; }
-  .pill { width:26px; height:26px; border-radius:50%; background:#f2f2ec; box-shadow:inset -3px -3px 0 rgba(0,0,0,.18); }
-  .pill.magnesium { width:34px; height:18px; border-radius:10px; background:#d9a441; }
-  .lid { font-size:17px; font-weight:700; color:var(--dim); }
-  .lid.open { color:var(--ok); } .lid.closed { color:var(--fg); } .lid.unknown { color:var(--bad); }
-  .day button { width:100%; min-height:52px; padding:8px 10px; font-size:18px; }
+  .day.lid-closed .tray { border-style:solid; border-color:#777; background:repeating-linear-gradient(135deg,#262626 0 8px,#1a1a1a 8px 16px); }
+  .lid { font-size:17px; font-weight:700; color:var(--ok); }
+  .day.lid-closed .lid { color:var(--fg); } .day.lid-unknown .lid { color:var(--bad); }
+  .day button { width:100%; min-height:50px; padding:6px 8px; font-size:18px; display:flex; align-items:center;
+                justify-content:center; gap:8px; }
+  .day button { flex-wrap:wrap; min-width:0; overflow:hidden; }
+  .day button .pill.tums { width:20px; height:20px; } .day button .pill.magnesium { width:28px; height:14px; }
+  #now-pill:empty { display:none; }
   .place { background:#1d1d00; border-color:var(--accent); color:var(--accent); }
-  .small { font-size:16px !important; font-weight:400; border-width:2px; }
-
-  /* Log */
-  #log { list-style:none; padding:0; margin:0; font-size:19px; max-height:340px; overflow:auto; }
-  #log li { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); }
-  #log time { color:var(--dim); font-variant-numeric:tabular-nums; flex:none; }
-  #log .ok b { color:var(--ok); } #log .bad b { color:var(--bad); }
-  #log .none { color:var(--dim); }
-  footer { color:#8a8a8a; font-size:15px; text-align:center; padding:4px 20px 24px; }
+  .day:not(.lid-open) .place, .day.lid-closed [data-a=close], .day.lid-open [data-a=opened] { display:none; }
+  footer { color:#8a8a8a; font-size:15px; text-align:center; padding:0 20px 24px; }
 
   @keyframes pulse { 50% { opacity:.3; } }
-  @keyframes slide { 0% { transform:translateX(-100%); } 100% { transform:translateX(300%); } }
   @media (prefers-reduced-motion: reduce) { * { animation:none !important; } }
-  @media (max-width:1280px) { #days { grid-template-columns:repeat(auto-fill, minmax(190px, 1fr)); } }
-  @media (max-width:1000px) { .top { grid-template-columns:1fr; } }
-  @media (max-width:600px) {
-    body { font-size:18px; } .wrap { padding:12px; gap:14px; } header { padding:12px; }
-    .brand h1 { font-size:28px; } .brand p { display:none; } #stop { min-width:0; flex:1; } #mic { flex:1; }
-    .check { grid-template-columns:1fr; } #now-title { font-size:30px; } #verdict { font-size:30px; }
-    #days { grid-template-columns:1fr 1fr; }
-    .stats { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); } .stat { min-width:0; padding:10px; }
-    #status { min-width:0; }
-  }
+  @media (max-width:1200px) { #days { grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); } }
+  @media (max-width:900px) { .top { grid-template-columns:1fr; } }
+  @media (max-width:600px) { body { font-size:18px; } .wrap { padding:12px; gap:14px; } header { padding:12px; }
+    .brand h1 { font-size:28px; } #stop { min-width:0; flex:1; } #now-title { font-size:28px; } #days { grid-template-columns:1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -130,71 +104,46 @@
       <clipPath id="cap"><rect x="4" y="14" width="36" height="16" rx="8"/></clipPath>
       <g clip-path="url(#cap)"><rect x="4" y="14" width="18" height="16" fill="#ffd400"/><rect x="22" y="14" width="18" height="16" fill="#fff"/></g>
     </svg>
-    <div><h1>Doseday</h1><p>A robot arm fills the week's pill organizer</p></div>
+    <h1>Doseday</h1>
   </div>
-  <span class="chip" id="mode" title="How each pill is identified before it is placed">Model: …</span>
-  <div class="chip" id="status" role="status" aria-live="polite"><span class="dot"></span><span id="status-text">Connecting…</span></div>
-  <button id="mic" aria-label="Speak a command">🎤 Speak</button>
+  <div id="status" role="status" aria-live="polite">Connecting…</div>
+  <button id="mic" aria-label="Speak a command">🎤</button>
   <button id="stop" aria-label="Stop the robot now">STOP</button>
 </header>
 <div id="alarm" role="alert" hidden></div>
 
 <div class="wrap">
   <div class="top">
-    <section class="card" id="now" aria-labelledby="now-h">
-      <h2 id="now-h">Now</h2>
-      <div id="now-title" class="idle">Waiting for a command</div>
-      <div class="bar off" id="now-bar"><i></i></div>
-      <div id="now-last"></div>
-      <div class="stats">
-        <div class="stat"><b id="n-placed">0</b><span>Pills placed</span></div>
-        <div class="stat"><b id="n-refused">0</b><span>Refused</span></div>
-        <div class="stat"><b id="n-queued">0</b><span>Waiting</span></div>
+    <section class="card" aria-labelledby="cam-h">
+      <h2 id="cam-h">What the camera sees</h2>
+      <div class="cam">
+        <img id="cam" alt="Wrist camera view of the pill tray" hidden>
+        <div id="boxes"></div>
+        <div class="ph" id="cam-ph">No pill on the tray yet</div>
       </div>
+      <ul class="dets" id="dets"></ul>
     </section>
 
-    <section class="card" aria-labelledby="check-h">
-      <h2 id="check-h">Pill check · two must agree</h2>
-      <div class="check">
-        <div class="cam">
-          <img id="cam" alt="Wrist camera view of the pill tray" hidden>
-          <div class="ph" id="cam-ph">No pill checked yet</div>
-          <span class="tag">wrist camera</span>
-        </div>
-        <div>
-          <div id="verdict" class="idle" aria-live="polite">Waiting for a pill</div>
-          <ul class="votes">
-            <li id="v-claude" class="s"><span>Claude vision</span><b>–</b></li>
-            <li id="v-feat" class="s"><span>Colour · size · shape</span><b>–</b></li>
-            <li id="v-want" class="s"><span>Asked for</span><b>–</b></li>
-          </ul>
-          <p id="reason"></p>
-        </div>
-      </div>
+    <section class="card" id="now" aria-labelledby="now-h">
+      <h2 id="now-h">Now</h2>
+      <div id="now-pill"></div>
+      <div id="now-title" class="idle">Ready</div>
+      <div id="now-last"></div>
     </section>
   </div>
 
   <section class="card" aria-labelledby="week-h">
-    <div class="week-head">
-      <h2 id="week-h">The week</h2>
-      <p class="hint">Say: “put Tums in Monday”, “close Friday”, “go home”, or “stop”. Lids start open.</p>
-    </div>
+    <h2 id="week-h">The week</h2>
     <div id="days"></div>
   </section>
-
-  <section class="card" aria-labelledby="log-h">
-    <h2 id="log-h">Activity</h2>
-    <ul id="log" aria-live="polite"></ul>
-  </section>
 </div>
-<footer>Demo with candy and vitamins only. Not medical advice; not validated for handling medication. Spooky Civic Hackathon 2026 · Team 02</footer>
+<footer>Demo with candy and vitamins only. Not medical advice. Spooky Civic Hackathon 2026 · Team 02</footer>
 
 <script>
 const DAYS = ["sun","mon","tue","wed","thu","fri","sat"];
 const NAMES = {sun:"Sunday",mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday"};
 const PILLS = ["tums","magnesium"];
-const MODES = {claude:"Claude + measured features", features:"Measured features", unverified:"Unverified (demo)",
-               off:"No pill check", fake:"Rehearsal (fake arm)"};
+const SOURCES = {viam:"Viam colour detector", yolo:"YOLOv8", yolov8:"YOLOv8"};
 let lastSpoken = 0, lastLook = null;
 
 function say(text) {
@@ -205,6 +154,7 @@ function say(text) {
 
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
+const icon = (p, big) => `<span class="pill ${PILLS.includes(p) ? p : "unknown"}${big ? " big" : ""}" aria-hidden="true"></span>`;
 
 async function post(path, body) {
   const r = await fetch(path, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body||{})});
@@ -250,27 +200,19 @@ function cmd(action, day, pill) {
   return post("/cmd", {action, day, pill});
 }
 
-function describe(c) {
-  const day = c.day ? NAMES[c.day.slice(0,3).toLowerCase()] : "";
-  if (c.action === "place") return `Placing ${cap(c.pill)} → ${day}`;
-  if (c.action === "close") return `Closing ${day}'s lid`;
-  if (c.action === "opened") return `Marking ${day} open`;
-  if (c.action === "home") return "Going home";
-  return `${c.action} ${day}`;
-}
-
 function build() {
   const main = document.getElementById("days");
   const today = DAYS[new Date().getDay()];
   for (const d of DAYS) {
     const card = document.createElement("div");
-    card.className = "day" + (d === today ? " today" : "");
-    card.innerHTML = `<div class="day-top"><h3>${NAMES[d].slice(0,3)}</h3><span class="today-tag">TODAY</span></div>
-      <div class="tray" id="tray-${d}"><span class="empty">empty</span></div>
-      <span class="lid" id="lid-${d}">lid ?</span>
-      ${PILLS.map(p => `<button class="place" data-a="place" data-p="${p}" aria-label="Put ${p} in ${NAMES[d]}">+ ${cap(p)}</button>`).join("")}
+    card.id = `day-${d}`;
+    card.className = "day lid-open" + (d === today ? " today" : "");
+    card.innerHTML = `<h3>${NAMES[d].slice(0,3)}</h3>
+      <div class="tray" id="tray-${d}"></div>
+      <span class="lid" id="lid-${d}">Lid open</span>
+      ${PILLS.map(p => `<button class="place" data-a="place" data-p="${p}" aria-label="Put ${p} in ${NAMES[d]}">${icon(p)}${cap(p)}</button>`).join("")}
       <button data-a="close" aria-label="Close ${NAMES[d]}'s lid">Close lid</button>
-      <button data-a="opened" class="small" aria-label="${NAMES[d]} was opened by hand">Opened by hand</button>`;
+      <button data-a="opened" aria-label="${NAMES[d]} was opened by hand">Opened by hand</button>`;
     card.querySelectorAll("button").forEach(b => b.onclick = () => cmd(b.dataset.a, d, b.dataset.p));
     main.appendChild(card);
   }
@@ -280,33 +222,21 @@ function build() {
   cam.onload = () => { cam.hidden = false; document.getElementById("cam-ph").hidden = true; };
 }
 
-function vote(id, label, value, cls) {
-  const el = document.getElementById(id);
-  el.className = cls;
-  el.innerHTML = `<span>${label}</span><b>${esc(value)}</b>`;
-}
-
-// The verdict mirrors actions.Station.look: one pill seen, both checks agree, and it matches what was asked for.
-function renderLook(look, mode) {
-  const v = document.getElementById("verdict");
-  if (!look) return;
-  const seen = look.seen || [];
-  const one = seen.length === 1 ? seen[0] : null;
-  const label = one ? one.label : null;
-  const known = one && label !== "unknown" && one.reason !== "edge";
-  const match = known && label === look.wanted;
-  v.className = match ? "ok" : "bad";
-  v.textContent = !seen.length ? "Tray is empty" : !one ? `${seen.length} pills seen: one at a time`
-                : one.reason === "edge" ? "Pill at the tray edge" : !known ? "Unknown pill: refused"
-                : match ? `${cap(label)} ✓` : `${cap(label)}, not ${cap(look.wanted)}`;
-  const claude = one && one.claude;
-  const feat = one && (one.features || (claude ? null : label));
-  vote("v-claude", "Claude vision", claude ? cap(claude) : (mode === "claude" ? "–" : "not used"),
-       !claude ? "s" : claude === label && known ? "y" : "n");
-  vote("v-feat", "Colour · size · shape", feat ? cap(feat) : "–", !feat ? "s" : feat === label && known ? "y" : "n");
-  vote("v-want", "Asked for", cap(look.wanted), match ? "y" : "n");
-  document.getElementById("reason").textContent = claude && one.claude_reason ? `“${one.claude_reason}”` : "";
-  if (look.t !== lastLook) {
+// Detections are drawn over the frame they were made on; they are for show and never decide a placement.
+function renderLook(look, detectors) {
+  const dets = (look && look.detections) || [];
+  const [w, h] = (look && look.size) || [640, 480];
+  document.getElementById("boxes").innerHTML = dets.map(d => {
+    const [x0, y0, x1, y1] = d.box;
+    return `<div class="box ${esc(d.source)}" style="left:${x0 / w * 100}%;top:${y0 / h * 100}%;width:${(x1 - x0) / w * 100}%;height:${(y1 - y0) / h * 100}%">`
+         + `<span>${esc(d.label)} ${Math.round(d.confidence * 100)}%</span></div>`;
+  }).join("");
+  document.getElementById("dets").innerHTML = (detectors || []).map(src => {
+    const mine = dets.filter(d => d.source === src || (src === "yolo" && d.source === "yolov8"));
+    const found = !look ? "–" : mine.length ? mine.map(d => `${esc(d.label)} · ${Math.round(d.confidence * 100)}%`).join(", ") : "nothing found";
+    return `<li class="${src === "yolo" ? "yolov8" : esc(src)}"><span>${SOURCES[src] || esc(src)}</span><b>${found}</b></li>`;
+  }).join("");
+  if (look && look.t !== lastLook) {
     lastLook = look.t;
     document.getElementById("cam").src = `/frame.jpg?t=${look.t}`;
   }
@@ -315,50 +245,43 @@ function renderLook(look, mode) {
 function renderWeek(s) {
   const placed = {};
   for (const r of s.results) if (r.ok && r.action === "place" && r.day) (placed[r.day] = placed[r.day] || []).push(r.pill);
+  const today = DAYS[new Date().getDay()];
   for (const d of DAYS) {
     const state = s.lids[d] || "unknown";
-    const lid = document.getElementById(`lid-${d}`);
-    lid.textContent = state === "open" ? "● Lid open" : state === "closed" ? "■ Lid closed" : `▲ Lid ${state}`;
-    lid.className = "lid " + state;
-    const tray = document.getElementById(`tray-${d}`);
-    tray.className = "tray" + (state === "closed" ? " closed" : "");
-    const pills = placed[d] || [];
-    tray.innerHTML = pills.length ? pills.map(p => `<span class="pill ${esc(p)}" title="${esc(p)}"></span>`).join("")
-                                  : `<span class="empty">${state === "closed" ? "closed" : "empty"}</span>`;
+    document.getElementById(`day-${d}`).className = `day lid-${state}` + (d === today ? " today" : "");
+    document.getElementById(`lid-${d}`).textContent = state === "open" ? "Lid open" : state === "closed" ? "Lid closed" : `Lid ${state}: check it`;
+    document.getElementById(`tray-${d}`).innerHTML = (placed[d] || []).map(p => icon(p)).join("");
   }
+}
+
+function renderNow(s) {
+  const c = s.busy, newest = s.results[0];
+  const pill = c && c.action === "place" ? c.pill : null;
+  document.getElementById("now-pill").innerHTML = pill ? `${icon(pill, true)}<span class="name">${esc(cap(pill))}</span>` : "";
+  const title = document.getElementById("now-title");
+  title.textContent = !c ? "Ready" : c.action === "place" ? `→ ${NAMES[c.day]}` : c.action === "close" ? `Closing ${NAMES[c.day]}`
+                    : c.action === "home" ? "Going home" : `${cap(c.action)} ${NAMES[c.day] || ""}`;
+  title.className = c ? "" : "idle";
+  const last = document.getElementById("now-last");
+  last.textContent = newest ? `${newest.ok ? "✓" : "✗"} ${newest.say}` : "";
+  last.className = newest ? (newest.ok ? "ok" : "bad") : "";
 }
 
 async function poll() {
   try {
     const s = await (await fetch("/status")).json();
     const st = document.getElementById("status");
-    const busy = s.busy ? `Working: ${s.busy.action}${s.busy.day ? " " + NAMES[s.busy.day.slice(0,3).toLowerCase()] : ""}`
-                          + (s.queued ? ` (+${s.queued} waiting)` : "") : "Ready";
-    document.getElementById("status-text").textContent = busy;
-    st.className = "chip " + (s.busy ? "busy" : "ready");
-    document.getElementById("mode").textContent = "Model: " + (MODES[s.mode] || s.mode || "–");
-
-    const title = document.getElementById("now-title");
-    title.textContent = s.busy ? describe(s.busy) : "Waiting for a command";
-    title.className = s.busy ? "" : "idle";
-    document.getElementById("now-bar").className = "bar " + (s.busy ? "on" : "off");
-    const newest = s.results[0];
-    const last = document.getElementById("now-last");
-    last.textContent = newest ? `${newest.ok ? "✓" : "✗"} ${newest.say}` : "";
-    last.className = newest ? (newest.ok ? "ok" : "bad") : "";
-    document.getElementById("n-placed").textContent = s.results.filter(r => r.ok && r.action === "place").length;
-    document.getElementById("n-refused").textContent = s.results.filter(r => !r.ok).length;
-    document.getElementById("n-queued").textContent = s.queued || 0;
-
+    st.textContent = s.busy ? `Working: ${s.busy.action}${s.busy.day ? " " + NAMES[s.busy.day.slice(0,3).toLowerCase()] : ""}`
+                            + (s.queued ? ` (+${s.queued} waiting)` : "") : "Ready";
+    st.className = s.busy ? "busy" : "";
+    renderNow(s);
     renderWeek(s);
-    renderLook(s.look, s.mode);
-    document.getElementById("log").innerHTML = s.results.length ? s.results.map(r =>
-      `<li class="${r.ok ? "ok" : "bad"}"><time>${esc(r.t)}</time><b>${r.ok ? "✓" : "✗"}</b><span>${esc(r.say)}</span></li>`).join("")
-      : `<li class="none">Nothing yet. Press a button or say a command.</li>`;
+    renderLook(s.look, s.detectors);
+    const newest = s.results[0];
     if (newest && newest.id > lastSpoken) { lastSpoken = newest.id; say(newest.say); }
   } catch (e) {
-    document.getElementById("status-text").textContent = "Robot server not reachable";
-    document.getElementById("status").className = "chip down";
+    document.getElementById("status").textContent = "Robot server not reachable";
+    document.getElementById("status").className = "down";
   }
   setTimeout(poll, 700);
 }
@@ -391,7 +314,7 @@ function parse(text) {
 function setupMic() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   const mic = document.getElementById("mic");
-  if (!SR) { mic.disabled = true; mic.textContent = "No voice in this browser"; return; }
+  if (!SR) { mic.disabled = true; mic.hidden = true; return; }
   const rec = new SR(); rec.lang = "en-US"; rec.interimResults = false;
   rec.onresult = e => {
     const text = e.results[0][0].transcript;
