@@ -1,0 +1,866 @@
+[
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 18.3
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 18.3
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 18.3
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 18.3
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 18.3
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 3.7
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 2.5
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 2.4
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 6,
+  "of": 6,
+  "closest_mm": 2.4
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 5,
+  "of": 6,
+  "closest_mm": 2.2
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 4,
+  "of": 6,
+  "closest_mm": 18.3
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 4,
+  "of": 6,
+  "closest_mm": 2.7
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 4,
+  "of": 6,
+  "closest_mm": 1.8
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 4,
+  "of": 6,
+  "closest_mm": 1.8
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 3,
+  "of": 6,
+  "closest_mm": 18.3
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 3,
+  "of": 6,
+  "closest_mm": 1.4
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 3,
+  "of": 6,
+  "closest_mm": 0.1
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 3,
+  "of": 6,
+  "closest_mm": -1.5
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 3,
+  "of": 6,
+  "closest_mm": -1.6
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 3,
+  "of": 6,
+  "closest_mm": -7.8
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 2,
+  "of": 6,
+  "closest_mm": -0.1
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -2.6
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -3.5
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -6.0
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -6.1
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -6.2
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -6.4
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -6.6
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -7.4
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -7.4
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -7.5
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -7.6
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -7.7
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -8.0
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -8.1
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -9.2
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -9.7
+ },
+ {
+  "lean": 6.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": -9.9
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -20.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 10.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": -10.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": 0.0
+ },
+ {
+  "lean": 0.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 2.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 6.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 10.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 0.0,
+  "heading": 3.0,
+  "behind": 14.0,
+  "above": 35.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": null
+ },
+ {
+  "lean": 6.0,
+  "heading": -88.0,
+  "behind": 14.0,
+  "above": 22.0,
+  "good": 0,
+  "of": 6,
+  "closest_mm": 0.0
+ }
+]

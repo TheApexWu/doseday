@@ -1,0 +1,8 @@
+# The twin only; the robot code does not need these.
+mujoco==3.17.0
+numpy
+imageio
+imageio-ffmpeg
+pillow
+coacd==1.0.14
+trimesh

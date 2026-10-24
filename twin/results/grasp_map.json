@@ -1,0 +1,2749 @@
+[
+ {
+  "x": 100.0,
+  "y": -240.0,
+  "strategies_ok": 50,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 24,
+   "fingers too high on the rim": 32,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 100.0,
+  "y": -210.0,
+  "strategies_ok": 50,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 24,
+   "fingers too high on the rim": 32,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 100.0,
+  "y": -180.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 8,
+   "fingers too high on the rim": 43,
+   "descent": 8,
+   "off the finger width": 5
+  }
+ },
+ {
+  "x": 100.0,
+  "y": -150.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 50,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 100.0,
+  "y": -120.0,
+  "strategies_ok": 54,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 47,
+   "descent": 10,
+   "reach": 6,
+   "off the finger width": 3
+  }
+ },
+ {
+  "x": 100.0,
+  "y": 120.0,
+  "strategies_ok": 58,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 46,
+   "descent": 8,
+   "off the finger width": 4,
+   "reach": 4
+  }
+ },
+ {
+  "x": 100.0,
+  "y": 150.0,
+  "strategies_ok": 50,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 24,
+   "fingers too high on the rim": 32,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 100.0,
+  "y": 180.0,
+  "strategies_ok": 50,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 24,
+   "fingers too high on the rim": 32,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 100.0,
+  "y": 210.0,
+  "strategies_ok": 52,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 24,
+   "fingers too high on the rim": 30,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 100.0,
+  "y": 240.0,
+  "strategies_ok": 50,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.7,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 26,
+   "fingers too high on the rim": 30,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 130.0,
+  "y": -240.0,
+  "strategies_ok": 44,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 14,
+   "fingers too high on the rim": 50,
+   "descent": 8,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 130.0,
+  "y": -210.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 50,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 130.0,
+  "y": -180.0,
+  "strategies_ok": 54,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 51,
+   "descent": 10,
+   "off the finger width": 5
+  }
+ },
+ {
+  "x": 130.0,
+  "y": -150.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 48,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 130.0,
+  "y": -120.0,
+  "strategies_ok": 62,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 38,
+   "descent": 12,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 130.0,
+  "y": -90.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 26,
+   "descent": 6,
+   "reach": 18,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 130.0,
+  "y": 90.0,
+  "strategies_ok": 62,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 30,
+   "descent": 6,
+   "off the finger width": 4,
+   "reach": 18
+  }
+ },
+ {
+  "x": 130.0,
+  "y": 120.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 48,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 130.0,
+  "y": 150.0,
+  "strategies_ok": 54,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 52,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 130.0,
+  "y": 180.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 50,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 130.0,
+  "y": 210.0,
+  "strategies_ok": 51,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 24,
+   "fingers too high on the rim": 31,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 130.0,
+  "y": 240.0,
+  "strategies_ok": 40,
+  "best": {
+   "lean": 0.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 34,
+   "fingers too high on the rim": 32,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -240.0,
+  "strategies_ok": 24,
+  "best": {
+   "lean": 10.0,
+   "heading": 0.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.2,
+   "squeeze_tilt_deg": 5.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 51,
+   "descent": 10,
+   "off the finger width": 5
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -210.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 50,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -180.0,
+  "strategies_ok": 62,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 42,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -150.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -120.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -90.0,
+  "strategies_ok": 66,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -60.0,
+  "strategies_ok": 74,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 30,
+   "descent": 8,
+   "reach": 4,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 160.0,
+  "y": -30.0,
+  "strategies_ok": 69,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 19,
+   "descent": 4,
+   "reach": 28
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 0.0,
+  "strategies_ok": 70,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 14,
+   "descent": 6,
+   "reach": 30
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 30.0,
+  "strategies_ok": 68,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 22,
+   "descent": 4,
+   "reach": 26
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 60.0,
+  "strategies_ok": 68,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 32,
+   "descent": 10,
+   "off the finger width": 6,
+   "reach": 4
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 90.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 12,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 120.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 150.0,
+  "strategies_ok": 60,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 44,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 180.0,
+  "strategies_ok": 54,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 52,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 210.0,
+  "strategies_ok": 56,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 51,
+   "descent": 10,
+   "off the finger width": 3
+  }
+ },
+ {
+  "x": 160.0,
+  "y": 240.0,
+  "strategies_ok": 28,
+  "best": {
+   "lean": 10.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.5,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 50,
+   "descent": 8,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -240.0,
+  "strategies_ok": 30,
+  "best": {
+   "lean": 10.0,
+   "heading": -45.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.7,
+   "squeeze_tilt_deg": 10.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 32,
+   "fingers too high on the rim": 42,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -210.0,
+  "strategies_ok": 44,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 18,
+   "fingers too high on the rim": 42,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -180.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -150.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -120.0,
+  "strategies_ok": 66,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -90.0,
+  "strategies_ok": 68,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -60.0,
+  "strategies_ok": 74,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 32,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 190.0,
+  "y": -30.0,
+  "strategies_ok": 78,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 30,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 0.0,
+  "strategies_ok": 82,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 22,
+   "descent": 12,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 30.0,
+  "strategies_ok": 72,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 60.0,
+  "strategies_ok": 70,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 90.0,
+  "strategies_ok": 66,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 120.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 150.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 180.0,
+  "strategies_ok": 62,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 42,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 210.0,
+  "strategies_ok": 32,
+  "best": {
+   "lean": 0.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 20,
+   "fingers too high on the rim": 53,
+   "descent": 10,
+   "off the finger width": 5
+  }
+ },
+ {
+  "x": 190.0,
+  "y": 240.0,
+  "strategies_ok": 24,
+  "best": {
+   "lean": 10.0,
+   "heading": -45.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.9,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 32,
+   "fingers too high on the rim": 49,
+   "descent": 10,
+   "off the finger width": 5
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -240.0,
+  "strategies_ok": 18,
+  "best": {
+   "lean": 10.0,
+   "heading": 0.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.1,
+   "squeeze_tilt_deg": 6.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 52,
+   "fingers too high on the rim": 34,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -210.0,
+  "strategies_ok": 34,
+  "best": {
+   "lean": 10.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -180.0,
+  "strategies_ok": 50,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 12,
+   "fingers too high on the rim": 36,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -150.0,
+  "strategies_ok": 66,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -120.0,
+  "strategies_ok": 66,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -90.0,
+  "strategies_ok": 72,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 8,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -60.0,
+  "strategies_ok": 72,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 35,
+   "descent": 10,
+   "off the finger width": 3
+  }
+ },
+ {
+  "x": 220.0,
+  "y": -30.0,
+  "strategies_ok": 80,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 26,
+   "descent": 12,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 220.0,
+  "y": 0.0,
+  "strategies_ok": 82,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 22,
+   "descent": 12,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 220.0,
+  "y": 30.0,
+  "strategies_ok": 75,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 33,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 220.0,
+  "y": 60.0,
+  "strategies_ok": 72,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 220.0,
+  "y": 150.0,
+  "strategies_ok": 64,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 220.0,
+  "y": 180.0,
+  "strategies_ok": 50,
+  "best": {
+   "lean": 0.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 12,
+   "fingers too high on the rim": 36,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 220.0,
+  "y": 210.0,
+  "strategies_ok": 32,
+  "best": {
+   "lean": 10.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.1,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 42,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 220.0,
+  "y": 240.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.6,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 54,
+   "fingers too high on the rim": 38,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 250.0,
+  "y": -240.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 20.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 62,
+   "descent": 12,
+   "fingers too high on the rim": 24,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 250.0,
+  "y": -210.0,
+  "strategies_ok": 22,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.4,
+   "squeeze_tilt_deg": 7.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 48,
+   "fingers too high on the rim": 28,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 250.0,
+  "y": -180.0,
+  "strategies_ok": 34,
+  "best": {
+   "lean": 10.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 38,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 250.0,
+  "y": -150.0,
+  "strategies_ok": 44,
+  "best": {
+   "lean": 0.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 20,
+   "fingers too high on the rim": 38,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 250.0,
+  "y": 150.0,
+  "strategies_ok": 44,
+  "best": {
+   "lean": 0.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.9,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 4,
+  "fails": {
+   "reach": 18,
+   "fingers too high on the rim": 40,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 250.0,
+  "y": 180.0,
+  "strategies_ok": 34,
+  "best": {
+   "lean": 10.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 34,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 250.0,
+  "y": 210.0,
+  "strategies_ok": 22,
+  "best": {
+   "lean": 10.0,
+   "heading": 0.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.0,
+   "squeeze_tilt_deg": 6.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 48,
+   "fingers too high on the rim": 28,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 250.0,
+  "y": 240.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.3,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 62,
+   "fingers too high on the rim": 30,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 280.0,
+  "y": -240.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 90,
+   "descent": 6,
+   "fingers too high on the rim": 8,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 280.0,
+  "y": -210.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 20.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 62,
+   "fingers too high on the rim": 28,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 280.0,
+  "y": -180.0,
+  "strategies_ok": 18,
+  "best": {
+   "lean": 20.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.7,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 54,
+   "fingers too high on the rim": 30,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 280.0,
+  "y": -150.0,
+  "strategies_ok": 36,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.2,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 280.0,
+  "y": 150.0,
+  "strategies_ok": 36,
+  "best": {
+   "lean": 10.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.7,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 280.0,
+  "y": 180.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.7,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 54,
+   "fingers too high on the rim": 32,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 280.0,
+  "y": 210.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.8,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 62,
+   "fingers too high on the rim": 24,
+   "descent": 12,
+   "off the finger width": 10
+  }
+ },
+ {
+  "x": 280.0,
+  "y": 240.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.2,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 90,
+   "off the finger width": 10,
+   "descent": 6,
+   "fingers too high on the rim": 8
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -210.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.5,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 90,
+   "descent": 6,
+   "fingers too high on the rim": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -180.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.6,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 65,
+   "fingers too high on the rim": 21,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -150.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": -90.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.6,
+   "squeeze_tilt_deg": 8.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 60,
+   "descent": 10,
+   "fingers too high on the rim": 28,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -120.0,
+  "strategies_ok": 32,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.3,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 42,
+   "fingers too high on the rim": 34,
+   "descent": 8,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -90.0,
+  "strategies_ok": 42,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.3,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 35,
+   "descent": 10,
+   "off the finger width": 3
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -60.0,
+  "strategies_ok": 48,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.4,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 30,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 310.0,
+  "y": -30.0,
+  "strategies_ok": 52,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.4,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 22,
+   "descent": 12,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 0.0,
+  "strategies_ok": 52,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.5,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 22,
+   "descent": 12,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 30.0,
+  "strategies_ok": 48,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.1,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 30,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 60.0,
+  "strategies_ok": 42,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.3,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 36,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 90.0,
+  "strategies_ok": 44,
+  "best": {
+   "lean": 10.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.4,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 30,
+   "fingers too high on the rim": 34,
+   "descent": 8,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 120.0,
+  "strategies_ok": 28,
+  "best": {
+   "lean": 10.0,
+   "heading": -45.0,
+   "x_off": 12.0,
+   "open_pct": 91.0,
+   "reads_pct": 21.3,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 42,
+   "fingers too high on the rim": 34,
+   "descent": 10,
+   "off the finger width": 6
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 150.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.6,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 60,
+   "fingers too high on the rim": 26,
+   "descent": 10,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 180.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.7,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 66,
+   "descent": 12,
+   "fingers too high on the rim": 22,
+   "off the finger width": 8
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 210.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.7,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 90,
+   "off the finger width": 8,
+   "descent": 6,
+   "fingers too high on the rim": 10
+  }
+ },
+ {
+  "x": 310.0,
+  "y": 240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -210.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -180.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": 45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.2,
+   "squeeze_tilt_deg": 8.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 94,
+   "descent": 6,
+   "fingers too high on the rim": 10,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -150.0,
+  "strategies_ok": 4,
+  "best": {
+   "lean": 30.0,
+   "heading": -90.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.1,
+   "squeeze_tilt_deg": 11.0
+  },
+  "nudges_ok": 1,
+  "fails": {
+   "reach": 90,
+   "fingers too high on the rim": 18,
+   "descent": 4,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -120.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": -90.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.8,
+   "squeeze_tilt_deg": 6.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 62,
+   "descent": 10,
+   "fingers too high on the rim": 29,
+   "off the finger width": 3
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -90.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.2,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 60,
+   "descent": 10,
+   "fingers too high on the rim": 32,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -60.0,
+  "strategies_ok": 22,
+  "best": {
+   "lean": 20.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.3,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 60,
+   "descent": 10,
+   "fingers too high on the rim": 26,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 340.0,
+  "y": -30.0,
+  "strategies_ok": 24,
+  "best": {
+   "lean": 20.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.4,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 58,
+   "fingers too high on the rim": 22,
+   "descent": 12,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 0.0,
+  "strategies_ok": 30,
+  "best": {
+   "lean": 20.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.1,
+   "squeeze_tilt_deg": 1.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 52,
+   "fingers too high on the rim": 22,
+   "descent": 12,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 30.0,
+  "strategies_ok": 23,
+  "best": {
+   "lean": 20.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.4,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 56,
+   "fingers too high on the rim": 29,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 60.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": 90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.2,
+   "squeeze_tilt_deg": 4.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 60,
+   "fingers too high on the rim": 32,
+   "descent": 10,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 90.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.2,
+   "squeeze_tilt_deg": 8.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 60,
+   "fingers too high on the rim": 32,
+   "descent": 8,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 120.0,
+  "strategies_ok": 16,
+  "best": {
+   "lean": 20.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.4,
+   "squeeze_tilt_deg": 6.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 63,
+   "fingers too high on the rim": 28,
+   "descent": 8,
+   "off the finger width": 5
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 150.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.3,
+   "squeeze_tilt_deg": 7.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 90,
+   "off the finger width": 8,
+   "descent": 6,
+   "fingers too high on the rim": 10
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 180.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": -45.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 17.5,
+   "squeeze_tilt_deg": 5.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 94,
+   "off the finger width": 4,
+   "descent": 6,
+   "fingers too high on the rim": 10
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 210.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 340.0,
+  "y": 240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -210.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -180.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -150.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -120.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": -90.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.6,
+   "squeeze_tilt_deg": 8.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 92,
+   "descent": 6,
+   "fingers too high on the rim": 12,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -90.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.0,
+   "squeeze_tilt_deg": 5.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 90,
+   "descent": 6,
+   "fingers too high on the rim": 16,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -60.0,
+  "strategies_ok": 10,
+  "best": {
+   "lean": 30.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.3,
+   "squeeze_tilt_deg": 3.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 90,
+   "descent": 6,
+   "fingers too high on the rim": 12,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 370.0,
+  "y": -30.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 30.0,
+   "heading": -90.0,
+   "x_off": 12.0,
+   "open_pct": 42.0,
+   "reads_pct": 21.4,
+   "squeeze_tilt_deg": 0.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 78,
+   "fingers too high on the rim": 20,
+   "descent": 6,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 0.0,
+  "strategies_ok": 12,
+  "best": {
+   "lean": 30.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 42.0,
+   "reads_pct": 18.2,
+   "squeeze_tilt_deg": 2.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 76,
+   "fingers too high on the rim": 20,
+   "descent": 8,
+   "off the finger width": 4
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 30.0,
+  "strategies_ok": 9,
+  "best": {
+   "lean": 30.0,
+   "heading": -90.0,
+   "x_off": 8.0,
+   "open_pct": 91.0,
+   "reads_pct": 18.7,
+   "squeeze_tilt_deg": 5.0
+  },
+  "nudges_ok": 3,
+  "fails": {
+   "reach": 80,
+   "fingers too high on the rim": 23,
+   "descent": 6,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 60.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": 90.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.8,
+   "squeeze_tilt_deg": 6.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 90,
+   "fingers too high on the rim": 16,
+   "descent": 6,
+   "off the finger width": 2
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 90.0,
+  "strategies_ok": 6,
+  "best": {
+   "lean": 30.0,
+   "heading": 90.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.5,
+   "squeeze_tilt_deg": 9.0
+  },
+  "nudges_ok": 2,
+  "fails": {
+   "reach": 90,
+   "off the finger width": 4,
+   "fingers too high on the rim": 14,
+   "descent": 6
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 120.0,
+  "strategies_ok": 4,
+  "best": {
+   "lean": 30.0,
+   "heading": 90.0,
+   "x_off": 4.0,
+   "open_pct": 42.0,
+   "reads_pct": 13.2,
+   "squeeze_tilt_deg": 11.0
+  },
+  "nudges_ok": 1,
+  "fails": {
+   "reach": 94,
+   "off the finger width": 2,
+   "fingers too high on the rim": 16,
+   "descent": 4
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 150.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 180.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 210.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 370.0,
+  "y": 240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -210.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -180.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -150.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -120.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -90.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -60.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": -30.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 0.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 30.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 60.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 90.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 120.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 150.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 180.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 210.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ },
+ {
+  "x": 400.0,
+  "y": 240.0,
+  "strategies_ok": 0,
+  "best": null,
+  "nudges_ok": 0,
+  "fails": {
+   "reach": 120
+  }
+ }
+]

@@ -1,0 +1,6 @@
+A. lid fit at the exact default (front -10, hinge 25, open 88):
+   front  -10 hinge   25 mm, lids at  88 deg: 13/14 agree  [umssssssssssss]
+B. lid edge +0: trial_pick as written -> {"day": "fri", "behind": -13.1, "lateral": -4.2, "z": 1.4, "inside": false, "tilt_deg": 0.0} | probe closest [('fri_right', 1.3, 'moving_jaw_so101_v1:moving_jaw_so101_v1_c12', 1.02)]
+C. lid edge +0: app place() today (22 behind, 30 above, direct) -> mon:OUT(0.1) tue:OUT(0.2) wed:OUT(0.4) thu:OUT(0.5) fri:OUT(0.6)
+B. lid edge -10: trial_pick as written -> {"day": "fri", "behind": 1.5, "lateral": -3.7, "z": 8.6, "inside": true, "tilt_deg": 90.0} | probe closest [('sat_lid', -4.5, 'moving_jaw_so101_v1:moving_jaw_so101_v1_c12', 1.04)]
+C. lid edge -10: app place() today (22 behind, 30 above, direct) -> mon:OUT(-0.0) tue:OUT(-0.1) wed:OUT(-1.1) thu:OUT(0.0) fri:OUT(0.0)
