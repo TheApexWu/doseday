@@ -85,7 +85,7 @@ def joint_positions(values):
 class Station:
     def __init__(self, arm, gripper, camera, poses: dict, limits, log_path: Path, identify=None,
                  open_pct: float = OPEN_PCT, unverified: bool = False, allow_open: bool = False,
-                 poses_path: Path | None = None, read_limits=None, box_path: Path | None = None):
+                 poses_path: Path | None = None, read_limits=None, box_path: Path | None = None, detectors=()):
         self.arm, self.gripper, self.camera = arm, gripper, camera
         # A registered box (box.py mark/fit) replaces the taught lid poses with the planned flip stroke
         self.box_path, self.box, self.kin = box_path, None, None
@@ -98,6 +98,8 @@ class Station:
         self.lid = {d: "open" for d in DAYS}
         # what the page shows: the frame the last pill check judged, and its verdict
         self.last_frame, self.last_look = None, None
+        # async img -> [{source, label, confidence, box}]: shown on the page, never consulted for a placement
+        self.detectors = list(detectors)
 
     def log(self, entry: dict):
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -238,18 +240,36 @@ class Station:
         self.lid[d] = "closed"
         return f"{DAY_NAMES[d]} is closed"
 
+    async def detect(self, img) -> list[dict]:
+        out = []
+        for d in self.detectors:
+            try:
+                out += await d(img)
+            except Exception as e:  # a detector that fails must not stop a placement it does not gate
+                self.log({"detect_error": f"{type(e).__name__}: {str(e)[:160]}"})
+        return out
+
+    def _show(self, wanted: str, img, seen, detections):
+        # default=str: identifiers return numpy numbers, and /status must stay JSON
+        self.last_look = json.loads(json.dumps({"t": round(time.time(), 3), "wanted": wanted, "seen": seen,
+                                                "detections": detections, "size": [img.shape[1], img.shape[0]]},
+                                               default=str))
+
     async def look(self, wanted: str) -> str:
         """Label of the single pill in the tray slot, as seen from tray_hover."""
         if self.identify is None:
             if self.unverified:
                 self.log({"look": "unverified", "assumed": wanted})
+                if self.detectors:  # the page still shows what the detectors see
+                    img = await self.frame()
+                    self._show(wanted, img, None, await self.detect(img))
                 return wanted
             raise Refused("no pill photos are enrolled, so I can't check which pill this is")
+        img = await self.frame()
         # a blob cut off by the frame edge may be a second pill, so it counts toward the one-pill check
-        seen = [r for r in self.identify(await self.frame()) if r["label"] != "not_pill" or r.get("reason") == "edge"]
+        seen = [r for r in self.identify(img) if r["label"] != "not_pill" or r.get("reason") == "edge"]
         self.log({"look": seen})
-        # default=str: identifiers return numpy numbers, and /status must stay JSON
-        self.last_look = {"t": round(time.time(), 3), "wanted": wanted, "seen": json.loads(json.dumps(seen, default=str))}
+        self._show(wanted, img, seen, await self.detect(img))
         if not seen:
             raise Refused("the tray is empty")
         if len(seen) > 1:
