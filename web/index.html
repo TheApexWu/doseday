@@ -7,61 +7,204 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#000; --fg:#fff; --dim:#bbb; --accent:#ffd400; --ok:#5cff8a; --bad:#ff6b6b; --card:#151515; --line:#444; }
+  :root { --bg:#070707; --fg:#fff; --dim:#b8b8b8; --accent:#ffd400; --ok:#5cff8a; --bad:#ff6b6b; --info:#7fb8ff;
+          --card:#141414; --card2:#1c1c1c; --line:#3a3a3a; --r:18px; }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:22px/1.35 "Atkinson Hyperlegible", system-ui, sans-serif; }
-  header { display:flex; gap:16px; align-items:center; padding:16px; border-bottom:2px solid var(--line); flex-wrap:wrap; }
-  h1 { margin:0; font-size:34px; color:var(--accent); letter-spacing:.5px; }
-  #status { flex:1; min-width:240px; font-size:26px; font-weight:700; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:20px/1.35 "Atkinson Hyperlegible", system-ui, sans-serif; }
   button { font:inherit; font-weight:700; border:3px solid var(--fg); background:#222; color:var(--fg);
-           border-radius:14px; padding:14px 18px; cursor:pointer; min-height:64px; }
+           border-radius:14px; padding:12px 16px; cursor:pointer; min-height:60px; }
   button:focus-visible { outline:5px solid var(--accent); outline-offset:3px; }
   button:active { transform:translateY(1px); }
-  #stop { background:#c00000; border-color:#ff9a9a; font-size:30px; min-width:180px; }
+  button:hover { filter:brightness(1.15); }
+  h2 { margin:0 0 12px; font-size:16px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); font-weight:700; }
+
+  header { display:flex; gap:14px; align-items:center; padding:14px 20px; border-bottom:2px solid var(--line);
+           flex-wrap:wrap; position:sticky; top:0; background:var(--bg); z-index:2; }
+  .brand { display:flex; align-items:center; gap:12px; margin-right:auto; }
+  .brand svg { flex:none; }
+  .brand h1 { margin:0; font-size:34px; color:var(--accent); line-height:1; }
+  .brand p { margin:2px 0 0; font-size:16px; color:var(--dim); }
+  .chip { display:inline-flex; align-items:center; gap:8px; border:2px solid var(--line); border-radius:999px;
+          padding:8px 14px; font-size:18px; font-weight:700; white-space:nowrap; }
+  .dot { width:12px; height:12px; border-radius:50%; background:var(--dim); flex:none; }
+  #status { min-width:200px; }
+  #status.ready .dot { background:var(--ok); }
+  #status.busy { border-color:var(--accent); color:var(--accent); }
+  #status.busy .dot { background:var(--accent); animation:pulse 1s infinite; }
+  #status.down { border-color:var(--bad); color:var(--bad); }
+  #status.down .dot { background:var(--bad); }
+  #mode { color:var(--info); border-color:#2a4a6e; }
+  #stop { background:#c00000; border-color:#ff9a9a; font-size:28px; min-width:170px; letter-spacing:.06em; }
   #mic { background:#003d80; border-color:#7fb8ff; }
-  #mic.listening { background:var(--accent); color:#000; }
-  main { padding:16px; display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:16px; }
-  .day { background:var(--card); border:2px solid var(--line); border-radius:18px; padding:14px; display:flex; flex-direction:column; gap:10px; }
-  .day h2 { margin:0; font-size:30px; display:flex; justify-content:space-between; align-items:baseline; }
-  .lid { font-size:18px; color:var(--dim); font-weight:400; }
-  .lid.open { color:var(--ok); }
-  .row { display:flex; gap:10px; }
-  .row button { flex:1; }
+  #mic.listening { background:var(--accent); color:#000; border-color:var(--accent); }
+  #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 20px; }
+
+  .wrap { padding:20px; display:grid; gap:20px; max-width:1680px; margin:0 auto; }
+  .top { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:20px; }
+  .card { background:var(--card); border:2px solid var(--line); border-radius:var(--r); padding:18px; min-width:0; }
+
+  /* Now */
+  #now { display:flex; flex-direction:column; gap:14px; }
+  #now-title { font-size:40px; font-weight:700; line-height:1.15; }
+  #now-title.idle { color:var(--dim); }
+  .bar { height:10px; border-radius:6px; background:var(--card2); overflow:hidden; }
+  .bar i { display:block; height:100%; width:35%; background:var(--accent); border-radius:6px; }
+  .bar.on i { animation:slide 1.2s ease-in-out infinite; }
+  .bar.off i { width:0; }
+  #now-last { font-size:24px; }
+  #now-last.ok { color:var(--ok); } #now-last.bad { color:var(--bad); }
+  .stats { display:flex; gap:12px; flex-wrap:wrap; margin-top:auto; }
+  .stat { background:var(--card2); border-radius:14px; padding:10px 16px; min-width:120px; }
+  .stat b { display:block; font-size:34px; line-height:1.1; }
+  .stat span { font-size:15px; color:var(--dim); text-transform:uppercase; letter-spacing:.08em; }
+
+  /* Pill check */
+  .check { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:16px; align-items:start; }
+  .cam { position:relative; aspect-ratio:4/3; background:#000; border:2px solid var(--line); border-radius:14px;
+         overflow:hidden; display:grid; place-items:center; }
+  .cam img { width:100%; height:100%; object-fit:cover; display:block; }
+  .cam .ph { color:var(--dim); font-size:18px; text-align:center; padding:12px; }
+  .cam .tag { position:absolute; left:8px; top:8px; background:rgba(0,0,0,.75); border-radius:8px; padding:3px 8px;
+              font-size:14px; color:var(--dim); }
+  #verdict { font-size:38px; font-weight:700; line-height:1.1; margin-bottom:10px; overflow-wrap:anywhere; }
+  #verdict.ok { color:var(--ok); } #verdict.bad { color:var(--bad); } #verdict.idle { color:var(--dim); font-size:26px; }
+  .votes { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .votes li { display:flex; justify-content:space-between; gap:10px; background:var(--card2); border-radius:12px;
+              padding:10px 12px; font-size:18px; }
+  .votes li b { text-align:right; overflow-wrap:anywhere; }
+  .votes .y b { color:var(--ok); } .votes .n b { color:var(--bad); } .votes .s b { color:var(--dim); }
+  #reason { margin:12px 0 0; color:var(--dim); font-size:17px; border-left:4px solid var(--line); padding-left:10px; }
+  #reason:empty { display:none; }
+
+  /* Week */
+  .week-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .week-head .hint { color:var(--dim); font-size:17px; margin:0 0 12px; }
+  #days { display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:12px; }
+  .day { background:var(--card2); border:3px solid var(--line); border-radius:var(--r); padding:12px; display:flex;
+         flex-direction:column; gap:10px; min-width:0; }
+  .day.today { border-color:var(--accent); }
+  .day-top { display:flex; justify-content:space-between; align-items:center; gap:6px; }
+  .day h3 { margin:0; font-size:30px; line-height:1; }
+  .today-tag { font-size:13px; font-weight:700; background:var(--accent); color:#000; border-radius:6px; padding:3px 6px;
+               letter-spacing:.06em; display:none; }
+  .day.today .today-tag { display:inline-block; }
+  .tray { min-height:64px; border-radius:12px; background:#0b0b0b; border:2px dashed var(--line); display:flex;
+          flex-wrap:wrap; gap:6px; align-items:center; justify-content:center; padding:8px; }
+  .tray.closed { border-style:solid; border-color:#666; background:repeating-linear-gradient(135deg,#222 0 8px,#1a1a1a 8px 16px); }
+  .tray .empty { color:#777; font-size:15px; }
+  .pill { width:26px; height:26px; border-radius:50%; background:#f2f2ec; box-shadow:inset -3px -3px 0 rgba(0,0,0,.18); }
+  .pill.magnesium { width:34px; height:18px; border-radius:10px; background:#d9a441; }
+  .lid { font-size:17px; font-weight:700; color:var(--dim); }
+  .lid.open { color:var(--ok); } .lid.closed { color:var(--fg); } .lid.unknown { color:var(--bad); }
+  .day button { width:100%; min-height:52px; padding:8px 10px; font-size:18px; }
   .place { background:#1d1d00; border-color:var(--accent); color:var(--accent); }
-  .small { font-size:18px; font-weight:400; }
-  section { padding:0 16px 24px; }
-  #log { list-style:none; padding:0; margin:0; font-size:20px; }
-  #log li { padding:8px 0; border-bottom:1px solid var(--line); }
-  #log .ok { color:var(--ok); } #log .bad { color:var(--bad); }
-  .hint { color:var(--dim); font-size:18px; }
-  #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 16px; }
-  @media (max-width:600px) { body { font-size:20px; } h1 { font-size:28px; } }
+  .small { font-size:16px !important; font-weight:400; border-width:2px; }
+
+  /* Log */
+  #log { list-style:none; padding:0; margin:0; font-size:19px; max-height:340px; overflow:auto; }
+  #log li { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); }
+  #log time { color:var(--dim); font-variant-numeric:tabular-nums; flex:none; }
+  #log .ok b { color:var(--ok); } #log .bad b { color:var(--bad); }
+  #log .none { color:var(--dim); }
+  footer { color:#8a8a8a; font-size:15px; text-align:center; padding:4px 20px 24px; }
+
+  @keyframes pulse { 50% { opacity:.3; } }
+  @keyframes slide { 0% { transform:translateX(-100%); } 100% { transform:translateX(300%); } }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; } }
+  @media (max-width:1280px) { #days { grid-template-columns:repeat(auto-fill, minmax(190px, 1fr)); } }
+  @media (max-width:1000px) { .top { grid-template-columns:1fr; } }
+  @media (max-width:600px) {
+    body { font-size:18px; } .wrap { padding:12px; gap:14px; } header { padding:12px; }
+    .brand h1 { font-size:28px; } .brand p { display:none; } #stop { min-width:0; flex:1; } #mic { flex:1; }
+    .check { grid-template-columns:1fr; } #now-title { font-size:30px; } #verdict { font-size:30px; }
+    #days { grid-template-columns:1fr 1fr; }
+    .stats { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); } .stat { min-width:0; padding:10px; }
+    #status { min-width:0; }
+  }
 </style>
 </head>
 <body>
 <header>
-  <h1>Doseday</h1>
-  <div id="status" role="status" aria-live="polite">Connecting…</div>
+  <div class="brand">
+    <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <clipPath id="cap"><rect x="4" y="14" width="36" height="16" rx="8"/></clipPath>
+      <g clip-path="url(#cap)"><rect x="4" y="14" width="18" height="16" fill="#ffd400"/><rect x="22" y="14" width="18" height="16" fill="#fff"/></g>
+    </svg>
+    <div><h1>Doseday</h1><p>A robot arm fills the week's pill organizer</p></div>
+  </div>
+  <span class="chip" id="mode" title="How each pill is identified before it is placed">Model: …</span>
+  <div class="chip" id="status" role="status" aria-live="polite"><span class="dot"></span><span id="status-text">Connecting…</span></div>
   <button id="mic" aria-label="Speak a command">🎤 Speak</button>
   <button id="stop" aria-label="Stop the robot now">STOP</button>
 </header>
 <div id="alarm" role="alert" hidden></div>
-<main id="days"></main>
-<section>
-  <p class="hint">Lids start open. Say: “put Tums in Monday”, “close Friday”, “go home”, or “stop”.</p>
-  <ul id="log" aria-live="polite"></ul>
-</section>
+
+<div class="wrap">
+  <div class="top">
+    <section class="card" id="now" aria-labelledby="now-h">
+      <h2 id="now-h">Now</h2>
+      <div id="now-title" class="idle">Waiting for a command</div>
+      <div class="bar off" id="now-bar"><i></i></div>
+      <div id="now-last"></div>
+      <div class="stats">
+        <div class="stat"><b id="n-placed">0</b><span>Pills placed</span></div>
+        <div class="stat"><b id="n-refused">0</b><span>Refused</span></div>
+        <div class="stat"><b id="n-queued">0</b><span>Waiting</span></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="check-h">
+      <h2 id="check-h">Pill check · two must agree</h2>
+      <div class="check">
+        <div class="cam">
+          <img id="cam" alt="Wrist camera view of the pill tray" hidden>
+          <div class="ph" id="cam-ph">No pill checked yet</div>
+          <span class="tag">wrist camera</span>
+        </div>
+        <div>
+          <div id="verdict" class="idle" aria-live="polite">Waiting for a pill</div>
+          <ul class="votes">
+            <li id="v-claude" class="s"><span>Claude vision</span><b>–</b></li>
+            <li id="v-feat" class="s"><span>Colour · size · shape</span><b>–</b></li>
+            <li id="v-want" class="s"><span>Asked for</span><b>–</b></li>
+          </ul>
+          <p id="reason"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="week-h">
+    <div class="week-head">
+      <h2 id="week-h">The week</h2>
+      <p class="hint">Say: “put Tums in Monday”, “close Friday”, “go home”, or “stop”. Lids start open.</p>
+    </div>
+    <div id="days"></div>
+  </section>
+
+  <section class="card" aria-labelledby="log-h">
+    <h2 id="log-h">Activity</h2>
+    <ul id="log" aria-live="polite"></ul>
+  </section>
+</div>
+<footer>Demo with candy and vitamins only. Not medical advice; not validated for handling medication. Spooky Civic Hackathon 2026 · Team 02</footer>
+
 <script>
 const DAYS = ["sun","mon","tue","wed","thu","fri","sat"];
 const NAMES = {sun:"Sunday",mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday"};
 const PILLS = ["tums","magnesium"];
-let lastSpoken = 0;
+const MODES = {claude:"Claude + measured features", features:"Measured features", unverified:"Unverified (demo)",
+               off:"No pill check", fake:"Rehearsal (fake arm)"};
+let lastSpoken = 0, lastLook = null;
 
 function say(text) {
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text); u.rate = 0.95; speechSynthesis.speak(u);
 }
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
 
 async function post(path, body) {
   const r = await fetch(path, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body||{})});
@@ -107,36 +250,115 @@ function cmd(action, day, pill) {
   return post("/cmd", {action, day, pill});
 }
 
+function describe(c) {
+  const day = c.day ? NAMES[c.day.slice(0,3).toLowerCase()] : "";
+  if (c.action === "place") return `Placing ${cap(c.pill)} → ${day}`;
+  if (c.action === "close") return `Closing ${day}'s lid`;
+  if (c.action === "opened") return `Marking ${day} open`;
+  if (c.action === "home") return "Going home";
+  return `${c.action} ${day}`;
+}
+
 function build() {
   const main = document.getElementById("days");
+  const today = DAYS[new Date().getDay()];
   for (const d of DAYS) {
     const card = document.createElement("div");
-    card.className = "day";
-    card.innerHTML = `<h2>${NAMES[d]} <span class="lid" id="lid-${d}">lid ?</span></h2>
-      <div class="row"><button data-a="close">Close lid</button><button data-a="opened" class="small">Opened by hand</button></div>
-      ${PILLS.map(p => `<button class="place" data-a="place" data-p="${p}">+ ${p[0].toUpperCase()+p.slice(1)}</button>`).join("")}`;
+    card.className = "day" + (d === today ? " today" : "");
+    card.innerHTML = `<div class="day-top"><h3>${NAMES[d].slice(0,3)}</h3><span class="today-tag">TODAY</span></div>
+      <div class="tray" id="tray-${d}"><span class="empty">empty</span></div>
+      <span class="lid" id="lid-${d}">lid ?</span>
+      ${PILLS.map(p => `<button class="place" data-a="place" data-p="${p}" aria-label="Put ${p} in ${NAMES[d]}">+ ${cap(p)}</button>`).join("")}
+      <button data-a="close" aria-label="Close ${NAMES[d]}'s lid">Close lid</button>
+      <button data-a="opened" class="small" aria-label="${NAMES[d]} was opened by hand">Opened by hand</button>`;
     card.querySelectorAll("button").forEach(b => b.onclick = () => cmd(b.dataset.a, d, b.dataset.p));
     main.appendChild(card);
   }
   document.getElementById("stop").onclick = stopArm;
+  const cam = document.getElementById("cam");
+  cam.onerror = () => { cam.hidden = true; document.getElementById("cam-ph").hidden = false; };
+  cam.onload = () => { cam.hidden = false; document.getElementById("cam-ph").hidden = true; };
+}
+
+function vote(id, label, value, cls) {
+  const el = document.getElementById(id);
+  el.className = cls;
+  el.innerHTML = `<span>${label}</span><b>${esc(value)}</b>`;
+}
+
+// The verdict mirrors actions.Station.look: one pill seen, both checks agree, and it matches what was asked for.
+function renderLook(look, mode) {
+  const v = document.getElementById("verdict");
+  if (!look) return;
+  const seen = look.seen || [];
+  const one = seen.length === 1 ? seen[0] : null;
+  const label = one ? one.label : null;
+  const known = one && label !== "unknown" && one.reason !== "edge";
+  const match = known && label === look.wanted;
+  v.className = match ? "ok" : "bad";
+  v.textContent = !seen.length ? "Tray is empty" : !one ? `${seen.length} pills seen: one at a time`
+                : one.reason === "edge" ? "Pill at the tray edge" : !known ? "Unknown pill: refused"
+                : match ? `${cap(label)} ✓` : `${cap(label)}, not ${cap(look.wanted)}`;
+  const claude = one && one.claude;
+  const feat = one && (one.features || (claude ? null : label));
+  vote("v-claude", "Claude vision", claude ? cap(claude) : (mode === "claude" ? "–" : "not used"),
+       !claude ? "s" : claude === label && known ? "y" : "n");
+  vote("v-feat", "Colour · size · shape", feat ? cap(feat) : "–", !feat ? "s" : feat === label && known ? "y" : "n");
+  vote("v-want", "Asked for", cap(look.wanted), match ? "y" : "n");
+  document.getElementById("reason").textContent = claude && one.claude_reason ? `“${one.claude_reason}”` : "";
+  if (look.t !== lastLook) {
+    lastLook = look.t;
+    document.getElementById("cam").src = `/frame.jpg?t=${look.t}`;
+  }
+}
+
+function renderWeek(s) {
+  const placed = {};
+  for (const r of s.results) if (r.ok && r.action === "place" && r.day) (placed[r.day] = placed[r.day] || []).push(r.pill);
+  for (const d of DAYS) {
+    const state = s.lids[d] || "unknown";
+    const lid = document.getElementById(`lid-${d}`);
+    lid.textContent = state === "open" ? "● Lid open" : state === "closed" ? "■ Lid closed" : `▲ Lid ${state}`;
+    lid.className = "lid " + state;
+    const tray = document.getElementById(`tray-${d}`);
+    tray.className = "tray" + (state === "closed" ? " closed" : "");
+    const pills = placed[d] || [];
+    tray.innerHTML = pills.length ? pills.map(p => `<span class="pill ${esc(p)}" title="${esc(p)}"></span>`).join("")
+                                  : `<span class="empty">${state === "closed" ? "closed" : "empty"}</span>`;
+  }
 }
 
 async function poll() {
   try {
     const s = await (await fetch("/status")).json();
     const st = document.getElementById("status");
-    st.textContent = s.busy ? `Working: ${s.busy.action}${s.busy.day ? " " + NAMES[s.busy.day.slice(0,3).toLowerCase()] : ""}`
-                            + (s.queued ? ` (+${s.queued} waiting)` : "") : "Ready";
-    for (const d of DAYS) {
-      const el = document.getElementById(`lid-${d}`);
-      el.textContent = `lid ${s.lids[d]}`; el.className = "lid" + (s.lids[d] === "open" ? " open" : "");
-    }
-    document.getElementById("log").innerHTML = s.results.map(r =>
-      `<li class="${r.ok ? "ok" : "bad"}">${r.t} · ${r.say}</li>`).join("");
+    const busy = s.busy ? `Working: ${s.busy.action}${s.busy.day ? " " + NAMES[s.busy.day.slice(0,3).toLowerCase()] : ""}`
+                          + (s.queued ? ` (+${s.queued} waiting)` : "") : "Ready";
+    document.getElementById("status-text").textContent = busy;
+    st.className = "chip " + (s.busy ? "busy" : "ready");
+    document.getElementById("mode").textContent = "Model: " + (MODES[s.mode] || s.mode || "–");
+
+    const title = document.getElementById("now-title");
+    title.textContent = s.busy ? describe(s.busy) : "Waiting for a command";
+    title.className = s.busy ? "" : "idle";
+    document.getElementById("now-bar").className = "bar " + (s.busy ? "on" : "off");
     const newest = s.results[0];
+    const last = document.getElementById("now-last");
+    last.textContent = newest ? `${newest.ok ? "✓" : "✗"} ${newest.say}` : "";
+    last.className = newest ? (newest.ok ? "ok" : "bad") : "";
+    document.getElementById("n-placed").textContent = s.results.filter(r => r.ok && r.action === "place").length;
+    document.getElementById("n-refused").textContent = s.results.filter(r => !r.ok).length;
+    document.getElementById("n-queued").textContent = s.queued || 0;
+
+    renderWeek(s);
+    renderLook(s.look, s.mode);
+    document.getElementById("log").innerHTML = s.results.length ? s.results.map(r =>
+      `<li class="${r.ok ? "ok" : "bad"}"><time>${esc(r.t)}</time><b>${r.ok ? "✓" : "✗"}</b><span>${esc(r.say)}</span></li>`).join("")
+      : `<li class="none">Nothing yet. Press a button or say a command.</li>`;
     if (newest && newest.id > lastSpoken) { lastSpoken = newest.id; say(newest.say); }
   } catch (e) {
-    document.getElementById("status").textContent = "Robot server not reachable";
+    document.getElementById("status-text").textContent = "Robot server not reachable";
+    document.getElementById("status").className = "chip down";
   }
   setTimeout(poll, 700);
 }
