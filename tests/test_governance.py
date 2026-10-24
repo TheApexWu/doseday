@@ -210,3 +210,16 @@ def test_failed_notice_is_logged_not_raised(tmp_path):
     gov, _, _ = make(tmp_path, FakeCaretaker(trust.OK), fam=Broken("family-telegram"))
     gov.stop_alert().join(timeout=5)
     assert "send_failed" in notify.LOG.read_text()
+
+
+def test_flag_refuses_choosing_a_pill(tmp_path):
+    gov, _, _ = make(tmp_path, FakeCaretaker(trust.FLAG))
+    gov.request(["Monday"], b"jpeg")
+    settle(gov)
+    ctl, srv, url = serve(gov)
+    try:
+        ctl.viewer = object()  # any viewer: the refusal comes before it is used
+        code, body = call(url, "/select", {"pill": "magnesium"})
+        assert code == 400 and body["say"] == governance.FLAGGED_SAY
+    finally:
+        srv.shutdown()

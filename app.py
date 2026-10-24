@@ -170,6 +170,8 @@ def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> Threadin
             if self.path == "/select":
                 if ctl.viewer is None:
                     return self._json({"ok": False, "say": "the camera view is off"}, 400)
+                if "pill" in body and ctl.gov.blocks({"action": "place"}):
+                    return self._json({"ok": False, "say": governance.FLAGGED_SAY}, 400)
                 res, code = select(ctl.viewer, body)
                 return self._json(res, code)
             if self.path == "/cmd":
