@@ -19,7 +19,6 @@ import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-import box  # noqa: E402
 from twin import scene  # noqa: E402
 from twin.rehearse import OUT, Runner  # noqa: E402
 from twin.scene import Twin  # noqa: E402

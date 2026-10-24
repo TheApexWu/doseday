@@ -31,8 +31,8 @@ TRAY, GRASP_Z, HOVER_Z = [346.3, -108.1], 10.6, 50.0
 DROP, PICK_LEAN, PICK_HEADING = [247.1, -67.6, 31.0], 21.7, -88.0
 CARRY = [([346.3, -108.1, 60.0], 21.7), ([300.0, -85.0, 115.0], 21.7), ([250.0, -68.0, 85.0], 6.0)]
 TRIAL_OPEN_PCT, STATION_OPEN_PCT = 91.0, 30.0
-HELD_PCT, JAW_OPEN_S = 12.0, 0.3
-PROPOSED_DROP = (18.0, 15.0)  # behind the front edge, above the lid tops: inside the swept window with margin   # 12 %: the jaw just touching a 19 mm Tums in the twin's jaw model
+HELD_PCT, JAW_OPEN_S = 12.0, 0.3  # 12 %: the jaw just touching a 19 mm Tums in the twin's jaw model
+PROPOSED_DROP = (18.0, 15.0)  # first proposal (Friday's centre); superseded by RECOMMENDED_DROP once the lids were fit
 PILL_IN_JAW = np.array([0.0016, 0.0, -0.100])  # m, gripper frame: rim against the fixed finger (x -7.9 mm)
 PROBE_EVERY = 10  # steps between clearance checks: the claw moves under 0.3 mm in 10 ms at 25 deg/s
 
@@ -200,10 +200,10 @@ def drop(twin: Twin, q_start, q_release, open_pct=TRIAL_OPEN_PCT, speed=25.0, se
     twin.set_arm(q_release)
     mujoco.mj_kinematics(twin.model, twin.data)
     tip = twin.tip()
-    return {"release_tip": [round(float(v), 1) for v in tip], "landed": landing(twin), "closest": closest(run.clear, twin)}
+    return {"release_tip": [round(float(v), 1) for v in tip], "landed": landing(twin), "closest": closest(run.clear)}
 
 
-def closest(clear: dict, twin=None, top=4) -> list:
+def closest(clear: dict, top=4) -> list:
     return [(k, *v) for k, v in sorted(clear.items(), key=lambda kv: kv[1][0])[:top]]
 
 
@@ -217,7 +217,7 @@ def trial_pick_path():
     return qs
 
 
-def drops(video=False):
+def drops():
     twin = Twin()
     b = twin.box
     results = {}
@@ -560,7 +560,7 @@ def lifts(days=("tue", "wed", "thu", "fri")):
             for d in days:
                 try:
                     r_ = stroke(twin, d, steps=steps, lift=lift)
-                except ValueError as e:
+                except ValueError:
                     out.append(f"{d}:unreachable")
                     continue
                 rows.append({"front": front, "variant": label, **r_})

@@ -1,0 +1,6 @@
+parked rows (220): wrist position error median 0.04 mm, max 0.04; axis error median 0.01 deg
+all rows (1118, arm moving in most): median 0.32 mm, 95th percentile 2.67 mm
+negative control, shoulder_lift +5 deg: median 13.7 mm
+box.Kinematics vs MuJoCo wrist: max 0.001 mm
+vendor grasp point (gripperframe) minus box.py jaw tip, wrist frame: [-7.9 -0.2 -0.1] mm, 7.9 mm apart
+PASS
