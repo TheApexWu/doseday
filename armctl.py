@@ -23,6 +23,7 @@ from pathlib import Path
 from viam.robot.client import RobotClient
 from viam.components.arm import Arm
 from viam.components.gripper import Gripper
+from viam.errors import ResourceNotFoundError
 from viam.services.generic import Generic
 from viam.proto.component.arm import JointPositions
 
@@ -44,10 +45,21 @@ async def connect():
         api_key=env["VIAM_API_KEY"], api_key_id=env["VIAM_API_KEY_ID"]))
 
 
+def optional_teleop(robot):
+    """The teleop service, or None when the leader arm it depends on isn't connected."""
+    try:
+        return Generic.from_robot(robot, "teleop")
+    except ResourceNotFoundError:
+        return None
+
+
 async def state(robot):
     follower = Arm.from_robot(robot, "follower-arm")
     mode = (await follower.get_status()).get("mode", "?") if hasattr(follower, "get_status") else "?"
-    loop = await Generic.from_robot(robot, "teleop").do_command({"command": "status"})
+    teleop = optional_teleop(robot)
+    if teleop is None:
+        return f"follower: {mode} | teleop: absent (leader arm not connected)"
+    loop = await teleop.do_command({"command": "status"})
     return f"follower: {mode} | teleop: {'RUNNING' if loop['running'] else 'stopped'} ({int(loop['cycles'])} cycles, last error: {loop['last_error'] or 'none'})"
 
 
@@ -55,16 +67,20 @@ async def main(cmd, args):
     robot = await connect()
     try:
         follower = Arm.from_robot(robot, "follower-arm")
-        teleop = Generic.from_robot(robot, "teleop")
+        teleop = optional_teleop(robot)
         if cmd == "free":
-            await teleop.do_command({"command": "stop"})
+            if teleop:
+                await teleop.do_command({"command": "stop"})
             torque = int(args[0]) if args else 30
             await follower.do_command({"command": "enter_manual_mode", "torque_limit": torque, "pos_deadband_deg": 1.0})
         elif cmd == "teleop":
+            if teleop is None:
+                sys.exit("teleop needs the leader arm, and the robot doesn't see it (check its USB cable)")
             await follower.do_command({"command": "exit_manual_mode"})
             await teleop.do_command({"command": "start"})
         elif cmd == "off":
-            await teleop.do_command({"command": "stop"})
+            if teleop:
+                await teleop.do_command({"command": "stop"})
             await follower.do_command({"command": "exit_manual_mode"})
         elif cmd == "where":
             j = (await follower.get_joint_positions()).values

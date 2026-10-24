@@ -75,16 +75,19 @@ def test_bad_marks_are_refused(fri, why):
         box.Box.from_marks([240.0, 65.0, 28.0], fri)
 
 
-def test_the_taped_ends_are_never_planned(kin):
-    for day in ("sun", "sat"):
-        with pytest.raises(ValueError, match="taped"):
-            box.plan(kin, box.demo_box(), day, [0.0, 15.0, -10.0, 80.0, 3.0])
+# the box as placed on 24 Oct (front edge x 200, along the y axis) with its measured lid midpoints
+TODAY = box.Box(mon=[200.0, 43.6, 28.0], along=[0.0, -1.0, 0.0], source="test", lid_y=box.LID_Y_24OCT)
+
+
+def test_all_seven_days_are_planned_now_the_ends_open(kin):
+    assert box.ROBOT_DAYS == box.DAYS  # day 1 taped Sunday and Saturday down; on 24 Oct they open too
 
 
 def test_every_robot_day_plans_inside_joint_limits(kin):
     for day in box.ROBOT_DAYS:
-        wps = box.plan(kin, box.demo_box(), day, [0.0, 15.0, -10.0, 80.0, 3.0])
+        wps = box.plan(kin, TODAY, day, [0.0, 15.0, -10.0, 80.0, -103.0])
         assert [w["name"] for w in wps][-2:] == ["press", "lift"]
+        assert all(abs(box.Kinematics().tip(w["joints"])[0][1] - box.LID_Y_24OCT[day]) < 0.5 for w in wps[1:])
         for w in wps:
             assert all(lo < v < hi for v, (lo, hi) in zip(w["joints"], kin.limits))
 
@@ -138,7 +141,7 @@ def test_torque_is_restored_when_the_stroke_fails(kin):
 def test_station_closes_with_the_stroke_once_a_box_is_registered(tmp_path):
     import actions
     import fakes
-    (tmp_path / "box.json").write_text(__import__("json").dumps(__import__("dataclasses").asdict(box.demo_box())))
+    (tmp_path / "box.json").write_text(__import__("json").dumps(__import__("dataclasses").asdict(TODAY)))
     arm = fakes.FakeArm()
     st = actions.Station(arm, fakes.FakeGripper(), fakes.FakeCamera(), {}, fakes.LIMITS, tmp_path / "log.jsonl",
                          box_path=tmp_path / "box.json")
@@ -146,6 +149,4 @@ def test_station_closes_with_the_stroke_once_a_box_is_registered(tmp_path):
     assert asyncio.run(st.close_lid("wed")) == "Wednesday is closed" and st.lid["wed"] == "closed"
     assert len(arm.moves) > 10  # the dense stroke, not a two-pose press
     assert arm.commands[-1] == {"command": "set_torque_limit", "value": 1000}
-    with pytest.raises(actions.Refused, match="Sunday"):
-        asyncio.run(st.close_lid("sun"))
-    assert st.lid["sun"] == "open"  # refused before anything moved
+    assert asyncio.run(st.close_lid("sun")) == "Sunday is closed"  # the end lids open and close on 24 Oct

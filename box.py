@@ -32,13 +32,16 @@ BOX_FILE = HERE / "box.json"
 MARKS_FILE = HERE / "box_marks.json"
 
 JAW_LEN = 98.0          # mm from the wrist-roll joint to the jaw grasp point, along the claw axis
-PITCH = 32.7            # mm between lid centres
+PITCH = 30.6            # mm between lid centres in the arm frame: Alex's camera-centred lid pushes, 24 Oct (tape said 32.7; the error grew to 10 mm by Saturday)
 DAYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
-ROBOT_DAYS = DAYS[1:6]  # Sunday and Saturday are taped down at the ends: never touched
+ROBOT_DAYS = DAYS  # all seven: on 24 Oct the end lids open and need closing too (day 1 had them taped down)
 MARK_DAYS = ("mon", "fri")
 MARK_TOL = 12.0         # mm: Mon-Fri marks must sit 4 pitches apart within this
 LEVEL_TOL = 10.0        # mm: and at nearly the same height
-HEADING = 3.0           # wrist roll minus base yaw, deg: jaws turned 90 deg from run 04 so their narrow side faces the neighbouring lids (Alex, try 3)
+# 24 Oct lid midpoints along the box (arm-frame y), where Alex centred the claw by eye on each lid in lid-teach-13;
+# a straight-line fit put Sunday 8 mm off. Stored per box (Box.lid_y), never applied to a freshly registered box.
+LID_Y_24OCT = {"sun": 67.0, "mon": 44.0, "tue": 13.0, "wed": -10.5, "thu": -45.0, "fri": -75.0, "sat": -110.0}
+HEADING = -103.0        # wrist roll minus base yaw: Alex's lid-demo angle (24 Oct), jaws along the box, camera level (day 1 used 3)
 
 # (behind the front edge, above the lid top, claw lean away from the base) in mm, mm, deg.
 # Open lids stand near-upright on a hinge ~40 mm behind the front edge and are ~42 mm long (wrist-camera frames,
@@ -46,15 +49,15 @@ HEADING = 3.0           # wrist roll minus base yaw, deg: jaws turned 90 deg fro
 # 32 mm arc around the hinge (inside the lid's length, so the tip stays on its face), then presses the front edge.
 # A popped lid (front raised ~15 deg, run 04) meets the same arc near its end and gets pressed shut.
 STROKE = [
-    ("pre", 20.0, 78.0, 28.0),     # transit: high in front of the box, clear of upright lids
-    ("hover", 60.0, 62.0, 15.0),
-    ("catch", 48.0, 30.0, 10.0),   # behind the upright lid, below its top edge
-    ("arc1", 40.0, 29.5, 6.0),     # 30 mm arc about a hinge ~35 mm behind the front edge (try 1 met no lid at 42.6)
-    ("arc2", 27.0, 29.0, 3.0),
-    ("arc3", 16.0, 23.0, 0.0),
-    ("arc4", 8.0, 12.5, -3.0),
-    ("arc5", 5.0, 4.0, -4.0),
-    ("press", 12.0, -11.0, -5.0),  # mid-lid: at 3-5 mm from the edge the turned claw likely also holds the release tab (23 Oct)
+    # Alex's hand on Mon/Tue, lid-teach-1608 (24 Oct): arrive vertical behind the lid, catch it low, drag it to the
+    # front edge with the claw trailing toward the arm. (behind front edge, above closed lid top, lean; - = trailing)
+    ("pre", 20.0, 78.0, 28.0),     # transit: high in front of the box (tilted as on day 1; vertical here breaks the wrist limit)
+    ("hover", 45.0, 14.0, 0.0),    # hand arrived at x 240-249, z 38-42, claw vertical
+    ("catch", 42.0, -1.0, -4.0),   # x 240-243, z 25-28, trailing 4-6
+    ("arc1", 25.0, -11.0, -10.0),  # x 225, z 17
+    ("arc2", 16.0, -13.0, -12.0),  # x 216, z 15
+    ("arc3", 12.0, -11.0, -13.0),  # x 212, z 17 (the hand went to 205; the deep vertical push needs x >= ~208 mid-box)
+    ("press", 14.0, -11.0, -12.0), # x 214, z 17: hand held at 216; the deep vertical push follows from here
 ]
 LIFT = ("lift", 14.0, 50.0, 12.0)  # leaned like the demo: a vertical claw this high needs the wrist past 95 deg
 STROKE_TORQUE = 600   # of 1000: 350 sagged 2-6 mm at this reach (try 1, 23 Oct) and could not swing the lid
@@ -162,6 +165,7 @@ class Box:
     mon: list          # jaw-tip point on Monday's lid: front edge, centred, on the lid top
     along: list        # unit, horizontal, Sunday -> Saturday
     source: str = ""
+    lid_y: dict = None  # optional measured midpoint per day (arm-frame y), overriding the pitch
 
     @property
     def away(self) -> np.ndarray:
@@ -172,7 +176,10 @@ class Box:
 
     def point(self, day: str, behind: float, above: float) -> np.ndarray:
         k = DAYS.index(day) - DAYS.index("mon")
-        return np.asarray(self.mon, float) + k * PITCH * np.asarray(self.along, float) + behind * self.away + [0, 0, above]
+        p = np.asarray(self.mon, float) + k * PITCH * np.asarray(self.along, float) + behind * self.away + [0, 0, above]
+        if self.lid_y and day in self.lid_y:
+            p[1] = self.lid_y[day]
+        return p
 
     @classmethod
     def from_marks(cls, mon, fri, source="marks"):
