@@ -40,6 +40,19 @@ PILL_CAMERA=follower-cam python vision_probe.py
 The command uses the same `VIAM_ADDRESS`, `VIAM_API_KEY_ID`, and `VIAM_API_KEY` environment variables as
 `arm.py`. Override the service name with `PILL_VISION_SERVICE`.
 
+## Local pill-selection demo
+
+Before connecting an arm, prompt for a pill's primary color and shape, launch the local recognition UI, and
+draw boxes only around matching detections:
+
+```
+python main.py --local-demo
+```
+
+Choose an image in the browser page that opens. This mode does not connect to Viam or move hardware. Press
+`Ctrl+C` in the terminal to stop the local server. It expects the pill-recognition repository to be checked out
+beside this repository.
+
 ## Camera settings at boot
 
 The icSpring camera defaults to automatic exposure, which can lift a black mat to gray. On the robot, install
