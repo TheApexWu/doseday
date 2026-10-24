@@ -1,4 +1,4 @@
-"""Doseday control page: pick a day, then a pill, and watch the camera box both. Also big buttons and voice for
+"""Doseday control page: pick a day, then a pill, and watch the camera box both. Also big buttons for
 open / close / place, one robot action at a time.
 
   python app.py                  connects to pi-arm1 (keys from .env), serves http://localhost:8000
@@ -109,7 +109,7 @@ def validate(cmd: dict) -> str | None:
 
 
 def select(v: viewer.Viewer, body: dict) -> tuple[dict, int]:
-    """{text, today} is a typed or spoken answer; {day}, {pill} and {reset} come from the buttons."""
+    """{text, today} is a typed answer; {day}, {pill} and {reset} come from the buttons."""
     if body.get("reset"):
         v.reset()
         return {"ok": True, "say": "Which day?"}, 200

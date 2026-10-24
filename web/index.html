@@ -26,8 +26,6 @@
             padding:8px 16px; font-size:19px; font-weight:700; }
   #status::before { content:""; width:12px; height:12px; border-radius:50%; background:var(--ok); }
   #status.down { color:var(--bad); } #status.down::before { background:var(--bad); }
-  #mic { min-width:60px; }
-  #mic.listening { background:var(--accent); color:#fff; border-color:var(--accent); }
   #stop { background:var(--stop); border-color:var(--stop); color:#fff; font-size:26px; min-width:150px; }
   #alarm { background:var(--bad); color:#fff; font-weight:700; font-size:24px; padding:14px 24px; }
 
@@ -126,7 +124,6 @@
     <h1>Doseday</h1>
   </div>
   <div id="status" role="status" aria-live="polite">Connecting…</div>
-  <button id="mic" aria-label="Speak your answer">🎤</button>
   <button id="stop" aria-label="Stop the robot now">STOP</button>
 </header>
 <div id="alarm" role="alert" hidden></div>
@@ -184,12 +181,6 @@ const SWATCH = {orange:"#F28C28", red:"#D2302F", white:"#fff"};
 const FINDERS = {yolov8:"YOLOv8", blobs:"Blob finder"};
 let view = null, shownKey = null, lastT = null;
 
-function say(text) {
-  if (!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text); u.rate = 0.95; speechSynthesis.speak(u);
-}
-
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const icon = p => `<span class="icon-slot"><span class="icon ${p.shape}" style="background:${SWATCH[p.color]}"></span></span>`;
 
@@ -211,13 +202,13 @@ async function sendStop() {
   }
 }
 
-// "Stopped" is said only after the server confirms; a failure stays on screen until a stop succeeds.
+// "Stopped" is shown only after the server confirms; a failure stays on screen until a stop succeeds.
 async function stopArm() {
-  say("Stopping");
+  heard("Stopping…", false);
   let done = false;
   for (let i = 0; i < STOP_TRIES && !done; i++) done = await sendStop();
-  if (done) { showAlarm(""); say("Stopped"); return; }
-  showAlarm(STOP_FAILED); say(STOP_FAILED);
+  if (done) { showAlarm(""); heard("Stopped", true); return; }
+  showAlarm(STOP_FAILED); heard(STOP_FAILED, false);
 }
 
 function showAlarm(text) {
@@ -232,12 +223,12 @@ function heard(text, ok) {
 
 async function choose(body) {
   const j = await post("/select", body);
-  if (j.say) { heard(j.say, j.ok); say(j.say); }
+  if (j.say) heard(j.say, j.ok);
   poll(true);
   return j;
 }
 
-// Typed and spoken answers share one path; the server reads the day and the pill. A stop word always stops.
+// The server reads the day and the pill from the typed answer. A stop word always stops.
 function run(text) {
   if (/\b(stop|halt|freeze)\b/i.test(text)) { heard("STOP", false); stopArm(); return; }
   return choose({text, today: new Date().getDay()});
@@ -303,9 +294,7 @@ function renderCamera() {
 // caretaker check: the server decides; the page only shows the state and asks
 const GOV_CHIP = {idle:"No check yet", waiting:"Waiting for caretaker", released:"Released",
                   flagged:"Flagged: arm paused", timed_out:"No answer: texted caretaker"};
-const GOV_SAY = {waiting:"Sent to the caretaker. Waiting for their check.", released:"The caretaker approved this fill.",
-                 flagged:"The caretaker flagged this fill. The arm is paused.", timed_out:"No answer from the caretaker. We texted them."};
-let govState = null, govPolicy = false;
+let govPolicy = false;
 
 function govLine(e) {
   const v = {ok:"approved", flag:"flagged", timeout:"no answer"};
@@ -329,8 +318,6 @@ function renderGov(g) {
     `<li><time>${new Date(e.t * 1000).toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", second:"2-digit"})}</time><span>${esc(govLine(e))}</span></li>`).join("")
     : `<li><span>Nothing yet. Fill the organizer, then ask the caretaker to check.</span></li>`;
   if (!govPolicy) { document.getElementById("gov-policy").innerHTML = g.policy.map(r => `<li>${esc(r)}</li>`).join(""); govPolicy = true; }
-  if (govState !== null && g.state !== govState && GOV_SAY[g.state]) say(GOV_SAY[g.state]);
-  govState = g.state;
 }
 
 async function govPost(path, body) {
@@ -376,17 +363,7 @@ function build() {
   };
 }
 
-function setupMic() {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const mic = document.getElementById("mic");
-  if (!SR) { mic.disabled = true; mic.hidden = true; return; }
-  const rec = new SR(); rec.lang = "en-US"; rec.interimResults = false;
-  rec.onresult = e => run(e.results[0][0].transcript);
-  rec.onend = () => mic.classList.remove("listening");
-  mic.onclick = () => { mic.classList.add("listening"); rec.start(); };
-}
-
-build(); setupMic(); poll();
+build(); poll();
 </script>
 </body>
 </html>
