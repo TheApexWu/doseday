@@ -1,0 +1,11 @@
+file,t_start,t_end,phase,target,outcome,evidence,notes
+motion.csv,0.0,84.0,idle,,,"curated: CSV still at jaw tip (262,-64,73), jaw 42%",
+motion.csv,84.0,99.0,manual_adjust,tray,,curated: frames 88-94 show Alex's hand moving the claw out,
+motion.csv,99.0,171.0,hover,pill:tums,,"curated: claw held around a Tums at jaw tip (346,-108,11), frames 100-140","Alex holding the open claw still at the grasp pose (lean ~22 deg, heading -88)"
+motion.csv,171.0,180.0,grasp_close,pill:tums,success,curated: jaw 42% -> ~8% (held; empty close reads <1%),
+motion.csv,180.0,197.0,hold_transport,pill:tums,,"curated: jaw ~8% while moving over the box (239,-43,36)",
+motion.csv,197.0,209.0,hold_transport,pill:tums,,curated: frame 200 shows a second TUMS just ahead of the closed jaws,"down at (335,-23,9) still holding the first pill; read as pointing out the next pill (inferred)"
+motion.csv,209.0,226.0,hold_transport,fri,,"curated: CSV path to Friday's front edge (248,-68,30)",
+motion.csv,226.0,228.5,release_open,fri,unknown,curated: jaw 9% -> 91% at Friday's front edge; frames 223-233,a pill is visible in Friday afterwards; frames cannot separate in-the-compartment from on-the-lid
+motion.csv,228.5,236.0,lift,,,"curated: CSV rises to (269,-33,78)",
+motion.csv,236.0,240.0,descend,,,"curated: CSV down to (372,8,6), jaws open; frame 239 shows a red M&M and a mint pill",

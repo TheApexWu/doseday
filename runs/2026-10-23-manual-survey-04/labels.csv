@@ -1,0 +1,28 @@
+file,t_start,t_end,phase,target,outcome,evidence,notes
+motion.csv,0.0,0.9,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,1.2,3.7,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,3.9,4.7,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,4.9,7.3,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,7.4,8.3,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,8.4,18.1,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,18.6,39.6,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,39.9,42.9,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,43.0,48.9,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,49.0,49.9,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,50.0,75.0,survey_view,far pills,,curated: frames 50-75 (loose pills beyond the box),
+motion.csv,75.1,76.2,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,76.6,83.9,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,84.0,85.0,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,85.2,87.0,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,87.0,91.9,lid_press,mon,success,"curated: frames (lid raised before, frames 116-117 flat after)","hand-guided rake: start ~60 mm beyond the front edge, pull toward the arm while descending"
+motion.csv,92.6,95.9,lid_press,tue,success,"curated: frames (lid raised before, frame 95 flat after)","hand-guided rake: start ~60 mm beyond the front edge, pull toward the arm while descending"
+motion.csv,96.5,96.8,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,96.8,101.8,lid_press,wed,success,"curated: frames (lid raised before, frames 99-101 flat after)","hand-guided rake: start ~60 mm beyond the front edge, pull toward the arm while descending"
+motion.csv,101.8,102.1,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,102.2,102.7,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,102.7,106.4,lid_press,thu,success,"curated: frames (lid raised before, frames 104-105 flat after)","hand-guided rake: start ~60 mm beyond the front edge, pull toward the arm while descending"
+motion.csv,107.0,110.8,lid_press,fri,success,"curated: frames (lid raised before, frames 108-111 flat after)","hand-guided rake: start ~60 mm beyond the front edge, pull toward the arm while descending"
+motion.csv,110.8,113.4,lid_press,sat,success,"curated: frames (lid raised before, frames 110-113 flat after)","hand-guided rake: start ~60 mm beyond the front edge, pull toward the arm while descending"
+motion.csv,113.4,117.4,sweep,sat..sun,success,curated: frames 113-117 (claw dragged along the front edges),
+motion.csv,117.7,118.5,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,119.0,156.0,idle,,,curated: parked at view_box_high,

@@ -1,0 +1,32 @@
+file,t_start,t_end,phase,target,outcome,evidence,notes
+motion.csv,0.0,19.9,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,20.1,21.0,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,21.1,21.9,lid_press,,unknown,curated: README (shallow touch),
+motion.csv,22.1,27.6,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,27.6,30.4,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,30.7,34.9,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,35.0,36.1,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,36.1,39.0,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,39.4,41.2,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,41.4,59.9,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,60.0,60.9,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,61.0,65.8,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,65.8,66.7,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,66.8,68.2,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,68.2,74.4,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,74.4,75.8,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,76.1,82.3,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,82.4,84.2,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,84.4,84.8,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,84.9,92.8,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,92.8,93.9,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,94.0,98.0,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,98.0,100.0,lid_press,,unknown,curated: README (shallow touch on a raised lid edge),
+motion.csv,100.1,101.6,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,101.7,107.4,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,107.5,110.2,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,110.2,110.8,lid_press,,success,"curated: z dips (strokes.py) + README: all lids shut after the presses, frames 24/28 43/47 63/67",teleop; day not identified per press (box skewed 20 deg)
+motion.csv,110.8,111.4,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,111.5,125.0,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,125.1,125.9,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,126.0,130.1,idle,,,auto: jaw rate / tip speed rule,

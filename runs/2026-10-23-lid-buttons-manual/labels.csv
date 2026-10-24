@@ -1,0 +1,26 @@
+file,t_start,t_end,phase,target,outcome,evidence,notes
+motion.csv,0.0,21.4,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,21.6,25.0,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,25.1,26.8,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,26.9,30.8,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,30.9,36.0,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,36.4,40.8,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,40.9,41.7,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,41.8,42.8,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,42.9,47.7,tab_press,button 1 of 7,unknown,"curated: README press table (button 1 at x 144, y 108) matched to the z minimum",order Sun..Sat along the box is inferred from y; whether each lid opened is not recorded
+motion.csv,47.8,49.7,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,49.8,55.1,tab_press,button 2 of 7,unknown,"curated: README press table (button 2 at x 135, y 84) matched to the z minimum",order Sun..Sat along the box is inferred from y; whether each lid opened is not recorded
+motion.csv,55.4,55.8,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,56.1,62.2,tab_press,button 3 of 7,unknown,"curated: README press table (button 3 at x 137, y 56) matched to the z minimum",order Sun..Sat along the box is inferred from y; whether each lid opened is not recorded
+motion.csv,62.2,63.5,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,63.6,64.8,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,65.0,66.5,descend,,,auto: jaw rate / tip speed rule,
+motion.csv,66.8,73.0,tab_press,button 4 of 7,unknown,"curated: README press table (button 4 at x 138, y 23) matched to the z minimum",order Sun..Sat along the box is inferred from y; whether each lid opened is not recorded
+motion.csv,73.0,75.0,tab_press,button 5 of 7,unknown,"curated: README press table (button 5 at x 137, y 11) matched to the z minimum",order Sun..Sat along the box is inferred from y; whether each lid opened is not recorded
+motion.csv,75.7,82.0,tab_press,button 6 of 7,unknown,"curated: README press table (button 6 at x 135, y -23) matched to the z minimum",order Sun..Sat along the box is inferred from y; whether each lid opened is not recorded
+motion.csv,82.2,85.2,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,85.3,88.3,idle,,,auto: jaw rate / tip speed rule,
+motion.csv,88.4,94.5,tab_press,button 7 of 7,unknown,"curated: README press table (button 7 at x 127, y -47) matched to the z minimum",order Sun..Sat along the box is inferred from y; whether each lid opened is not recorded
+motion.csv,94.5,96.7,transit,,,auto: jaw rate / tip speed rule,
+motion.csv,97.1,98.9,lift,,,auto: jaw rate / tip speed rule,
+motion.csv,99.0,239.9,idle,,,auto: jaw rate / tip speed rule,
