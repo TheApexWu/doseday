@@ -15,8 +15,13 @@ from viam.services.vision import VisionClient
 
 DETECTOR_NAME = "demo-anything-detector"
 DAY_COLORS = {
-    "SUNDAY": "#FF0000",
-    "MONDAY": "#FFA500",
+    "SUNDAY": "#F47F8B",
+    "MONDAY": "#F5C94E",
+    "TUESDAY": "#F4DF35",
+    "WEDNESDAY": "#A5E637",
+    "THURSDAY": "#7CBCE9",
+    "FRIDAY": "#35C9CE",
+    "SATURDAY": "#C58BE8",
 }
 LOCAL_ENV = Path(__file__).with_name(".env")
 
@@ -52,7 +57,8 @@ def wait_for_valid_day() -> tuple[str, str]:
             return day, color
 
         print(
-            f"{day!r} is not a valid command. Enter SUNDAY or MONDAY.",
+            f"{day!r} is not a valid command. Enter one of: "
+            f"{', '.join(DAY_COLORS)}.",
             flush=True,
         )
 
