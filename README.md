@@ -5,7 +5,20 @@ A robot arm that sorts single pills from a matte black mat into a 7-day organize
 The demo uses candy or vitamins only. Nothing in this repository is medical advice, and the code is not validated
 for handling medication.
 
-**Start here (23 Oct):** [`docs/DAY1-FINDINGS.md`](docs/DAY1-FINDINGS.md) has what works on the arm, what was measured and what is open. Recordings are in [`runs/`](runs/), one folder per session with a README.
+Built at the Spooky Civic Hackathon (NYC, 23-24 Oct 2026), Team 02: a medicine sorter for low-vision patients.
+
+## Status (24 Oct)
+
+| | State |
+|---|---|
+| Lid closing (`box.py stroke <day>`) | runs on the arm; Tuesday and Wednesday latch, Thursday and Friday spring back half-open |
+| Box registration (`box.py mark mon/fri`, `fit`) | two claw touches locate the organizer; every lid and drop position follows from them |
+| Arm tools (`armctl.py`) | status, hand-guided mode, teleop, align, teach and replay named poses |
+| Recordings ([`runs/`](runs/)) | 8 day-1 sessions (teleop picks, lid closing, hand demos), labelled in `runs/DATASET.md` |
+| Autonomous pick and drop | written (branch `alex/trial-pick-drop`), not yet run on the arm |
+| Pill detection | colour detector on the robot; a YOLOv8s pill model is linked in [`models/`](models/) but runs off the robot only |
+
+Day-1 measurements and open issues: [`docs/DAY1-FINDINGS.md`](docs/DAY1-FINDINGS.md). Rebuilding the table: [`docs/VENUE-SETUP.md`](docs/VENUE-SETUP.md).
 
 ## What it does
 
@@ -14,8 +27,8 @@ for handling medication.
 3. Turn the wrist to the pill's long axis, pick, and drop it through a funnel into its day slot.
 4. Log each placement, and ask a caretaker to approve the finished organizer before release.
 
-The arm is an SO-101 under Viam. The motion and gripper calls are stubs until the SO-101 port lands,
-so the code does not move hardware yet.
+The arm is an SO-101 under Viam. The full sort loop in `demo.py` has not run on the arm yet; today's hardware
+moves go through `armctl.py` and `box.py`.
 
 ## Setup
 
@@ -27,10 +40,10 @@ python3 -m venv .venv
 
 Offline runs need no arm and no Viam SDK. See `docs/ONBOARDING.md`.
 
-## Portal vision smoke test
+## Vision service
 
-The optional `demo-anything-detector` Viam vision service is a portal-only smoke test. It returns one
-`demo-object` box around the camera frame and is not connected to arm planning or motion. In the Viam app,
+`demo-anything-detector` is Viam's built-in `color_detector` on `follower-cam`. It boxes orange regions
+(`#FFA500`) and labels them `orange-object`. It is not connected to arm planning or motion. In the Viam app,
 open **CONTROL**, select `demo-anything-detector`, and choose `follower-cam` to see the overlay.
 
 To verify the same service from the SDK without moving the arm:
