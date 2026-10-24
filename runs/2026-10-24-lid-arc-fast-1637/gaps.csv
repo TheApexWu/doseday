@@ -1,0 +1,2 @@
+start,end,error
+1792874335.592,1792874335.599,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio

@@ -1,0 +1,53 @@
+unix_time,loop,error
+1792875228.033,joints,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792875229.334,camera,TimeoutError: 
+1792875231.537,joints,TimeoutError: 
+1792875235.040,joints,TimeoutError: 
+1792875236.853,camera,TimeoutError: 
+1792875238.543,joints,TimeoutError: 
+1792875242.055,joints,TimeoutError: 
+1792875245.564,joints,TimeoutError: 
+1792875247.610,camera,TimeoutError: 
+1792875249.069,joints,TimeoutError: 
+1792875252.571,joints,TimeoutError: 
+1792875256.075,joints,TimeoutError: 
+1792875259.578,joints,TimeoutError: 
+1792875263.663,camera,TimeoutError: 
+1792875265.314,joints,TimeoutError: 
+1792875267.167,camera,TimeoutError: 
+1792875268.820,joints,TimeoutError: 
+1792875270.304,joints,StreamTerminatedError: Connection lost
+1792875270.672,camera,TimeoutError: 
+1792875270.806,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875271.308,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875271.616,camera,StreamTerminatedError: Connection lost
+1792875271.809,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875272.118,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875272.311,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875272.620,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875272.813,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875273.123,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875273.315,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875273.625,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875273.817,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875274.126,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875274.320,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875274.628,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875274.822,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875275.130,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875275.323,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875275.632,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875275.824,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875276.134,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875276.326,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875276.636,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875276.829,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875277.139,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875277.330,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875277.641,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875277.832,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875278.143,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875278.334,joints,FileNotFoundError: [Errno 2] No such file or directory
+1792875278.645,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875279.147,camera,FileNotFoundError: [Errno 2] No such file or directory
+1792875286.109,camera,TimeoutError: 

@@ -1,0 +1,26 @@
+start,end,error
+1792874375.085,1792874375.089,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874379.132,1792874379.134,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874384.550,1792874384.553,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874389.985,1792874389.985,ConnectionError: Unable to establish a connection to the machine.
+1792874394.724,1792874394.727,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874398.575,1792874398.577,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874404.070,1792874404.070,ConnectionError: Unable to establish a connection to the machine.
+1792874408.529,1792874408.533,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874412.281,1792874412.284,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874418.079,1792874418.082,TimeoutError: 
+1792874423.606,1792874423.606,ConnectionError: Unable to establish a connection to the machine.
+1792874430.256,1792874430.261,TimeoutError: 
+1792874436.160,1792874436.163,TimeoutError: 
+1792874442.690,1792874442.695,TimeoutError: 
+1792874448.910,1792874448.914,TimeoutError: 
+1792874454.795,1792874454.797,TimeoutError: 
+1792874460.567,1792874460.576,TimeoutError: 
+1792874466.312,1792874466.312,ConnectionError: Unable to establish a connection to the machine.
+1792874473.033,1792874473.035,TimeoutError: 
+1792874478.480,1792874478.480,ConnectionError: Unable to establish a connection to the machine.
+1792874485.401,1792874485.409,TimeoutError: 
+1792874491.226,1792874491.230,TimeoutError: 
+1792874497.240,1792874497.245,TimeoutError: 
+1792874569.024,1792874569.043,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874624.526,1792874624.539,TimeoutError: 

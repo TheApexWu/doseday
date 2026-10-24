@@ -1,0 +1,7 @@
+unix_time,loop,error
+1792875228.035,joints,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792875228.248,camera,TimeoutError: 
+1792875231.543,joints,TimeoutError: 
+1792875235.046,joints,TimeoutError: 
+1792875238.549,joints,TimeoutError: 
+1792875242.056,joints,TimeoutError: 

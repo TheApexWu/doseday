@@ -1,0 +1,9 @@
+unix_time,loop,error
+1792874465.123,joints,TimeoutError: 
+1792874465.126,camera,StreamTerminatedError: Connection lost
+1792874472.022,joints,TimeoutError: 
+1792874472.031,camera,StreamTerminatedError: Connection lost
+1792874477.821,joints,TimeoutError: 
+1792874477.825,camera,StreamTerminatedError: Connection lost
+1792874483.645,joints,TimeoutError: 
+1792874483.655,camera,StreamTerminatedError: Connection lost

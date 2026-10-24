@@ -1,0 +1,109 @@
+{
+ "run": "2026-10-24-scripted-demo-04",
+ "time": "seconds from the first sample",
+ "segments": [
+  {
+   "label": "pick",
+   "pill": "white capsule",
+   "grasp_t": 12.8,
+   "release_t": 20.4,
+   "day": "mon",
+   "drop_quality": "clean"
+  },
+  {
+   "label": "pick",
+   "pill": "white capsule",
+   "grasp_t": 29.4,
+   "release_t": 34.8,
+   "day": "wed",
+   "drop_quality": "clean"
+  },
+  {
+   "label": "pick",
+   "pill": "white capsule",
+   "grasp_t": 46.5,
+   "release_t": 59.0,
+   "day": "fri",
+   "drop_quality": "release time from video, jaw signal unclear"
+  },
+  {
+   "label": "pick",
+   "pill": "pale-blue tablet",
+   "grasp_t": 64.1,
+   "release_t": 72.0,
+   "day": "thu",
+   "drop_quality": "release time from video, jaw signal unclear"
+  },
+  {
+   "label": "pick",
+   "pill": "red tablet",
+   "grasp_t": 78.9,
+   "release_t": 86.8,
+   "day": "sun",
+   "drop_quality": "clean"
+  },
+  {
+   "label": "pick",
+   "pill": "peach tablet",
+   "grasp_t": 91.6,
+   "release_t": 99.5,
+   "day": "tue",
+   "drop_quality": "release time from video, jaw signal unclear"
+  },
+  {
+   "label": "pick",
+   "pill": "cream tablet",
+   "grasp_t": 104.7,
+   "release_t": 109.0,
+   "day": "fri",
+   "drop_quality": "clean"
+  },
+  {
+   "label": "lid_sweep",
+   "t": [
+    112,
+    149
+   ],
+   "jaw": "closed",
+   "order": "sun to sat"
+  },
+  {
+   "label": "home",
+   "t": [
+    150,
+    176
+   ]
+  }
+ ],
+ "drop_pattern_from_clean_drops": {
+  "entry": "from the front, last 15-40 mm level within 4 mm",
+  "release_tip_z_mm": [
+   36,
+   45
+  ],
+  "release_tip_x_mm": [
+   190,
+   214
+  ],
+  "lean_deg_away_from_arm": [
+   5,
+   13
+  ],
+  "exit": "straight back toward the arm 25-38 mm at the same height, then up"
+ },
+ "grasp_jaw_pct": {
+  "capsule_held": [
+   3.7,
+   4.7
+  ],
+  "tablet_held": [
+   10.5,
+   10.9
+  ],
+  "empty_closed": [
+   1.5,
+   1.7
+  ],
+  "note": "hand-closed, torque off"
+ }
+}
