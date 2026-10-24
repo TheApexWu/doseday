@@ -1,0 +1,2 @@
+start,end,error
+1792866984.799,1792866984.805,GRPCError: (<Status.UNKNOWN: 2>, 'failed to read position for servo 6: no response from ser

@@ -1,0 +1,8 @@
+unix_time,loop,error
+1792875230.675,camera,TimeoutError: 
+1792875231.015,joints,TimeoutError: 
+1792875234.519,joints,TimeoutError: 
+1792875236.692,camera,TimeoutError: 
+1792875238.022,joints,TimeoutError: 
+1792875241.525,joints,TimeoutError: 
+1792875245.028,joints,TimeoutError: 

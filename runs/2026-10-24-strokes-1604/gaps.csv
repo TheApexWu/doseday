@@ -1,0 +1,7 @@
+start,end,error
+1792872268.162,1792872268.169,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792872272.196,1792872272.199,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792872370.956,1792872370.964,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792872377.116,1792872377.120,TimeoutError: 
+1792872380.988,1792872380.991,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792872414.541,1792872414.548,GRPCError: (<Status.UNKNOWN: 2>, 'failed to read position for servo 6: no response from ser

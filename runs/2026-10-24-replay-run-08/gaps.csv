@@ -1,0 +1,5 @@
+start,end,error
+1792867248.537,1792867248.551,GRPCError: (<Status.UNKNOWN: 2>, 'failed to read position for servo 6: header not found', N
+1792867254.293,1792867254.301,TimeoutError: 
+1792867258.268,1792867258.271,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792867264.023,1792867264.025,TimeoutError: 

@@ -1,0 +1,149 @@
+{
+ "source": "runs/2026-10-24-scripted-demo-04/samples.csv",
+ "frame": "arm base, mm; tip = wrist + 98 mm along claw axis",
+ "box_fit": {
+  "sun_centre_y": 80.8,
+  "pitch_y": -32.6
+ },
+ "steps": [
+  {
+   "pill": "white capsule",
+   "pick_t": 12.8,
+   "pick_tip_mm": [
+    136,
+    104,
+    -2
+   ],
+   "drop_t": 20.0,
+   "drop_day": "mon",
+   "drop_tip_mm": [
+    213,
+    50,
+    44
+   ],
+   "drop_offset_from_day_centre_mm": 1,
+   "grasp_heading": -111.1
+  },
+  {
+   "pill": "white capsule",
+   "pick_t": 29.4,
+   "pick_tip_mm": [
+    73,
+    -139,
+    -3
+   ],
+   "drop_t": 35.5,
+   "drop_day": "wed",
+   "drop_tip_mm": [
+    195,
+    -28,
+    48
+   ],
+   "drop_offset_from_day_centre_mm": -11,
+   "grasp_heading": -45.6
+  },
+  {
+   "pill": "white capsule",
+   "pick_t": 46.5,
+   "pick_tip_mm": [
+    301,
+    -112,
+    -17
+   ],
+   "drop_t": 59.0,
+   "drop_day": "fri",
+   "drop_tip_mm": [
+    187,
+    -72,
+    36
+   ],
+   "drop_offset_from_day_centre_mm": 10,
+   "grasp_heading": -196.4
+  },
+  {
+   "pill": "pale-blue tablet",
+   "pick_t": 64.1,
+   "pick_tip_mm": [
+    224,
+    185,
+    -13
+   ],
+   "drop_t": 72.0,
+   "drop_day": "thu",
+   "drop_tip_mm": [
+    201,
+    -48,
+    45
+   ],
+   "drop_offset_from_day_centre_mm": 1,
+   "grasp_heading": -69.0
+  },
+  {
+   "pill": "red tablet",
+   "pick_t": 78.9,
+   "pick_tip_mm": [
+    285,
+    108,
+    -14
+   ],
+   "drop_t": 85.0,
+   "drop_day": "sun",
+   "drop_tip_mm": [
+    212,
+    76,
+    35
+   ],
+   "drop_offset_from_day_centre_mm": -5,
+   "grasp_heading": -91.3
+  },
+  {
+   "pill": "peach tablet",
+   "pick_t": 91.6,
+   "pick_tip_mm": [
+    212,
+    -195,
+    -15
+   ],
+   "drop_t": 99.5,
+   "drop_day": "tue",
+   "drop_tip_mm": [
+    202,
+    28,
+    37
+   ],
+   "drop_offset_from_day_centre_mm": 12,
+   "grasp_heading": -144.9
+  },
+  {
+   "pill": "cream tablet",
+   "pick_t": 104.7,
+   "pick_tip_mm": [
+    281,
+    -54,
+    -12
+   ],
+   "drop_t": 110.0,
+   "drop_day": "fri",
+   "drop_tip_mm": [
+    162,
+    -87,
+    64
+   ],
+   "drop_offset_from_day_centre_mm": -5,
+   "grasp_heading": -113.1
+  }
+ ],
+ "lid_sweep": {
+  "t": [
+   112,
+   149
+  ],
+  "order": "sun to sat",
+  "jaw": "closed"
+ },
+ "end": {
+  "t": 150,
+  "pose": "home, wrist (89, 4, 179)"
+ },
+ "drop_heading": -110.0
+}

@@ -1,0 +1,39 @@
+start,end,error
+1792868948.557,1792868948.560,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868954.278,1792868954.289,TimeoutError: 
+1792868958.639,1792868958.642,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868964.438,1792868964.440,TimeoutError: 
+1792868969.661,1792868969.664,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868973.669,1792868973.672,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868977.946,1792868977.949,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868982.810,1792868982.813,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868987.979,1792868987.983,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868992.999,1792868993.002,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868998.324,1792868998.327,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869002.126,1792869002.129,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869005.845,1792869005.847,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869114.887,1792869114.889,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869120.611,1792869120.615,TimeoutError: 
+1792869125.907,1792869125.912,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869131.711,1792869131.716,TimeoutError: 
+1792869136.930,1792869136.937,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869140.941,1792869140.943,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869144.939,1792869144.942,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869151.588,1792869151.591,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869156.103,1792869156.109,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869160.638,1792869160.641,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869165.168,1792869165.177,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869169.945,1792869169.951,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869174.348,1792869174.352,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869178.375,1792869178.378,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869182.395,1792869182.404,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869186.386,1792869186.389,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869190.671,1792869190.675,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869194.749,1792869194.752,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869199.182,1792869199.183,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869203.389,1792869203.395,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869207.520,1792869207.523,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869211.661,1792869211.664,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869215.664,1792869215.668,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869219.689,1792869219.691,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792869223.694,1792869223.697,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio

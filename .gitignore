@@ -18,3 +18,8 @@ box_marks.json
 # third-party weights, fetched by models/fetch_pill_model.sh
 models/*.pt
 models/*.pt.part
+
+# 24 Oct recordings: camera frames and videos stay local (1.3 GB); joint data, labels and scripts are tracked
+runs/**/frames/
+runs/**/*.mp4
+.claude/

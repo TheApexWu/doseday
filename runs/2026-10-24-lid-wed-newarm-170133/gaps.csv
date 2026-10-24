@@ -1,0 +1,14 @@
+unix_time,loop,error
+1792875714.466,joints,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792875717.970,joints,TimeoutError: 
+1792875721.474,joints,TimeoutError: 
+1792875724.977,joints,TimeoutError: 
+1792875749.244,joints,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792875761.992,joints,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792875765.496,joints,TimeoutError: 
+1792875768.999,joints,TimeoutError: 
+1792875772.501,joints,TimeoutError: 
+1792875776.003,joints,TimeoutError: 
+1792875779.506,joints,TimeoutError: 
+1792875783.008,joints,TimeoutError: 
+1792875786.514,joints,TimeoutError: 

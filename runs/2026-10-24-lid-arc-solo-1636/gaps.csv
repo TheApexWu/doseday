@@ -1,0 +1,37 @@
+start,end,error
+1792874254.486,1792874254.497,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874337.595,1792874337.599,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874343.662,1792874343.665,TimeoutError: 
+1792874347.793,1792874347.797,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874351.663,1792874351.665,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874355.479,1792874355.481,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874359.337,1792874359.340,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874363.278,1792874363.281,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874367.460,1792874367.462,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874372.653,1792874372.656,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874378.094,1792874378.094,ConnectionError: Unable to establish a connection to the machine.
+1792874382.941,1792874382.943,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874387.484,1792874387.487,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874391.348,1792874391.351,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874396.873,1792874396.873,ConnectionError: Unable to establish a connection to the machine.
+1792874400.626,1792874400.630,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874404.499,1792874404.503,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874409.531,1792874409.534,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792874415.411,1792874415.414,TimeoutError: 
+1792874421.348,1792874421.355,TimeoutError: 
+1792874427.508,1792874427.514,TimeoutError: 
+1792874433.415,1792874433.420,TimeoutError: 
+1792874439.241,1792874439.245,TimeoutError: 
+1792874445.232,1792874445.235,TimeoutError: 
+1792874451.020,1792874451.025,TimeoutError: 
+1792874456.786,1792874456.800,TimeoutError: 
+1792874463.566,1792874463.571,TimeoutError: 
+1792874469.559,1792874469.569,TimeoutError: 
+1792874475.320,1792874475.325,TimeoutError: 
+1792874481.142,1792874481.146,TimeoutError: 
+1792874487.349,1792874487.350,TimeoutError: 
+1792874493.740,1792874493.741,TimeoutError: 
+1792874499.533,1792874499.536,TimeoutError: 
+1792874624.557,1792874624.563,TimeoutError: 
+1792874697.169,1792874697.173,TimeoutError: 
+1792874954.434,1792874954.443,TimeoutError: 

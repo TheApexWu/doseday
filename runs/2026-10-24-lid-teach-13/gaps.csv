@@ -1,0 +1,8 @@
+start,end,error
+1792868949.554,1792868949.562,TimeoutError: 
+1792868955.348,1792868955.352,TimeoutError: 
+1792868961.511,1792868961.515,TimeoutError: 
+1792868967.269,1792868967.273,TimeoutError: 
+1792868971.665,1792868971.667,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868975.759,1792868975.763,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio
+1792868979.948,1792868979.952,GRPCError: (<Status.UNKNOWN: 2>, "failed to read joint positions: failed to get raw positio

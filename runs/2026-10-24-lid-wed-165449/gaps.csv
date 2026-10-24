@@ -1,0 +1,20 @@
+unix_time,loop,error
+1792875317.244,joints,GRPCError: (<Status.UNKNOWN: 2>, 'failed to read position for servo 6: no response from ser
+1792875320.748,joints,TimeoutError: 
+1792875324.250,joints,TimeoutError: 
+1792875327.754,joints,TimeoutError: 
+1792875331.257,joints,TimeoutError: 
+1792875334.760,joints,TimeoutError: 
+1792875338.263,joints,TimeoutError: 
+1792875341.767,joints,TimeoutError: 
+1792875345.269,joints,TimeoutError: 
+1792875348.773,joints,TimeoutError: 
+1792875352.275,joints,TimeoutError: 
+1792875355.778,joints,TimeoutError: 
+1792875359.281,joints,TimeoutError: 
+1792875362.784,joints,TimeoutError: 
+1792875366.286,joints,TimeoutError: 
+1792875369.789,joints,TimeoutError: 
+1792875373.292,joints,TimeoutError: 
+1792875376.798,joints,TimeoutError: 
+1792875380.302,joints,TimeoutError: 

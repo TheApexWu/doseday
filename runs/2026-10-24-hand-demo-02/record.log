@@ -1,0 +1,1163 @@
+2026-10-24 13:14:55,529		[33;36mINFO[0m	viam.rpc.dial (dial.py:386)	Connecting to socket: /tmp/proxy-Cn2ZB3FM.sock	
+  0.0s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  0.5s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  0.8s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  1.3s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  1.6s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.0s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.1s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.2s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.3s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.5s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.6s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.7s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  2.9s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.0s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.1s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.2s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.4s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.5s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.6s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.8s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  3.9s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.0s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.1s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.3s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.4s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.5s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.6s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.8s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  4.9s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  5.0s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.7°
+  5.1s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.2°
+  5.2s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.1°
+  5.4s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.2°
+  5.5s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.3°
+  5.6s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.2°
+  5.8s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.2°
+  5.9s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.2°
+  6.0s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.1°
+  6.2s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 461.1°
+  6.3s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.7°
+  6.4s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  6.5s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  6.7s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  6.8s  follower [7, -95, 57, 101, -463]  tip x    91 y    -6 z   171  jaw    0%  lag 460.9°
+  6.9s  follower [7, -94, 56, 101, -463]  tip x    91 y    -6 z   174  jaw    0%  lag 460.9°
+  7.0s  follower [7, -94, 53, 101, -463]  tip x    89 y    -6 z   183  jaw    0%  lag 461.2°
+  7.2s  follower [7, -91, 48, 101, -463]  tip x    89 y    -6 z   194  jaw    0%  lag 461.5°
+  7.3s  follower [7, -86, 43, 101, -463]  tip x    93 y    -6 z   203  jaw    0%  lag 461.5°
+  7.4s  follower [7, -82, 40, 101, -463]  tip x    95 y    -7 z   205  jaw    0%  lag 461.5°
+  7.5s  follower [7, -82, 41, 101, -463]  tip x    95 y    -7 z   204  jaw    0%  lag 461.5°
+  7.7s  follower [7, -82, 41, 101, -463]  tip x    95 y    -7 z   203  jaw    0%  lag 461.5°
+  7.8s  follower [7, -83, 42, 101, -463]  tip x    96 y    -7 z   199  jaw    0%  lag 461.3°
+  7.9s  follower [7, -83, 44, 101, -463]  tip x    97 y    -7 z   194  jaw    0%  lag 461.3°
+  8.0s  follower [7, -83, 47, 101, -463]  tip x    99 y    -7 z   188  jaw    0%  lag 461.3°
+  8.2s  follower [7, -83, 49, 101, -463]  tip x   100 y    -7 z   182  jaw    0%  lag 461.3°
+  8.3s  follower [7, -83, 52, 101, -463]  tip x   101 y    -7 z   176  jaw    0%  lag 461.3°
+  8.4s  follower [7, -83, 52, 101, -463]  tip x   101 y    -7 z   178  jaw    0%  lag 461.3°
+  8.5s  follower [7, -83, 51, 101, -463]  tip x   100 y    -7 z   179  jaw    0%  lag 461.2°
+  8.7s  follower [7, -83, 51, 101, -463]  tip x   100 y    -7 z   179  jaw    0%  lag 461.1°
+  8.8s  follower [7, -83, 50, 101, -463]  tip x    99 y    -7 z   186  jaw    0%  lag 461.1°
+  8.9s  follower [6, -83, 45, 101, -463]  tip x    96 y    -7 z   199  jaw    0%  lag 461.1°
+  9.1s  follower [6, -83, 41, 101, -463]  tip x    94 y    -6 z   203  jaw    0%  lag 461.1°
+  9.2s  follower [6, -83, 41, 101, -463]  tip x    94 y    -6 z   203  jaw    0%  lag 461.1°
+  9.3s  follower [6, -83, 41, 101, -463]  tip x    94 y    -6 z   203  jaw    0%  lag 461.1°
+  9.4s  follower [6, -83, 41, 101, -463]  tip x    94 y    -6 z   204  jaw    0%  lag 461.1°
+  9.6s  follower [6, -83, 41, 101, -463]  tip x    94 y    -6 z   204  jaw    0%  lag 461.1°
+  9.8s  follower [6, -83, 41, 100, -463]  tip x    94 y    -6 z   205  jaw    0%  lag 461.0°
+  9.9s  follower [6, -83, 38, 96, -463]  tip x    92 y    -6 z   213  jaw    0%  lag 461.1°
+ 10.0s  follower [6, -82, 35, 91, -463]  tip x    94 y    -6 z   222  jaw    0%  lag 461.0°
+ 10.1s  follower [6, -82, 33, 88, -463]  tip x    93 y    -6 z   227  jaw    0%  lag 461.0°
+ 10.2s  follower [6, -82, 32, 88, -463]  tip x    91 y    -6 z   231  jaw    0%  lag 461.0°
+ 10.4s  follower [6, -82, 29, 88, -463]  tip x    88 y    -5 z   238  jaw    0%  lag 461.0°
+ 10.5s  follower [6, -79, 26, 88, -463]  tip x    93 y    -6 z   245  jaw    0%  lag 461.0°
+ 10.6s  follower [6, -73, 21, 88, -463]  tip x   100 y    -7 z   254  jaw    0%  lag 461.0°
+ 10.7s  follower [6, -67, 15, 88, -463]  tip x   108 y    -7 z   263  jaw    0%  lag 461.0°
+ 10.8s  follower [6, -62, 10, 88, -463]  tip x   114 y    -8 z   267  jaw    0%  lag 461.0°
+ 11.0s  follower [6, -60, 10, 88, -463]  tip x   115 y    -8 z   267  jaw    0%  lag 461.0°
+ 11.1s  follower [6, -60, 10, 88, -463]  tip x   115 y    -8 z   267  jaw    0%  lag 461.0°
+ 11.2s  follower [6, -60, 10, 89, -463]  tip x   115 y    -8 z   265  jaw    0%  lag 461.0°
+ 11.3s  follower [6, -61, 10, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 11.5s  follower [6, -61, 10, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 11.6s  follower [6, -61, 10, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 11.7s  follower [6, -61, 10, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 11.8s  follower [6, -61, 10, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 11.9s  follower [6, -61, 10, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.0s  follower [6, -61, 10, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.2s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.3s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.4s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.5s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.6s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.7s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 12.9s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.0s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.1s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.3s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.4s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.5s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.6s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.8s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 13.9s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 14.0s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 14.1s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.0°
+ 14.2s  follower [6, -61, 11, 89, -463]  tip x   113 y    -8 z   265  jaw    0%  lag 461.3°
+ 14.4s  follower [6, -61, 11, 89, -463]  tip x   113 y    -9 z   265  jaw    0%  lag 461.2°
+ 14.5s  follower [7, -61, 11, 89, -463]  tip x   113 y    -9 z   264  jaw    0%  lag 461.1°
+ 14.6s  follower [7, -61, 11, 89, -463]  tip x   113 y    -9 z   264  jaw    0%  lag 460.9°
+ 14.8s  follower [7, -61, 12, 89, -463]  tip x   116 y    -9 z   259  jaw    0%  lag 461.4°
+ 14.9s  follower [6, -61, 15, 90, -464]  tip x   120 y    -9 z   250  jaw    0%  lag 461.5°
+ 15.0s  follower [6, -60, 19, 92, -464]  tip x   121 y    -9 z   237  jaw    0%  lag 461.5°
+ 15.2s  follower [6, -60, 25, 98, -464]  tip x   125 y    -8 z   219  jaw    0%  lag 461.5°
+ 15.4s  follower [3, -60, 29, 98, -463]  tip x   126 y    -3 z   213  jaw    0%  lag 460.7°
+ 15.5s  follower [-1, -60, 31, 98, -463]  tip x   128 y     5 z   207  jaw    0%  lag 460.7°
+ 15.6s  follower [-7, -57, 34, 98, -463]  tip x   131 y    15 z   199  jaw    0%  lag 460.7°
+ 15.8s  follower [-13, -54, 34, 98, -463]  tip x   134 y    25 z   195  jaw    0%  lag 460.7°
+ 15.9s  follower [-19, -51, 34, 97, -463]  tip x   133 y    36 z   192  jaw    0%  lag 460.7°
+ 16.0s  follower [-25, -50, 34, 97, -463]  tip x   131 y    47 z   189  jaw    0%  lag 460.7°
+ 16.2s  follower [-30, -46, 35, 97, -463]  tip x   131 y    57 z   185  jaw    0%  lag 460.7°
+ 16.3s  follower [-34, -44, 34, 97, -463]  tip x   129 y    64 z   182  jaw    0%  lag 460.7°
+ 16.5s  follower [-37, -43, 34, 97, -463]  tip x   126 y    69 z   182  jaw    0%  lag 460.7°
+ 16.6s  follower [-39, -43, 34, 95, -463]  tip x   125 y    71 z   181  jaw    0%  lag 460.8°
+ 16.7s  follower [-40, -42, 35, 93, -464]  tip x   127 y    72 z   181  jaw    0%  lag 461.5°
+ 16.9s  follower [-40, -42, 35, 92, -464]  tip x   128 y    73 z   179  jaw    0%  lag 461.6°
+ 17.0s  follower [-40, -39, 35, 92, -464]  tip x   131 y    76 z   173  jaw    0%  lag 461.6°
+ 17.1s  follower [-40, -35, 35, 92, -464]  tip x   134 y    78 z   167  jaw    0%  lag 461.6°
+ 17.4s  follower [-40, -32, 35, 91, -464]  tip x   140 y    84 z   161  jaw    0%  lag 461.5°
+ 17.7s  follower [-40, -25, 36, 86, -464]  tip x   143 y    86 z   145  jaw    0%  lag 461.5°
+ 18.1s  follower [-40, -23, 36, 83, -464]  tip x   144 y    93 z   143  jaw    0%  lag 461.5°
+ 18.4s  follower [-43, -22, 37, 80, -464]  tip x   147 y   100 z   132  jaw    0%  lag 461.5°
+ 18.8s  follower [-44, -14, 37, 71, -464]  tip x   147 y   109 z   124  jaw    1%  lag 461.7°
+ 19.1s  follower [-45, -14, 37, 70, -464]  tip x   146 y   109 z   124  jaw   12%  lag 461.7°
+ 19.6s  follower [-47, -14, 37, 70, -464]  tip x   144 y   111 z   124  jaw   30%  lag 461.7°
+ 19.9s  follower [-47, -14, 37, 71, -464]  tip x   144 y   111 z   124  jaw   48%  lag 461.8°
+ 20.4s  follower [-48, -12, 37, 70, -464]  tip x   139 y   117 z   114  jaw   49%  lag 461.9°
+ 20.9s  follower [-50, -8, 37, 67, -470]  tip x   138 y   121 z   111  jaw   49%  lag 468.2°
+ 21.2s  follower [-51, -8, 37, 67, -483]  tip x   137 y   123 z   111  jaw   48%  lag 481.2°
+ 21.3s  follower [-52, -7, 37, 67, -487]  tip x   134 y   122 z   105  jaw   48%  lag 485.4°
+ 21.4s  follower [-52, -5, 38, 67, -490]  tip x   135 y   123 z   101  jaw   48%  lag 488.0°
+ 21.6s  follower [-52, -5, 38, 64, -491]  tip x   137 y   126 z   101  jaw   48%  lag 488.8°
+ 21.7s  follower [-52, -4, 38, 61, -491]  tip x   136 y   125 z    98  jaw   48%  lag 488.9°
+ 21.8s  follower [-52, -4, 40, 61, -491]  tip x   135 y   122 z    95  jaw   48%  lag 488.9°
+ 21.9s  follower [-52, -4, 41, 59, -491]  tip x   135 y   122 z    94  jaw   48%  lag 488.9°
+ 22.0s  follower [-52, -5, 41, 59, -491]  tip x   135 y   122 z    94  jaw   48%  lag 488.9°
+ 22.2s  follower [-52, -5, 41, 59, -491]  tip x   135 y   122 z    94  jaw   48%  lag 488.9°
+ 22.3s  follower [-52, -4, 41, 59, -491]  tip x   135 y   123 z    94  jaw   48%  lag 488.8°
+ 22.4s  follower [-52, -4, 41, 59, -491]  tip x   135 y   123 z    94  jaw   48%  lag 488.8°
+ 22.5s  follower [-52, -4, 41, 59, -491]  tip x   135 y   123 z    94  jaw   48%  lag 488.8°
+ 22.7s  follower [-52, -4, 41, 59, -491]  tip x   135 y   123 z    94  jaw   48%  lag 488.8°
+ 22.8s  follower [-52, -4, 41, 59, -491]  tip x   135 y   123 z    94  jaw   48%  lag 488.8°
+ 22.9s  follower [-52, -4, 41, 59, -491]  tip x   135 y   123 z    94  jaw   48%  lag 488.8°
+ 23.0s  follower [-52, -4, 41, 58, -491]  tip x   135 y   123 z    94  jaw   48%  lag 488.7°
+ 23.2s  follower [-52, -4, 41, 58, -491]  tip x   135 y   123 z    94  jaw   46%  lag 488.7°
+ 23.3s  follower [-52, -4, 41, 58, -491]  tip x   135 y   123 z    94  jaw   39%  lag 488.7°
+ 23.4s  follower [-52, -4, 41, 58, -491]  tip x   135 y   123 z    94  jaw   33%  lag 488.7°
+ 23.6s  follower [-52, -4, 41, 58, -491]  tip x   135 y   123 z    94  jaw   28%  lag 488.7°
+ 23.7s  follower [-52, -4, 41, 58, -491]  tip x   135 y   123 z    94  jaw   26%  lag 488.7°
+ 23.9s  follower [-52, -5, 41, 58, -491]  tip x   135 y   123 z    94  jaw   25%  lag 488.7°
+ 24.0s  follower [-52, -5, 41, 58, -491]  tip x   135 y   123 z    94  jaw   24%  lag 488.7°
+ 24.1s  follower [-52, -5, 41, 58, -491]  tip x   135 y   123 z    95  jaw   22%  lag 488.7°
+ 24.3s  follower [-52, -5, 41, 58, -491]  tip x   135 y   123 z    95  jaw   20%  lag 488.7°
+ 24.4s  follower [-52, -5, 41, 59, -491]  tip x   135 y   123 z    95  jaw   17%  lag 488.8°
+ 24.5s  follower [-52, -5, 41, 59, -491]  tip x   135 y   123 z    95  jaw   14%  lag 488.8°
+ 24.7s  follower [-52, -5, 41, 59, -491]  tip x   135 y   123 z    95  jaw   11%  lag 488.8°
+ 24.8s  follower [-52, -5, 41, 59, -491]  tip x   135 y   123 z    95  jaw   10%  lag 488.7°
+ 25.0s  follower [-52, -5, 41, 59, -491]  tip x   135 y   123 z    95  jaw    8%  lag 488.7°
+ 25.1s  follower [-52, -5, 41, 59, -491]  tip x   135 y   123 z    95  jaw    5%  lag 488.7°
+ 25.2s  follower [-52, -5, 41, 59, -491]  tip x   135 y   122 z    95  jaw    4%  lag 488.7°
+ 25.3s  follower [-52, -5, 41, 59, -491]  tip x   135 y   122 z    95  jaw    4%  lag 488.7°
+ 25.5s  follower [-52, -5, 41, 59, -491]  tip x   135 y   122 z    95  jaw    4%  lag 488.7°
+ 25.6s  follower [-52, -5, 41, 59, -491]  tip x   136 y   122 z    95  jaw    4%  lag 488.7°
+ 25.7s  follower [-51, -5, 41, 59, -491]  tip x   137 y   122 z    96  jaw    4%  lag 488.7°
+ 25.8s  follower [-51, -5, 41, 59, -491]  tip x   137 y   122 z    97  jaw    4%  lag 488.7°
+ 26.0s  follower [-51, -5, 40, 59, -491]  tip x   137 y   122 z    98  jaw    4%  lag 488.6°
+ 26.1s  follower [-51, -8, 40, 60, -491]  tip x   136 y   121 z   107  jaw    4%  lag 488.6°
+ 26.2s  follower [-51, -12, 40, 65, -491]  tip x   135 y   116 z   117  jaw    4%  lag 488.6°
+ 26.3s  follower [-49, -16, 40, 69, -491]  tip x   136 y   109 z   123  jaw    4%  lag 488.6°
+ 26.5s  follower [-46, -19, 40, 71, -491]  tip x   141 y   103 z   130  jaw    4%  lag 488.6°
+ 26.6s  follower [-43, -23, 40, 71, -491]  tip x   146 y    95 z   137  jaw    4%  lag 488.6°
+ 26.7s  follower [-39, -25, 40, 72, -491]  tip x   151 y    87 z   141  jaw    4%  lag 488.6°
+ 26.8s  follower [-35, -27, 40, 74, -490]  tip x   156 y    76 z   144  jaw    4%  lag 488.4°
+ 27.0s  follower [-31, -28, 40, 74, -490]  tip x   160 y    68 z   145  jaw    4%  lag 487.9°
+ 27.1s  follower [-27, -28, 40, 74, -490]  tip x   164 y    61 z   145  jaw    4%  lag 487.8°
+ 27.3s  follower [-24, -28, 40, 73, -490]  tip x   168 y    55 z   145  jaw    4%  lag 487.7°
+ 27.4s  follower [-22, -28, 40, 73, -490]  tip x   169 y    52 z   144  jaw    4%  lag 487.6°
+ 27.5s  follower [-21, -27, 40, 73, -490]  tip x   171 y    50 z   143  jaw    4%  lag 487.6°
+ 27.6s  follower [-21, -27, 40, 73, -490]  tip x   171 y    49 z   143  jaw    4%  lag 487.6°
+ 27.8s  follower [-20, -27, 40, 71, -490]  tip x   174 y    50 z   143  jaw    5%  lag 487.5°
+ 27.9s  follower [-20, -27, 40, 67, -490]  tip x   178 y    48 z   142  jaw    5%  lag 487.5°
+ 28.0s  follower [-19, -26, 41, 66, -488]  tip x   179 y    47 z   141  jaw    5%  lag 486.3°
+ 28.1s  follower [-18, -26, 41, 66, -486]  tip x   180 y    45 z   141  jaw    5%  lag 483.8°
+ 28.3s  follower [-18, -26, 41, 66, -483]  tip x   180 y    44 z   138  jaw    5%  lag 480.8°
+ 28.4s  follower [-17, -23, 40, 65, -482]  tip x   184 y    45 z   133  jaw    5%  lag 479.8°
+ 28.5s  follower [-17, -21, 41, 62, -482]  tip x   187 y    46 z   131  jaw    5%  lag 479.7°
+ 28.7s  follower [-17, -21, 41, 60, -482]  tip x   187 y    46 z   130  jaw    5%  lag 479.6°
+ 28.8s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   130  jaw    5%  lag 479.6°
+ 28.9s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   130  jaw    5%  lag 479.6°
+ 29.0s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   130  jaw    5%  lag 479.6°
+ 29.2s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   131  jaw    5%  lag 479.6°
+ 29.3s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   131  jaw    5%  lag 479.6°
+ 29.4s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   131  jaw    5%  lag 479.7°
+ 29.5s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   130  jaw    5%  lag 479.7°
+ 29.7s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   130  jaw    5%  lag 479.7°
+ 29.8s  follower [-17, -21, 41, 60, -482]  tip x   188 y    45 z   130  jaw    5%  lag 479.7°
+ 29.9s  follower [-17, -21, 41, 60, -482]  tip x   187 y    45 z   132  jaw    5%  lag 479.7°
+ 30.1s  follower [-17, -22, 41, 61, -482]  tip x   185 y    45 z   133  jaw    5%  lag 479.6°
+ 30.2s  follower [-17, -22, 41, 65, -482]  tip x   180 y    43 z   134  jaw    5%  lag 479.7°
+ 30.3s  follower [-17, -23, 40, 73, -482]  tip x   174 y    41 z   137  jaw    5%  lag 479.7°
+ 30.4s  follower [-17, -24, 37, 80, -482]  tip x   173 y    41 z   152  jaw    5%  lag 479.7°
+ 30.6s  follower [-17, -26, 31, 85, -482]  tip x   174 y    41 z   165  jaw    5%  lag 479.7°
+ 30.7s  follower [-17, -26, 27, 91, -482]  tip x   173 y    40 z   176  jaw    5%  lag 479.7°
+ 30.8s  follower [-16, -26, 22, 96, -482]  tip x   176 y    35 z   186  jaw    5%  lag 479.7°
+ 30.9s  follower [-13, -25, 18, 98, -482]  tip x   182 y    28 z   195  jaw    5%  lag 479.7°
+ 31.1s  follower [-9, -24, 14, 99, -482]  tip x   185 y    19 z   201  jaw    5%  lag 479.6°
+ 31.2s  follower [-6, -24, 12, 99, -482]  tip x   188 y    13 z   202  jaw    5%  lag 479.6°
+ 31.3s  follower [-4, -22, 11, 98, -482]  tip x   192 y    11 z   201  jaw    5%  lag 479.6°
+ 31.4s  follower [-3, -19, 8, 98, -482]  tip x   199 y     6 z   203  jaw    5%  lag 479.5°
+ 31.6s  follower [-1, -15, 4, 98, -480]  tip x   208 y     0 z   202  jaw    5%  lag 477.4°
+ 31.7s  follower [1, -10, 0, 98, -473]  tip x   218 y    -8 z   198  jaw    5%  lag 470.9°
+ 31.8s  follower [4, -5, -4, 98, -468]  tip x   228 y   -14 z   193  jaw    5%  lag 466.0°
+ 32.0s  follower [5, 1, -8, 97, -466]  tip x   238 y   -16 z   187  jaw    4%  lag 463.5°
+ 32.1s  follower [5, 7, -13, 97, -464]  tip x   248 y   -17 z   179  jaw    4%  lag 461.9°
+ 32.2s  follower [5, 12, -16, 97, -462]  tip x   255 y   -18 z   170  jaw    4%  lag 460.0°
+ 32.3s  follower [5, 17, -18, 95, -460]  tip x   262 y   -19 z   159  jaw    4%  lag 457.6°
+ 32.5s  follower [5, 21, -19, 92, -460]  tip x   267 y   -20 z   147  jaw    4%  lag 457.4°
+ 32.6s  follower [5, 24, -19, 91, -460]  tip x   268 y   -20 z   138  jaw    4%  lag 457.4°
+ 32.7s  follower [5, 26, -19, 91, -460]  tip x   269 y   -20 z   128  jaw    4%  lag 457.5°
+ 32.9s  follower [5, 29, -19, 90, -460]  tip x   271 y   -20 z   122  jaw    4%  lag 457.5°
+ 33.0s  follower [5, 29, -19, 87, -460]  tip x   275 y   -21 z   121  jaw    4%  lag 457.5°
+ 33.1s  follower [5, 29, -18, 85, -460]  tip x   275 y   -21 z   116  jaw    5%  lag 457.5°
+ 33.3s  follower [5, 31, -18, 85, -460]  tip x   275 y   -21 z   112  jaw    5%  lag 457.4°
+ 33.4s  follower [5, 31, -18, 85, -460]  tip x   275 y   -20 z   110  jaw    5%  lag 457.4°
+ 33.5s  follower [5, 33, -18, 85, -460]  tip x   275 y   -18 z   106  jaw    7%  lag 457.4°
+ 33.7s  follower [4, 33, -18, 85, -460]  tip x   275 y   -17 z   106  jaw    9%  lag 457.4°
+ 33.8s  follower [4, 33, -18, 85, -460]  tip x   275 y   -17 z   105  jaw   11%  lag 457.4°
+ 33.9s  follower [4, 33, -18, 85, -460]  tip x   275 y   -17 z   103  jaw   13%  lag 457.4°
+ 34.0s  follower [4, 35, -18, 85, -460]  tip x   274 y   -17 z    98  jaw   14%  lag 457.4°
+ 34.1s  follower [4, 35, -18, 85, -460]  tip x   274 y   -17 z    97  jaw   14%  lag 457.5°
+ 34.2s  follower [4, 36, -18, 85, -460]  tip x   274 y   -18 z    95  jaw   14%  lag 457.5°
+ 34.3s  follower [4, 36, -18, 85, -460]  tip x   274 y   -19 z    93  jaw   14%  lag 457.5°
+ 34.5s  follower [4, 37, -18, 85, -460]  tip x   274 y   -19 z    93  jaw   14%  lag 457.5°
+ 34.6s  follower [4, 37, -18, 85, -460]  tip x   273 y   -19 z    89  jaw   14%  lag 457.5°
+ 34.7s  follower [4, 38, -18, 85, -460]  tip x   273 y   -19 z    87  jaw   14%  lag 457.5°
+ 34.9s  follower [4, 39, -18, 85, -460]  tip x   273 y   -19 z    87  jaw   14%  lag 457.5°
+ 35.0s  follower [4, 39, -18, 85, -460]  tip x   273 y   -18 z    87  jaw   14%  lag 457.6°
+ 35.1s  follower [4, 39, -18, 85, -460]  tip x   273 y   -19 z    86  jaw   13%  lag 457.6°
+ 35.2s  follower [4, 38, -18, 85, -460]  tip x   273 y   -18 z    87  jaw   13%  lag 457.6°
+ 35.4s  follower [4, 38, -18, 85, -460]  tip x   273 y   -18 z    87  jaw   13%  lag 457.6°
+ 35.5s  follower [4, 38, -18, 85, -460]  tip x   273 y   -17 z    86  jaw   13%  lag 457.8°
+ 35.6s  follower [4, 38, -18, 85, -460]  tip x   273 y   -17 z    86  jaw   13%  lag 458.2°
+ 35.8s  follower [4, 38, -18, 85, -460]  tip x   273 y   -17 z    86  jaw   10%  lag 458.2°
+ 35.9s  follower [4, 38, -18, 85, -460]  tip x   273 y   -17 z    87  jaw    5%  lag 458.2°
+ 36.0s  follower [4, 38, -18, 85, -460]  tip x   273 y   -17 z    87  jaw    4%  lag 457.8°
+ 36.1s  follower [4, 38, -18, 85, -460]  tip x   273 y   -17 z    87  jaw    4%  lag 457.8°
+ 36.3s  follower [4, 38, -18, 85, -460]  tip x   274 y   -18 z    91  jaw    4%  lag 457.7°
+ 36.7s  follower [4, 37, -19, 86, -460]  tip x   275 y   -17 z   105  jaw    4%  lag 457.6°
+ 36.9s  follower [4, 26, -19, 89, -460]  tip x   263 y   -16 z   148  jaw    4%  lag 457.6°
+ 37.3s  follower [4, 14, -19, 98, -460]  tip x   250 y   -15 z   189  jaw    4%  lag 457.4°
+ 37.6s  follower [4, 3, -17, 105, -460]  tip x   229 y   -14 z   204  jaw    4%  lag 457.5°
+ 38.1s  follower [4, -11, 1, 105, -460]  tip x   206 y   -12 z   196  jaw    4%  lag 457.4°
+ 38.4s  follower [5, -14, 14, 104, -460]  tip x   194 y   -13 z   169  jaw    4%  lag 457.4°
+ 38.8s  follower [5, -14, 24, 89, -460]  tip x   199 y   -13 z   140  jaw    4%  lag 457.6°
+ 39.3s  follower [5, -6, 25, 78, -460]  tip x   207 y   -14 z   130  jaw    4%  lag 457.7°
+ 39.8s  follower [5, -6, 25, 77, -460]  tip x   207 y   -14 z   130  jaw    5%  lag 457.7°
+ 40.1s  follower [5, -6, 25, 77, -460]  tip x   207 y   -14 z   130  jaw    7%  lag 457.6°
+ 40.3s  follower [5, -6, 25, 76, -460]  tip x   207 y   -14 z   130  jaw    8%  lag 457.6°
+ 40.4s  follower [4, -6, 25, 77, -460]  tip x   207 y   -13 z   130  jaw    7%  lag 457.6°
+ 40.5s  follower [4, -6, 25, 77, -460]  tip x   206 y   -13 z   131  jaw    7%  lag 457.5°
+ 40.6s  follower [4, -6, 25, 78, -460]  tip x   206 y   -13 z   132  jaw    7%  lag 457.5°
+ 40.8s  follower [4, -7, 25, 78, -460]  tip x   206 y   -14 z   133  jaw    5%  lag 457.6°
+ 40.9s  follower [4, -7, 25, 78, -460]  tip x   206 y   -13 z   134  jaw    2%  lag 457.7°
+ 41.0s  follower [4, -7, 25, 78, -460]  tip x   206 y   -12 z   134  jaw    0%  lag 457.8°
+ 41.2s  follower [4, -7, 25, 79, -460]  tip x   204 y   -12 z   135  jaw    0%  lag 457.7°
+ 41.3s  follower [5, -7, 25, 83, -460]  tip x   200 y   -13 z   140  jaw    0%  lag 457.6°
+ 41.4s  follower [5, -11, 25, 86, -460]  tip x   195 y   -13 z   151  jaw    0%  lag 457.6°
+ 41.5s  follower [5, -17, 25, 87, -460]  tip x   190 y   -14 z   162  jaw    0%  lag 457.8°
+ 41.7s  follower [7, -20, 25, 89, -460]  tip x   185 y   -23 z   168  jaw    0%  lag 458.1°
+ 41.8s  follower [11, -23, 24, 91, -460]  tip x   179 y   -35 z   176  jaw    0%  lag 457.9°
+ 41.9s  follower [19, -24, 22, 93, -460]  tip x   172 y   -54 z   185  jaw    0%  lag 457.5°
+ 42.1s  follower [28, -24, 17, 94, -460]  tip x   165 y   -77 z   195  jaw    0%  lag 457.4°
+ 42.2s  follower [36, -23, 13, 94, -460]  tip x   159 y   -94 z   202  jaw    0%  lag 457.3°
+ 42.3s  follower [42, -21, 10, 93, -459]  tip x   153 y  -110 z   201  jaw    0%  lag 457.2°
+ 42.5s  follower [47, -17, 7, 93, -459]  tip x   148 y  -126 z   199  jaw    0%  lag 457.1°
+ 42.6s  follower [51, -13, 4, 93, -459]  tip x   147 y  -139 z   195  jaw    0%  lag 456.7°
+ 42.7s  follower [54, -7, 0, 90, -456]  tip x   149 y  -156 z   192  jaw    0%  lag 454.2°
+ 42.8s  follower [56, -2, -3, 86, -454]  tip x   150 y  -168 z   185  jaw    0%  lag 452.1°
+ 43.0s  follower [57, 2, -6, 85, -453]  tip x   154 y  -177 z   179  jaw    0%  lag 451.1°
+ 43.1s  follower [57, 7, -9, 83, -452]  tip x   159 y  -185 z   171  jaw    0%  lag 449.9°
+ 43.2s  follower [57, 12, -13, 82, -450]  tip x   163 y  -192 z   165  jaw    0%  lag 447.8°
+ 43.3s  follower [57, 18, -18, 82, -447]  tip x   168 y  -200 z   158  jaw    0%  lag 444.3°
+ 43.4s  follower [57, 23, -23, 82, -443]  tip x   172 y  -206 z   154  jaw    0%  lag 440.4°
+ 43.6s  follower [57, 27, -27, 82, -439]  tip x   176 y  -211 z   148  jaw    0%  lag 436.6°
+ 43.7s  follower [57, 31, -30, 82, -435]  tip x   179 y  -215 z   140  jaw    1%  lag 432.6°
+ 43.8s  follower [57, 34, -34, 82, -430]  tip x   182 y  -219 z   134  jaw    1%  lag 428.1°
+ 43.9s  follower [57, 38, -37, 82, -426]  tip x   184 y  -223 z   128  jaw    1%  lag 423.8°
+ 44.0s  follower [57, 41, -41, 82, -421]  tip x   186 y  -226 z   124  jaw    1%  lag 418.6°
+ 44.2s  follower [57, 44, -43, 82, -417]  tip x   187 y  -227 z   113  jaw    1%  lag 414.6°
+ 44.3s  follower [57, 47, -43, 82, -414]  tip x   187 y  -226 z   107  jaw    1%  lag 411.7°
+ 44.4s  follower [57, 47, -43, 82, -412]  tip x   188 y  -226 z   106  jaw    1%  lag 410.3°
+ 44.5s  follower [56, 47, -43, 82, -412]  tip x   189 y  -225 z   106  jaw    3%  lag 409.5°
+ 44.7s  follower [56, 48, -43, 82, -412]  tip x   189 y  -225 z   103  jaw    7%  lag 409.3°
+ 44.8s  follower [56, 49, -43, 82, -411]  tip x   188 y  -225 z    97  jaw   11%  lag 409.2°
+ 44.9s  follower [56, 49, -43, 82, -411]  tip x   188 y  -225 z    96  jaw   13%  lag 409.1°
+ 45.1s  follower [56, 50, -43, 82, -411]  tip x   189 y  -225 z    96  jaw   14%  lag 409.1°
+ 45.2s  follower [56, 50, -43, 82, -411]  tip x   189 y  -224 z    94  jaw   14%  lag 409.1°
+ 45.4s  follower [56, 52, -43, 81, -411]  tip x   190 y  -225 z    86  jaw   14%  lag 409.1°
+ 45.6s  follower [56, 52, -43, 80, -411]  tip x   190 y  -225 z    85  jaw   14%  lag 409.1°
+ 45.7s  follower [56, 52, -43, 80, -411]  tip x   190 y  -225 z    84  jaw   14%  lag 409.2°
+ 45.8s  follower [56, 52, -43, 80, -411]  tip x   190 y  -225 z    84  jaw   14%  lag 409.2°
+ 46.0s  follower [56, 52, -43, 80, -412]  tip x   190 y  -225 z    84  jaw   13%  lag 409.3°
+ 46.1s  follower [56, 52, -43, 80, -412]  tip x   190 y  -225 z    84  jaw   13%  lag 409.3°
+ 46.2s  follower [56, 52, -43, 80, -412]  tip x   190 y  -225 z    84  jaw   13%  lag 409.3°
+ 46.3s  follower [56, 52, -42, 80, -412]  tip x   190 y  -225 z    84  jaw   10%  lag 409.3°
+ 46.4s  follower [56, 52, -43, 80, -412]  tip x   190 y  -225 z    84  jaw    6%  lag 409.3°
+ 46.6s  follower [56, 52, -43, 80, -412]  tip x   190 y  -225 z    84  jaw    4%  lag 409.3°
+ 46.7s  follower [56, 52, -43, 80, -412]  tip x   190 y  -225 z    84  jaw    4%  lag 409.3°
+ 46.8s  follower [56, 52, -43, 80, -412]  tip x   190 y  -225 z    84  jaw    4%  lag 409.5°
+ 47.0s  follower [56, 52, -43, 81, -412]  tip x   189 y  -224 z    87  jaw    4%  lag 410.1°
+ 47.1s  follower [56, 51, -43, 81, -412]  tip x   189 y  -224 z    90  jaw    4%  lag 410.2°
+ 47.2s  follower [56, 51, -43, 84, -412]  tip x   186 y  -221 z    91  jaw    4%  lag 410.3°
+ 47.3s  follower [56, 50, -43, 88, -413]  tip x   184 y  -218 z    99  jaw    4%  lag 410.4°
+ 47.5s  follower [56, 46, -43, 92, -413]  tip x   183 y  -215 z   116  jaw    4%  lag 410.5°
+ 47.6s  follower [56, 43, -43, 96, -413]  tip x   182 y  -213 z   126  jaw    4%  lag 410.5°
+ 47.7s  follower [56, 41, -42, 98, -413]  tip x   181 y  -212 z   137  jaw    4%  lag 410.5°
+ 47.9s  follower [56, 37, -42, 99, -413]  tip x   180 y  -210 z   148  jaw    4%  lag 410.5°
+ 48.0s  follower [56, 35, -40, 100, -414]  tip x   179 y  -208 z   151  jaw    4%  lag 412.0°
+ 48.1s  follower [56, 32, -38, 104, -419]  tip x   178 y  -204 z   160  jaw    4%  lag 416.7°
+ 48.2s  follower [55, 28, -36, 104, -421]  tip x   182 y  -194 z   169  jaw    4%  lag 418.9°
+ 48.3s  follower [52, 23, -31, 104, -421]  tip x   184 y  -183 z   175  jaw    4%  lag 419.1°
+ 48.5s  follower [50, 17, -25, 104, -421]  tip x   186 y  -166 z   180  jaw    4%  lag 419.3°
+ 48.6s  follower [46, 9, -16, 104, -424]  tip x   185 y  -145 z   186  jaw    4%  lag 421.5°
+ 48.7s  follower [42, 2, -8, 104, -427]  tip x   185 y  -126 z   187  jaw    4%  lag 424.4°
+ 48.8s  follower [38, -4, -2, 104, -430]  tip x   185 y  -108 z   187  jaw    4%  lag 427.9°
+ 49.0s  follower [34, -8, 4, 104, -433]  tip x   185 y   -94 z   184  jaw    4%  lag 431.1°
+ 49.1s  follower [31, -9, 8, 104, -436]  tip x   186 y   -85 z   178  jaw    4%  lag 434.1°
+ 49.2s  follower [29, -9, 10, 103, -439]  tip x   187 y   -83 z   173  jaw    4%  lag 436.3°
+ 49.3s  follower [29, -8, 11, 98, -439]  tip x   184 y   -82 z   167  jaw    4%  lag 436.7°
+ 49.5s  follower [29, -8, 15, 91, -439]  tip x   185 y   -82 z   157  jaw    4%  lag 436.7°
+ 49.6s  follower [30, -8, 19, 88, -439]  tip x   184 y   -83 z   151  jaw    4%  lag 436.7°
+ 49.7s  follower [30, -8, 20, 85, -439]  tip x   186 y   -85 z   150  jaw    4%  lag 436.7°
+ 49.8s  follower [30, -8, 20, 81, -439]  tip x   188 y   -85 z   145  jaw    4%  lag 436.7°
+ 50.0s  follower [30, -7, 22, 79, -439]  tip x   189 y   -86 z   138  jaw    4%  lag 436.7°
+ 50.1s  follower [30, -6, 22, 76, -439]  tip x   191 y   -87 z   137  jaw    4%  lag 436.7°
+ 50.2s  follower [30, -6, 22, 75, -439]  tip x   192 y   -88 z   137  jaw    4%  lag 436.7°
+ 50.3s  follower [30, -6, 23, 74, -439]  tip x   192 y   -87 z   137  jaw    4%  lag 436.6°
+ 50.5s  follower [29, -6, 23, 74, -439]  tip x   193 y   -87 z   137  jaw    4%  lag 436.5°
+ 50.6s  follower [29, -6, 23, 74, -438]  tip x   193 y   -87 z   137  jaw    5%  lag 436.1°
+ 50.7s  follower [29, -6, 23, 74, -438]  tip x   193 y   -87 z   137  jaw    5%  lag 436.1°
+ 50.9s  follower [29, -6, 22, 74, -438]  tip x   193 y   -87 z   137  jaw    5%  lag 436.0°
+ 51.0s  follower [29, -6, 22, 74, -438]  tip x   192 y   -88 z   137  jaw    4%  lag 436.0°
+ 51.2s  follower [30, -6, 23, 75, -438]  tip x   190 y   -88 z   139  jaw    4%  lag 435.9°
+ 51.4s  follower [30, -7, 23, 80, -438]  tip x   184 y   -85 z   141  jaw    3%  lag 435.8°
+ 51.5s  follower [30, -7, 22, 85, -438]  tip x   182 y   -83 z   144  jaw    3%  lag 435.7°
+ 51.6s  follower [30, -8, 21, 86, -438]  tip x   180 y   -83 z   150  jaw    3%  lag 435.7°
+ 51.8s  follower [31, -12, 21, 86, -438]  tip x   177 y   -83 z   158  jaw    2%  lag 435.7°
+ 51.9s  follower [32, -14, 21, 86, -438]  tip x   174 y   -87 z   160  jaw    0%  lag 435.7°
+ 52.0s  follower [34, -15, 21, 86, -438]  tip x   169 y   -94 z   162  jaw    0%  lag 435.7°
+ 52.1s  follower [38, -16, 21, 85, -438]  tip x   162 y  -103 z   163  jaw    0%  lag 435.7°
+ 52.3s  follower [43, -16, 21, 85, -438]  tip x   153 y  -114 z   162  jaw    0%  lag 435.7°
+ 52.4s  follower [48, -15, 21, 84, -438]  tip x   145 y  -125 z   161  jaw    0%  lag 435.8°
+ 52.5s  follower [52, -14, 21, 81, -438]  tip x   140 y  -134 z   160  jaw    0%  lag 435.8°
+ 52.6s  follower [54, -14, 22, 76, -438]  tip x   139 y  -143 z   155  jaw    0%  lag 435.8°
+ 52.8s  follower [56, -9, 22, 72, -438]  tip x   137 y  -152 z   140  jaw    0%  lag 435.8°
+ 52.9s  follower [58, -3, 21, 69, -438]  tip x   135 y  -160 z   125  jaw    3%  lag 435.8°
+ 53.0s  follower [59, 2, 22, 66, -438]  tip x   137 y  -163 z   116  jaw    7%  lag 435.9°
+ 53.2s  follower [59, 4, 22, 64, -438]  tip x   137 y  -163 z   109  jaw   11%  lag 435.8°
+ 53.3s  follower [59, 6, 22, 64, -438]  tip x   137 y  -163 z   104  jaw   14%  lag 435.8°
+ 53.4s  follower [59, 8, 22, 64, -438]  tip x   137 y  -163 z   100  jaw   16%  lag 435.9°
+ 53.5s  follower [59, 9, 22, 63, -438]  tip x   138 y  -164 z    98  jaw   17%  lag 435.9°
+ 53.7s  follower [59, 10, 22, 61, -438]  tip x   139 y  -165 z    94  jaw   18%  lag 436.0°
+ 53.8s  follower [58, 11, 22, 60, -438]  tip x   141 y  -164 z    93  jaw   18%  lag 436.1°
+ 53.9s  follower [58, 11, 22, 60, -438]  tip x   141 y  -164 z    93  jaw   18%  lag 436.2°
+ 54.0s  follower [58, 11, 22, 60, -438]  tip x   141 y  -164 z    93  jaw   18%  lag 436.1°
+ 54.2s  follower [58, 11, 22, 60, -438]  tip x   141 y  -163 z    91  jaw   18%  lag 436.2°
+ 54.3s  follower [58, 11, 22, 60, -439]  tip x   141 y  -164 z    91  jaw   18%  lag 436.6°
+ 54.4s  follower [58, 11, 22, 59, -439]  tip x   141 y  -164 z    90  jaw   18%  lag 436.6°
+ 54.5s  follower [58, 12, 22, 59, -439]  tip x   141 y  -164 z    89  jaw   18%  lag 436.6°
+ 54.6s  follower [58, 12, 22, 59, -439]  tip x   141 y  -164 z    89  jaw   18%  lag 436.6°
+ 54.8s  follower [58, 12, 22, 59, -439]  tip x   141 y  -164 z    89  jaw   17%  lag 436.6°
+ 54.9s  follower [58, 12, 22, 59, -439]  tip x   141 y  -164 z    89  jaw   17%  lag 436.6°
+ 55.0s  follower [58, 12, 22, 59, -439]  tip x   141 y  -164 z    89  jaw   17%  lag 436.6°
+ 55.1s  follower [58, 12, 22, 59, -439]  tip x   141 y  -164 z    89  jaw   17%  lag 436.6°
+ 55.3s  follower [58, 12, 22, 59, -439]  tip x   141 y  -164 z    89  jaw   16%  lag 436.6°
+ 55.5s  follower [58, 12, 22, 59, -438]  tip x   141 y  -164 z    89  jaw   11%  lag 436.1°
+ 55.8s  follower [58, 12, 22, 60, -438]  tip x   141 y  -164 z    93  jaw   11%  lag 435.9°
+ 56.1s  follower [58, 8, 22, 61, -438]  tip x   141 y  -163 z   111  jaw   11%  lag 435.6°
+ 56.4s  follower [57, -1, 22, 71, -438]  tip x   141 y  -146 z   134  jaw   11%  lag 435.5°
+ 56.8s  follower [49, -12, 22, 79, -438]  tip x   156 y  -106 z   163  jaw   11%  lag 435.4°
+ 57.2s  follower [26, -25, 22, 93, -439]  tip x   171 y   -42 z   186  jaw   11%  lag 436.6°
+ 57.7s  follower [4, -29, 22, 97, -449]  tip x   175 y     7 z   189  jaw   11%  lag 446.4°
+ 58.1s  follower [-9, -28, 22, 97, -459]  tip x   172 y    35 z   188  jaw   11%  lag 456.8°
+ 58.5s  follower [-18, -27, 19, 95, -471]  tip x   182 y    47 z   184  jaw   11%  lag 469.2°
+ 58.9s  follower [-18, -19, 19, 88, -474]  tip x   193 y    50 z   169  jaw   11%  lag 471.7°
+ 59.3s  follower [-17, -12, 19, 84, -474]  tip x   201 y    51 z   158  jaw   11%  lag 471.7°
+ 59.4s  follower [-17, -10, 19, 82, -474]  tip x   203 y    51 z   154  jaw   11%  lag 471.7°
+ 59.6s  follower [-17, -9, 19, 81, -474]  tip x   205 y    52 z   152  jaw   11%  lag 471.7°
+ 59.7s  follower [-17, -9, 19, 80, -474]  tip x   205 y    52 z   150  jaw   11%  lag 471.7°
+ 59.8s  follower [-17, -8, 19, 80, -474]  tip x   206 y    52 z   150  jaw   11%  lag 471.7°
+ 59.9s  follower [-17, -8, 19, 80, -474]  tip x   206 y    52 z   150  jaw   11%  lag 471.7°
+ 60.0s  follower [-17, -8, 19, 80, -474]  tip x   206 y    52 z   149  jaw   11%  lag 471.6°
+ 60.2s  follower [-17, -8, 20, 78, -474]  tip x   208 y    52 z   148  jaw   11%  lag 471.6°
+ 60.3s  follower [-17, -8, 20, 77, -474]  tip x   208 y    53 z   148  jaw   11%  lag 471.6°
+ 60.4s  follower [-17, -8, 20, 77, -474]  tip x   208 y    53 z   148  jaw   11%  lag 471.6°
+ 60.5s  follower [-17, -8, 20, 77, -474]  tip x   208 y    53 z   148  jaw   11%  lag 471.6°
+ 60.6s  follower [-17, -8, 20, 77, -474]  tip x   208 y    53 z   148  jaw   11%  lag 471.6°
+ 60.8s  follower [-17, -8, 20, 77, -474]  tip x   208 y    53 z   148  jaw   11%  lag 471.6°
+ 60.9s  follower [-17, -8, 20, 77, -474]  tip x   208 y    53 z   148  jaw   10%  lag 471.6°
+ 61.0s  follower [-18, -8, 20, 78, -474]  tip x   206 y    54 z   149  jaw   10%  lag 471.6°
+ 61.2s  follower [-18, -9, 20, 78, -474]  tip x   205 y    54 z   151  jaw   10%  lag 471.4°
+ 61.3s  follower [-18, -9, 20, 80, -473]  tip x   202 y    54 z   152  jaw    9%  lag 471.0°
+ 61.4s  follower [-18, -9, 19, 83, -473]  tip x   200 y    53 z   154  jaw    5%  lag 470.8°
+ 61.5s  follower [-18, -10, 19, 84, -473]  tip x   200 y    53 z   155  jaw    0%  lag 470.8°
+ 61.6s  follower [-18, -10, 19, 84, -473]  tip x   199 y    53 z   158  jaw    0%  lag 470.7°
+ 61.8s  follower [-18, -13, 19, 84, -473]  tip x   196 y    52 z   168  jaw    0%  lag 470.7°
+ 61.9s  follower [-18, -17, 19, 84, -473]  tip x   194 y    51 z   177  jaw    0%  lag 470.7°
+ 62.0s  follower [-18, -18, 16, 84, -473]  tip x   198 y    50 z   187  jaw    0%  lag 470.7°
+ 62.2s  follower [-18, -17, 10, 84, -473]  tip x   204 y    52 z   199  jaw    0%  lag 470.7°
+ 62.3s  follower [-17, -15, 6, 84, -473]  tip x   210 y    53 z   198  jaw    0%  lag 470.7°
+ 62.4s  follower [-17, -11, 4, 86, -473]  tip x   214 y    54 z   194  jaw    0%  lag 470.7°
+ 62.5s  follower [-17, -8, 0, 88, -473]  tip x   218 y    55 z   196  jaw    0%  lag 470.7°
+ 62.7s  follower [-17, -6, -3, 88, -473]  tip x   222 y    57 z   197  jaw    0%  lag 470.7°
+ 62.8s  follower [-17, -4, -5, 88, -473]  tip x   227 y    58 z   195  jaw    0%  lag 470.7°
+ 62.9s  follower [-17, -1, -7, 88, -473]  tip x   231 y    59 z   193  jaw    0%  lag 470.8°
+ 63.1s  follower [-17, 3, -11, 88, -473]  tip x   239 y    62 z   189  jaw    0%  lag 470.8°
+ 63.2s  follower [-17, 7, -14, 88, -473]  tip x   247 y    64 z   183  jaw    0%  lag 470.8°
+ 63.3s  follower [-17, 12, -18, 88, -473]  tip x   255 y    65 z   180  jaw    0%  lag 470.8°
+ 63.4s  follower [-17, 16, -22, 88, -473]  tip x   262 y    65 z   176  jaw    0%  lag 470.8°
+ 63.5s  follower [-16, 19, -26, 88, -473]  tip x   268 y    65 z   173  jaw    0%  lag 470.8°
+ 63.7s  follower [-16, 22, -29, 88, -473]  tip x   273 y    66 z   169  jaw    0%  lag 470.8°
+ 63.8s  follower [-16, 25, -31, 88, -473]  tip x   277 y    67 z   162  jaw    0%  lag 470.8°
+ 63.9s  follower [-16, 28, -33, 88, -473]  tip x   280 y    67 z   156  jaw    0%  lag 470.7°
+ 64.0s  follower [-16, 30, -34, 87, -473]  tip x   283 y    68 z   150  jaw    0%  lag 470.7°
+ 64.1s  follower [-16, 33, -36, 87, -473]  tip x   286 y    69 z   144  jaw    1%  lag 470.7°
+ 64.2s  follower [-16, 35, -38, 87, -473]  tip x   289 y    70 z   141  jaw    3%  lag 470.7°
+ 64.3s  follower [-16, 38, -40, 87, -473]  tip x   292 y    70 z   135  jaw    5%  lag 470.7°
+ 64.4s  follower [-16, 40, -42, 87, -473]  tip x   294 y    71 z   131  jaw    8%  lag 470.7°
+ 64.5s  follower [-16, 42, -44, 87, -473]  tip x   296 y    71 z   127  jaw    8%  lag 471.0°
+ 64.6s  follower [-16, 43, -44, 87, -474]  tip x   296 y    71 z   125  jaw    8%  lag 471.6°
+ 64.8s  follower [-16, 44, -44, 87, -474]  tip x   296 y    71 z   120  jaw    8%  lag 471.6°
+ 64.9s  follower [-16, 45, -44, 87, -474]  tip x   296 y    71 z   116  jaw    8%  lag 471.6°
+ 65.0s  follower [-15, 46, -44, 87, -474]  tip x   297 y    68 z   114  jaw    8%  lag 471.6°
+ 65.1s  follower [-15, 46, -44, 87, -474]  tip x   298 y    68 z   111  jaw    8%  lag 471.5°
+ 65.2s  follower [-15, 48, -44, 85, -473]  tip x   301 y    68 z   106  jaw    9%  lag 470.9°
+ 65.3s  follower [-15, 49, -44, 82, -473]  tip x   303 y    69 z   103  jaw   10%  lag 470.9°
+ 65.4s  follower [-15, 50, -44, 81, -473]  tip x   303 y    68 z    99  jaw   12%  lag 470.9°
+ 65.5s  follower [-15, 50, -44, 81, -473]  tip x   302 y    68 z    98  jaw   14%  lag 470.8°
+ 65.7s  follower [-15, 50, -44, 81, -473]  tip x   302 y    68 z    97  jaw   16%  lag 470.8°
+ 65.8s  follower [-15, 51, -44, 81, -473]  tip x   302 y    69 z    90  jaw   16%  lag 470.9°
+ 65.9s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    87  jaw   16%  lag 470.8°
+ 66.0s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   16%  lag 470.7°
+ 66.2s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   15%  lag 470.7°
+ 66.3s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   15%  lag 470.7°
+ 66.4s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   15%  lag 470.7°
+ 66.5s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   15%  lag 470.7°
+ 66.7s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   15%  lag 470.7°
+ 66.8s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   15%  lag 470.8°
+ 66.9s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   14%  lag 470.8°
+ 67.1s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   12%  lag 470.8°
+ 67.2s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   11%  lag 471.2°
+ 67.3s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    86  jaw   11%  lag 471.2°
+ 67.4s  follower [-15, 53, -44, 81, -473]  tip x   301 y    69 z    87  jaw   11%  lag 471.3°
+ 67.6s  follower [-15, 52, -44, 81, -473]  tip x   302 y    70 z    92  jaw   11%  lag 471.2°
+ 67.7s  follower [-15, 51, -44, 82, -473]  tip x   301 y    71 z   102  jaw   11%  lag 471.3°
+ 67.8s  follower [-15, 46, -44, 83, -473]  tip x   300 y    70 z   125  jaw   11%  lag 471.2°
+ 67.9s  follower [-15, 41, -44, 86, -473]  tip x   295 y    68 z   138  jaw   11%  lag 471.3°
+ 68.1s  follower [-15, 38, -44, 93, -473]  tip x   286 y    65 z   153  jaw   11%  lag 470.9°
+ 68.2s  follower [-15, 34, -44, 99, -473]  tip x   282 y    64 z   172  jaw   11%  lag 470.7°
+ 68.3s  follower [-15, 28, -43, 100, -473]  tip x   277 y    62 z   189  jaw   11%  lag 470.7°
+ 68.4s  follower [-15, 24, -43, 104, -473]  tip x   272 y    61 z   202  jaw   11%  lag 470.6°
+ 68.6s  follower [-15, 19, -42, 105, -473]  tip x   262 y    58 z   215  jaw   11%  lag 470.6°
+ 68.7s  follower [-15, 13, -35, 105, -473]  tip x   251 y    55 z   218  jaw   11%  lag 470.6°
+ 68.8s  follower [-15, 5, -26, 105, -473]  tip x   236 y    51 z   221  jaw   11%  lag 470.6°
+ 69.0s  follower [-14, -3, -16, 105, -473]  tip x   220 y    44 z   220  jaw   11%  lag 470.6°
+ 69.1s  follower [-13, -10, -8, 105, -473]  tip x   208 y    37 z   220  jaw   11%  lag 470.5°
+ 69.2s  follower [-11, -16, -1, 105, -473]  tip x   194 y    23 z   216  jaw   11%  lag 470.5°
+ 69.4s  follower [-7, -22, 7, 105, -473]  tip x   189 y    14 z   210  jaw   11%  lag 470.3°
+ 69.6s  follower [-4, -25, 11, 105, -471]  tip x   185 y     5 z   204  jaw   11%  lag 468.9°
+ 69.7s  follower [0, -25, 15, 105, -467]  tip x   183 y    -3 z   195  jaw   11%  lag 465.2°
+ 69.8s  follower [3, -25, 18, 105, -464]  tip x   181 y    -9 z   188  jaw   11%  lag 461.9°
+ 69.9s  follower [4, -25, 20, 104, -462]  tip x   180 y   -12 z   183  jaw   11%  lag 460.1°
+ 70.0s  follower [5, -24, 22, 104, -461]  tip x   179 y   -13 z   180  jaw   11%  lag 459.3°
+ 70.1s  follower [5, -24, 23, 100, -461]  tip x   178 y   -12 z   175  jaw   11%  lag 458.6°
+ 70.2s  follower [5, -24, 25, 95, -461]  tip x   178 y   -13 z   168  jaw   11%  lag 458.5°
+ 70.3s  follower [5, -24, 29, 90, -461]  tip x   178 y   -13 z   159  jaw   11%  lag 458.5°
+ 70.5s  follower [5, -24, 33, 85, -461]  tip x   179 y   -13 z   152  jaw   11%  lag 458.5°
+ 70.6s  follower [5, -24, 35, 81, -461]  tip x   182 y   -13 z   149  jaw   11%  lag 458.5°
+ 70.7s  follower [5, -24, 35, 77, -461]  tip x   184 y   -13 z   147  jaw   11%  lag 458.5°
+ 70.8s  follower [5, -23, 36, 75, -461]  tip x   186 y   -13 z   143  jaw   11%  lag 458.6°
+ 70.9s  follower [5, -21, 36, 73, -461]  tip x   188 y   -13 z   139  jaw   11%  lag 458.6°
+ 71.0s  follower [5, -20, 36, 71, -461]  tip x   191 y   -13 z   138  jaw   11%  lag 458.6°
+ 71.1s  follower [5, -20, 36, 69, -461]  tip x   193 y   -13 z   137  jaw   11%  lag 458.6°
+ 71.2s  follower [5, -19, 36, 68, -461]  tip x   194 y   -13 z   136  jaw   11%  lag 458.6°
+ 71.3s  follower [5, -19, 36, 68, -461]  tip x   194 y   -13 z   136  jaw   11%  lag 458.6°
+ 71.5s  follower [5, -19, 36, 68, -461]  tip x   194 y   -13 z   136  jaw   11%  lag 458.6°
+ 71.6s  follower [4, -19, 36, 68, -461]  tip x   194 y   -12 z   136  jaw   11%  lag 458.6°
+ 71.7s  follower [4, -19, 36, 68, -461]  tip x   194 y   -12 z   136  jaw   11%  lag 458.5°
+ 71.9s  follower [4, -19, 36, 68, -461]  tip x   194 y   -12 z   136  jaw   11%  lag 458.5°
+ 72.0s  follower [4, -19, 36, 69, -461]  tip x   192 y   -12 z   136  jaw   10%  lag 458.5°
+ 72.1s  follower [4, -20, 36, 69, -461]  tip x   192 y   -12 z   138  jaw   10%  lag 458.5°
+ 72.2s  follower [4, -20, 36, 72, -461]  tip x   187 y   -11 z   139  jaw   10%  lag 458.5°
+ 72.4s  follower [4, -20, 36, 78, -461]  tip x   182 y   -10 z   141  jaw   10%  lag 458.5°
+ 72.5s  follower [4, -22, 36, 82, -461]  tip x   177 y   -10 z   149  jaw   10%  lag 458.5°
+ 72.6s  follower [4, -28, 36, 84, -461]  tip x   171 y   -10 z   159  jaw   10%  lag 458.5°
+ 72.7s  follower [4, -33, 36, 87, -461]  tip x   165 y    -9 z   167  jaw   10%  lag 458.5°
+ 72.9s  follower [5, -36, 35, 89, -461]  tip x   159 y   -10 z   174  jaw   10%  lag 458.5°
+ 73.0s  follower [5, -40, 33, 92, -461]  tip x   157 y   -10 z   186  jaw   10%  lag 458.6°
+ 73.1s  follower [6, -41, 29, 93, -461]  tip x   157 y   -16 z   195  jaw   10%  lag 458.7°
+ 73.2s  follower [11, -41, 26, 93, -461]  tip x   156 y   -27 z   203  jaw   10%  lag 458.6°
+ 73.4s  follower [17, -40, 22, 93, -461]  tip x   155 y   -41 z   209  jaw   10%  lag 458.5°
+ 73.5s  follower [23, -39, 20, 92, -461]  tip x   154 y   -55 z   211  jaw   10%  lag 458.5°
+ 73.6s  follower [29, -34, 18, 92, -461]  tip x   156 y   -71 z   207  jaw   10%  lag 458.4°
+ 73.8s  follower [33, -28, 15, 90, -461]  tip x   166 y   -85 z   205  jaw   10%  lag 458.4°
+ 73.9s  follower [35, -21, 10, 85, -461]  tip x   177 y  -101 z   200  jaw   10%  lag 458.4°
+ 74.0s  follower [37, -12, 5, 82, -461]  tip x   190 y  -117 z   191  jaw   10%  lag 458.4°
+ 74.1s  follower [38, -2, -3, 81, -461]  tip x   201 y  -131 z   186  jaw   10%  lag 458.4°
+ 74.3s  follower [40, 6, -10, 81, -460]  tip x   210 y  -143 z   180  jaw   10%  lag 458.3°
+ 74.4s  follower [40, 13, -18, 81, -459]  tip x   219 y  -154 z   174  jaw   10%  lag 456.9°
+ 74.6s  follower [41, 28, -32, 82, -451]  tip x   233 y  -174 z   145  jaw   10%  lag 448.7°
+ 75.0s  follower [42, 40, -39, 81, -442]  tip x   240 y  -179 z   117  jaw   10%  lag 440.3°
+ 75.4s  follower [42, 47, -43, 81, -438]  tip x   244 y  -181 z   101  jaw   10%  lag 435.7°
+ 75.7s  follower [41, 52, -47, 81, -437]  tip x   246 y  -183 z    91  jaw   11%  lag 434.5°
+ 76.1s  follower [41, 55, -49, 81, -437]  tip x   246 y  -183 z    90  jaw   11%  lag 434.5°
+ 76.4s  follower [41, 56, -49, 81, -437]  tip x   246 y  -183 z    84  jaw   11%  lag 434.6°
+ 76.9s  follower [41, 56, -49, 81, -437]  tip x   246 y  -182 z    81  jaw   11%  lag 434.7°
+ 77.2s  follower [41, 57, -49, 79, -438]  tip x   248 y  -183 z    81  jaw   11%  lag 435.4°
+ 77.6s  follower [41, 57, -49, 79, -438]  tip x   247 y  -183 z    81  jaw   11%  lag 435.5°
+ 78.0s  follower [41, 57, -49, 80, -437]  tip x   249 y  -181 z    81  jaw   23%  lag 435.3°
+ 78.4s  follower [41, 57, -49, 80, -438]  tip x   249 y  -181 z    81  jaw   23%  lag 435.3°
+ 78.5s  follower [41, 57, -49, 80, -438]  tip x   249 y  -181 z    81  jaw   22%  lag 435.4°
+ 78.6s  follower [41, 57, -49, 80, -437]  tip x   248 y  -181 z    81  jaw   21%  lag 435.1°
+ 78.7s  follower [41, 57, -49, 80, -437]  tip x   248 y  -181 z    81  jaw   16%  lag 434.9°
+ 78.9s  follower [41, 57, -49, 80, -437]  tip x   249 y  -181 z    81  jaw   11%  lag 435.3°
+ 79.0s  follower [41, 57, -49, 79, -438]  tip x   249 y  -181 z    81  jaw   11%  lag 435.4°
+ 79.1s  follower [41, 57, -49, 79, -438]  tip x   249 y  -181 z    81  jaw   11%  lag 435.4°
+ 79.2s  follower [41, 57, -49, 79, -438]  tip x   249 y  -181 z    83  jaw   11%  lag 435.4°
+ 79.4s  follower [41, 56, -49, 80, -438]  tip x   248 y  -181 z    85  jaw   11%  lag 435.4°
+ 79.5s  follower [41, 55, -49, 81, -438]  tip x   247 y  -180 z    94  jaw   11%  lag 435.4°
+ 79.6s  follower [41, 51, -49, 87, -437]  tip x   243 y  -176 z   113  jaw   11%  lag 435.3°
+ 79.7s  follower [41, 46, -49, 93, -437]  tip x   238 y  -172 z   136  jaw   11%  lag 434.8°
+ 79.9s  follower [41, 40, -49, 98, -437]  tip x   236 y  -169 z   158  jaw   11%  lag 434.7°
+ 80.0s  follower [40, 34, -49, 102, -437]  tip x   235 y  -163 z   177  jaw   11%  lag 434.7°
+ 80.1s  follower [38, 30, -48, 105, -437]  tip x   235 y  -152 z   195  jaw   11%  lag 434.7°
+ 80.3s  follower [37, 25, -45, 105, -437]  tip x   232 y  -143 z   201  jaw   11%  lag 434.8°
+ 80.4s  follower [35, 18, -37, 105, -437]  tip x   226 y  -128 z   207  jaw   11%  lag 434.9°
+ 80.5s  follower [33, 11, -28, 105, -437]  tip x   219 y  -115 z   210  jaw   11%  lag 435.3°
+ 80.7s  follower [32, 3, -20, 105, -438]  tip x   210 y  -104 z   212  jaw   11%  lag 435.4°
+ 80.8s  follower [31, -3, -13, 105, -438]  tip x   200 y   -96 z   212  jaw   11%  lag 435.4°
+ 80.9s  follower [31, -10, -5, 105, -438]  tip x   187 y   -88 z   209  jaw   11%  lag 435.4°
+ 81.1s  follower [31, -17, 4, 105, -438]  tip x   174 y   -80 z   204  jaw   11%  lag 435.4°
+ 81.2s  follower [31, -20, 11, 105, -438]  tip x   171 y   -79 z   195  jaw   11%  lag 435.5°
+ 81.3s  follower [31, -20, 14, 104, -438]  tip x   170 y   -79 z   188  jaw   11%  lag 435.6°
+ 81.5s  follower [31, -19, 16, 103, -438]  tip x   169 y   -78 z   182  jaw   11%  lag 435.6°
+ 81.6s  follower [31, -19, 19, 96, -438]  tip x   166 y   -78 z   173  jaw   11%  lag 435.7°
+ 81.7s  follower [31, -19, 23, 92, -438]  tip x   166 y   -78 z   165  jaw   11%  lag 435.7°
+ 81.8s  follower [31, -19, 25, 88, -438]  tip x   168 y   -79 z   160  jaw   11%  lag 435.7°
+ 82.0s  follower [31, -19, 27, 84, -438]  tip x   171 y   -80 z   155  jaw   11%  lag 435.7°
+ 82.1s  follower [31, -16, 27, 81, -438]  tip x   175 y   -82 z   148  jaw   11%  lag 435.7°
+ 82.2s  follower [31, -14, 27, 79, -438]  tip x   178 y   -84 z   144  jaw   11%  lag 435.7°
+ 82.3s  follower [31, -13, 27, 76, -438]  tip x   181 y   -85 z   142  jaw   11%  lag 435.7°
+ 82.4s  follower [31, -12, 27, 74, -438]  tip x   182 y   -86 z   141  jaw   11%  lag 435.7°
+ 82.6s  follower [31, -12, 27, 73, -438]  tip x   183 y   -86 z   141  jaw   11%  lag 435.6°
+ 82.7s  follower [31, -12, 27, 72, -438]  tip x   184 y   -87 z   141  jaw   11%  lag 435.6°
+ 82.8s  follower [31, -11, 27, 71, -438]  tip x   185 y   -87 z   138  jaw   11%  lag 435.6°
+ 83.0s  follower [31, -10, 27, 71, -438]  tip x   186 y   -87 z   136  jaw   11%  lag 435.6°
+ 83.1s  follower [31, -10, 27, 71, -438]  tip x   186 y   -87 z   136  jaw   11%  lag 435.6°
+ 83.2s  follower [31, -10, 27, 71, -438]  tip x   186 y   -87 z   136  jaw   11%  lag 435.6°
+ 83.3s  follower [31, -10, 27, 71, -438]  tip x   186 y   -87 z   136  jaw   11%  lag 435.6°
+ 83.4s  follower [31, -10, 27, 71, -438]  tip x   186 y   -87 z   137  jaw   11%  lag 435.5°
+ 83.6s  follower [31, -10, 27, 71, -438]  tip x   186 y   -87 z   137  jaw   11%  lag 435.5°
+ 83.7s  follower [31, -10, 27, 71, -438]  tip x   185 y   -87 z   136  jaw   10%  lag 435.5°
+ 83.8s  follower [31, -10, 27, 72, -438]  tip x   184 y   -86 z   138  jaw   10%  lag 435.5°
+ 83.9s  follower [30, -11, 27, 73, -438]  tip x   184 y   -81 z   139  jaw   10%  lag 435.5°
+ 84.0s  follower [27, -11, 27, 79, -438]  tip x   183 y   -70 z   143  jaw   10%  lag 435.5°
+ 84.1s  follower [23, -14, 27, 84, -438]  tip x   182 y   -55 z   152  jaw   10%  lag 435.6°
+ 84.3s  follower [17, -18, 27, 86, -438]  tip x   184 y   -37 z   159  jaw   10%  lag 435.6°
+ 84.4s  follower [9, -20, 27, 88, -438]  tip x   186 y   -15 z   162  jaw   10%  lag 435.7°
+ 84.5s  follower [1, -21, 26, 88, -438]  tip x   186 y     8 z   164  jaw   10%  lag 435.8°
+ 84.6s  follower [-9, -21, 25, 88, -438]  tip x   186 y    32 z   172  jaw   10%  lag 436.0°
+ 84.8s  follower [-17, -20, 21, 88, -441]  tip x   186 y    52 z   178  jaw   10%  lag 439.2°
+ 84.9s  follower [-23, -20, 18, 87, -447]  tip x   181 y    70 z   181  jaw   10%  lag 445.1°
+ 85.0s  follower [-32, -18, 17, 87, -455]  tip x   174 y    94 z   176  jaw   10%  lag 453.1°
+ 85.2s  follower [-39, -10, 11, 87, -460]  tip x   178 y   120 z   174  jaw   10%  lag 457.8°
+ 85.4s  follower [-43, 0, 0, 87, -461]  tip x   186 y   142 z   172  jaw   10%  lag 458.4°
+ 85.7s  follower [-46, 13, -12, 86, -461]  tip x   196 y   166 z   157  jaw   11%  lag 459.1°
+ 85.9s  follower [-47, 24, -22, 82, -466]  tip x   208 y   181 z   138  jaw   11%  lag 463.6°
+ 86.1s  follower [-47, 31, -27, 80, -468]  tip x   212 y   190 z   125  jaw   11%  lag 465.6°
+ 86.3s  follower [-48, 36, -29, 79, -468]  tip x   209 y   193 z   115  jaw   11%  lag 465.7°
+ 86.5s  follower [-50, 38, -29, 79, -468]  tip x   205 y   197 z   108  jaw   11%  lag 465.7°
+ 86.7s  follower [-50, 40, -31, 79, -468]  tip x   207 y   199 z   107  jaw   11%  lag 465.8°
+ 86.9s  follower [-50, 42, -33, 79, -468]  tip x   209 y   201 z   105  jaw   12%  lag 465.8°
+ 87.0s  follower [-50, 43, -34, 79, -468]  tip x   209 y   201 z   102  jaw   15%  lag 465.8°
+ 87.1s  follower [-50, 43, -34, 79, -468]  tip x   209 y   201 z   100  jaw   18%  lag 465.8°
+ 87.2s  follower [-50, 44, -34, 79, -468]  tip x   209 y   201 z   100  jaw   18%  lag 465.8°
+ 87.4s  follower [-50, 44, -34, 79, -468]  tip x   208 y   201 z    97  jaw   18%  lag 465.8°
+ 87.5s  follower [-50, 45, -34, 79, -468]  tip x   207 y   201 z    93  jaw   18%  lag 465.8°
+ 87.6s  follower [-51, 46, -34, 79, -468]  tip x   205 y   203 z    92  jaw   18%  lag 465.8°
+ 87.8s  follower [-51, 46, -34, 79, -468]  tip x   205 y   204 z    92  jaw   18%  lag 465.8°
+ 87.9s  follower [-51, 46, -34, 79, -468]  tip x   204 y   204 z    90  jaw   18%  lag 465.8°
+ 88.0s  follower [-51, 47, -34, 79, -468]  tip x   204 y   204 z    86  jaw   18%  lag 465.8°
+ 89.1s  follower [-51, 48, -36, 79, -468]  tip x   205 y   206 z    89  jaw   11%  lag 465.8°
+ 89.3s  follower [-51, 47, -36, 80, -468]  tip x   205 y   205 z    92  jaw   11%  lag 465.8°
+ 89.4s  follower [-51, 46, -36, 81, -468]  tip x   207 y   203 z    95  jaw   11%  lag 465.8°
+ 89.5s  follower [-50, 44, -36, 82, -469]  tip x   207 y   200 z   106  jaw   11%  lag 467.1°
+ 89.7s  follower [-50, 42, -36, 87, -472]  tip x   203 y   196 z   116  jaw   11%  lag 469.4°
+ 89.8s  follower [-50, 39, -36, 92, -472]  tip x   201 y   191 z   131  jaw   11%  lag 470.2°
+ 89.9s  follower [-49, 34, -35, 95, -472]  tip x   205 y   183 z   145  jaw   11%  lag 470.2°
+ 90.1s  follower [-46, 31, -35, 98, -472]  tip x   211 y   173 z   158  jaw   11%  lag 470.2°
+ 90.2s  follower [-43, 27, -33, 99, -472]  tip x   216 y   161 z   166  jaw   11%  lag 470.2°
+ 90.3s  follower [-41, 23, -29, 99, -472]  tip x   215 y   148 z   172  jaw   11%  lag 470.2°
+ 91.5s  follower [-25, -12, 14, 98, -478]  tip x   185 y    68 z   173  jaw   11%  lag 475.8°
+ 91.6s  follower [-25, -12, 14, 98, -481]  tip x   185 y    69 z   172  jaw   11%  lag 479.2°
+ 91.7s  follower [-25, -12, 14, 95, -484]  tip x   187 y    71 z   170  jaw   11%  lag 481.6°
+ 91.8s  follower [-26, -11, 14, 90, -486]  tip x   191 y    73 z   169  jaw   11%  lag 483.5°
+ 92.0s  follower [-26, -11, 15, 87, -488]  tip x   192 y    73 z   164  jaw   11%  lag 485.5°
+ 92.1s  follower [-26, -11, 18, 85, -490]  tip x   191 y    73 z   158  jaw   11%  lag 487.8°
+ 92.2s  follower [-26, -11, 20, 82, -492]  tip x   192 y    74 z   155  jaw   11%  lag 489.8°
+ 92.3s  follower [-26, -11, 21, 79, -493]  tip x   194 y    74 z   153  jaw   11%  lag 490.4°
+ 92.4s  follower [-26, -11, 22, 77, -493]  tip x   196 y    75 z   148  jaw   11%  lag 490.4°
+ 92.6s  follower [-26, -9, 22, 74, -493]  tip x   198 y    76 z   144  jaw   11%  lag 490.4°
+ 92.7s  follower [-26, -8, 22, 73, -493]  tip x   200 y    77 z   143  jaw   11%  lag 490.4°
+ 92.8s  follower [-26, -8, 22, 72, -493]  tip x   200 y    77 z   142  jaw   11%  lag 490.4°
+ 92.9s  follower [-25, -8, 22, 72, -493]  tip x   200 y    76 z   142  jaw   11%  lag 490.4°
+ 93.1s  follower [-25, -8, 22, 72, -492]  tip x   200 y    76 z   141  jaw   11%  lag 490.1°
+ 93.3s  follower [-25, -8, 23, 72, -492]  tip x   199 y    75 z   140  jaw   11%  lag 489.9°
+ 93.4s  follower [-25, -8, 23, 72, -492]  tip x   199 y    75 z   140  jaw   11%  lag 489.8°
+ 93.5s  follower [-25, -8, 23, 72, -492]  tip x   199 y    75 z   140  jaw   11%  lag 489.8°
+ 93.7s  follower [-25, -8, 23, 72, -492]  tip x   200 y    76 z   140  jaw   11%  lag 489.7°
+ 94.1s  follower [-25, -8, 23, 70, -492]  tip x   201 y    76 z   140  jaw   11%  lag 489.7°
+ 94.4s  follower [-25, -6, 23, 70, -492]  tip x   202 y    77 z   135  jaw   11%  lag 489.6°
+ 94.8s  follower [-25, -6, 23, 70, -492]  tip x   202 y    77 z   135  jaw   11%  lag 489.5°
+ 95.1s  follower [-26, -7, 23, 71, -492]  tip x   199 y    78 z   144  jaw   10%  lag 489.4°
+ 95.5s  follower [-26, -13, 23, 73, -492]  tip x   190 y    73 z   158  jaw    2%  lag 489.4°
+ 95.9s  follower [-25, -23, 22, 84, -491]  tip x   175 y    59 z   186  jaw    0%  lag 489.2°
+ 96.3s  follower [-18, -29, 20, 85, -491]  tip x   188 y    26 z   205  jaw    0%  lag 489.0°
+ 96.7s  follower [5, -22, 10, 84, -471]  tip x   218 y   -33 z   200  jaw    0%  lag 469.3°
+ 97.1s  follower [14, 0, -8, 84, -461]  tip x   258 y   -60 z   179  jaw    0%  lag 458.6°
+ 97.5s  follower [15, 25, -29, 84, -458]  tip x   282 y   -67 z   156  jaw    0%  lag 455.6°
+ 97.6s  follower [15, 32, -35, 84, -458]  tip x   290 y   -69 z   146  jaw    0%  lag 455.6°
+ 97.7s  follower [15, 38, -40, 84, -458]  tip x   297 y   -71 z   134  jaw    0%  lag 455.6°
+ 97.9s  follower [15, 44, -44, 84, -457]  tip x   301 y   -72 z   120  jaw    1%  lag 454.5°
+ 98.0s  follower [15, 49, -47, 84, -454]  tip x   303 y   -72 z   109  jaw    1%  lag 452.0°
+ 98.2s  follower [15, 50, -48, 84, -454]  tip x   302 y   -72 z   104  jaw    1%  lag 451.9°
+ 98.3s  follower [15, 51, -48, 84, -454]  tip x   302 y   -72 z   100  jaw    3%  lag 451.9°
+ 98.4s  follower [15, 52, -48, 84, -454]  tip x   302 y   -72 z    97  jaw    7%  lag 451.9°
+ 98.5s  follower [15, 53, -48, 84, -454]  tip x   304 y   -72 z    95  jaw    9%  lag 451.9°
+ 98.7s  follower [15, 53, -48, 81, -454]  tip x   306 y   -73 z    95  jaw   11%  lag 451.9°
+ 98.8s  follower [15, 53, -48, 79, -454]  tip x   306 y   -73 z    92  jaw   12%  lag 452.0°
+ 98.9s  follower [15, 54, -48, 79, -454]  tip x   306 y   -72 z    91  jaw   14%  lag 452.0°
+ 99.0s  follower [15, 54, -47, 79, -454]  tip x   306 y   -72 z    89  jaw   15%  lag 452.0°
+ 99.3s  follower [15, 55, -47, 79, -454]  tip x   305 y   -72 z    82  jaw   15%  lag 452.0°
+ 99.4s  follower [15, 56, -47, 79, -454]  tip x   305 y   -72 z    82  jaw   14%  lag 452.0°
+ 99.5s  follower [15, 56, -48, 79, -454]  tip x   306 y   -72 z    82  jaw   14%  lag 452.0°
+ 99.7s  follower [15, 56, -48, 79, -454]  tip x   306 y   -71 z    82  jaw   14%  lag 452.0°
+ 99.8s  follower [15, 56, -48, 79, -454]  tip x   306 y   -71 z    82  jaw   14%  lag 452.0°
+ 99.9s  follower [15, 56, -48, 79, -454]  tip x   306 y   -71 z    82  jaw   11%  lag 452.0°
+100.0s  follower [15, 56, -48, 79, -454]  tip x   306 y   -71 z    82  jaw   11%  lag 452.0°
+100.1s  follower [15, 56, -48, 79, -454]  tip x   306 y   -71 z    83  jaw   11%  lag 452.0°
+100.3s  follower [15, 55, -48, 79, -455]  tip x   306 y   -69 z    87  jaw   11%  lag 452.3°
+100.4s  follower [14, 54, -48, 81, -455]  tip x   306 y   -68 z    96  jaw   11%  lag 452.6°
+100.5s  follower [14, 50, -48, 83, -455]  tip x   302 y   -67 z   114  jaw   11%  lag 452.6°
+100.6s  follower [14, 46, -48, 90, -454]  tip x   294 y   -65 z   133  jaw   11%  lag 452.1°
+100.8s  follower [14, 39, -48, 97, -454]  tip x   289 y   -61 z   161  jaw   11%  lag 452.0°
+100.9s  follower [12, 31, -47, 100, -454]  tip x   282 y   -50 z   192  jaw   11%  lag 452.0°
+101.0s  follower [11, 25, -47, 103, -455]  tip x   277 y   -41 z   209  jaw   11%  lag 452.3°
+101.2s  follower [9, 20, -44, 105, -455]  tip x   267 y   -33 z   222  jaw   11%  lag 452.7°
+101.3s  follower [7, 13, -38, 105, -455]  tip x   256 y   -23 z   225  jaw   11%  lag 452.8°
+101.4s  follower [5, 5, -28, 105, -455]  tip x   242 y   -15 z   224  jaw   11%  lag 452.9°
+101.5s  follower [3, -2, -18, 105, -455]  tip x   228 y    -8 z   222  jaw   11%  lag 453.0°
+101.7s  follower [1, -10, -9, 105, -455]  tip x   213 y    -4 z   220  jaw   11%  lag 453.1°
+101.8s  follower [0, -16, -1, 105, -457]  tip x   201 y     0 z   215  jaw   11%  lag 455.0°
+101.9s  follower [-1, -21, 6, 105, -461]  tip x   192 y     3 z   210  jaw   11%  lag 458.9°
+102.1s  follower [-2, -24, 10, 105, -465]  tip x   187 y     8 z   203  jaw   11%  lag 463.2°
+102.2s  follower [-4, -24, 14, 105, -469]  tip x   186 y    13 z   197  jaw   11%  lag 466.9°
+102.3s  follower [-6, -23, 15, 105, -472]  tip x   186 y    16 z   191  jaw   11%  lag 469.7°
+102.4s  follower [-7, -23, 17, 105, -475]  tip x   186 y    17 z   189  jaw   11%  lag 472.4°
+102.5s  follower [-7, -22, 18, 103, -476]  tip x   184 y    17 z   182  jaw   11%  lag 473.6°
+102.7s  follower [-7, -22, 22, 96, -476]  tip x   182 y    17 z   170  jaw   11%  lag 473.6°
+102.8s  follower [-7, -22, 28, 88, -476]  tip x   182 y    16 z   157  jaw   11%  lag 473.7°
+102.9s  follower [-7, -22, 32, 82, -476]  tip x   185 y    16 z   150  jaw   11%  lag 473.7°
+103.0s  follower [-7, -22, 34, 76, -476]  tip x   188 y    17 z   145  jaw   11%  lag 473.7°
+103.2s  follower [-7, -22, 36, 71, -476]  tip x   189 y    17 z   141  jaw   11%  lag 473.7°
+103.3s  follower [-6, -22, 38, 68, -476]  tip x   189 y    16 z   138  jaw   11%  lag 473.6°
+103.4s  follower [-6, -22, 39, 66, -476]  tip x   190 y    16 z   136  jaw   11%  lag 473.5°
+103.5s  follower [-6, -22, 39, 65, -476]  tip x   191 y    16 z   136  jaw   11%  lag 473.5°
+103.6s  follower [-6, -22, 39, 64, -476]  tip x   191 y    16 z   136  jaw   11%  lag 473.5°
+103.7s  follower [-6, -22, 39, 64, -476]  tip x   191 y    16 z   136  jaw   11%  lag 473.3°
+103.9s  follower [-6, -22, 39, 64, -475]  tip x   191 y    16 z   136  jaw   11%  lag 472.9°
+104.0s  follower [-6, -22, 39, 64, -475]  tip x   191 y    16 z   136  jaw   11%  lag 472.7°
+104.1s  follower [-6, -22, 39, 64, -475]  tip x   191 y    17 z   136  jaw   11%  lag 472.7°
+104.2s  follower [-6, -22, 39, 64, -475]  tip x   191 y    16 z   138  jaw   10%  lag 472.7°
+104.3s  follower [-6, -24, 39, 66, -475]  tip x   190 y    15 z   141  jaw   10%  lag 472.7°
+104.5s  follower [-6, -24, 38, 70, -475]  tip x   183 y    13 z   142  jaw   10%  lag 472.6°
+104.6s  follower [-5, -25, 37, 78, -475]  tip x   178 y    10 z   154  jaw   10%  lag 472.5°
+104.7s  follower [-3, -28, 32, 84, -475]  tip x   179 y     3 z   168  jaw   10%  lag 472.4°
+104.8s  follower [2, -27, 27, 86, -471]  tip x   183 y   -11 z   177  jaw   10%  lag 469.2°
+105.0s  follower [11, -26, 23, 87, -460]  tip x   182 y   -42 z   179  jaw   10%  lag 457.7°
+105.2s  follower [19, -22, 21, 87, -453]  tip x   186 y   -56 z   179  jaw   10%  lag 451.0°
+105.4s  follower [23, -17, 16, 86, -449]  tip x   192 y   -70 z   176  jaw   10%  lag 446.9°
+105.5s  follower [26, -11, 12, 86, -445]  tip x   199 y   -82 z   174  jaw   10%  lag 443.0°
+105.6s  follower [28, -4, 6, 86, -442]  tip x   208 y   -94 z   171  jaw   10%  lag 439.6°
+105.8s  follower [30, 3, -1, 86, -441]  tip x   218 y  -104 z   163  jaw   10%  lag 438.6°
+105.9s  follower [31, 11, -8, 86, -441]  tip x   229 y  -113 z   154  jaw   10%  lag 438.6°
+106.0s  follower [31, 18, -15, 86, -441]  tip x   239 y  -119 z   148  jaw   10%  lag 438.6°
+106.1s  follower [31, 24, -21, 86, -441]  tip x   247 y  -124 z   143  jaw   10%  lag 438.6°
+106.3s  follower [31, 30, -26, 86, -441]  tip x   253 y  -128 z   133  jaw   10%  lag 438.7°
+106.4s  follower [31, 35, -32, 86, -441]  tip x   260 y  -131 z   125  jaw   10%  lag 438.7°
+106.5s  follower [31, 41, -37, 86, -441]  tip x   265 y  -134 z   118  jaw   10%  lag 439.0°
+106.7s  follower [31, 45, -41, 86, -441]  tip x   268 y  -135 z   109  jaw   10%  lag 439.1°
+106.8s  follower [30, 48, -43, 86, -441]  tip x   269 y  -135 z   101  jaw   10%  lag 439.2°
+106.9s  follower [30, 49, -43, 86, -441]  tip x   269 y  -134 z    98  jaw   10%  lag 439.1°
+107.1s  follower [30, 49, -43, 85, -441]  tip x   269 y  -134 z    97  jaw   10%  lag 439.2°
+107.2s  follower [30, 49, -43, 85, -441]  tip x   269 y  -134 z    97  jaw   11%  lag 439.3°
+107.3s  follower [30, 49, -43, 85, -441]  tip x   269 y  -133 z    95  jaw   11%  lag 439.3°
+107.4s  follower [30, 51, -43, 85, -441]  tip x   269 y  -133 z    91  jaw   13%  lag 439.2°
+107.6s  follower [30, 51, -43, 85, -441]  tip x   270 y  -133 z    91  jaw   17%  lag 439.2°
+107.7s  follower [30, 51, -43, 83, -442]  tip x   272 y  -134 z    88  jaw   19%  lag 439.4°
+107.8s  follower [30, 52, -43, 82, -442]  tip x   271 y  -133 z    84  jaw   19%  lag 439.5°
+108.0s  follower [30, 52, -43, 82, -442]  tip x   271 y  -133 z    84  jaw   19%  lag 439.5°
+108.1s  follower [30, 52, -43, 82, -442]  tip x   272 y  -133 z    84  jaw   19%  lag 439.5°
+108.2s  follower [30, 52, -43, 82, -442]  tip x   272 y  -133 z    84  jaw   18%  lag 439.5°
+108.4s  follower [30, 52, -43, 82, -442]  tip x   272 y  -133 z    84  jaw   18%  lag 439.5°
+108.5s  follower [30, 52, -43, 82, -442]  tip x   272 y  -133 z    84  jaw   17%  lag 439.5°
+108.6s  follower [30, 52, -43, 82, -442]  tip x   272 y  -133 z    84  jaw   13%  lag 439.5°
+108.7s  follower [30, 52, -43, 82, -442]  tip x   271 y  -134 z    84  jaw   10%  lag 439.5°
+108.8s  follower [30, 53, -43, 82, -442]  tip x   271 y  -134 z    84  jaw   10%  lag 439.5°
+108.9s  follower [30, 52, -43, 82, -442]  tip x   271 y  -135 z    85  jaw   10%  lag 439.5°
+109.1s  follower [30, 52, -43, 83, -442]  tip x   271 y  -134 z    89  jaw   10%  lag 439.5°
+109.2s  follower [30, 51, -43, 84, -442]  tip x   271 y  -133 z    91  jaw   10%  lag 439.4°
+109.3s  follower [30, 48, -43, 86, -442]  tip x   268 y  -131 z   110  jaw   10%  lag 439.4°
+109.4s  follower [30, 45, -43, 92, -441]  tip x   263 y  -128 z   122  jaw   10%  lag 439.3°
+109.5s  follower [30, 40, -43, 97, -441]  tip x   260 y  -127 z   143  jaw   10%  lag 439.0°
+109.6s  follower [30, 35, -43, 99, -441]  tip x   257 y  -125 z   164  jaw   10%  lag 439.2°
+109.8s  follower [30, 30, -41, 100, -441]  tip x   253 y  -123 z   177  jaw   10%  lag 439.3°
+109.9s  follower [30, 27, -41, 104, -441]  tip x   251 y  -122 z   185  jaw   10%  lag 439.1°
+110.0s  follower [30, 23, -39, 105, -441]  tip x   244 y  -117 z   195  jaw   10%  lag 439.0°
+110.1s  follower [30, 16, -32, 105, -441]  tip x   232 y  -111 z   199  jaw   10%  lag 439.1°
+110.2s  follower [30, 8, -23, 105, -441]  tip x   219 y  -104 z   203  jaw   10%  lag 439.0°
+110.4s  follower [30, 0, -14, 105, -441]  tip x   205 y   -96 z   207  jaw   10%  lag 438.9°
+110.5s  follower [30, -7, -7, 105, -441]  tip x   193 y   -89 z   208  jaw   10%  lag 438.9°
+110.6s  follower [30, -14, 1, 105, -441]  tip x   181 y   -81 z   207  jaw   10%  lag 438.8°
+110.8s  follower [30, -22, 9, 105, -441]  tip x   168 y   -74 z   203  jaw   10%  lag 438.8°
+110.9s  follower [30, -26, 15, 105, -441]  tip x   162 y   -70 z   197  jaw   10%  lag 438.8°
+111.0s  follower [30, -28, 20, 105, -441]  tip x   156 y   -66 z   181  jaw   10%  lag 438.8°
+111.3s  follower [29, -28, 27, 99, -441]  tip x   153 y   -64 z   171  jaw   10%  lag 438.8°
+111.4s  follower [29, -28, 31, 92, -441]  tip x   154 y   -65 z   161  jaw   10%  lag 438.9°
+111.5s  follower [29, -27, 36, 86, -441]  tip x   157 y   -63 z   151  jaw   10%  lag 438.9°
+111.6s  follower [26, -27, 38, 81, -441]  tip x   162 y   -59 z   148  jaw   10%  lag 439.3°
+111.7s  follower [25, -27, 39, 79, -442]  tip x   165 y   -57 z   146  jaw   10%  lag 439.5°
+111.9s  follower [24, -27, 39, 76, -442]  tip x   167 y   -56 z   142  jaw   10%  lag 439.5°
+112.0s  follower [23, -24, 40, 74, -442]  tip x   172 y   -56 z   135  jaw   10%  lag 439.6°
+112.1s  follower [23, -20, 39, 71, -442]  tip x   175 y   -57 z   132  jaw   10%  lag 439.6°
+112.2s  follower [23, -20, 39, 71, -442]  tip x   175 y   -57 z   132  jaw   10%  lag 439.6°
+112.3s  follower [22, -20, 39, 70, -442]  tip x   178 y   -55 z   132  jaw   10%  lag 439.6°
+112.5s  follower [21, -20, 39, 66, -442]  tip x   182 y   -53 z   132  jaw   10%  lag 439.6°
+112.6s  follower [20, -20, 39, 65, -442]  tip x   183 y   -52 z   132  jaw   11%  lag 439.6°
+112.8s  follower [20, -20, 39, 65, -442]  tip x   183 y   -52 z   132  jaw   11%  lag 439.6°
+113.2s  follower [20, -20, 39, 65, -442]  tip x   183 y   -52 z   133  jaw   11%  lag 439.6°
+113.5s  follower [20, -21, 40, 67, -442]  tip x   179 y   -51 z   133  jaw   10%  lag 439.6°
+113.8s  follower [16, -21, 39, 74, -442]  tip x   176 y   -29 z   135  jaw   10%  lag 439.6°
+114.1s  follower [-5, -27, 39, 81, -450]  tip x   170 y    40 z   150  jaw   10%  lag 448.3°
+114.5s  follower [-24, -26, 33, 80, -464]  tip x   170 y    83 z   157  jaw   10%  lag 462.1°
+114.9s  follower [-38, -4, 12, 80, -472]  tip x   199 y   124 z   155  jaw   10%  lag 469.6°
+115.3s  follower [-38, 10, -4, 80, -472]  tip x   223 y   146 z   148  jaw   10%  lag 469.6°
+115.7s  follower [-39, 35, -34, 81, -472]  tip x   249 y   168 z   127  jaw   10%  lag 469.6°
+116.2s  follower [-38, 48, -50, 80, -472]  tip x   261 y   177 z   110  jaw   11%  lag 469.6°
+116.6s  follower [-39, 55, -56, 80, -472]  tip x   263 y   178 z   106  jaw   11%  lag 469.6°
+116.7s  follower [-39, 58, -59, 78, -472]  tip x   267 y   181 z   101  jaw   11%  lag 469.6°
+116.9s  follower [-39, 59, -60, 75, -472]  tip x   269 y   183 z   100  jaw   11%  lag 469.6°
+117.0s  follower [-38, 59, -60, 74, -472]  tip x   269 y   183 z    95  jaw   11%  lag 469.6°
+117.2s  follower [-39, 62, -60, 73, -472]  tip x   270 y   183 z    88  jaw   11%  lag 469.6°
+117.3s  follower [-39, 62, -60, 71, -472]  tip x   271 y   184 z    85  jaw   11%  lag 469.6°
+117.5s  follower [-39, 63, -60, 70, -472]  tip x   271 y   184 z    83  jaw   11%  lag 469.6°
+117.6s  follower [-39, 63, -60, 70, -472]  tip x   271 y   184 z    83  jaw   11%  lag 469.6°
+117.8s  follower [-39, 63, -60, 70, -472]  tip x   271 y   184 z    83  jaw   11%  lag 469.6°
+117.9s  follower [-39, 63, -60, 70, -472]  tip x   271 y   184 z    83  jaw   15%  lag 469.6°
+118.0s  follower [-38, 63, -60, 70, -472]  tip x   271 y   184 z    83  jaw   22%  lag 469.6°
+118.1s  follower [-38, 63, -60, 70, -472]  tip x   271 y   184 z    83  jaw   23%  lag 469.7°
+118.3s  follower [-38, 63, -60, 70, -472]  tip x   271 y   184 z    83  jaw   23%  lag 469.7°
+118.4s  follower [-38, 63, -60, 69, -472]  tip x   272 y   185 z    83  jaw   23%  lag 469.8°
+118.5s  follower [-38, 63, -60, 67, -472]  tip x   274 y   186 z    84  jaw   23%  lag 469.8°
+118.6s  follower [-38, 63, -60, 67, -472]  tip x   273 y   186 z    81  jaw   23%  lag 469.8°
+118.7s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   23%  lag 469.7°
+118.9s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   23%  lag 469.7°
+119.0s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   23%  lag 469.7°
+119.2s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   22%  lag 469.7°
+119.3s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   22%  lag 469.7°
+119.5s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   22%  lag 469.7°
+119.6s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   22%  lag 469.7°
+119.8s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   21%  lag 469.7°
+119.9s  follower [-38, 65, -60, 67, -472]  tip x   273 y   186 z    77  jaw   17%  lag 469.7°
+120.0s  follower [-38, 65, -60, 67, -472]  tip x   273 y   185 z    77  jaw   14%  lag 469.7°
+120.2s  follower [-38, 65, -60, 67, -472]  tip x   273 y   185 z    77  jaw   11%  lag 469.7°
+120.3s  follower [-38, 65, -60, 67, -472]  tip x   273 y   185 z    77  jaw   11%  lag 469.7°
+120.4s  follower [-38, 65, -60, 67, -472]  tip x   273 y   185 z    77  jaw   11%  lag 469.7°
+120.6s  follower [-38, 64, -60, 67, -472]  tip x   273 y   185 z    81  jaw   11%  lag 469.7°
+120.7s  follower [-38, 63, -60, 68, -472]  tip x   273 y   184 z    82  jaw   11%  lag 469.7°
+120.8s  follower [-38, 60, -60, 72, -472]  tip x   270 y   179 z   105  jaw   11%  lag 469.7°
+121.0s  follower [-38, 55, -60, 80, -472]  tip x   265 y   174 z   124  jaw   11%  lag 469.7°
+121.1s  follower [-38, 50, -60, 87, -472]  tip x   258 y   169 z   144  jaw   11%  lag 469.7°
+121.2s  follower [-37, 45, -60, 94, -472]  tip x   252 y   163 z   162  jaw   11%  lag 469.7°
+121.3s  follower [-36, 41, -60, 100, -472]  tip x   254 y   153 z   183  jaw   11%  lag 469.7°
+121.4s  follower [-34, 35, -60, 103, -472]  tip x   254 y   142 z   200  jaw   11%  lag 469.7°
+121.6s  follower [-32, 31, -59, 105, -472]  tip x   255 y   128 z   215  jaw   11%  lag 469.6°
+121.7s  follower [-29, 27, -59, 105, -472]  tip x   254 y   115 z   226  jaw   11%  lag 469.5°
+121.8s  follower [-26, 23, -53, 105, -472]  tip x   253 y   100 z   229  jaw   11%  lag 469.5°
+121.9s  follower [-23, 16, -46, 105, -472]  tip x   246 y    83 z   236  jaw   11%  lag 469.5°
+122.1s  follower [-20, 9, -39, 105, -471]  tip x   238 y    67 z   242  jaw   11%  lag 469.3°
+122.2s  follower [-17, 2, -32, 105, -471]  tip x   228 y    54 z   247  jaw   11%  lag 469.1°
+122.3s  follower [-15, -5, -26, 105, -471]  tip x   217 y    43 z   249  jaw   11%  lag 468.8°
+122.5s  follower [-12, -11, -19, 105, -471]  tip x   207 y    33 z   248  jaw   11%  lag 468.7°
+122.6s  follower [-9, -16, -12, 105, -471]  tip x   151 y   -86 z   186  jaw   11%  lag 468.7°
+123.9s  follower [38, -25, 24, 89, -451]  tip x   156 y   -90 z   172  jaw   11%  lag 449.1°
+124.0s  follower [38, -21, 25, 84, -449]  tip x   164 y   -96 z   164  jaw   11%  lag 446.9°
+124.2s  follower [38, -17, 25, 77, -446]  tip x   172 y  -103 z   153  jaw   11%  lag 444.1°
+124.3s  follower [37, -12, 25, 73, -444]  tip x   177 y  -105 z   144  jaw   11%  lag 441.8°
+124.4s  follower [37, -10, 25, 71, -442]  tip x   179 y  -106 z   140  jaw   11%  lag 439.4°
+124.5s  follower [37, -9, 25, 69, -439]  tip x   181 y  -106 z   137  jaw   11%  lag 436.7°
+124.7s  follower [37, -8, 25, 68, -437]  tip x   182 y  -107 z   136  jaw   11%  lag 434.8°
+124.8s  follower [37, -7, 25, 68, -436]  tip x   182 y  -107 z   134  jaw   11%  lag 433.9°
+124.9s  follower [37, -7, 25, 67, -436]  tip x   183 y  -108 z   135  jaw   11%  lag 433.9°
+125.1s  follower [37, -7, 25, 66, -436]  tip x   185 y  -108 z   135  jaw   11%  lag 433.9°
+125.2s  follower [37, -7, 25, 65, -436]  tip x   184 y  -108 z   135  jaw   11%  lag 433.9°
+125.3s  follower [37, -7, 25, 65, -436]  tip x   184 y  -108 z   135  jaw   11%  lag 433.9°
+125.5s  follower [37, -7, 25, 66, -436]  tip x   183 y  -109 z   135  jaw   11%  lag 434.0°
+125.6s  follower [37, -7, 25, 66, -436]  tip x   183 y  -109 z   137  jaw   10%  lag 434.0°
+125.7s  follower [37, -8, 25, 67, -436]  tip x   182 y  -108 z   137  jaw   10%  lag 433.9°
+125.9s  follower [37, -8, 25, 69, -434]  tip x   179 y  -107 z   137  jaw   10%  lag 432.0°
+126.0s  follower [37, -8, 25, 72, -431]  tip x   177 y  -105 z   138  jaw   10%  lag 428.6°
+126.1s  follower [37, -8, 24, 73, -429]  tip x   177 y  -106 z   139  jaw   10%  lag 426.9°
+126.2s  follower [37, -8, 24, 72, -429]  tip x   178 y  -107 z   139  jaw   10%  lag 426.9°
+126.3s  follower [37, -8, 25, 72, -429]  tip x   178 y  -105 z   137  jaw   11%  lag 426.9°
+126.5s  follower [37, -8, 24, 72, -429]  tip x   178 y  -107 z   138  jaw   11%  lag 426.9°
+126.6s  follower [37, -8, 24, 72, -429]  tip x   178 y  -107 z   138  jaw   11%  lag 426.9°
+126.7s  follower [37, -8, 24, 72, -429]  tip x   178 y  -107 z   137  jaw   10%  lag 426.9°
+126.8s  follower [37, -7, 24, 72, -429]  tip x   178 y  -106 z   137  jaw   10%  lag 427.0°
+127.0s  follower [37, -7, 24, 72, -429]  tip x   179 y  -106 z   137  jaw    9%  lag 427.0°
+127.1s  follower [37, -7, 24, 72, -429]  tip x   178 y  -107 z   137  jaw    4%  lag 426.9°
+127.2s  follower [37, -7, 24, 72, -430]  tip x   178 y  -107 z   137  jaw    0%  lag 427.3°
+127.4s  follower [38, -7, 24, 72, -430]  tip x   178 y  -107 z   136  jaw    0%  lag 427.4°
+127.5s  follower [38, -7, 24, 72, -430]  tip x   178 y  -107 z   136  jaw    0%  lag 427.4°
+127.6s  follower [38, -7, 25, 72, -430]  tip x   177 y  -107 z   135  jaw    0%  lag 427.3°
+127.7s  follower [37, -7, 25, 72, -430]  tip x   178 y  -105 z   135  jaw    0%  lag 427.7°
+127.8s  follower [37, -8, 25, 73, -430]  tip x   177 y  -104 z   136  jaw    0%  lag 428.0°
+128.0s  follower [37, -8, 25, 73, -431]  tip x   177 y  -103 z   136  jaw    0%  lag 428.3°
+128.1s  follower [36, -8, 25, 73, -434]  tip x   177 y  -103 z   136  jaw    0%  lag 432.2°
+128.2s  follower [36, -8, 26, 73, -439]  tip x   177 y   -98 z   133  jaw    0%  lag 437.2°
+128.4s  follower [33, -8, 27, 73, -440]  tip x   182 y   -88 z   132  jaw    0%  lag 438.0°
+128.5s  follower [30, -8, 28, 73, -440]  tip x   186 y   -80 z   131  jaw    0%  lag 438.1°
+128.6s  follower [27, -9, 29, 73, -442]  tip x   188 y   -71 z   132  jaw    0%  lag 440.2°
+128.7s  follower [23, -11, 30, 73, -448]  tip x   190 y   -57 z   133  jaw    0%  lag 445.7°
+128.9s  follower [17, -12, 31, 73, -453]  tip x   194 y   -42 z   132  jaw    0%  lag 450.7°
+129.0s  follower [12, -12, 31, 73, -457]  tip x   197 y   -27 z   132  jaw    0%  lag 454.7°
+129.2s  follower [6, -12, 31, 73, -462]  tip x   199 y    -6 z   132  jaw    0%  lag 460.2°
+129.3s  follower [-1, -12, 31, 73, -470]  tip x   200 y     8 z   133  jaw    0%  lag 467.3°
+129.5s  follower [-5, -12, 31, 73, -474]  tip x   200 y    20 z   134  jaw    0%  lag 471.5°
+129.6s  follower [-10, -11, 30, 73, -477]  tip x   198 y    32 z   132  jaw    0%  lag 474.4°
+129.7s  follower [-14, -11, 30, 73, -479]  tip x   197 y    42 z   132  jaw    0%  lag 476.4°
+129.8s  follower [-18, -11, 29, 72, -481]  tip x   197 y    53 z   135  jaw    0%  lag 479.2°
+129.9s  follower [-20, -10, 28, 72, -484]  tip x   198 y    59 z   133  jaw    0%  lag 481.6°
+130.0s  follower [-22, -6, 26, 73, -486]  tip x   200 y    68 z   130  jaw    0%  lag 484.1°
+130.2s  follower [-24, -4, 23, 73, -489]  tip x   201 y    73 z   132  jaw    0%  lag 486.7°
+130.3s  follower [-25, -4, 23, 73, -491]  tip x   201 y    74 z   132  jaw    0%  lag 488.4°
+130.4s  follower [-25, -4, 23, 73, -491]  tip x   201 y    74 z   132  jaw    0%  lag 488.8°
+130.5s  follower [-24, -4, 23, 73, -491]  tip x   201 y    72 z   132  jaw    0%  lag 488.8°
+130.7s  follower [-24, -5, 23, 73, -490]  tip x   199 y    71 z   133  jaw    0%  lag 487.8°
+130.8s  follower [-24, -6, 23, 76, -489]  tip x   196 y    69 z   135  jaw    0%  lag 486.8°
+130.9s  follower [-23, -6, 23, 79, -484]  tip x   197 y    62 z   136  jaw    0%  lag 481.6°
+131.0s  follower [-19, -7, 23, 79, -478]  tip x   201 y    48 z   139  jaw    0%  lag 475.8°
+131.2s  follower [-13, -8, 24, 79, -475]  tip x   204 y    31 z   142  jaw    0%  lag 472.4°
+131.3s  follower [-7, -10, 25, 80, -471]  tip x   201 y    12 z   140  jaw    0%  lag 468.8°
+131.4s  follower [0, -11, 27, 80, -465]  tip x   198 y    -8 z   140  jaw    0%  lag 462.8°
+131.5s  follower [7, -13, 28, 80, -458]  tip x   196 y   -28 z   142  jaw    0%  lag 455.9°
+131.7s  follower [15, -13, 28, 80, -452]  tip x   191 y   -50 z   142  jaw    0%  lag 449.5°
+131.9s  follower [28, -12, 27, 79, -440]  tip x   174 y   -91 z   142  jaw    0%  lag 438.0°
+132.2s  follower [40, -8, 22, 79, -430]  tip x   171 y  -119 z   141  jaw    0%  lag 427.9°
+132.5s  follower [42, -5, 20, 77, -430]  tip x   171 y  -119 z   140  jaw    0%  lag 427.8°
+132.9s  follower [41, -6, 20, 78, -431]  tip x   171 y  -115 z   142  jaw    0%  lag 428.6°
+133.2s  follower [34, -9, 20, 87, -432]  tip x   186 y   -66 z   157  jaw    0%  lag 429.5°
+133.7s  follower [15, -13, 21, 89, -449]  tip x   196 y   -15 z   161  jaw    0%  lag 447.1°
+134.1s  follower [-10, -13, 20, 89, -474]  tip x   194 y    44 z   160  jaw    0%  lag 471.8°
+134.5s  follower [-19, -12, 20, 89, -486]  tip x   191 y    60 z   159  jaw    0%  lag 483.6°
+134.8s  follower [-22, -12, 20, 82, -488]  tip x   197 y    64 z   163  jaw    0%  lag 485.8°
+135.3s  follower [-22, -12, 14, 82, -488]  tip x   212 y    68 z   162  jaw    0%  lag 485.4°
+135.7s  follower [-21, -5, 14, 71, -487]  tip x   221 y    70 z   153  jaw    0%  lag 485.0°
+135.8s  follower [-21, -2, 14, 69, -488]  tip x   223 y    71 z   147  jaw    0%  lag 485.5°
+136.0s  follower [-21, -1, 14, 69, -488]  tip x   223 y    71 z   145  jaw    0%  lag 485.5°
+136.1s  follower [-21, -1, 14, 69, -488]  tip x   224 y    71 z   140  jaw    0%  lag 485.5°
+136.2s  follower [-21, 1, 14, 69, -488]  tip x   224 y    71 z   136  jaw    0%  lag 485.6°
+136.4s  follower [-21, 2, 14, 69, -488]  tip x   224 y    71 z   136  jaw    0%  lag 485.6°
+136.5s  follower [-21, 2, 14, 69, -488]  tip x   224 y    71 z   135  jaw    0%  lag 485.6°
+136.7s  follower [-21, 2, 14, 69, -488]  tip x   223 y    71 z   134  jaw    0%  lag 485.7°
+136.8s  follower [-21, 2, 14, 69, -488]  tip x   223 y    71 z   134  jaw    0%  lag 485.7°
+136.9s  follower [-21, 2, 15, 69, -488]  tip x   222 y    71 z   134  jaw    0%  lag 485.7°
+137.1s  follower [-21, 2, 15, 70, -488]  tip x   222 y    71 z   134  jaw    0%  lag 485.7°
+137.2s  follower [-22, 2, 15, 70, -488]  tip x   221 y    72 z   134  jaw    0%  lag 485.7°
+137.3s  follower [-22, 2, 15, 70, -488]  tip x   221 y    72 z   133  jaw    0%  lag 485.7°
+137.4s  follower [-22, 2, 15, 70, -488]  tip x   221 y    72 z   133  jaw    0%  lag 485.7°
+137.6s  follower [-22, 2, 15, 70, -488]  tip x   221 y    72 z   132  jaw    0%  lag 485.7°
+137.7s  follower [-22, 2, 16, 70, -488]  tip x   217 y    71 z   127  jaw    0%  lag 485.7°
+137.8s  follower [-22, 2, 19, 70, -488]  tip x   214 y    70 z   124  jaw    0%  lag 485.7°
+138.0s  follower [-22, 2, 19, 70, -488]  tip x   214 y    70 z   124  jaw    0%  lag 485.7°
+138.1s  follower [-22, 2, 19, 70, -488]  tip x   214 y    70 z   124  jaw    0%  lag 485.7°
+138.2s  follower [-22, 2, 19, 70, -488]  tip x   214 y    70 z   124  jaw    0%  lag 485.7°
+138.3s  follower [-22, 2, 19, 70, -488]  tip x   214 y    70 z   124  jaw    0%  lag 485.7°
+138.4s  follower [-22, 2, 19, 70, -488]  tip x   214 y    70 z   124  jaw    0%  lag 485.7°
+138.6s  follower [-22, 2, 19, 70, -488]  tip x   214 y    70 z   123  jaw    0%  lag 485.7°
+138.7s  follower [-22, 3, 20, 70, -488]  tip x   211 y    69 z   119  jaw    0%  lag 485.8°
+138.8s  follower [-22, 2, 21, 70, -488]  tip x   211 y    70 z   118  jaw    0%  lag 485.7°
+138.9s  follower [-22, 2, 21, 70, -488]  tip x   210 y    70 z   118  jaw    0%  lag 485.7°
+139.0s  follower [-22, 2, 21, 70, -488]  tip x   211 y    69 z   119  jaw    0%  lag 485.7°
+139.2s  follower [-22, 2, 20, 70, -488]  tip x   212 y    70 z   121  jaw    0%  lag 485.6°
+139.3s  follower [-22, 2, 20, 70, -487]  tip x   213 y    68 z   121  jaw    0%  lag 484.7°
+139.4s  follower [-21, 2, 19, 70, -487]  tip x   218 y    70 z   127  jaw    0%  lag 484.7°
+139.6s  follower [-21, 4, 10, 71, -487]  tip x   232 y    74 z   143  jaw    0%  lag 484.5°
+139.8s  follower [-21, 5, 7, 71, -484]  tip x   236 y    72 z   140  jaw    0%  lag 482.3°
+139.9s  follower [-19, 7, 7, 71, -481]  tip x   240 y    64 z   139  jaw    0%  lag 478.6°
+140.0s  follower [-16, 8, 5, 71, -479]  tip x   245 y    57 z   138  jaw    0%  lag 476.9°
+140.1s  follower [-15, 10, 4, 71, -479]  tip x   249 y    53 z   135  jaw    0%  lag 476.7°
+140.3s  follower [-13, 11, 3, 71, -479]  tip x   251 y    48 z   134  jaw    0%  lag 476.7°
+140.4s  follower [-12, 11, 3, 71, -479]  tip x   249 y    45 z   133  jaw    0%  lag 476.7°
+140.5s  follower [-12, 11, 3, 75, -479]  tip x   246 y    44 z   133  jaw    0%  lag 476.7°
+140.7s  follower [-12, 11, 3, 76, -479]  tip x   246 y    44 z   132  jaw    0%  lag 476.7°
+140.8s  follower [-12, 11, 4, 76, -479]  tip x   245 y    44 z   130  jaw    0%  lag 476.7°
+140.9s  follower [-12, 11, 4, 76, -479]  tip x   244 y    45 z   129  jaw    0%  lag 476.7°
+141.2s  follower [-13, 11, 6, 76, -479]  tip x   239 y    45 z   123  jaw    0%  lag 476.7°
+141.3s  follower [-13, 11, 8, 76, -479]  tip x   237 y    45 z   121  jaw    0%  lag 476.7°
+141.4s  follower [-13, 11, 8, 76, -479]  tip x   237 y    45 z   121  jaw    0%  lag 476.7°
+141.5s  follower [-13, 11, 8, 76, -479]  tip x   237 y    45 z   120  jaw    0%  lag 476.7°
+141.6s  follower [-13, 11, 9, 76, -479]  tip x   235 y    45 z   118  jaw    0%  lag 476.7°
+141.7s  follower [-13, 11, 11, 76, -479]  tip x   231 y    44 z   116  jaw    0%  lag 476.8°
+141.9s  follower [-13, 10, 12, 76, -479]  tip x   230 y    44 z   116  jaw    0%  lag 476.8°
+142.0s  follower [-13, 10, 12, 76, -479]  tip x   230 y    44 z   115  jaw    0%  lag 476.8°
+142.1s  follower [-13, 10, 12, 76, -479]  tip x   228 y    43 z   113  jaw    0%  lag 477.1°
+142.2s  follower [-13, 10, 14, 76, -479]  tip x   226 y    43 z   112  jaw    0%  lag 477.3°
+142.4s  follower [-13, 10, 14, 76, -479]  tip x   226 y    43 z   112  jaw    0%  lag 477.2°
+142.5s  follower [-13, 10, 14, 76, -479]  tip x   226 y    43 z   112  jaw    0%  lag 477.0°
+142.6s  follower [-13, 9, 14, 76, -479]  tip x   226 y    43 z   117  jaw    0%  lag 476.9°
+142.7s  follower [-13, 7, 14, 76, -479]  tip x   226 y    43 z   120  jaw    0%  lag 477.2°
+142.9s  follower [-13, 7, 14, 76, -479]  tip x   226 y    43 z   121  jaw    0%  lag 477.0°
+143.0s  follower [-13, 7, 14, 76, -479]  tip x   228 y    43 z   122  jaw    0%  lag 476.7°
+143.1s  follower [-12, 7, 12, 75, -479]  tip x   233 y    43 z   128  jaw    0%  lag 476.5°
+143.3s  follower [-12, 7, 8, 75, -478]  tip x   242 y    44 z   135  jaw    0%  lag 475.7°
+143.4s  follower [-12, 9, 4, 75, -475]  tip x   246 y    44 z   140  jaw    0%  lag 472.5°
+143.5s  follower [-11, 9, 3, 75, -472]  tip x   250 y    34 z   135  jaw    0%  lag 470.1°
+143.7s  follower [-8, 13, 0, 75, -471]  tip x   258 y    25 z   134  jaw    0%  lag 469.2°
+143.8s  follower [-5, 15, -3, 76, -471]  tip x   262 y    17 z   134  jaw    0%  lag 469.1°
+143.9s  follower [-3, 16, -4, 76, -470]  tip x   261 y    11 z   132  jaw    0%  lag 467.6°
+144.1s  follower [-3, 16, -3, 76, -468]  tip x   260 y    10 z   132  jaw    0%  lag 466.3°
+144.2s  follower [-3, 16, -3, 78, -468]  tip x   257 y    10 z   132  jaw    0%  lag 466.2°
+144.3s  follower [-3, 15, -3, 80, -468]  tip x   255 y    10 z   133  jaw    0%  lag 466.2°
+144.4s  follower [-3, 15, -3, 81, -468]  tip x   255 y    11 z   132  jaw    0%  lag 466.2°
+144.6s  follower [-4, 15, -3, 81, -469]  tip x   254 y    13 z   131  jaw    0%  lag 466.5°
+144.7s  follower [-4, 15, -1, 81, -469]  tip x   250 y    13 z   127  jaw    0%  lag 466.5°
+144.8s  follower [-4, 15, 2, 81, -469]  tip x   246 y    13 z   123  jaw    0%  lag 466.4°
+144.9s  follower [-4, 14, 3, 81, -469]  tip x   245 y    13 z   124  jaw    0%  lag 466.5°
+145.0s  follower [-4, 13, 3, 81, -469]  tip x   245 y    13 z   126  jaw    0%  lag 466.7°
+145.1s  follower [-4, 13, 5, 81, -469]  tip x   241 y    13 z   123  jaw    0%  lag 466.9°
+145.2s  follower [-4, 11, 7, 80, -469]  tip x   236 y    12 z   123  jaw    0%  lag 466.9°
+145.4s  follower [-4, 10, 10, 80, -469]  tip x   233 y    12 z   122  jaw    0%  lag 466.9°
+145.5s  follower [-4, 9, 11, 80, -469]  tip x   231 y    12 z   121  jaw    0%  lag 467.0°
+145.6s  follower [-4, 9, 12, 80, -469]  tip x   230 y    12 z   120  jaw    0%  lag 467.1°
+145.7s  follower [-4, 9, 12, 80, -469]  tip x   230 y    12 z   120  jaw    0%  lag 467.1°
+145.8s  follower [-4, 9, 12, 79, -469]  tip x   230 y    12 z   120  jaw    0%  lag 467.1°
+145.9s  follower [-4, 9, 12, 79, -469]  tip x   229 y    12 z   118  jaw    0%  lag 467.1°
+146.0s  follower [-4, 9, 14, 79, -469]  tip x   226 y    12 z   115  jaw    0%  lag 467.1°
+146.2s  follower [-4, 8, 15, 79, -469]  tip x   224 y    12 z   116  jaw    0%  lag 467.2°
+146.3s  follower [-4, 8, 16, 79, -469]  tip x   223 y    11 z   115  jaw    0%  lag 467.2°
+146.5s  follower [-4, 8, 17, 79, -469]  tip x   221 y    11 z   112  jaw    0%  lag 467.2°
+146.6s  follower [-4, 8, 18, 79, -469]  tip x   220 y    12 z   113  jaw    0%  lag 467.2°
+146.7s  follower [-4, 6, 18, 80, -469]  tip x   219 y    11 z   119  jaw    0%  lag 467.2°
+146.8s  follower [-4, 3, 18, 80, -469]  tip x   218 y    11 z   127  jaw    0%  lag 467.2°
+147.0s  follower [-4, 1, 18, 80, -469]  tip x   218 y    11 z   132  jaw    0%  lag 467.0°
+147.1s  follower [-4, -1, 18, 80, -469]  tip x   217 y    10 z   139  jaw    0%  lag 466.5°
+147.2s  follower [-3, -5, 17, 80, -468]  tip x   217 y     9 z   149  jaw    0%  lag 466.3°
+147.5s  follower [-3, -7, 17, 79, -468]  tip x   222 y     8 z   154  jaw    0%  lag 466.2°
+147.6s  follower [-3, -5, 12, 79, -468]  tip x   228 y     8 z   159  jaw    0%  lag 466.2°
+147.8s  follower [-2, -2, 10, 78, -468]  tip x   235 y     5 z   152  jaw    0%  lag 466.2°
+147.9s  follower [0, 1, 9, 75, -468]  tip x   241 y    -3 z   148  jaw    0%  lag 466.1°
+148.0s  follower [2, 3, 7, 74, -468]  tip x   244 y   -11 z   145  jaw    0%  lag 466.0°
+148.1s  follower [3, 5, 6, 73, -468]  tip x   246 y   -14 z   142  jaw    0%  lag 465.9°
+148.3s  follower [4, 6, 6, 73, -468]  tip x   246 y   -15 z   142  jaw    0%  lag 465.9°
+148.4s  follower [4, 6, 7, 74, -468]  tip x   245 y   -15 z   140  jaw    0%  lag 465.5°
+148.5s  follower [4, 6, 7, 74, -464]  tip x   244 y   -15 z   140  jaw    0%  lag 462.2°
+148.7s  follower [4, 6, 7, 74, -463]  tip x   243 y   -15 z   138  jaw    0%  lag 460.9°
+148.8s  follower [4, 6, 9, 74, -463]  tip x   238 y   -14 z   133  jaw    0%  lag 461.0°
+148.9s  follower [4, 5, 12, 74, -463]  tip x   234 y   -14 z   129  jaw    0%  lag 461.0°
+149.0s  follower [4, 5, 14, 74, -463]  tip x   231 y   -13 z   125  jaw    0%  lag 461.0°
+149.2s  follower [4, 5, 15, 74, -463]  tip x   229 y   -13 z   123  jaw    0%  lag 461.1°
+149.3s  follower [4, 5, 16, 74, -463]  tip x   227 y   -13 z   121  jaw    0%  lag 461.1°
+149.4s  follower [4, 5, 17, 74, -463]  tip x   226 y   -13 z   120  jaw    0%  lag 461.1°
+149.6s  follower [4, 5, 18, 74, -464]  tip x   223 y   -12 z   116  jaw    0%  lag 461.4°
+149.7s  follower [4, 5, 20, 73, -464]  tip x   223 y   -12 z   115  jaw    0%  lag 461.5°
+149.8s  follower [4, 5, 20, 73, -464]  tip x   222 y   -12 z   115  jaw    0%  lag 461.5°
+149.9s  follower [4, 5, 20, 73, -464]  tip x   211 y   -11 z   126  jaw    0%  lag 461.5°
+151.4s  follower [4, -3, 19, 73, -463]  tip x   231 y   -14 z   142  jaw    0%  lag 460.8°
+151.8s  follower [6, 4, 10, 73, -462]  tip x   245 y   -31 z   137  jaw    0%  lag 459.6°
+152.1s  follower [11, 10, 4, 74, -457]  tip x   245 y   -46 z   133  jaw    0%  lag 455.2°
+152.5s  follower [12, 10, 5, 74, -457]  tip x   242 y   -45 z   130  jaw    0%  lag 454.9°
+152.9s  follower [12, 9, 10, 74, -454]  tip x   231 y   -43 z   119  jaw    0%  lag 452.1°
+153.4s  follower [13, 8, 16, 74, -455]  tip x   223 y   -41 z   116  jaw    0%  lag 452.3°
+153.8s  follower [13, 4, 20, 73, -455]  tip x   215 y   -39 z   115  jaw    0%  lag 452.3°
+154.2s  follower [13, 1, 25, 73, -455]  tip x   208 y   -38 z   122  jaw    0%  lag 452.3°
+154.7s  follower [12, -5, 25, 74, -454]  tip x   212 y   -38 z   134  jaw    0%  lag 452.1°
+154.9s  follower [12, -5, 21, 73, -454]  tip x   219 y   -40 z   141  jaw    0%  lag 452.0°
+155.0s  follower [12, -2, 14, 73, -454]  tip x   230 y   -43 z   143  jaw    0%  lag 451.9°
+155.2s  follower [14, 4, 10, 74, -452]  tip x   235 y   -56 z   138  jaw    0%  lag 449.4°
+155.4s  follower [19, 9, 5, 74, -447]  tip x   238 y   -72 z   133  jaw    0%  lag 444.4°
+155.5s  follower [20, 11, 4, 74, -446]  tip x   238 y   -74 z   129  jaw    0%  lag 443.6°
+155.6s  follower [20, 12, 5, 74, -446]  tip x   237 y   -73 z   127  jaw    0%  lag 443.5°
+155.7s  follower [20, 12, 5, 74, -446]  tip x   236 y   -73 z   126  jaw    0%  lag 443.5°
+155.9s  follower [21, 12, 5, 74, -446]  tip x   235 y   -76 z   126  jaw    0%  lag 443.4°
+156.0s  follower [21, 12, 6, 74, -446]  tip x   232 y   -77 z   123  jaw    0%  lag 443.4°
+156.1s  follower [22, 12, 8, 74, -446]  tip x   228 y   -76 z   119  jaw    0%  lag 443.4°
+156.3s  follower [22, 11, 10, 74, -446]  tip x   225 y   -75 z   117  jaw    0%  lag 443.4°
+156.4s  follower [22, 11, 11, 74, -446]  tip x   223 y   -74 z   115  jaw    0%  lag 443.3°
+156.5s  follower [22, 11, 12, 74, -446]  tip x   222 y   -74 z   114  jaw    0%  lag 443.3°
+156.7s  follower [22, 11, 12, 74, -446]  tip x   222 y   -74 z   114  jaw    0%  lag 443.4°
+156.8s  follower [22, 11, 12, 74, -446]  tip x   222 y   -73 z   114  jaw    0%  lag 443.4°
+156.9s  follower [22, 10, 14, 74, -446]  tip x   218 y   -72 z   112  jaw    0%  lag 443.4°
+157.1s  follower [22, 8, 16, 73, -446]  tip x   215 y   -71 z   113  jaw    0%  lag 443.4°
+157.2s  follower [22, 7, 17, 73, -446]  tip x   214 y   -71 z   113  jaw    0%  lag 443.4°
+157.3s  follower [22, 7, 17, 73, -446]  tip x   214 y   -71 z   112  jaw    0%  lag 443.4°
+157.5s  follower [22, 7, 18, 74, -446]  tip x   212 y   -71 z   111  jaw    0%  lag 443.4°
+157.6s  follower [23, 7, 18, 74, -446]  tip x   210 y   -73 z   113  jaw    0%  lag 443.4°
+157.7s  follower [23, 6, 19, 74, -446]  tip x   207 y   -72 z   113  jaw    0%  lag 443.4°
+157.8s  follower [23, 3, 21, 74, -446]  tip x   204 y   -70 z   119  jaw    0%  lag 443.4°
+158.0s  follower [22, 0, 22, 74, -446]  tip x   206 y   -68 z   125  jaw    0%  lag 443.3°
+158.1s  follower [22, 0, 21, 74, -446]  tip x   209 y   -69 z   129  jaw    0%  lag 443.3°
+158.2s  follower [22, 0, 17, 74, -446]  tip x   218 y   -73 z   139  jaw    0%  lag 443.3°
+158.3s  follower [22, 2, 10, 74, -446]  tip x   227 y   -78 z   143  jaw    0%  lag 443.3°
+158.5s  follower [23, 8, 6, 74, -446]  tip x   233 y   -82 z   134  jaw    0%  lag 443.3°
+158.6s  follower [23, 12, 1, 74, -446]  tip x   240 y   -86 z   132  jaw    0%  lag 443.3°
+158.7s  follower [24, 16, -2, 74, -444]  tip x   241 y   -96 z   129  jaw    0%  lag 441.8°
+158.8s  follower [27, 18, -4, 74, -442]  tip x   239 y  -104 z   125  jaw    0%  lag 439.9°
+160.0s  follower [31, 18, 0, 77, -439]  tip x   225 y  -113 z   117  jaw    0%  lag 436.6°
+160.1s  follower [32, 18, 1, 76, -437]  tip x   221 y  -113 z   113  jaw    0%  lag 434.5°
+160.2s  follower [32, 18, 3, 76, -437]  tip x   219 y  -112 z   112  jaw    0%  lag 434.4°
+160.3s  follower [32, 18, 3, 76, -437]  tip x   219 y  -112 z   112  jaw    0%  lag 434.4°
+160.4s  follower [32, 17, 4, 76, -437]  tip x   217 y  -111 z   110  jaw    0%  lag 434.4°
+160.6s  follower [32, 17, 4, 76, -437]  tip x   217 y  -111 z   110  jaw    0%  lag 434.4°
+160.7s  follower [32, 17, 4, 76, -437]  tip x   217 y  -111 z   110  jaw    0%  lag 434.4°
+160.8s  follower [32, 17, 5, 76, -437]  tip x   216 y  -110 z   110  jaw    0%  lag 434.4°
+160.9s  follower [32, 17, 5, 76, -437]  tip x   215 y  -110 z   111  jaw    0%  lag 434.4°
+161.0s  follower [32, 16, 6, 76, -437]  tip x   213 y  -109 z   111  jaw    0%  lag 434.4°
+161.2s  follower [32, 16, 7, 76, -437]  tip x   213 y  -109 z   111  jaw    0%  lag 434.4°
+161.3s  follower [32, 16, 7, 76, -437]  tip x   212 y  -110 z   111  jaw    0%  lag 434.4°
+161.4s  follower [33, 15, 7, 76, -437]  tip x   212 y  -111 z   111  jaw    0%  lag 434.4°
+161.5s  follower [33, 15, 8, 76, -437]  tip x   208 y  -111 z   109  jaw    0%  lag 434.4°
+161.6s  follower [34, 15, 8, 76, -437]  tip x   208 y  -112 z   109  jaw    0%  lag 434.4°
+161.8s  follower [34, 15, 8, 76, -437]  tip x   208 y  -112 z   109  jaw    0%  lag 434.5°
+161.9s  follower [34, 15, 8, 77, -437]  tip x   208 y  -113 z   110  jaw    0%  lag 434.7°
+162.0s  follower [34, 15, 8, 77, -437]  tip x   208 y  -113 z   110  jaw    0%  lag 434.8°
+162.1s  follower [34, 15, 7, 77, -437]  tip x   208 y  -113 z   112  jaw    0%  lag 435.0°
+162.2s  follower [34, 13, 7, 77, -437]  tip x   208 y  -113 z   119  jaw    0%  lag 435.1°
+162.4s  follower [34, 11, 7, 76, -437]  tip x   208 y  -113 z   125  jaw    0%  lag 435.2°
+162.5s  follower [34, 9, 7, 76, -437]  tip x   208 y  -114 z   130  jaw    0%  lag 435.3°
+162.6s  follower [35, 8, 7, 76, -438]  tip x   204 y  -123 z   138  jaw    0%  lag 435.3°
+162.7s  follower [39, 7, 3, 76, -438]  tip x   201 y  -141 z   151  jaw    0%  lag 435.3°
+162.9s  follower [45, 8, -5, 76, -438]  tip x   192 y  -163 z   168  jaw    0%  lag 435.4°
+163.0s  follower [50, 8, -12, 76, -438]  tip x   176 y  -183 z   187  jaw    0%  lag 435.4°
+163.1s  follower [56, 7, -19, 76, -438]  tip x   165 y  -193 z   207  jaw    0%  lag 435.4°
+163.3s  follower [57, 7, -23, 76, -438]  tip x   164 y  -193 z   216  jaw    0%  lag 435.4°
+163.4s  follower [56, 5, -24, 76, -438]  tip x   162 y  -186 z   231  jaw    0%  lag 435.4°
+163.5s  follower [56, 2, -24, 77, -438]  tip x   160 y  -182 z   234  jaw    0%  lag 435.4°
+163.6s  follower [55, 1, -23, 78, -437]  tip x   167 y  -174 z   227  jaw    0%  lag 435.0°
+163.8s  follower [51, 2, -19, 86, -437]  tip x   174 y  -157 z   207  jaw    0%  lag 434.6°
+163.9s  follower [47, 2, -14, 94, -437]  tip x   179 y  -144 z   196  jaw    0%  lag 434.5°
+164.0s  follower [43, 3, -10, 94, -437]  tip x   189 y  -131 z   182  jaw    0%  lag 434.5°
+164.1s  follower [39, 5, -4, 92, -437]  tip x   194 y  -126 z   160  jaw    0%  lag 434.5°
+164.3s  follower [39, 7, 1, 86, -437]  tip x   197 y  -128 z   145  jaw    0%  lag 434.5°
+164.4s  follower [39, 8, 4, 81, -436]  tip x   196 y  -130 z   138  jaw    0%  lag 434.3°
+164.5s  follower [39, 8, 5, 80, -436]  tip x   195 y  -128 z   136  jaw    0%  lag 433.8°
+164.7s  follower [39, 8, 6, 80, -433]  tip x   194 y  -129 z   135  jaw    0%  lag 430.8°
+164.8s  follower [40, 8, 6, 80, -431]  tip x   193 y  -129 z   133  jaw    0%  lag 428.3°
+164.9s  follower [39, 8, 8, 80, -431]  tip x   191 y  -124 z   128  jaw    0%  lag 429.3°
+165.1s  follower [39, 7, 11, 80, -432]  tip x   189 y  -118 z   125  jaw    0%  lag 429.5°
+165.2s  follower [36, 7, 13, 80, -433]  tip x   195 y  -106 z   126  jaw    0%  lag 431.3°
+165.3s  follower [30, 3, 14, 81, -441]  tip x   202 y   -87 z   134  jaw    0%  lag 439.2°
+165.5s  follower [24, 1, 17, 81, -447]  tip x   205 y   -65 z   132  jaw    0%  lag 445.3°
+165.6s  follower [16, -2, 20, 81, -452]  tip x   209 y   -38 z   133  jaw    0%  lag 450.0°
+165.8s  follower [7, -3, 21, 81, -459]  tip x   212 y   -12 z   134  jaw    0%  lag 456.7°
+165.9s  follower [-1, -3, 21, 81, -468]  tip x   212 y    14 z   134  jaw    0%  lag 465.3°
+166.0s  follower [-11, -3, 20, 80, -475]  tip x   210 y    42 z   135  jaw    0%  lag 473.1°
+166.1s  follower [-18, -2, 20, 80, -481]  tip x   205 y    60 z   133  jaw    0%  lag 478.6°
+166.3s  follower [-22, -2, 20, 80, -485]  tip x   202 y    69 z   133  jaw    0%  lag 482.4°
+166.4s  follower [-24, -2, 20, 80, -488]  tip x   200 y    73 z   133  jaw    0%  lag 486.2°
+166.5s  follower [-24, -2, 20, 80, -489]  tip x   200 y    73 z   133  jaw    0%  lag 486.6°
+166.7s  follower [-24, -2, 20, 80, -489]  tip x   200 y    71 z   133  jaw    0%  lag 486.3°
+166.8s  follower [-24, -2, 20, 80, -488]  tip x   199 y    69 z   134  jaw    0%  lag 485.4°
+166.9s  follower [-23, -3, 21, 81, -486]  tip x   199 y    63 z   133  jaw    0%  lag 484.0°
+167.1s  follower [-18, -4, 22, 82, -478]  tip x   203 y    46 z   135  jaw    0%  lag 475.7°
+167.2s  follower [-10, -5, 23, 82, -470]  tip x   204 y    19 z   135  jaw    0%  lag 468.0°
+167.3s  follower [-2, -6, 25, 82, -465]  tip x   203 y    -5 z   135  jaw    0%  lag 462.7°
+167.5s  follower [7, -7, 25, 82, -459]  tip x   201 y   -27 z   135  jaw    0%  lag 456.7°
+167.6s  follower [15, -7, 25, 82, -453]  tip x   195 y   -51 z   136  jaw    0%  lag 450.8°
+167.7s  follower [23, -7, 24, 81, -447]  tip x   187 y   -77 z   137  jaw    0%  lag 445.1°
+167.8s  follower [33, -7, 24, 81, -441]  tip x   175 y   -97 z   136  jaw    0%  lag 439.0°
+168.0s  follower [39, -7, 24, 81, -436]  tip x   166 y  -110 z   137  jaw    0%  lag 434.2°
+168.1s  follower [43, -6, 22, 80, -434]  tip x   164 y  -117 z   140  jaw    0%  lag 431.6°
+168.2s  follower [43, -6, 21, 81, -433]  tip x   165 y  -116 z   140  jaw    0%  lag 430.6°
+168.3s  follower [42, -7, 22, 81, -434]  tip x   165 y  -113 z   141  jaw    0%  lag 431.5°
+168.5s  follower [40, -7, 22, 82, -434]  tip x   171 y  -102 z   139  jaw    0%  lag 431.8°
+168.6s  follower [34, -8, 25, 82, -438]  tip x   187 y   -33 z   139  jaw    0%  lag 435.6°
+169.9s  follower [12, -15, 31, 81, -456]  tip x   187 y   -33 z   139  jaw    0%  lag 453.5°
+170.2s  follower [12, -15, 31, 81, -456]  tip x   187 y   -33 z   138  jaw    0%  lag 453.9°
+170.5s  follower [12, -14, 31, 81, -456]  tip x   187 y   -33 z   137  jaw    0%  lag 453.7°
+170.9s  follower [12, -14, 31, 81, -456]  tip x   187 y   -33 z   138  jaw    0%  lag 453.7°
+171.2s  follower [12, -14, 31, 81, -456]  tip x   186 y   -33 z   137  jaw    0%  lag 453.7°
+171.6s  follower [12, -14, 31, 82, -455]  tip x   186 y   -33 z   137  jaw    0%  lag 453.3°
+171.9s  follower [12, -14, 31, 82, -456]  tip x   186 y   -33 z   137  jaw    0%  lag 453.6°
+172.4s  follower [12, -14, 31, 82, -456]  tip x   186 y   -33 z   137  jaw    0%  lag 453.6°
+172.8s  follower [12, -14, 31, 82, -455]  tip x   186 y   -33 z   138  jaw    0%  lag 453.2°
+173.2s  follower [12, -15, 31, 81, -455]  tip x   189 y   -30 z   141  jaw    0%  lag 452.5°
+173.7s  follower [11, -15, 31, 81, -442]  tip x   190 y   -29 z   140  jaw    0%  lag 439.5°
+174.0s  follower [11, -14, 30, 80, -417]  tip x   190 y   -29 z   139  jaw    0%  lag 414.8°
+174.1s  follower [11, -14, 30, 80, -409]  tip x   191 y   -30 z   140  jaw    0%  lag 407.1°
+174.2s  follower [11, -14, 29, 79, -402]  tip x   198 y   -31 z   143  jaw    0%  lag 400.3°
+174.4s  follower [11, -12, 28, 73, -394]  tip x   204 y   -32 z   136  jaw    0%  lag 392.3°
+174.5s  follower [11, -9, 28, 70, -389]  tip x   207 y   -32 z   131  jaw    0%  lag 386.9°
+174.6s  follower [11, -8, 28, 69, -384]  tip x   208 y   -33 z   132  jaw    0%  lag 382.1°
+174.7s  follower [11, -9, 28, 69, -381]  tip x   208 y   -33 z   132  jaw    0%  lag 379.0°
+174.8s  follower [11, -9, 28, 69, -381]  tip x   208 y   -33 z   131  jaw    0%  lag 378.7°
+174.9s  follower [11, -8, 28, 69, -381]  tip x   207 y   -32 z   130  jaw    1%  lag 378.6°
+175.1s  follower [11, -8, 28, 69, -381]  tip x   207 y   -32 z   129  jaw    6%  lag 378.6°
+175.2s  follower [11, -8, 29, 69, -381]  tip x   206 y   -32 z   129  jaw   14%  lag 378.5°
+175.3s  follower [11, -8, 29, 70, -381]  tip x   205 y   -32 z   128  jaw   22%  lag 378.5°
+175.4s  follower [11, -8, 29, 70, -381]  tip x   205 y   -31 z   126  jaw   29%  lag 378.5°
+175.5s  follower [10, -6, 29, 71, -381]  tip x   205 y   -27 z   121  jaw   33%  lag 378.5°
+175.6s  follower [9, -4, 29, 73, -381]  tip x   203 y   -24 z   116  jaw   37%  lag 378.5°
+175.8s  follower [8, -2, 29, 73, -381]  tip x   204 y   -24 z   112  jaw   39%  lag 378.5°
+175.9s  follower [8, 0, 29, 73, -378]  tip x   204 y   -24 z   106  jaw   40%  lag 375.9°
+176.0s  follower [8, 3, 29, 73, -375]  tip x   204 y   -24 z   101  jaw   40%  lag 372.3°
+176.1s  follower [8, 4, 29, 73, -374]  tip x   203 y   -24 z    99  jaw   40%  lag 371.3°
+176.3s  follower [8, 5, 29, 73, -374]  tip x   203 y   -24 z    97  jaw   40%  lag 371.3°
+176.4s  follower [8, 6, 29, 73, -374]  tip x   203 y   -24 z    94  jaw   40%  lag 371.3°
+176.5s  follower [8, 7, 28, 73, -374]  tip x   203 y   -24 z    94  jaw   40%  lag 371.5°
+176.6s  follower [8, 7, 28, 73, -374]  tip x   204 y   -24 z    95  jaw   40%  lag 371.8°
+176.8s  follower [8, 7, 28, 73, -374]  tip x   204 y   -24 z    95  jaw   39%  lag 371.8°
+176.9s  follower [8, 7, 28, 73, -374]  tip x   204 y   -24 z    95  jaw   37%  lag 371.5°
+177.0s  follower [8, 7, 28, 72, -374]  tip x   205 y   -24 z    95  jaw   33%  lag 372.0°
+177.2s  follower [8, 7, 28, 72, -374]  tip x   205 y   -24 z    95  jaw   33%  lag 372.1°
+177.3s  follower [8, 7, 28, 72, -374]  tip x   205 y   -24 z    95  jaw   33%  lag 372.1°
+177.5s  follower [8, 7, 28, 72, -374]  tip x   205 y   -24 z    95  jaw   33%  lag 372.1°
+177.6s  follower [8, 7, 28, 72, -374]  tip x   205 y   -24 z    95  jaw   34%  lag 372.1°
+177.7s  follower [8, 6, 28, 73, -374]  tip x   205 y   -24 z    96  jaw   34%  lag 372.1°
+177.8s  follower [8, 6, 28, 73, -374]  tip x   204 y   -24 z    97  jaw   38%  lag 372.0°
+178.0s  follower [8, 6, 28, 74, -374]  tip x   203 y   -24 z    97  jaw   44%  lag 372.1°
+178.1s  follower [8, 5, 28, 74, -374]  tip x   201 y   -23 z    98  jaw   48%  lag 372.1°
+178.2s  follower [8, 5, 28, 79, -375]  tip x   197 y   -23 z   104  jaw   49%  lag 372.3°
+178.4s  follower [8, 2, 28, 85, -375]  tip x   193 y   -23 z   115  jaw   49%  lag 372.7°
+178.5s  follower [8, -2, 26, 88, -379]  tip x   195 y   -23 z   127  jaw   49%  lag 376.9°
+178.6s  follower [8, -4, 23, 92, -391]  tip x   194 y   -23 z   136  jaw   45%  lag 388.5°
+178.7s  follower [8, -5, 23, 95, -404]  tip x   191 y   -22 z   142  jaw   37%  lag 401.8°
+178.9s  follower [8, -10, 21, 96, -416]  tip x   193 y   -23 z   158  jaw   23%  lag 413.9°
+179.0s  follower [8, -13, 18, 96, -423]  tip x   195 y   -23 z   168  jaw    8%  lag 420.6°
+179.1s  follower [8, -13, 15, 96, -428]  tip x   197 y   -25 z   174  jaw    0%  lag 425.4°
+179.3s  follower [9, -13, 13, 96, -433]  tip x   198 y   -26 z   177  jaw    0%  lag 431.2°
+179.4s  follower [9, -13, 13, 96, -440]  tip x   198 y   -26 z   177  jaw    0%  lag 438.2°
+179.5s  follower [9, -14, 14, 97, -453]  tip x   196 y   -26 z   178  jaw    0%  lag 451.2°
+179.7s  follower [9, -15, 13, 97, -465]  tip x   197 y   -24 z   180  jaw    0%  lag 462.7°
+179.8s  follower [8, -15, 13, 97, -472]  tip x   197 y   -24 z   180  jaw    0%  lag 469.8°
+179.9s  follower [9, -15, 13, 97, -472]  tip x   197 y   -24 z   180  jaw    0%  lag 469.5°
+saved logs/teleop-131455.csv

@@ -1,0 +1,309 @@
+{
+ "source": "runs/2026-10-24-teach-10/samples.csv",
+ "frame": "arm base, mm; tip = wrist + 98 mm along claw axis; wrist roll read one turn low, +360 applied",
+ "box_fit": {
+  "sun_centre_y": 80.8,
+  "pitch_y": -32.6,
+  "source": "demo-04 fit reused; every drop here lands within 10 mm of it",
+  "this_run_drop_fit": {
+   "sun_y": 88.0,
+   "pitch_y": -35.0
+  }
+ },
+ "steps": [
+  {
+   "pill": "white capsule",
+   "pick_t": 27.7,
+   "pick_tip_mm": [
+    139,
+    105,
+    0
+   ],
+   "pick_jaw_pct": 4.5,
+   "drop_t": 32.2,
+   "drop_day": "mon",
+   "drop_tip_mm": [
+    201,
+    55,
+    30
+   ],
+   "drop_offset_from_day_centre_mm": 7,
+   "grasp_heading": -115.7,
+   "drop_heading": -110.9,
+   "day_evidence": "frame 166: capsule standing in Mon"
+  },
+  {
+   "pill": "white capsule",
+   "pick_t": 42.5,
+   "pick_tip_mm": [
+    78,
+    -143,
+    -1
+   ],
+   "pick_jaw_pct": 4.2,
+   "drop_t": 46.4,
+   "drop_day": "wed",
+   "drop_tip_mm": [
+    195,
+    -21,
+    40
+   ],
+   "drop_offset_from_day_centre_mm": -4,
+   "grasp_heading": -242.7,
+   "drop_heading": -115.1,
+   "day_evidence": "frames 237-244: capsule in Wed"
+  },
+  {
+   "pill": "white capsule",
+   "pick_t": 54.7,
+   "pick_tip_mm": [
+    293,
+    -103,
+    -13
+   ],
+   "pick_jaw_pct": 4.0,
+   "drop_t": 62.7,
+   "drop_day": "fri",
+   "drop_tip_mm": [
+    183,
+    -91,
+    30
+   ],
+   "drop_offset_from_day_centre_mm": -9,
+   "grasp_heading": -192.6,
+   "drop_heading": -116.1,
+   "day_evidence": "frames 331-332: capsule in Fri"
+  },
+  {
+   "pill": "pale-blue tablet",
+   "pick_t": 73.9,
+   "pick_tip_mm": [
+    229,
+    193,
+    -8
+   ],
+   "pick_jaw_pct": 10.7,
+   "drop_t": 82.9,
+   "drop_day": "thu",
+   "drop_tip_mm": [
+    178,
+    -42,
+    40
+   ],
+   "drop_offset_from_day_centre_mm": 8,
+   "grasp_heading": -106.3,
+   "drop_heading": -109.2,
+   "day_evidence": "frame 372 pill at the Thu mouth, 373 jaws empty"
+  },
+  {
+   "pill": "red tablet",
+   "pick_t": 88.9,
+   "pick_tip_mm": [
+    270,
+    119,
+    -14
+   ],
+   "pick_jaw_pct": 10.9,
+   "drop_t": 95.1,
+   "drop_day": "sun",
+   "drop_tip_mm": [
+    199,
+    90,
+    28
+   ],
+   "drop_offset_from_day_centre_mm": 10,
+   "grasp_heading": -87.0,
+   "drop_heading": -108.6,
+   "day_evidence": "frame 394: tablet inside Sun"
+  },
+  {
+   "pill": "cream tablet",
+   "pick_t": 98.3,
+   "pick_tip_mm": [
+    278,
+    -60,
+    -12
+   ],
+   "pick_jaw_pct": 10.6,
+   "drop_t": 105.4,
+   "drop_day": "tue",
+   "drop_tip_mm": [
+    210,
+    12,
+    31
+   ],
+   "drop_offset_from_day_centre_mm": -4,
+   "grasp_heading": -114.7,
+   "drop_heading": -110.9,
+   "day_evidence": "frame 431: tablet inside Tue"
+  },
+  {
+   "pill": "peach tablet",
+   "pick_t": 112.3,
+   "pick_tip_mm": [
+    207,
+    -201,
+    -12
+   ],
+   "pick_jaw_pct": 10.5,
+   "drop_t": 116.9,
+   "drop_day": "sat",
+   "drop_tip_mm": [
+    184,
+    -121,
+    28
+   ],
+   "drop_offset_from_day_centre_mm": -7,
+   "grasp_heading": -157.4,
+   "drop_heading": -107.6,
+   "day_evidence": "frame 490: tablet inside Sat"
+  }
+ ],
+ "lid_sweep": {
+  "pass1": {
+   "t": [
+    122.8,
+    151.4
+   ],
+   "kind": "press per lid",
+   "presses": [
+    {
+     "lid": "mon (inferred from y; Sun centre y 81 never visited)",
+     "t": [
+      122.8,
+      125.8
+     ],
+     "entry_tip_mm": [
+      234,
+      63,
+      52
+     ],
+     "press_tip_mm": [
+      215,
+      58,
+      20
+     ],
+     "min_z": 20
+    },
+    {
+     "lid": "tue",
+     "t": [
+      132.4,
+      136.8
+     ],
+     "entry_tip_mm": [
+      257,
+      18,
+      26
+     ],
+     "press_tip_mm": [
+      202,
+      11,
+      19
+     ],
+     "min_z": 15
+    },
+    {
+     "lid": "wed",
+     "t": [
+      136.9,
+      140.2
+     ],
+     "entry_tip_mm": [
+      240,
+      -19,
+      18
+     ],
+     "press_tip_mm": [
+      203,
+      -16,
+      19
+     ],
+     "min_z": 16
+    },
+    {
+     "lid": "thu",
+     "t": [
+      140.7,
+      142.9
+     ],
+     "entry_tip_mm": [
+      239,
+      -50,
+      21
+     ],
+     "press_tip_mm": [
+      202,
+      -46,
+      17
+     ],
+     "min_z": 14
+    },
+    {
+     "lid": "fri",
+     "t": [
+      143.4,
+      146.5
+     ],
+     "entry_tip_mm": [
+      254,
+      -58,
+      38
+     ],
+     "press_tip_mm": [
+      200,
+      -74,
+      17
+     ],
+     "min_z": 15
+    },
+    {
+     "lid": "sat",
+     "t": [
+      146.7,
+      151.4
+     ],
+     "entry_tip_mm": [
+      231,
+      -90,
+      25
+     ],
+     "press_tip_mm": [
+      192,
+      -109,
+      16
+     ],
+     "min_z": 16
+    }
+   ]
+  },
+  "pass2": {
+   "t": [
+    155.6,
+    160.6
+   ],
+   "kind": "continuous sweep, 3 strokes",
+   "x_mm": [
+    184,
+    214
+   ],
+   "z_mm": [
+    16,
+    30
+   ]
+  },
+  "jaw": "closed",
+  "not_replayable": {
+   "t": [
+    151.4,
+    155.6
+   ],
+   "why": "shoulder -93.3 (limit -64), elbow 70.5 (limit 35)"
+  }
+ },
+ "end": {
+  "t": 161,
+  "pose": "rest tip (143,-20,44); outside limits, use taught home"
+ },
+ "drop_heading": -110.0
+}
