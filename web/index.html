@@ -7,102 +7,86 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#070707; --fg:#fff; --dim:#b8b8b8; --accent:#ffd400; --ok:#5cff8a; --bad:#ff6b6b;
-          --card:#141414; --card2:#1c1c1c; --line:#3a3a3a; --viam:#ff9d2e; --yolo:#7fb8ff; }
+  /* warm palette from alex/ui-warm: every text pair passes WCAG AA */
+  :root { --bg:#F5EFE6; --fg:#3A322B; --dim:#685D52; --accent:#A64B2A; --soft:#F6E4D9; --ok:#3D6A48; --bad:#A3362A;
+          --stop:#B3261E; --card:#FCF9F4; --card2:#F3ECE1; --line:#E2D6C6; }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:20px/1.35 "Atkinson Hyperlegible", system-ui, sans-serif; }
-  button { font:inherit; font-weight:700; border:3px solid var(--fg); background:#222; color:var(--fg);
-           border-radius:14px; padding:10px 14px; cursor:pointer; min-height:56px; }
-  button:focus-visible { outline:5px solid var(--accent); outline-offset:3px; }
-  button:active { transform:translateY(1px); }
-  h2 { margin:0 0 12px; font-size:16px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
-
-  header { display:flex; gap:14px; align-items:center; padding:14px 20px; border-bottom:2px solid var(--line); flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; gap:12px; margin-right:auto; }
-  .brand h1 { margin:0; font-size:34px; color:var(--accent); line-height:1; }
-  #status { display:inline-flex; align-items:center; gap:10px; border:2px solid var(--line); border-radius:999px;
-            padding:8px 16px; font-size:20px; font-weight:700; }
-  #status::before { content:""; width:12px; height:12px; border-radius:50%; background:var(--ok); }
-  #status.busy { border-color:var(--accent); color:var(--accent); }
-  #status.busy::before { background:var(--accent); animation:pulse 1s infinite; }
-  #status.down { border-color:var(--bad); color:var(--bad); }
-  #status.down::before { background:var(--bad); }
-  #mic { background:#003d80; border-color:#7fb8ff; }
-  #mic.listening { background:var(--accent); color:#000; }
-  #stop { background:#c00000; border-color:#ff9a9a; font-size:28px; min-width:160px; }
-  .ask { display:flex; gap:12px; padding:16px 20px 0; max-width:1600px; margin:0 auto; }
-  .ask input { flex:1; min-width:0; font:inherit; font-size:24px; color:var(--fg); background:var(--card);
-               border:3px solid var(--line); border-radius:14px; padding:12px 16px; min-height:60px; }
-  .ask input:focus { outline:none; border-color:var(--accent); }
-  .ask input::placeholder { color:#8a8a8a; }
-  .ask button { background:var(--accent); color:#000; border-color:var(--accent); min-width:120px; font-size:24px; }
-  #heard { max-width:1600px; margin:0 auto; padding:8px 20px 0; font-size:19px; color:var(--dim); min-height:1.35em; }
-  #heard.ok { color:var(--ok); } #heard.bad { color:var(--bad); }
-  #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 20px; }
-
-  .wrap { padding:20px; display:grid; gap:20px; max-width:1600px; margin:0 auto; }
-  .top { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:20px; }
-  .card { background:var(--card); border:2px solid var(--line); border-radius:18px; padding:18px; min-width:0; }
-
   [hidden] { display:none !important; }
-  /* the frame box hugs the image, so detection boxes in % of the frame land on it */
-  .cam { position:relative; background:#000; border:2px solid var(--line); border-radius:14px; overflow:hidden;
-         width:fit-content; max-width:100%; margin:0 auto; }
-  .cam img { display:block; max-width:100%; max-height:42vh; width:auto; height:auto; }
-  .cam .ph { width:min(560px, 80vw); aspect-ratio:4/3; max-height:42vh; display:grid; place-items:center; color:var(--dim); }
+  body { margin:0; background:var(--bg); color:var(--fg); font:21px/1.5 "Atkinson Hyperlegible", system-ui, sans-serif; }
+  button { font:inherit; font-weight:700; border:2px solid var(--line); background:var(--card); color:var(--fg);
+           border-radius:16px; padding:12px 16px; cursor:pointer; min-height:60px; }
+  button:hover { border-color:var(--dim); }
+  button:focus-visible { outline:4px solid var(--accent); outline-offset:3px; }
+  button:active { transform:translateY(1px); }
+
+  header { display:flex; gap:14px; align-items:center; padding:16px 24px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:12px; margin-right:auto; }
+  .brand h1 { margin:0; font-size:34px; line-height:1; }
+  #status { display:inline-flex; align-items:center; gap:10px; background:var(--card); border-radius:999px;
+            padding:8px 16px; font-size:19px; font-weight:700; }
+  #status::before { content:""; width:12px; height:12px; border-radius:50%; background:var(--ok); }
+  #status.down { color:var(--bad); } #status.down::before { background:var(--bad); }
+  #mic { min-width:60px; }
+  #mic.listening { background:var(--accent); color:#fff; border-color:var(--accent); }
+  #stop { background:var(--stop); border-color:var(--stop); color:#fff; font-size:26px; min-width:150px; }
+  #alarm { background:var(--bad); color:#fff; font-weight:700; font-size:24px; padding:14px 24px; }
+
+  .wrap { padding:0 24px 24px; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:24px;
+          max-width:1600px; margin:0 auto; align-items:start; }
+  .card { background:var(--card); border-radius:22px; padding:22px; min-width:0; }
+  h2 { margin:0 0 14px; font-size:30px; line-height:1.2; }
+  .sub { margin:-6px 0 16px; color:var(--dim); }
+
+  /* camera */
+  .cam { position:relative; background:#2b2622; border-radius:16px; overflow:hidden; width:fit-content; max-width:100%; margin:0 auto; }
+  .cam img { display:block; max-width:100%; max-height:62vh; width:auto; height:auto; }
+  .cam .ph { width:min(640px, 86vw); aspect-ratio:4/3; max-height:62vh; display:grid; place-items:center; color:#d8cfc4; }
   #boxes { position:absolute; inset:0; pointer-events:none; }
-  .box { position:absolute; border:4px solid; border-radius:6px; }
-  .box span { position:absolute; left:-4px; bottom:100%; font-size:15px; font-weight:700; color:#000; padding:1px 6px;
-              border-radius:4px 4px 0 0; white-space:nowrap; }
-  .box.viam { border-color:var(--viam); } .box.viam span { background:var(--viam); }
-  .box.yolov8 { border-color:var(--yolo); border-style:dashed; } .box.yolov8 span { background:var(--yolo); top:100%; bottom:auto; border-radius:0 0 4px 4px; }
-  .dets { list-style:none; margin:14px 0 0; padding:0; display:grid; gap:8px; }
-  .dets li { display:flex; justify-content:space-between; gap:12px; background:var(--card2); border-radius:12px; padding:10px 14px; }
-  .dets li b { text-align:right; }
-  .dets .viam span::before, .dets .yolov8 span::before { content:""; display:inline-block; width:14px; height:14px;
-      border-radius:3px; margin-right:10px; vertical-align:-1px; }
-  .dets .viam span::before { background:var(--viam); } .dets .yolov8 span::before { background:var(--yolo); }
+  .box { position:absolute; border:5px solid #fff; border-radius:8px; box-shadow:0 0 0 2px #000, inset 0 0 0 2px #000; }
+  .box span { position:absolute; left:-5px; top:calc(100% + 4px); font-size:17px; font-weight:700; color:#1d1a17;
+              padding:2px 10px; border-radius:8px; white-space:nowrap; box-shadow:0 0 0 2px #000; }
+  .box.pill { border-color:var(--accent); box-shadow:0 0 0 2px #fff, inset 0 0 0 2px #fff; }
+  .box.pill span { background:var(--accent); color:#fff; box-shadow:0 0 0 2px #fff; }
+  .found { list-style:none; margin:16px 0 0; padding:0; display:grid; gap:8px; }
+  .found li { display:flex; justify-content:space-between; gap:12px; background:var(--card2); border-radius:14px; padding:10px 16px; }
+  .found li b { text-align:right; }
+  .found .y b { color:var(--ok); } .found .n b { color:var(--bad); } .found .w b { color:var(--dim); }
 
-  #now { display:flex; flex-direction:column; gap:18px; }
-  #now-pill { display:flex; align-items:center; gap:18px; min-height:80px; }
-  #now-pill .name { font-size:44px; font-weight:700; line-height:1.1; }
-  #now-title { font-size:34px; font-weight:700; line-height:1.2; }
-  #now-title.idle { color:var(--dim); }
-  #now-last { font-size:24px; margin-top:auto; }
-  #now-last.ok { color:var(--ok); } #now-last.bad { color:var(--bad); }
+  /* steps */
+  .steps { display:flex; gap:8px; margin-bottom:18px; font-size:17px; font-weight:700; color:var(--dim); }
+  .steps span { padding:4px 12px; border-radius:999px; background:var(--card2); }
+  .steps span.on { background:var(--soft); color:var(--accent); }
+  .days { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }
+  .days button { display:flex; align-items:center; gap:14px; text-align:left; font-size:24px; min-height:72px; }
+  .days button.today { border-color:var(--accent); }
+  .days button small { margin-left:auto; font-size:15px; color:var(--accent); }
+  .swatch { width:34px; height:34px; border-radius:8px; flex:none; box-shadow:inset 0 0 0 2px rgba(0,0,0,.18); }
+  .pills { display:grid; gap:12px; }
+  .pills button { display:flex; align-items:center; gap:20px; text-align:left; min-height:96px; font-size:26px; }
+  .pills button span.meta { display:block; font-size:17px; font-weight:400; color:var(--dim); }
+  .icon { flex:none; display:inline-block; }
+  .icon.round { width:52px; height:52px; border-radius:50%; box-shadow:inset -4px -4px 0 rgba(0,0,0,.15); }
+  .icon.capsule { width:76px; height:34px; border-radius:17px; box-shadow:inset 0 0 0 2px #cfc5b8, inset -4px -4px 0 rgba(0,0,0,.06); }
+  .icon-slot { width:76px; display:flex; justify-content:center; flex:none; }
+  .back { margin-top:14px; background:transparent; border-color:transparent; color:var(--accent); min-height:48px; padding:6px 4px; }
+  .done { display:flex; align-items:center; gap:20px; background:var(--soft); border-radius:18px; padding:20px; margin-bottom:16px; }
+  .done b { font-size:30px; line-height:1.2; }
+  .wide { width:100%; }
 
-  /* the two demo pills: Tums are round, orange or red; magnesium is a white capsule */
-  .pill { display:inline-block; flex:none; }
-  .pill.tums { width:26px; height:26px; border-radius:50%; background:linear-gradient(90deg,#ff8a00 50%,#e0262b 50%); }
-  .pill.magnesium { width:38px; height:18px; border-radius:9px; background:#f4f4ef; }
-  .pill.big.tums { width:72px; height:72px; } .pill.big.magnesium { width:104px; height:48px; border-radius:24px; }
-  .pill.unknown { width:26px; height:26px; border-radius:50%; border:3px dashed var(--dim); }
+  .ask { display:flex; gap:10px; margin-top:20px; }
+  .ask input { flex:1; min-width:0; font:inherit; color:var(--fg); background:#fff; border:2px solid var(--line);
+               border-radius:16px; padding:12px 16px; min-height:60px; }
+  .ask input:focus { outline:none; border-color:var(--accent); }
+  .ask button { background:var(--accent); border-color:var(--accent); color:#fff; min-width:96px; }
+  #heard { margin:10px 0 0; min-height:1.5em; color:var(--dim); font-size:19px; }
+  #heard.ok { color:var(--ok); } #heard.bad { color:var(--bad); }
+  footer { color:var(--dim); font-size:15px; text-align:center; padding:0 24px 24px; }
 
-  #days { display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:12px; }
-  .day { background:var(--card2); border:3px solid var(--line); border-radius:16px; padding:12px; display:flex;
-         flex-direction:column; gap:10px; min-width:0; }
-  .day.today { border-color:var(--accent); }
-  .day h3 { margin:0; font-size:28px; line-height:1; }
-  .tray { min-height:60px; border-radius:12px; background:#0b0b0b; border:2px dashed var(--line); display:flex;
-          flex-wrap:wrap; gap:6px; align-items:center; justify-content:center; padding:8px; }
-  .day.lid-closed .tray { border-style:solid; border-color:#777; background:repeating-linear-gradient(135deg,#262626 0 8px,#1a1a1a 8px 16px); }
-  .lid { font-size:17px; font-weight:700; color:var(--ok); }
-  .day.lid-closed .lid { color:var(--fg); } .day.lid-unknown .lid { color:var(--bad); }
-  .day button { width:100%; min-height:50px; padding:6px 8px; font-size:18px; display:flex; align-items:center;
-                justify-content:center; gap:8px; }
-  .day button { flex-wrap:wrap; min-width:0; overflow:hidden; }
-  .day button .pill.tums { width:20px; height:20px; } .day button .pill.magnesium { width:28px; height:14px; }
-  #now-pill:empty { display:none; }
-  .place { background:#1d1d00; border-color:var(--accent); color:var(--accent); }
-  .day:not(.lid-open) .place, .day.lid-closed [data-a=close], .day.lid-open [data-a=opened] { display:none; }
-  footer { color:#8a8a8a; font-size:15px; text-align:center; padding:0 20px 24px; }
-
-  @keyframes pulse { 50% { opacity:.3; } }
   @media (prefers-reduced-motion: reduce) { * { animation:none !important; } }
-  @media (max-width:1200px) { #days { grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); } }
-  @media (max-width:900px) { .top { grid-template-columns:1fr; } }
-  @media (max-width:600px) { body { font-size:18px; } .wrap { padding:12px; gap:14px; } header { padding:12px; }
-    .brand h1 { font-size:28px; } #stop { min-width:0; flex:1; } #now-title { font-size:28px; } #days { grid-template-columns:1fr 1fr; } }
+  @media (max-width:980px) { .wrap { grid-template-columns:1fr; } }
+  @media (max-width:600px) { body { font-size:19px; } header { padding:12px 16px; } .wrap { padding:0 16px 16px; gap:16px; }
+    .card { padding:16px; } .brand h1 { font-size:28px; } #stop { min-width:0; flex:1; } h2 { font-size:26px; }
+    .days button { font-size:21px; min-height:64px; } .pills button { font-size:22px; } }
 </style>
 </head>
 <body>
@@ -110,44 +94,36 @@
   <div class="brand">
     <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
       <clipPath id="cap"><rect x="4" y="14" width="36" height="16" rx="8"/></clipPath>
-      <g clip-path="url(#cap)"><rect x="4" y="14" width="18" height="16" fill="#ffd400"/><rect x="22" y="14" width="18" height="16" fill="#fff"/></g>
+      <g clip-path="url(#cap)"><rect x="4" y="14" width="18" height="16" fill="#A64B2A"/><rect x="22" y="14" width="18" height="16" fill="#fff"/></g>
+      <rect x="4" y="14" width="36" height="16" rx="8" fill="none" stroke="#3A322B" stroke-width="2"/>
     </svg>
     <h1>Doseday</h1>
   </div>
   <div id="status" role="status" aria-live="polite">Connecting…</div>
-  <button id="mic" aria-label="Speak a command">🎤</button>
+  <button id="mic" aria-label="Speak your answer">🎤</button>
   <button id="stop" aria-label="Stop the robot now">STOP</button>
 </header>
 <div id="alarm" role="alert" hidden></div>
-<form class="ask" id="cmd-form" autocomplete="off">
-  <input id="cmd-text" aria-label="Type a command" placeholder="Type a command, e.g. put tums in monday">
-  <button type="submit">Run</button>
-</form>
-<div id="heard" aria-live="polite"></div>
 
 <div class="wrap">
-  <div class="top">
-    <section class="card" aria-labelledby="cam-h">
-      <h2 id="cam-h">What the camera sees</h2>
-      <div class="cam">
-        <img id="cam" alt="Wrist camera view of the pill tray" hidden>
-        <div id="boxes"></div>
-        <div class="ph" id="cam-ph">No pill on the tray yet</div>
-      </div>
-      <ul class="dets" id="dets"></ul>
-    </section>
+  <section class="card" aria-labelledby="cam-h">
+    <h2 id="cam-h">What the camera sees</h2>
+    <div class="cam">
+      <img id="cam" alt="Camera view of the pill organizer and the pills" hidden>
+      <div id="boxes"></div>
+      <div class="ph" id="cam-ph">Waiting for the camera…</div>
+    </div>
+    <ul class="found" id="found"></ul>
+  </section>
 
-    <section class="card" id="now" aria-labelledby="now-h">
-      <h2 id="now-h">Now</h2>
-      <div id="now-pill"></div>
-      <div id="now-title" class="idle">Ready</div>
-      <div id="now-last"></div>
-    </section>
-  </div>
-
-  <section class="card" aria-labelledby="week-h">
-    <h2 id="week-h">The week</h2>
-    <div id="days"></div>
+  <section class="card" aria-labelledby="q-h">
+    <div class="steps"><span id="step-1">1 · Day</span><span id="step-2">2 · Pill</span></div>
+    <div id="panel"></div>
+    <form class="ask" id="cmd-form" autocomplete="off">
+      <input id="cmd-text" aria-label="Type your answer" placeholder="Type a day, e.g. Monday">
+      <button type="submit">Go</button>
+    </form>
+    <p id="heard" aria-live="polite"></p>
   </section>
 </div>
 <footer>Demo with candy and vitamins only. Not medical advice. Spooky Civic Hackathon 2026 · Team 02</footer>
@@ -155,9 +131,14 @@
 <script>
 const DAYS = ["sun","mon","tue","wed","thu","fri","sat"];
 const NAMES = {sun:"Sunday",mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday"};
-const PILLS = ["tums","magnesium"];
-const SOURCES = {viam:"Viam colour detector", yolo:"YOLOv8", yolov8:"YOLOv8"};
-let lastSpoken = 0, lastLook = null;
+// mirrors selector.py; the server's copy in /status wins once it arrives
+let DAY_COLORS = {sun:"#F47F8B",mon:"#F5C94E",tue:"#F4DF35",wed:"#A5E637",thu:"#7CBCE9",fri:"#35C9CE",sat:"#C58BE8"};
+let PILLS = {"tums-orange":{name:"Orange Tums",color:"orange",shape:"round"},
+             "tums-red":{name:"Red Tums",color:"red",shape:"round"},
+             "magnesium":{name:"Magnesium",color:"white",shape:"capsule"}};
+const SWATCH = {orange:"#F28C28", red:"#D2302F", white:"#fff"};
+const FINDERS = {yolov8:"YOLOv8", blobs:"Blob finder"};
+let view = null, shownKey = null, lastT = null;
 
 function say(text) {
   if (!("speechSynthesis" in window)) return;
@@ -166,14 +147,11 @@ function say(text) {
 }
 
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
-const icon = (p, big) => `<span class="pill ${PILLS.includes(p) ? p : "unknown"}${big ? " big" : ""}" aria-hidden="true"></span>`;
+const icon = p => `<span class="icon-slot"><span class="icon ${p.shape}" style="background:${SWATCH[p.color]}"></span></span>`;
 
 async function post(path, body) {
   const r = await fetch(path, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body||{})});
-  const j = await r.json().catch(() => ({}));
-  if (!r.ok && j.say) say(j.say);
-  return j;
+  return r.json().catch(() => ({}));
 }
 
 const STOP_TRIES = 3;
@@ -203,149 +181,103 @@ function showAlarm(text) {
   el.textContent = text; el.hidden = !text;
 }
 
-function cmd(action, day, pill) {
-  const words = action === "place" ? `Putting ${pill} in ${NAMES[day]}` :
-                action === "home" ? "Going home" :
-                action === "opened" ? `Marking ${NAMES[day]} open` :
-                action === "open" ? `Lids start open. Please open ${NAMES[day]} by hand` : `Closing ${NAMES[day]}`;
-  if (action === "open") { say(words); return; }
-  say(words);
-  return post("/cmd", {action, day, pill});
-}
-
-function build() {
-  const main = document.getElementById("days");
-  const today = DAYS[new Date().getDay()];
-  for (const d of DAYS) {
-    const card = document.createElement("div");
-    card.id = `day-${d}`;
-    card.className = "day lid-open" + (d === today ? " today" : "");
-    card.innerHTML = `<h3>${NAMES[d].slice(0,3)}</h3>
-      <div class="tray" id="tray-${d}"></div>
-      <span class="lid" id="lid-${d}">Lid open</span>
-      ${PILLS.map(p => `<button class="place" data-a="place" data-p="${p}" aria-label="Put ${p} in ${NAMES[d]}">${icon(p)}${cap(p)}</button>`).join("")}
-      <button data-a="close" aria-label="Close ${NAMES[d]}'s lid">Close lid</button>
-      <button data-a="opened" aria-label="${NAMES[d]} was opened by hand">Opened by hand</button>`;
-    card.querySelectorAll("button").forEach(b => b.onclick = () => cmd(b.dataset.a, d, b.dataset.p));
-    main.appendChild(card);
-  }
-  document.getElementById("stop").onclick = stopArm;
-  const cam = document.getElementById("cam");
-  cam.onerror = () => { cam.hidden = true; document.getElementById("cam-ph").hidden = false; };
-  cam.onload = () => { cam.hidden = false; document.getElementById("cam-ph").hidden = true; };
-}
-
-// Detections are drawn over the frame they were made on; they are for show and never decide a placement.
-function renderLook(look, detectors) {
-  const dets = (look && look.detections) || [];
-  const [w, h] = (look && look.size) || [640, 480];
-  document.getElementById("boxes").innerHTML = dets.map(d => {
-    const [x0, y0, x1, y1] = d.box;
-    return `<div class="box ${esc(d.source)}" style="left:${x0 / w * 100}%;top:${y0 / h * 100}%;width:${(x1 - x0) / w * 100}%;height:${(y1 - y0) / h * 100}%">`
-         + `<span>${esc(d.label)} ${Math.round(d.confidence * 100)}%</span></div>`;
-  }).join("");
-  document.getElementById("dets").innerHTML = (detectors || []).map(src => {
-    const mine = dets.filter(d => d.source === src || (src === "yolo" && d.source === "yolov8"));
-    const found = !look ? "–" : mine.length ? mine.map(d => `${esc(d.label)} · ${Math.round(d.confidence * 100)}%`).join(", ") : "nothing found";
-    return `<li class="${src === "yolo" ? "yolov8" : esc(src)}"><span>${SOURCES[src] || esc(src)}</span><b>${found}</b></li>`;
-  }).join("");
-  if (look && look.t !== lastLook) {
-    lastLook = look.t;
-    document.getElementById("cam").src = `/frame.jpg?t=${look.t}`;
-  }
-}
-
-function renderWeek(s) {
-  const placed = {};
-  for (const r of s.results) if (r.ok && r.action === "place" && r.day) (placed[r.day] = placed[r.day] || []).push(r.pill);
-  const today = DAYS[new Date().getDay()];
-  for (const d of DAYS) {
-    const state = s.lids[d] || "unknown";
-    document.getElementById(`day-${d}`).className = `day lid-${state}` + (d === today ? " today" : "");
-    document.getElementById(`lid-${d}`).textContent = state === "open" ? "Lid open" : state === "closed" ? "Lid closed" : `Lid ${state}: check it`;
-    document.getElementById(`tray-${d}`).innerHTML = (placed[d] || []).map(p => icon(p)).join("");
-  }
-}
-
-function renderNow(s) {
-  const c = s.busy, newest = s.results[0];
-  const pill = c && c.action === "place" ? c.pill : null;
-  document.getElementById("now-pill").innerHTML = pill ? `${icon(pill, true)}<span class="name">${esc(cap(pill))}</span>` : "";
-  const title = document.getElementById("now-title");
-  title.textContent = !c ? "Ready" : c.action === "place" ? `→ ${NAMES[c.day]}` : c.action === "close" ? `Closing ${NAMES[c.day]}`
-                    : c.action === "home" ? "Going home" : `${cap(c.action)} ${NAMES[c.day] || ""}`;
-  title.className = c ? "" : "idle";
-  const last = document.getElementById("now-last");
-  last.textContent = newest ? `${newest.ok ? "✓" : "✗"} ${newest.say}` : "";
-  last.className = newest ? (newest.ok ? "ok" : "bad") : "";
-}
-
-async function poll() {
-  try {
-    const s = await (await fetch("/status")).json();
-    const st = document.getElementById("status");
-    st.textContent = s.busy ? `Working: ${s.busy.action}${s.busy.day ? " " + NAMES[s.busy.day.slice(0,3).toLowerCase()] : ""}`
-                            + (s.queued ? ` (+${s.queued} waiting)` : "") : "Ready";
-    st.className = s.busy ? "busy" : "";
-    renderNow(s);
-    renderWeek(s);
-    renderLook(s.look, s.detectors);
-    const newest = s.results[0];
-    if (newest && newest.id > lastSpoken) { lastSpoken = newest.id; say(newest.say); }
-  } catch (e) {
-    document.getElementById("status").textContent = "Robot server not reachable";
-    document.getElementById("status").className = "down";
-  }
-  setTimeout(poll, 700);
-}
-
-function parse(text) {
-  const t = text.toLowerCase();
-  if (/\b(stop|halt|freeze)\b/.test(t)) return {stop: true};
-  // after the stop check on purpose: "no, stop" must still stop the arm
-  if (/\b(not|never|no|don'?t|do not)\b/.test(t)) return {error: "I heard 'not' or 'no'. Say the whole command again without it."};
-  const days = new Set();
-  const today = new Date().getDay();
-  if (/\btoday\b/.test(t)) days.add(DAYS[today]);
-  if (/\btomorrow\b/.test(t)) days.add(DAYS[(today + 1) % 7]);
-  for (const d of DAYS) if (new RegExp(`\\b${NAMES[d].toLowerCase()}|\\b${d}\\b`).test(t)) days.add(d);
-  // two days in one utterance is a correction or an ambiguity: refuse, never guess which one was meant
-  if (days.size > 1) return {error: "I heard more than one day. Say one day."};
-  const pills = new Set(PILLS.filter(p => t.includes(p)));
-  if (/\btum/.test(t)) pills.add("tums");
-  if (pills.size > 1) return {error: "I heard more than one pill. Say one pill."};
-  const intents = [];
-  if (/\bhome\b/.test(t)) intents.push("home");
-  if (pills.size && /\b(put|place|add|fill|load|give)\b/.test(t)) intents.push("place");
-  if (/\bopened\b/.test(t)) intents.push("opened");  // "monday was opened": a person did it by hand
-  if (/\b(open|unlock)\b/.test(t)) intents.push("open");
-  if (/\b(close|shut|lock)\b/.test(t)) intents.push("close");
-  if (intents.length > 1) return {error: "I heard more than one command. Say one at a time."};
-  if (intents[0] === "home") return {action: "home"};
-  return {action: intents[0] || null, day: days.size ? [...days][0] : null, pill: pills.size ? [...pills][0] : null};
-}
-
 function heard(text, ok) {
   const el = document.getElementById("heard");
   el.textContent = text; el.className = ok ? "ok" : "bad";
 }
 
-// Typed and spoken commands share one path, so both get the same refusals.
-function run(text) {
-  const c = parse(text);
-  if (c.error) { heard(`✗ “${text}”: ${c.error}`); say(c.error); return; }
-  if (c.stop) { heard("STOP"); stopArm(); return; }
-  if (!c.action || (c.action !== "home" && !c.day)) {
-    heard(`✗ “${text}”: name a day, and a pill, close, or opened. Or say go home or stop.`);
-    say(`Sorry, I heard "${text}". Say a day and open, close, or a pill.`); return;
-  }
-  if (c.action === "place" && !c.pill) { heard(`✗ “${text}”: which pill? Tums or magnesium.`); say("Which pill?"); return; }
-  heard(`✓ ${c.action === "place" ? `Put ${cap(c.pill)} in ${NAMES[c.day]}` : c.action === "home" ? "Go home"
-        : c.action === "opened" ? `Mark ${NAMES[c.day]} open` : `${cap(c.action)} ${NAMES[c.day]}`}`, true);
-  return cmd(c.action, c.day, c.pill);
+async function choose(body) {
+  const j = await post("/select", body);
+  if (j.say) { heard(j.say, j.ok); say(j.say); }
+  poll(true);
+  return j;
 }
 
-function setupText() {
+// Typed and spoken answers share one path; the server reads the day and the pill. A stop word always stops.
+function run(text) {
+  if (/\b(stop|halt|freeze)\b/i.test(text)) { heard("STOP", false); stopArm(); return; }
+  return choose({text, today: new Date().getDay()});
+}
+
+function renderPanel() {
+  const day = view && view.day, pill = view && view.pill;
+  const key = `${!!view}|${day}|${pill}`;
+  if (key === shownKey) return;
+  shownKey = key;
+  document.getElementById("step-1").className = day ? "" : "on";
+  document.getElementById("step-2").className = day ? "on" : "";
+  document.getElementById("cmd-text").placeholder = !day ? "Type a day, e.g. Monday" : "Type the pill, e.g. white capsule";
+  const panel = document.getElementById("panel");
+  const today = DAYS[new Date().getDay()];
+  if (!day) {
+    panel.innerHTML = `<h2 id="q-h">Which day?</h2><p class="sub">Pick the day to fill.</p><div class="days">${DAYS.map(d =>
+      `<button data-day="${d}" class="${d === today ? "today" : ""}"><span class="swatch" style="background:${DAY_COLORS[d]}"></span>${NAMES[d]}${d === today ? "<small>Today</small>" : ""}</button>`).join("")}</div>`;
+  } else if (!pill) {
+    panel.innerHTML = `<h2 id="q-h">Which pill for ${NAMES[day]}?</h2><p class="sub">Choose by colour and shape.</p><div class="pills">${Object.entries(PILLS).map(([k, p]) =>
+      `<button data-pill="${k}">${icon(p)}<span>${esc(p.name)}<span class="meta">${esc(p.color)} · ${esc(p.shape)}</span></span></button>`).join("")}</div>
+      <button class="back" data-reset="1">← Change day</button>`;
+  } else {
+    const p = PILLS[pill];
+    panel.innerHTML = `<h2 id="q-h">Ready</h2><div class="done">${icon(p)}<div><b>${esc(p.name)}</b><br>for ${NAMES[day]}</div></div>
+      <button class="wide" data-reset="1">Start over</button>`;
+  }
+  panel.querySelectorAll("button").forEach(b => b.onclick = () =>
+    b.dataset.reset ? choose({reset: true}) : b.dataset.day ? choose({day: b.dataset.day}) : choose({pill: b.dataset.pill}));
+}
+
+function boxHtml(d, cls, label, bg, size) {
+  const [w, h] = size, [x0, y0, x1, y1] = d.box;
+  return `<div class="box ${cls}" style="left:${x0 / w * 100}%;top:${y0 / h * 100}%;width:${(x1 - x0) / w * 100}%;height:${(y1 - y0) / h * 100}%">`
+       + `<span${bg ? ` style="background:${bg}"` : ""}>${esc(label)}</span></div>`;
+}
+
+function renderCamera() {
+  const boxes = document.getElementById("boxes"), found = document.getElementById("found");
+  if (!view) { boxes.innerHTML = ""; found.innerHTML = `<li class="w"><span>Camera view</span><b>off</b></li>`; return; }
+  const size = view.size || [640, 480];
+  boxes.innerHTML = (view.day_boxes || []).map(d => boxHtml(d, "day", NAMES[view.day], DAY_COLORS[view.day], size)).join("")
+                  + (view.pill_boxes || []).map(d => boxHtml(d, "pill", `${d.label}${d.source === "yolov8" ? ` ${Math.round(d.confidence * 100)}%` : ""}`, null, size)).join("");
+  const rows = [];
+  if (view.day) {
+    const n = (view.day_boxes || []).length;
+    rows.push(view.pointing ? `<li class="w"><span>Viam colour detector</span><b>looking for ${NAMES[view.day]}'s colour…</b></li>`
+      : `<li class="${n ? "y" : "n"}"><span>Viam colour detector</span><b>${n ? `${NAMES[view.day]} found` : `${NAMES[view.day]} not in view`}</b></li>`);
+  }
+  if (view.pill) {
+    const n = (view.pill_boxes || []).length, name = PILLS[view.pill].name;
+    rows.push(`<li class="${n ? "y" : "n"}"><span>${FINDERS[view.pill_source] || esc(view.pill_source)}</span><b>${n ? `${esc(name)} found` : `no ${esc(name)} in view`}</b></li>`);
+  }
+  if (view.error) rows.push(`<li class="n"><span>Camera</span><b>${esc(view.error)}</b></li>`);
+  found.innerHTML = rows.join("");
+  if (view.t && view.t !== lastT) {
+    lastT = view.t;
+    document.getElementById("cam").src = `/frame.jpg?t=${view.t}`;
+  }
+}
+
+async function poll(once) {
+  try {
+    const s = await (await fetch("/status")).json();
+    view = s.view || null;
+    if (view && view.days) DAY_COLORS = view.days;
+    if (view && view.pills) PILLS = view.pills;
+    const st = document.getElementById("status");
+    st.textContent = s.busy ? `Arm working: ${s.busy.action}` : "Ready";
+    st.className = "";
+    renderPanel();
+    renderCamera();
+  } catch (e) {
+    document.getElementById("status").textContent = "Robot server not reachable";
+    document.getElementById("status").className = "down";
+  }
+  if (once !== true) setTimeout(poll, 500);
+}
+
+function build() {
+  document.getElementById("stop").onclick = stopArm;
+  const cam = document.getElementById("cam");
+  cam.onerror = () => { cam.hidden = true; document.getElementById("cam-ph").hidden = false; };
+  cam.onload = () => { cam.hidden = false; document.getElementById("cam-ph").hidden = true; };
   const box = document.getElementById("cmd-text");
   document.getElementById("cmd-form").onsubmit = e => {
     e.preventDefault();
@@ -366,7 +298,7 @@ function setupMic() {
   mic.onclick = () => { mic.classList.add("listening"); rec.start(); };
 }
 
-build(); setupText(); setupMic(); poll();
+build(); setupMic(); poll();
 </script>
 </body>
 </html>
