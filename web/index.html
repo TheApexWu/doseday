@@ -30,6 +30,14 @@
   #mic { background:#003d80; border-color:#7fb8ff; }
   #mic.listening { background:var(--accent); color:#000; }
   #stop { background:#c00000; border-color:#ff9a9a; font-size:28px; min-width:160px; }
+  .ask { display:flex; gap:12px; padding:16px 20px 0; max-width:1600px; margin:0 auto; }
+  .ask input { flex:1; min-width:0; font:inherit; font-size:24px; color:var(--fg); background:var(--card);
+               border:3px solid var(--line); border-radius:14px; padding:12px 16px; min-height:60px; }
+  .ask input:focus { outline:none; border-color:var(--accent); }
+  .ask input::placeholder { color:#8a8a8a; }
+  .ask button { background:var(--accent); color:#000; border-color:var(--accent); min-width:120px; font-size:24px; }
+  #heard { max-width:1600px; margin:0 auto; padding:8px 20px 0; font-size:19px; color:var(--dim); min-height:1.35em; }
+  #heard.ok { color:var(--ok); } #heard.bad { color:var(--bad); }
   #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 20px; }
 
   .wrap { padding:20px; display:grid; gap:20px; max-width:1600px; margin:0 auto; }
@@ -111,6 +119,11 @@
   <button id="stop" aria-label="Stop the robot now">STOP</button>
 </header>
 <div id="alarm" role="alert" hidden></div>
+<form class="ask" id="cmd-form" autocomplete="off">
+  <input id="cmd-text" aria-label="Type a command" placeholder="Type a command, e.g. put tums in monday">
+  <button type="submit">Run</button>
+</form>
+<div id="heard" aria-live="polite"></div>
 
 <div class="wrap">
   <div class="top">
@@ -304,6 +317,7 @@ function parse(text) {
   const intents = [];
   if (/\bhome\b/.test(t)) intents.push("home");
   if (pills.size && /\b(put|place|add|fill|load|give)\b/.test(t)) intents.push("place");
+  if (/\bopened\b/.test(t)) intents.push("opened");  // "monday was opened": a person did it by hand
   if (/\b(open|unlock)\b/.test(t)) intents.push("open");
   if (/\b(close|shut|lock)\b/.test(t)) intents.push("close");
   if (intents.length > 1) return {error: "I heard more than one command. Say one at a time."};
@@ -311,24 +325,48 @@ function parse(text) {
   return {action: intents[0] || null, day: days.size ? [...days][0] : null, pill: pills.size ? [...pills][0] : null};
 }
 
+function heard(text, ok) {
+  const el = document.getElementById("heard");
+  el.textContent = text; el.className = ok ? "ok" : "bad";
+}
+
+// Typed and spoken commands share one path, so both get the same refusals.
+function run(text) {
+  const c = parse(text);
+  if (c.error) { heard(`✗ “${text}”: ${c.error}`); say(c.error); return; }
+  if (c.stop) { heard("STOP"); stopArm(); return; }
+  if (!c.action || (c.action !== "home" && !c.day)) {
+    heard(`✗ “${text}”: name a day, and a pill, close, or opened. Or say go home or stop.`);
+    say(`Sorry, I heard "${text}". Say a day and open, close, or a pill.`); return;
+  }
+  if (c.action === "place" && !c.pill) { heard(`✗ “${text}”: which pill? Tums or magnesium.`); say("Which pill?"); return; }
+  heard(`✓ ${c.action === "place" ? `Put ${cap(c.pill)} in ${NAMES[c.day]}` : c.action === "home" ? "Go home"
+        : c.action === "opened" ? `Mark ${NAMES[c.day]} open` : `${cap(c.action)} ${NAMES[c.day]}`}`, true);
+  return cmd(c.action, c.day, c.pill);
+}
+
+function setupText() {
+  const box = document.getElementById("cmd-text");
+  document.getElementById("cmd-form").onsubmit = e => {
+    e.preventDefault();
+    const text = (box.value || "").trim();
+    if (!text) return;
+    box.value = "";
+    run(text);
+  };
+}
+
 function setupMic() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   const mic = document.getElementById("mic");
   if (!SR) { mic.disabled = true; mic.hidden = true; return; }
   const rec = new SR(); rec.lang = "en-US"; rec.interimResults = false;
-  rec.onresult = e => {
-    const text = e.results[0][0].transcript;
-    const c = parse(text);
-    if (c.error) { say(c.error); return; }
-    if (c.stop) { stopArm(); return; }
-    if (!c.action || (c.action !== "home" && !c.day)) { say(`Sorry, I heard "${text}". Say a day and open, close, or a pill.`); return; }
-    cmd(c.action, c.day, c.pill);
-  };
+  rec.onresult = e => run(e.results[0][0].transcript);
   rec.onend = () => mic.classList.remove("listening");
   mic.onclick = () => { mic.classList.add("listening"); rec.start(); };
 }
 
-build(); setupMic(); poll();
+build(); setupText(); setupMic(); poll();
 </script>
 </body>
 </html>

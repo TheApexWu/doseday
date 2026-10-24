@@ -51,6 +51,7 @@ async function flush() { for (let i = 0; i < 50; i++) await new Promise(r => set
   if (input.op === "parse") out.parse = ctx.parse(input.text);
   if (input.op === "stop_button") el("stop").onclick();
   if (input.op === "utter") ctx.recognizer.onresult({results: [[{transcript: input.text}]]});
+  if (input.op === "type") { el("cmd-text").value = input.text; el("cmd-form").onsubmit({preventDefault() {}}); }
   await flush();
   out.spoken = spoken;
   out.fetches = fetches.filter(f => f.path !== "/status");
@@ -141,3 +142,27 @@ def test_two_pills_in_one_command_are_refused_and_not_posted():
 def test_a_stop_word_is_never_ignored_even_beside_a_negation():
     out = page(op="utter", text="don't stop, put tums in monday", stop=[{"status": 200, "body": {"ok": True}}])
     assert len(posts(out, "/stop")) == 1 and posts(out, "/cmd") == []
+
+
+def test_a_typed_command_posts_like_a_spoken_one():
+    out = page(op="type", text="Put Tums in Monday")
+    assert posts(out, "/cmd")[0]["body"] == {"action": "place", "day": "mon", "pill": "tums"}
+
+
+def test_a_typed_negation_is_refused_and_not_posted():
+    out = page(op="type", text="do not close monday")
+    assert posts(out, "/cmd") == [] and out["spoken"]
+
+
+def test_typing_stop_stops_the_arm():
+    out = page(op="type", text="stop", stop=[{"status": 200, "body": {"ok": True}}])
+    assert len(posts(out, "/stop")) == 1 and posts(out, "/cmd") == []
+
+
+def test_a_placement_with_no_pill_is_refused_and_not_posted():
+    out = page(op="type", text="put something in monday")
+    assert posts(out, "/cmd") == []
+
+
+def test_saying_a_lid_was_opened_marks_it_open():
+    assert posts(page(op="type", text="monday was opened"), "/cmd")[0]["body"]["action"] == "opened"
