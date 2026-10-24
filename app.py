@@ -18,6 +18,7 @@ import time
 from collections import deque
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from types import SimpleNamespace
 
 import actions
 
@@ -36,6 +37,7 @@ class Controller:
         self.q, self.current, self.future = queue.Queue(), None, None
         self.results, self.n = deque(maxlen=30), 0
         self.lock = threading.Lock()
+        self.mode = None  # how pills are identified, shown on the page
         threading.Thread(target=self._work, daemon=True).start()
 
     def submit(self, cmd: dict) -> int:
@@ -68,7 +70,8 @@ class Controller:
 
     def status(self) -> dict:
         return {"busy": self.current, "queued": self.q.qsize(), "results": list(self.results),
-                "lids": self.station.lid, "days": list(actions.DAYS)}
+                "lids": self.station.lid, "days": list(actions.DAYS), "mode": self.mode,
+                "look": self.station.last_look}
 
 
 def validate(cmd: dict) -> str | None:
@@ -91,6 +94,10 @@ def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> Threadin
                 return self._send(PAGE.read_bytes(), "text/html; charset=utf-8")
             if self.path == "/status":
                 return self._json(ctl.status())
+            if self.path.split("?")[0] == "/frame.jpg":
+                if ctl.station.last_frame is None:
+                    return self._json({"error": "no frame yet"}, 404)
+                return self._send(ctl.station.last_frame, "image/jpeg")
             self._json({"error": "not found"}, 404)
 
         def do_POST(self):
@@ -132,10 +139,21 @@ def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> Threadin
 def fake_station(move_s: float = 0.4):
     import fakes
 
+    class TrayCamera(fakes.FakeCamera):
+        """One white tablet on the black tray, so rehearsals show a plausible frame on the page."""
+        async def get_images(self):
+            import cv2
+            import numpy as np
+            img = np.full((480, 640, 3), 18, np.uint8)
+            cv2.ellipse(img, (320, 240), (46, 40), 0, 0, 360, (232, 232, 228), -1)
+            return [SimpleNamespace(data=cv2.imencode(".jpg", img)[1].tobytes())], None
+
     async def make():
-        return actions.Station(fakes.FakeArm(move_s), fakes.FakeGripper(), fakes.FakeCamera(), fakes.poses(),
+        actions.joint_positions = list  # the fake arm takes plain lists, as in the tests; no Viam SDK needed
+        return actions.Station(fakes.FakeArm(move_s), fakes.FakeGripper(), TrayCamera(), fakes.poses(),
                                fakes.LIMITS, HERE / "logs" / f"station-fake-{time.strftime('%H%M%S')}.jsonl",
-                               identify=lambda img: [{"label": "tums"}])
+                               identify=lambda img: [{"label": "tums", "claude": "tums", "features": "tums",
+                                                      "claude_reason": "fake arm: no model was asked"}])
     return make
 
 
@@ -177,6 +195,8 @@ if __name__ == "__main__":
     ap.add_argument("--claude", action="store_true")
     a = ap.parse_args()
     ctl = Controller(fake_station() if a.fake else real_station(a.unverified, a.claude))
+    ctl.mode = ("fake" if a.fake else "claude" if a.claude and ctl.station.identify else
+                "features" if ctl.station.identify else "unverified" if a.unverified else "off")
     print(f"Doseday on http://localhost:{a.port}  ({'fake arm' if a.fake else 'pi-arm1'}; "
           f"{len(ctl.station.poses)} taught poses)", flush=True)
     make_server(ctl, a.port).serve_forever()

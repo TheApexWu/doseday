@@ -96,6 +96,8 @@ class Station:
         # forceful to risk in a demo (23 Oct). Lids start open; the arm only closes them.
         self.allow_open = allow_open
         self.lid = {d: "open" for d in DAYS}
+        # what the page shows: the frame the last pill check judged, and its verdict
+        self.last_frame, self.last_look = None, None
 
     def log(self, entry: dict):
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -157,6 +159,7 @@ class Station:
         img = cv2.imdecode(np.frombuffer(imgs[0].data, np.uint8), cv2.IMREAD_COLOR)
         if img is None:
             raise Refused("the camera frame did not decode")
+        self.last_frame = imgs[0].data
         return img
 
     async def press(self, kind: str, day: str, after_down=None) -> bool:
@@ -245,6 +248,8 @@ class Station:
         # a blob cut off by the frame edge may be a second pill, so it counts toward the one-pill check
         seen = [r for r in self.identify(await self.frame()) if r["label"] != "not_pill" or r.get("reason") == "edge"]
         self.log({"look": seen})
+        # default=str: identifiers return numpy numbers, and /status must stay JSON
+        self.last_look = {"t": round(time.time(), 3), "wanted": wanted, "seen": json.loads(json.dumps(seen, default=str))}
         if not seen:
             raise Refused("the tray is empty")
         if len(seen) > 1:
