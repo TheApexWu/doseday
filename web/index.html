@@ -7,38 +7,39 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#070707; --fg:#fff; --dim:#b8b8b8; --accent:#ffd400; --ok:#5cff8a; --bad:#ff6b6b;
-          --card:#141414; --card2:#1c1c1c; --line:#3a3a3a; --viam:#ff9d2e; --yolo:#7fb8ff; }
+  /* warm, quiet palette for low-vision users: every text pair is WCAG AA (4.5:1) or better */
+  :root { --bg:#F5EFE6; --fg:#3A322B; --dim:#685D52; --accent:#A64B2A; --soft:#F6E4D9; --ok:#3D6A48; --bad:#A3362A;
+          --stop:#B3261E; --card:#FCF9F4; --card2:#F3ECE1; --line:#E2D6C6; --viam:#ff9d2e; --yolo:#7fb8ff; }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:20px/1.35 "Atkinson Hyperlegible", system-ui, sans-serif; }
-  button { font:inherit; font-weight:700; border:3px solid var(--fg); background:#222; color:var(--fg);
-           border-radius:14px; padding:10px 14px; cursor:pointer; min-height:56px; }
-  button:focus-visible { outline:5px solid var(--accent); outline-offset:3px; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:21px/1.5 "Atkinson Hyperlegible", system-ui, sans-serif; }
+  button { font:inherit; font-weight:700; border:2px solid var(--line); background:var(--card); color:var(--fg);
+           border-radius:14px; padding:10px 16px; cursor:pointer; min-height:56px; }
+  button:hover { border-color:var(--dim); }
+  button:focus-visible { outline:4px solid var(--accent); outline-offset:3px; }
   button:active { transform:translateY(1px); }
-  h2 { margin:0 0 12px; font-size:16px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
+  h2 { margin:0 0 16px; font-size:22px; font-weight:700; color:var(--dim); }
 
-  header { display:flex; gap:14px; align-items:center; padding:14px 20px; border-bottom:2px solid var(--line); flex-wrap:wrap; }
+  header { display:flex; gap:16px; align-items:center; padding:20px 28px; flex-wrap:wrap; }
   .brand { display:flex; align-items:center; gap:12px; margin-right:auto; }
-  .brand h1 { margin:0; font-size:34px; color:var(--accent); line-height:1; }
-  #status { display:inline-flex; align-items:center; gap:10px; border:2px solid var(--line); border-radius:999px;
-            padding:8px 16px; font-size:20px; font-weight:700; }
+  .brand h1 { margin:0; font-size:34px; color:var(--fg); line-height:1; }
+  #status { display:inline-flex; align-items:center; gap:10px; background:var(--card); border-radius:999px;
+            padding:10px 18px; font-size:20px; font-weight:700; }
   #status::before { content:""; width:12px; height:12px; border-radius:50%; background:var(--ok); }
-  #status.busy { border-color:var(--accent); color:var(--accent); }
-  #status.busy::before { background:var(--accent); animation:pulse 1s infinite; }
-  #status.down { border-color:var(--bad); color:var(--bad); }
+  #status.busy { color:var(--accent); }
+  #status.busy::before { background:var(--accent); animation:pulse 1.4s infinite; }
+  #status.down { color:var(--bad); }
   #status.down::before { background:var(--bad); }
-  #mic { background:#003d80; border-color:#7fb8ff; }
-  #mic.listening { background:var(--accent); color:#000; }
-  #stop { background:#c00000; border-color:#ff9a9a; font-size:28px; min-width:160px; }
-  #alarm { background:var(--bad); color:#000; font-weight:700; font-size:26px; padding:14px 20px; }
+  #mic.listening { background:var(--accent); border-color:var(--accent); color:#fff; }
+  #stop { background:var(--stop); border-color:var(--stop); color:#fff; font-size:26px; min-width:160px; letter-spacing:.04em; }
+  #alarm { background:var(--bad); color:#fff; font-weight:700; font-size:26px; padding:16px 28px; }
 
-  .wrap { padding:20px; display:grid; gap:20px; max-width:1600px; margin:0 auto; }
-  .top { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:20px; }
-  .card { background:var(--card); border:2px solid var(--line); border-radius:18px; padding:18px; min-width:0; }
+  .wrap { padding:8px 28px 28px; display:grid; gap:28px; max-width:1500px; margin:0 auto; }
+  .top { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:28px; }
+  .card { background:var(--card); border-radius:22px; padding:28px; min-width:0; }
 
   [hidden] { display:none !important; }
   /* the frame box hugs the image, so detection boxes in % of the frame land on it */
-  .cam { position:relative; background:#000; border:2px solid var(--line); border-radius:14px; overflow:hidden;
+  .cam { position:relative; background:var(--card2); border-radius:16px; overflow:hidden;
          width:fit-content; max-width:100%; margin:0 auto; }
   .cam img { display:block; max-width:100%; max-height:42vh; width:auto; height:auto; }
   .cam .ph { width:min(560px, 80vw); aspect-ratio:4/3; max-height:42vh; display:grid; place-items:center; color:var(--dim); }
@@ -48,53 +49,63 @@
               border-radius:4px 4px 0 0; white-space:nowrap; }
   .box.viam { border-color:var(--viam); } .box.viam span { background:var(--viam); }
   .box.yolov8 { border-color:var(--yolo); border-style:dashed; } .box.yolov8 span { background:var(--yolo); top:100%; bottom:auto; border-radius:0 0 4px 4px; }
-  .dets { list-style:none; margin:14px 0 0; padding:0; display:grid; gap:8px; }
+  details.more { margin-top:16px; color:var(--dim); }
+  details.more summary { cursor:pointer; min-height:48px; display:flex; align-items:center; gap:8px; font-size:18px;
+                         border-radius:10px; padding:0 6px; width:fit-content; }
+  details.more summary:focus-visible { outline:4px solid var(--accent); outline-offset:2px; }
+  .dets { list-style:none; margin:8px 0 0; padding:0; display:grid; gap:8px; font-size:18px; color:var(--fg); }
   .dets li { display:flex; justify-content:space-between; gap:12px; background:var(--card2); border-radius:12px; padding:10px 14px; }
   .dets li b { text-align:right; }
   .dets .viam span::before, .dets .yolov8 span::before { content:""; display:inline-block; width:14px; height:14px;
       border-radius:3px; margin-right:10px; vertical-align:-1px; }
   .dets .viam span::before { background:var(--viam); } .dets .yolov8 span::before { background:var(--yolo); }
 
-  #now { display:flex; flex-direction:column; gap:18px; }
+  #now { display:flex; flex-direction:column; gap:20px; }
   #now-pill { display:flex; align-items:center; gap:18px; min-height:80px; }
   #now-pill .name { font-size:44px; font-weight:700; line-height:1.1; }
-  #now-title { font-size:34px; font-weight:700; line-height:1.2; }
-  #now-title.idle { color:var(--dim); }
+  #now-title { font-size:40px; font-weight:700; line-height:1.2; }
+  #now-title.idle { color:var(--fg); }
   #now-last { font-size:24px; margin-top:auto; }
   #now-last.ok { color:var(--ok); } #now-last.bad { color:var(--bad); }
 
-  /* the two demo pills: Tums are round, orange or red; magnesium is a white capsule */
+  /* the two demo pills: Tums are round, orange or red; magnesium is a white capsule, outlined so it shows on cream */
   .pill { display:inline-block; flex:none; }
   .pill.tums { width:26px; height:26px; border-radius:50%; background:linear-gradient(90deg,#ff8a00 50%,#e0262b 50%); }
-  .pill.magnesium { width:38px; height:18px; border-radius:9px; background:#f4f4ef; }
+  .pill.magnesium { width:38px; height:18px; border-radius:9px; background:#fff; box-shadow:inset 0 0 0 2px #B9A894; }
   .pill.big.tums { width:72px; height:72px; } .pill.big.magnesium { width:104px; height:48px; border-radius:24px; }
   .pill.unknown { width:26px; height:26px; border-radius:50%; border:3px dashed var(--dim); }
 
-  #days { display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:12px; }
-  .day { background:var(--card2); border:3px solid var(--line); border-radius:16px; padding:12px; display:flex;
+  #days { display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:14px; }
+  .day { background:var(--card2); border:3px solid transparent; border-radius:18px; padding:14px; display:flex;
          flex-direction:column; gap:10px; min-width:0; }
-  .day.today { border-color:var(--accent); }
-  .day h3 { margin:0; font-size:28px; line-height:1; }
-  .tray { min-height:60px; border-radius:12px; background:#0b0b0b; border:2px dashed var(--line); display:flex;
+  .day.today { border-color:var(--accent); background:var(--card); }
+  .day h3 { margin:0; font-size:28px; line-height:1.1; }
+  .day.today h3::after { content:"Today"; display:block; font-size:16px; color:var(--accent); margin-top:4px; }
+  .tray { min-height:64px; border-radius:12px; background:var(--card); border:2px dashed var(--line); display:flex;
           flex-wrap:wrap; gap:6px; align-items:center; justify-content:center; padding:8px; }
-  .day.lid-closed .tray { border-style:solid; border-color:#777; background:repeating-linear-gradient(135deg,#262626 0 8px,#1a1a1a 8px 16px); }
+  .day.today .tray { background:var(--card2); }
+  .day.lid-closed .tray { border-style:solid; border-color:#CDBDA8; background:repeating-linear-gradient(135deg,#E9DFD1 0 8px,#F1E9DD 8px 16px); }
   .lid { font-size:17px; font-weight:700; color:var(--ok); }
-  .day.lid-closed .lid { color:var(--fg); } .day.lid-unknown .lid { color:var(--bad); }
-  .day button { width:100%; min-height:50px; padding:6px 8px; font-size:18px; display:flex; align-items:center;
+  .day.lid-closed .lid { color:var(--dim); } .day.lid-unknown .lid { color:var(--bad); }
+  .day button { width:100%; min-height:52px; padding:6px 8px; font-size:18px; display:flex; align-items:center;
                 justify-content:center; gap:8px; }
   .day button { flex-wrap:wrap; min-width:0; overflow:hidden; }
+  .day button:not(.place) { background:transparent; border-color:transparent; color:var(--dim); text-decoration:underline;
+                            text-underline-offset:4px; }
   .day button .pill.tums { width:20px; height:20px; } .day button .pill.magnesium { width:28px; height:14px; }
   #now-pill:empty { display:none; }
-  .place { background:#1d1d00; border-color:var(--accent); color:var(--accent); }
+  .place { background:var(--soft); border-color:var(--soft); color:var(--accent); }
+  .place:hover { border-color:var(--accent); }
   .day:not(.lid-open) .place, .day.lid-closed [data-a=close], .day.lid-open [data-a=opened] { display:none; }
-  footer { color:#8a8a8a; font-size:15px; text-align:center; padding:0 20px 24px; }
+  footer { color:var(--dim); font-size:16px; text-align:center; padding:0 20px 28px; }
 
   @keyframes pulse { 50% { opacity:.3; } }
   @media (prefers-reduced-motion: reduce) { * { animation:none !important; } }
   @media (max-width:1200px) { #days { grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); } }
   @media (max-width:900px) { .top { grid-template-columns:1fr; } }
-  @media (max-width:600px) { body { font-size:18px; } .wrap { padding:12px; gap:14px; } header { padding:12px; }
-    .brand h1 { font-size:28px; } #stop { min-width:0; flex:1; } #now-title { font-size:28px; } #days { grid-template-columns:1fr 1fr; } }
+  @media (max-width:600px) { body { font-size:19px; } .wrap { padding:4px 16px 16px; gap:18px; } header { padding:16px; }
+    .card { padding:20px; } .brand h1 { font-size:28px; } #stop { min-width:0; flex:1; } #now-title { font-size:30px; }
+    #days { grid-template-columns:1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -102,7 +113,8 @@
   <div class="brand">
     <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
       <clipPath id="cap"><rect x="4" y="14" width="36" height="16" rx="8"/></clipPath>
-      <g clip-path="url(#cap)"><rect x="4" y="14" width="18" height="16" fill="#ffd400"/><rect x="22" y="14" width="18" height="16" fill="#fff"/></g>
+      <g clip-path="url(#cap)"><rect x="4" y="14" width="18" height="16" fill="#A64B2A"/><rect x="22" y="14" width="18" height="16" fill="#fff"/></g>
+      <rect x="5" y="15" width="34" height="14" rx="7" fill="none" stroke="#B9A894" stroke-width="2"/>
     </svg>
     <h1>Doseday</h1>
   </div>
