@@ -1,28 +1,31 @@
-# Moving to a new venue
+# Rebuilding at a new venue
 
-Pack tonight, rebuild tomorrow. All lid and drop positions come from the pillbox position (`box.py`), so only the pill tray needs re-teaching by hand.
+All lid and drop positions come from the pillbox position (`box.py`), so only the pill tray needs re-teaching by hand. Layout numbers, wiring and photos are in `docs/HARDWARE-SETUP.md`.
 
 ```text
-DOSEDAY: PACK TONIGHT, REBUILD TOMORROW
-(all poses now come from the pillbox position, so nothing needs re-teaching by hand except the pill tray)
+DOSEDAY: REBUILD AT THE NEW VENUE (Sat 24 Oct)
+Doors close at 5 PM: shoot every robot clip before then.
+Submit the 3-min video and the repo by 11:59 PM.
+Layout, wiring, photos: docs/HARDWARE-SETUP.md
 
-=== BEFORE YOU PACK (tonight) ===
-1. Pi network for tomorrow. Ask Nick how pi-arm1 joins a new WiFi.
-   Safest: add your phone hotspot (name + password) to the machine's network settings tonight, so the
-   Pi comes online anywhere. Without network the laptop cannot reach the arm.
-2. USB ports: ask Nick to switch the follower/leader ports in the config to /dev/serial/by-id/... paths.
-   Today the leader moved to ttyACM2 after a re-plug and broke the config.
-3. Photos with your phone, top-down and side: arm clamp position on the table edge, pillbox position
-   and tape marks, black paper, lamp position.
-4. Power-off: the white arm drops when torque cuts. Run  python armctl.py free 30  (manual mode),
-   fold it down onto the table by hand, then power off. The black leader is already limp.
+=== STILL OPEN FROM PACK-UP ===
+1. Pi network. Ask Nick how pi-arm1 joins the venue WiFi (or a phone hotspot).
+   Without network the laptop cannot reach the arm.
+2. USB port names. Ask Nick to switch the follower/leader ports in the config to
+   /dev/serial/by-id/... paths. On day 1 the leader moved to ttyACM2 after a re-plug.
 
-=== TOMORROW (about 10 min) ===
-1. Clamp the arm at the table edge. Lay the black paper.
-2. Pillbox: front edge about 20 cm in front of the centre of the arm's rotating base, Wednesday
-   straight ahead, roughly square. Tape both ends (Sun/Sat). Today's box sat 6 deg skewed and was fine.
-3. Power on. Check the Viam app shows pi-arm1 online. Close the CONTROL tab before running scripts.
-4. Register the box (2 touches):
+=== REBUILD (about 10 min) ===
+1. Clamp the arm at the table's front edge, turntable centre about 5 cm in from the edge.
+   Lay the black paper: the first sheet flush against the base plate (photo 03).
+2. Pillbox: latch tabs facing the arm, Sun on the arm's left, Wednesday straight ahead with
+   its front edge 20.5 cm from the turntable centre. Sunday's front corner about 9.4 in
+   (24 cm) from the table edge. Tape both ends (Sun/Sat). Skew doesn't matter: step 5 measures it.
+3. Wiring, both arm boards: barrel power, USB-C to the hub, servo chain in the TOP socket,
+   jumper on the USB-Servo pins. Hub into the Pi's lower blue USB 3 port. Pi power last.
+   Read each power brick's voltage before plugging in (boards take 14 V max).
+4. Power on. Check the Viam app shows pi-arm1 online. On the Pi: ls -l /dev/serial/by-id/
+   Close the CONTROL tab before running scripts.
+5. Register the box (2 touches):
      python armctl.py free 30          manual mode
      (rest the closed claw tip on MONDAY's lid, front edge, centred)
      python box.py mark mon
@@ -31,7 +34,12 @@ DOSEDAY: PACK TONIGHT, REBUILD TOMORROW
      python box.py fit                 refuses marks that are not 4 lids apart, or not level
      python armctl.py off
      python box.py show                every Mon-Fri stroke must print (an error = box out of reach: move it)
-5. Test: open Wednesday by hand, then  python box.py stroke wed
-6. Re-teach the pill tray:  python armctl.py teach tray_hover / tray_down  (manual mode, claw over the tray)
-7. python app.py  ->  the page.
+6. Test: open Wednesday by hand, then  python box.py stroke wed
+7. Pill tray: put it about 33 cm from the turntable centre, 19 deg to the right (HARDWARE-SETUP.md),
+   or re-teach:  python armctl.py teach tray_hover / tray_down  (manual mode, claw over the tray)
+8. python app.py  ->  the page.
+
+=== PACKING UP AT 5 PM ===
+The white arm drops when torque cuts. Run  python armctl.py free 30  (manual mode),
+fold it down onto the table by hand, then power off. The black leader is already limp.
 ```
