@@ -14,3 +14,7 @@ pills.json
 taught_joints.json
 box.json
 box_marks.json
+
+# third-party weights, fetched by models/fetch_pill_model.sh
+models/*.pt
+models/*.pt.part
