@@ -6,7 +6,7 @@ from viam.robot.client import RobotClient
 from viam.components.arm import Arm
 
 
-def load_env(path=Path(__file__).with_name(".env")) -> dict:
+def load_env(path=Path(__file__).resolve().parent.parent / ".env") -> dict:
     pairs = (l.split("=", 1) for l in path.read_text().splitlines() if "=" in l and not l.startswith("#"))
     return {k.strip(): v.strip().strip("'\"") for k, v in pairs}
 

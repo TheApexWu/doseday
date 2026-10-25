@@ -1,7 +1,7 @@
 # AGENTS.md
 
-Read README.md, CONTROL.md and TESTS.md before changing anything. This repo sorts candy or vitamins with a
-SO-101 arm under Viam. Nothing here has run on hardware yet; TESTS.md lists the numbered tests.
+Read README.md, docs/CONTROL.md and docs/TESTS.md before changing anything. This repo sorts candy or vitamins with a
+SO-101 arm under Viam. Picks, drops and lid closes have run on the arm (docs/DAY2-FINDINGS.md); docs/TESTS.md lists the numbered tests.
 
 ## Tests
 
@@ -25,7 +25,7 @@ SO-101 arm under Viam. Nothing here has run on hardware yet; TESTS.md lists the 
   do not release. Approval is a logged decision, not a physical lock.
 - **Refuse, don't guess:** raise `MoveRefused` or `SystemExit` with the reason. Missing poses stop the run before the first move.
 - **Thresholds:** do not change the calibration limit, `ACCURACY_MM` or the pill thresholds on site without
-  recording the test number in TESTS.md.
+  recording the test number in docs/TESTS.md.
 - **Repo hygiene:** no local paths, private notes, personal details or credentials in tracked files.
   `tests/test_repo_hygiene.py` enforces the path and ignore rules.
 - **Diffs:** small. One change per commit.

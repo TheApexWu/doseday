@@ -3,7 +3,7 @@ from pathlib import Path
 from viam.robot.client import RobotClient
 from viam.components.gripper import Gripper
 
-env = {k.strip(): v.strip().strip("'\"") for k, v in (l.split("=", 1) for l in Path(__file__).with_name(".env").read_text().splitlines() if "=" in l)}
+env = {k.strip(): v.strip().strip("'\"") for k, v in (l.split("=", 1) for l in (Path(__file__).resolve().parent.parent / ".env").read_text().splitlines() if "=" in l)}
 
 async def pos(g):
     return (await g.do_command({"command": "get_position"}))["position_percentage"]

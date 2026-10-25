@@ -1,6 +1,5 @@
 """Trust loop with no network: pick verification, video, and the approval rules."""
 import cv2
-import numpy as np
 
 import trust
 from synth import OVAL_C, ellipse, mat

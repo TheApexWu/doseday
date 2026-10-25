@@ -9,7 +9,6 @@ import asyncio
 import csv
 
 import numpy as np
-import json
 import sys
 from pathlib import Path
 

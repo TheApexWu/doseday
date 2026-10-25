@@ -6,7 +6,7 @@ import cv2
 import pytest
 
 import identify_claude
-from tests.synth import BLUE_C, OVAL_C, ROUND_C, capsule, ellipse, frames, mat
+from tests.synth import OVAL_C, ROUND_C, ellipse, frames, mat
 
 
 class FakeMessages:

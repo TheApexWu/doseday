@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import box
-from linear import calibrated, ik, line
+from linear import calibrated, line
 
 HEADING = -103.0           # wrist roll minus pan the hand held through every lid in lid-teach-13: jaws square to the box
 SUN_Y, PITCH_Y = 74.2, -30.6  # 76.7 from the fit; Alex saw the Sunday push on the lid edge: 2.5 mm to his right (-y), 24 Oct

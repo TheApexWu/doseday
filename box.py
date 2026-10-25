@@ -271,7 +271,6 @@ if __name__ == "__main__":
         print(json.dumps(asdict(demo_box())))
     elif cmd == "mark":
         # python box.py mark mon|fri   reads where the claw tip is now (put it there by hand in manual mode)
-        import asyncio
         from viam.components.arm import Arm
         from armctl import connect
         day = sys.argv[2] if len(sys.argv) > 2 else ""

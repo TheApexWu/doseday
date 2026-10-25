@@ -55,9 +55,8 @@ async def main():
         else:
             # the day-1 stroke up to its press (no lift), then: straighten to vertical on the lid without lifting and
             # push straight down deep at capped force, hold, lift
-            import numpy as np
             from viam.proto.component.arm import MoveOptions
-            from linear import ik, line
+            from linear import line
             seq = [w for w in wps if w["name"] not in ("pre", "lift")]
             path = box.densify([w["joints"] for w in seq])
             await arm.do_command({"command": "set_torque_limit", "value": 600})

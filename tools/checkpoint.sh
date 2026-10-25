@@ -1,8 +1,9 @@
 #!/bin/bash
 # One command to save and share work: tests, commit everything on your branch, push.
-#   ./checkpoint.sh "T1 calibration: residual 1.8 mm"
+#   ./tools/checkpoint.sh "T1 calibration: residual 1.8 mm"
 # Run it every ~30 min, after every test result, and before any arm run.
 set -euo pipefail
+cd "$(dirname "$0")/.."
 msg=${1:-"checkpoint $(date +%H:%M)"}
 branch=$(git branch --show-current)
 if [ "$branch" = "main" ]; then
