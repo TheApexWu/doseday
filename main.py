@@ -1,6 +1,5 @@
 import asyncio
 import argparse
-import copy
 import os
 import subprocess
 import sys
@@ -11,8 +10,6 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
-from viam.app.viam_client import ViamClient
-from viam.rpc.dial import DialOptions
 from viam.robot.client import RobotClient
 from viam.components.arm import Arm
 from viam.components.gripper import Gripper
@@ -21,7 +18,7 @@ from viam.components.switch import Switch
 from viam.services.vision import VisionClient
 
 
-DETECTOR_NAME = "demo-anything-detector"
+DETECTOR_NAME = "cloud-pill-detector"
 DAY_COLORS = {
     "SUNDAY": "#F47F8B",
     "MONDAY": "#F5C94E",
@@ -214,69 +211,11 @@ async def connect() -> RobotClient:
     )
 
 
-async def update_detector_color(
-    machine: RobotClient,
-    color: str,
-) -> None:
-    """Update the detector color in the Viam cloud configuration."""
-    metadata = await machine.get_cloud_metadata()
-
-    cloud_options = DialOptions.with_api_key(
-        api_key=os.environ["VIAM_API_KEY"],
-        api_key_id=os.environ["VIAM_API_KEY_ID"],
-    )
-
-    async with await ViamClient.create_from_dial_options(
-        cloud_options
-    ) as viam_client:
-        cloud = viam_client.app_client
-
-        part = await cloud.get_robot_part(
-            metadata.machine_part_id
-        )
-
-        # Preserve the complete machine configuration.
-        config = copy.deepcopy(dict(part.robot_config or {}))
-        services = config.get("services", [])
-
-        detector = next(
-            (
-                service
-                for service in services
-                if service.get("name") == DETECTOR_NAME
-            ),
-            None,
-        )
-
-        if detector is None:
-            raise RuntimeError(
-                f"Could not find {DETECTOR_NAME!r} in the "
-                "machine part's services configuration."
-            )
-
-        attributes = detector.setdefault("attributes", {})
-        previous_color = attributes.get("detect_color")
-        attributes["detect_color"] = color
-
-        await cloud.update_robot_part(
-            robot_part_id=metadata.machine_part_id,
-            name=part.name,
-            robot_config=config,
-            last_known_update=part.last_updated,
-        )
-
-        print(
-            f"{DETECTOR_NAME}: detect_color changed "
-            f"from {previous_color!r} to {color!r}",
-            flush=True,
-        )
-
-
 async def main() -> None:
     load_local_environment()
 
     # Nothing below this line runs until a configured day is entered.
-    day, color = wait_for_valid_day()
+    day, day_color = wait_for_valid_day()
     primary_color = wait_for_valid_choice(
         "PRIMARY COLOR",
         PRIMARY_COLORS,
@@ -296,14 +235,33 @@ async def main() -> None:
         print("Connected. Resources:")
         print(machine.resource_names)
 
-        await update_detector_color(
+        detector: VisionClient = VisionClient.from_robot(
             machine,
-            color,
+            DETECTOR_NAME,
         )
-        print(f"Applied the {day} detector color {color}.", flush=True)
+        target_result = await detector.do_command({
+            "command": "set_target",
+            "primary_color": primary_color,
+            "shape": shape,
+        })
+        print(f"Detector target configured: {target_result}", flush=True)
+        print(
+            f"{day} pillbox marker color is {day_color}.",
+            flush=True,
+        )
 
-        # Allow the machine time to apply the new configuration.
-        await asyncio.sleep(2)
+        detections = await detector.get_detections_from_camera(
+            "follower-cam",
+            timeout=30,
+        )
+        if len(detections) != 1:
+            print(
+                "No unique pill selected: expected exactly one matching "
+                f"bounding box, received {len(detections)}. No pick allowed.",
+                flush=True,
+            )
+            return
+        print(f"Selected pill detection: {detections[0]}", flush=True)
 
         follower_arm: Arm = Arm.from_robot(
             machine,
@@ -365,10 +323,6 @@ async def main() -> None:
             f"return value: {result}"
         )
 
-        detector: VisionClient = VisionClient.from_robot(
-            machine,
-            DETECTOR_NAME,
-        )
         result = await detector.get_properties()
         print(
             f"{DETECTOR_NAME} get_properties "

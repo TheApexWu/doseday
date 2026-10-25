@@ -1,0 +1,44 @@
+from typing import ClassVar, Mapping, Sequence, Self, Tuple
+from viam.proto.app.robot import ComponentConfig
+from viam.proto.common import ResourceName
+from viam.resource.base import ResourceBase
+from viam.resource.easy_resource import EasyResource
+from viam.resource.types import Model, ModelFamily
+from viam.services.vision import Vision
+
+
+class CloudPillDetector(Vision, EasyResource):
+    MODEL: ClassVar[Model] = "doseday:cloud-pill-vision:cloud-pill-detector"
+
+    @classmethod
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
+        """This method creates a new instance of this vision.
+        The default implementation sets the name from the `config` parameter.
+
+        Args:
+            config (ComponentConfig): The configuration for this resource
+            dependencies (Mapping[ResourceName, ResourceBase]): The dependencies (both required and optional)
+
+        Returns:
+            Self: The resource
+        """
+        return super().new(config, dependencies)
+
+    @classmethod
+    def validate_config(cls, config: ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]:
+        """This method allows you to validate the configuration object received from the machine,
+        as well as to return any required dependencies or optional dependencies based on that `config`.
+
+        Note: validate_config should only inspect the config; mutations to it
+        will do nothing. Fill in any default values in your resource's
+        constructor (or reconfigure) instead.
+
+        Args:
+            config (ComponentConfig): The configuration for this resource
+
+        Returns:
+            Tuple[Sequence[str], Sequence[str]]: A tuple where the
+                first element is a list of required dependencies and the
+                second element is a list of optional dependencies
+        """
+        return [], []

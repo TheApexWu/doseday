@@ -1,0 +1,28 @@
+{
+  "$schema": "https://dl.viam.dev/module.schema.json",
+  "module_id": "doseday:cloud-pill-vision",
+  "visibility": "private",
+  "url": "",
+  "description": "Modular vision service: cloud-pill-detector",
+  "models": [
+    {
+      "api": "rdk:service:vision",
+      "model": "doseday:cloud-pill-vision:cloud-pill-detector",
+      "markdown_link": "doseday_cloud-pill-vision_cloud-pill-detector.md",
+      "short_description": "Runs filtered pill detection on a remote Brev GPU"
+    }
+  ],
+  "markdown_link": "README.md",
+  "entrypoint": "dist/main",
+  "first_run": "",
+  "build": {
+    "build": "./build.sh",
+    "setup": "./setup.sh",
+    "path": "dist/archive.tar.gz",
+    "arch": [
+      "linux/amd64",
+      "linux/arm64",
+      "darwin/arm64"
+    ]
+  }
+}

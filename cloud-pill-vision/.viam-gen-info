@@ -1,0 +1,13 @@
+{
+  "module_name": "cloud-pill-vision",
+  "visibility": "public",
+  "namespace": "doseday",
+  "language": "python",
+  "resource_type": "service",
+  "resource_subtype": "vision",
+  "model_name": "cloud-pill-detector",
+  "initialize_git": false,
+  "generator_version": "0.1.0",
+  "generated_on": "2026-10-24T19:59:05.546780583Z",
+  "module_readme_link": "README.md"
+}
