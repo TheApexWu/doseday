@@ -2,6 +2,10 @@
 
   TELEGRAM_BOT_TOKEN + TELEGRAM_FAMILY_CHAT_ID           family group (text only, never a photo)
   VONAGE_API_KEY + VONAGE_API_SECRET + VONAGE_FROM + CARETAKER_PHONE   caretaker SMS (escalation, STOP alerts)
+  VONAGE_CHANNEL=whatsapp   the same notices over Vonage's Messages API sandbox instead of SMS (no US carrier
+                            registration needed; the phone joins the sandbox first). VONAGE_FROM is then optional.
+
+  python notify.py test     send one test notice to the caretaker and print whether it went out live
 
 A channel whose env is missing is a DryRun: it logs what it would have sent and says so. Every send, live or not,
 is appended to logs/governance.jsonl. Photos of the organizer go only to the caretaker, through trust.py.
@@ -71,14 +75,37 @@ class VonageSMS:
         log("send", channel=self.name, live=True, text=text)
 
 
+class VonageWhatsApp:
+    """Vonage Messages API sandbox: free, allow-listed phones only, for demos. US SMS needs 10DLC registration."""
+    name, live = "vonage-whatsapp", True
+    URL = "https://messages-sandbox.nexmo.com/v1/messages"
+    SANDBOX_FROM = "14157386102"  # Vonage's shared WhatsApp sandbox number; the dashboard's Sandbox page shows it
+
+    def __init__(self, key: str, secret: str, sender: str, to: str, http=None):
+        import requests
+        self.auth, self.sender, self.to = (key, secret), sender or self.SANDBOX_FROM, to.lstrip("+")
+        self.http = http or requests.Session()
+        self.http.headers.update(UA)
+
+    def send(self, text: str):
+        r = self.http.post(self.URL, auth=self.auth, timeout=20, json={
+            "from": self.sender, "to": self.to, "channel": "whatsapp", "message_type": "text", "text": text[:640]})
+        if r.status_code != 202:
+            raise RuntimeError(f"vonage whatsapp {r.status_code}: {r.text[:160]}")
+        log("send", channel=self.name, live=True, text=text)
+
+
 def family():
     tok, chat = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_FAMILY_CHAT_ID")
     return FamilyTelegram(tok, chat) if tok and chat else DryRun("family-telegram")
 
 
 def sms():
-    keys = [os.environ.get(k) for k in ("VONAGE_API_KEY", "VONAGE_API_SECRET", "VONAGE_FROM", "CARETAKER_PHONE")]
-    return VonageSMS(*keys) if all(keys) else DryRun("vonage-sms")
+    key, secret, sender, to = (os.environ.get(k) for k in ("VONAGE_API_KEY", "VONAGE_API_SECRET", "VONAGE_FROM",
+                                                            "CARETAKER_PHONE"))
+    if os.environ.get("VONAGE_CHANNEL", "sms").lower() == "whatsapp":
+        return VonageWhatsApp(key, secret, sender, to) if key and secret and to else DryRun("vonage-whatsapp")
+    return VonageSMS(key, secret, sender, to) if key and secret and sender and to else DryRun("vonage-sms")
 
 
 def safe_send(ch, text: str):
@@ -87,3 +114,15 @@ def safe_send(ch, text: str):
         ch.send(text)
     except Exception as e:
         log("send_failed", channel=ch.name, live=ch.live, text=text, error=f"{type(e).__name__}: {str(e)[:160]}")
+
+
+if __name__ == "__main__":
+    import sys
+
+    import config
+    config.load_dotenv()
+    if sys.argv[1:] != ["test"]:
+        raise SystemExit("usage: python notify.py test")
+    ch = sms()
+    ch.send(f"Doseday test notice at {time.strftime('%H:%M')}. If this reached your phone, the demo text will too.")
+    print(f"{ch.name}: {'sent live' if ch.live else 'dry run only (Vonage keys missing from .env), nothing sent'}")

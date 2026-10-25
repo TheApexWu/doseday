@@ -34,13 +34,20 @@ The rules below are enforced in code (`governance.py`, `trust.py`, `notify.py`) 
 | Caretaker (photo + decision) | Telegram bot | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TELEGRAM_CARETAKER_ID` |
 | Family group (text only) | Telegram bot | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_FAMILY_CHAT_ID` |
 | Caretaker SMS (escalation, STOP) | Vonage SMS API | `VONAGE_API_KEY`, `VONAGE_API_SECRET`, `VONAGE_FROM`, `CARETAKER_PHONE` |
+| Same notices on WhatsApp | Vonage Messages API sandbox | the same keys and `CARETAKER_PHONE`, plus `VONAGE_CHANNEL=whatsapp` |
 
 A channel with missing env runs in **demo mode**: it logs what it would have sent and sends nothing. The page shows
 "live" or "demo mode" for each channel. With no caretaker connected, the page offers "Demo: act as caretaker"
 buttons. The server refuses those (403) as soon as a real caretaker is connected.
 
 `python trust.py whoami` prints the chat and user ids that have messaged the bot, to fill in the Telegram ids.
-A Vonage trial account can text only numbers verified on its dashboard.
+`python notify.py test` sends one notice through the configured Vonage channel and says whether it went out live.
+
+Vonage SMS to US numbers needs 10DLC carrier registration, which Vonage says takes days to weeks. The Messages API
+sandbox needs none: the phone joins it from the dashboard's Sandbox page (free, 100 messages a month). WhatsApp only
+delivers inside 24 hours of the phone's last message to the sandbox number, so join on the day of the demo.
+
+The caretaker gets 10 minutes before the no-answer text. `DOSEDAY_APPROVAL_TIMEOUT_S` changes that; 20 suits a live demo.
 
 ## Not covered
 

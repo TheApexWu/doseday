@@ -223,3 +223,43 @@ def test_flag_refuses_choosing_a_pill(tmp_path):
         assert code == 400 and body["say"] == governance.FLAGGED_SAY
     finally:
         srv.shutdown()
+
+
+class JsonHttp:
+    def __init__(self, status=202, body='{"message_uuid": "u1"}'):
+        self.headers, self.calls, self.status, self.body = {}, [], status, body
+
+    def post(self, url, **kw):
+        self.calls.append((url, kw))
+        return type("R", (), {"status_code": self.status, "text": self.body})()
+
+
+def test_whatsapp_sandbox_sends_text_only_with_key_auth():
+    http = JsonHttp()
+    notify.VonageWhatsApp("k", "s", "", "+15551234567", http=http).send("hello")
+    url, kw = http.calls[0]
+    assert url == "https://messages-sandbox.nexmo.com/v1/messages" and kw["auth"] == ("k", "s")
+    assert kw["json"] == {"from": "14157386102", "to": "15551234567", "channel": "whatsapp",
+                          "message_type": "text", "text": "hello"}
+
+
+def test_whatsapp_raises_unless_accepted():
+    with pytest.raises(RuntimeError, match="401"):
+        notify.VonageWhatsApp("k", "s", "", "1555", http=JsonHttp(401, "Unauthorized")).send("x")
+
+
+def test_vonage_channel_comes_from_env(monkeypatch):
+    for k, v in {"VONAGE_API_KEY": "k", "VONAGE_API_SECRET": "s", "CARETAKER_PHONE": "1555"}.items():
+        monkeypatch.setenv(k, v)
+    monkeypatch.delenv("VONAGE_FROM", raising=False)
+    monkeypatch.delenv("VONAGE_CHANNEL", raising=False)
+    assert isinstance(notify.sms(), notify.DryRun)  # SMS needs a sender number
+    monkeypatch.setenv("VONAGE_CHANNEL", "whatsapp")
+    assert isinstance(notify.sms(), notify.VonageWhatsApp)  # the sandbox supplies its own
+
+
+def test_approval_timeout_from_env(monkeypatch, tmp_path):
+    monkeypatch.setenv("DOSEDAY_APPROVAL_TIMEOUT_S", "20")
+    dry = lambda: notify.DryRun("x")
+    gov = governance.Governance(caretaker=trust.DryRun, family=dry, sms=dry, photo_dir=tmp_path)
+    assert gov.timeout_s == 20

@@ -197,8 +197,8 @@ class Telegram:
 
 
 def channel():
-    # TODO: an SMS channel (Vonage) is planned as primary. Any SMS link to a photo needs access
-    # control first, because the photo shows the patient's pills.
+    # photos go only through this channel; Vonage (notify.py) carries text, because a link to a photo of the
+    # patient's pills would need access control first
     tok = os.environ.get("TELEGRAM_BOT_TOKEN")
     if os.environ.get("PILL_TRUST_MOCK") or not tok:
         return DryRun()

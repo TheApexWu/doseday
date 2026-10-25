@@ -334,6 +334,8 @@ if __name__ == "__main__":
     ap.add_argument("--detect", nargs="+", choices=("viam", "yolo"), default=[])
     ap.add_argument("--no-view", action="store_true")
     a = ap.parse_args()
+    import config
+    config.load_dotenv()  # Telegram and Vonage keys live in .env; without this the notices stay dry runs
     ctl = Controller(fake_station(staged=True) if a.fake else real_station(a.unverified, a.claude, a.detect))
     ctl.detectors = ["viam", "yolo"] if a.fake else a.detect
     ctl.mode = ("fake" if a.fake else "claude" if a.claude and ctl.station.identify else

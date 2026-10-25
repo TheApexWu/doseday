@@ -5,6 +5,7 @@ this run, releases a fill (trust.py). Flagged pauses placing until a later check
 released and texts the caretaker. STOP always wins and tells the family and the caretaker.
 In dry-run (no Telegram env) the caretaker is played from the page: /approval/demo, and the page says so.
 """
+import os
 import threading
 import time
 from collections import deque
@@ -60,9 +61,11 @@ class _Announcing:
 
 class Governance:
     def __init__(self, caretaker=trust.channel, family=notify.family, sms=notify.sms, approve=trust.request_approval,
-                 caretaker_name: str = "the caretaker", timeout_s: float = 600, photo_dir: Path = HERE / "logs"):
+                 caretaker_name: str = "the caretaker", timeout_s: float | None = None, photo_dir: Path = HERE / "logs"):
         # built once: env does not change while the server runs, and the page polls twice a second
         self.care, self.fam, self.txt, self._approve = caretaker(), family(), sms(), approve
+        # on stage, DOSEDAY_APPROVAL_TIMEOUT_S=20 shows the no-answer text without a 10-minute wait
+        timeout_s = timeout_s if timeout_s is not None else float(os.environ.get("DOSEDAY_APPROVAL_TIMEOUT_S", 600))
         self.who, self.timeout_s, self.photo_dir = caretaker_name, timeout_s, Path(photo_dir)
         self.state, self.run_id, self.days, self.demo = IDLE, None, [], None
         self.events = deque(maxlen=10)
