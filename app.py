@@ -1,4 +1,4 @@
-"""Doseday control page: pick a day, then a pill, and watch the camera box both. Also big buttons and voice for
+"""Doseday control page: pick a day, then a pill, and watch the camera box both. Also big buttons for
 open / close / place, one robot action at a time.
 
   python app.py                  connects to pi-arm1 (keys from .env), serves http://localhost:8000
@@ -24,6 +24,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import actions
+import governance
 import selector
 import viewer
 
@@ -35,7 +36,8 @@ ACTIONS = {"open", "close", "place", "home", "opened"}
 class Controller:
     """Owns the robot's event loop and runs queued commands one at a time."""
 
-    def __init__(self, make_station):
+    def __init__(self, make_station, gov=None):
+        self.gov = gov or governance.Governance()
         self.loop = asyncio.new_event_loop()
         threading.Thread(target=self.loop.run_forever, daemon=True).start()
         self.station = asyncio.run_coroutine_threadsafe(make_station(), self.loop).result(timeout=60)
@@ -79,7 +81,14 @@ class Controller:
         return {"busy": self.current, "queued": self.q.qsize(), "results": list(self.results),
                 "lids": self.station.lid, "days": list(actions.DAYS), "mode": self.mode,
                 "detectors": self.detectors, "look": self.station.last_look,
-                "view": self.viewer.state() if self.viewer else None}
+                "view": self.viewer.state() if self.viewer else None, "governance": self.gov.snapshot()}
+
+    def placed_days(self) -> list:
+        return [d for d in actions.DAYS if any(r.get("ok") and r.get("action") == "place" and r.get("day") == d
+                                               for r in self.results)]
+
+    def frame(self):
+        return (self.viewer and self.viewer.frame) or self.station.last_frame
 
     def start_view(self, make_viewer):
         self.viewer = asyncio.run_coroutine_threadsafe(make_viewer(), self.loop).result(timeout=60)
@@ -100,7 +109,7 @@ def validate(cmd: dict) -> str | None:
 
 
 def select(v: viewer.Viewer, body: dict) -> tuple[dict, int]:
-    """{text, today} is a typed or spoken answer; {day}, {pill} and {reset} come from the buttons."""
+    """{text, today} is a typed answer; {day}, {pill} and {reset} come from the buttons."""
     if body.get("reset"):
         v.reset()
         return {"ok": True, "say": "Which day?"}, 200
@@ -129,6 +138,8 @@ def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> Threadin
                 return self._send(PAGE.read_bytes(), "text/html; charset=utf-8")
             if self.path == "/status":
                 return self._json(ctl.status())
+            if self.path == "/governance":
+                return self._json(ctl.gov.snapshot())
             if self.path.split("?")[0] == "/frame.jpg":
                 frame = (ctl.viewer and ctl.viewer.frame) or ctl.station.last_frame
                 if frame is None:
@@ -147,14 +158,24 @@ def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> Threadin
                 except Exception as e:  # a dropped connection reads as "no reply", so answer with the failure
                     return self._json({"ok": False, "say": "STOP failed. The arm may still be moving.",
                                        "error": f"{type(e).__name__}: {str(e)[:160]}"}, 500)
+                ctl.gov.stop_alert()
                 return self._json({"ok": True, "say": "stopped"})
+            if self.path == "/approval":
+                asked = [d for d in body.get("days") or [] if d in actions.DAYS] or ctl.placed_days()
+                res, code = ctl.gov.request([selector.DAY_NAMES[d] for d in asked], ctl.frame())
+                return self._json(res, code)
+            if self.path == "/approval/demo":
+                res, code = ctl.gov.demo_decide(body.get("verdict"))
+                return self._json(res, code)
             if self.path == "/select":
                 if ctl.viewer is None:
                     return self._json({"ok": False, "say": "the camera view is off"}, 400)
+                if "pill" in body and ctl.gov.blocks({"action": "place"}):
+                    return self._json({"ok": False, "say": governance.FLAGGED_SAY}, 400)
                 res, code = select(ctl.viewer, body)
                 return self._json(res, code)
             if self.path == "/cmd":
-                err = validate(body)
+                err = validate(body) or ctl.gov.blocks(body)
                 if err:
                     return self._json({"ok": False, "say": err}, 400)
                 return self._json({"id": ctl.submit(body)})
@@ -313,6 +334,8 @@ if __name__ == "__main__":
     ap.add_argument("--detect", nargs="+", choices=("viam", "yolo"), default=[])
     ap.add_argument("--no-view", action="store_true")
     a = ap.parse_args()
+    import config
+    config.load_dotenv()  # Telegram and Vonage keys live in .env; without this the notices stay dry runs
     ctl = Controller(fake_station(staged=True) if a.fake else real_station(a.unverified, a.claude, a.detect))
     ctl.detectors = ["viam", "yolo"] if a.fake else a.detect
     ctl.mode = ("fake" if a.fake else "claude" if a.claude and ctl.station.identify else

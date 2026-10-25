@@ -2,7 +2,7 @@
 
 Each move is one step at a time, with a plan-only check before it, and every commanded pose is logged.
 Taught poses are used in place of guessed ones.
-"Built" means present in this repo with tests. "Planned" means not built. Nothing here has run on an arm yet.
+"Built" means present in this repo with tests. "Planned" means not built. This plan predates the robot runs; what ran on the arm is in DAY2-FINDINGS.md.
 
 ## 1. The pieces
 
@@ -83,7 +83,7 @@ flowchart LR
 - `verify_pick` runs in the live loop after each pick.
 - `Recorder` (video of a run) is tested but not called from the loop yet.
 - Approval is a logged decision, not a physical lock.
-- Planned, not built: an SMS channel. Any SMS link to a photo needs access control first.
+- Built: text-only Vonage SMS or WhatsApp to the caretaker on no answer and on STOP (notify.py). No photo links: those need access control first.
 - Planned, not built: an audible or spoken announcement before each move. `trust.announce` has no caller.
 
 ## 6. Teleop to automation

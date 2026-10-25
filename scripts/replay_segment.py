@@ -7,7 +7,6 @@ HARDWARE-ONLY.
 """
 import asyncio
 import csv
-import json
 import sys
 from pathlib import Path
 

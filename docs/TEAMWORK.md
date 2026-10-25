@@ -5,7 +5,7 @@ One repo, one hackathon day. Everyone reads AGENTS.md before writing code. Roles
 ## Branches and commits
 
 - One branch per task: `<name>/<task>`. Branch from `dev`.
-- Save and share work with `./checkpoint.sh "what changed"`. It runs the tests, commits everything on your branch
+- Save and share work with `./tools/checkpoint.sh "what changed"`. It runs the tests, commits everything on your branch
   and pushes. A red test run still pushes, tagged WIP. Run it every 30 minutes, after every test result, and before any arm run.
 - Subject line imperative. Add one line on the cause when the change is a fix.
 - Merge with a merge commit, not a squash, so each step stays visible in history.
