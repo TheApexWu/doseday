@@ -113,11 +113,11 @@ class Governance:
 
         def sent(run_id):
             self.run_id = run_id
-            self._tell_family(f"Doseday filled {label}. Waiting for {self.who} to check.")
+            self._tell_family(f"Family update: Doseday filled {label}. Waiting for {self.who} to check.")
 
         def work():
             try:
-                d = self._approve(photo, f"Doseday filled {label}. Approve if it looks right, Flag if not.",
+                d = self._approve(photo, f"💊 Doseday filled {label}.\nThis photo is from the robot's camera.\nTap Approve if it looks right, Flag if not.",
                                   self.timeout_s, _Announcing(ch, sent))
                 verdict = d["verdict"]
             except Exception as e:  # a dead channel is no answer: not released
@@ -133,12 +133,12 @@ class Governance:
             self.state = {trust.OK: RELEASED, trust.FLAG: FLAGGED}.get(verdict, TIMED_OUT)
         self._event("decision", verdict=verdict, state=self.state, run_id=self.run_id)
         if self.state == RELEASED:
-            self._tell_family(f"{self.who.capitalize()} approved {label}.")
+            self._tell_family(f"Family update: {self.who} approved {label}. ✅")
         elif self.state == FLAGGED:
-            self._tell_family(f"{self.who.capitalize()} flagged {label}. The arm is paused until they review it.")
+            self._tell_family(f"Family update: {self.who} flagged {label}. The arm is paused until they look again.")
         else:
-            self._text_caretaker(f"Doseday: {label} is waiting for your check. Open Telegram to approve or flag it.")
-            self._tell_family(f"No answer from {self.who} yet. We texted them. The fill is not released.")
+            self._text_caretaker(f"⏰ Reminder: Doseday filled {label} and it is still waiting for your check. Tap Approve or Flag on the photo above.")
+            self._tell_family(f"Family update: no answer from {self.who} yet. We sent a reminder. {label} is not released.")
 
     def demo_decide(self, verdict: str) -> tuple[dict, int]:
         if not self.dry_run():
@@ -152,7 +152,7 @@ class Governance:
 
     def stop_alert(self):
         """Runs in the background so STOP never waits on the network."""
-        text = f"Doseday was stopped at {time.strftime('%H:%M')}."
+        text = f"🛑 Doseday was stopped at {time.strftime('%H:%M')}."
 
         def work():
             self._tell_family(text)
@@ -166,5 +166,6 @@ class Governance:
         return {"state": self.state, "run_id": self.run_id, "days": self.days, "dry_run": dry,
                 "channels": [{"role": "Caretaker", "via": "Telegram", "live": not dry},
                              {"role": "Family group", "via": "Telegram", "live": self.fam.live},
-                             {"role": "Caretaker SMS", "via": "Vonage", "live": self.txt.live}],
+                             {"role": "Caretaker reminder", "via": "Vonage" if self.txt.name.startswith("vonage") else "Telegram",
+                              "live": self.txt.live}],
                 "policy": POLICY, "events": list(self.events)}
