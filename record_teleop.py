@@ -5,11 +5,14 @@ usage: python record_teleop.py [seconds] [--no-teleop] [--follower-only]
   --follower-only  skip leader reads: teleop already reads the leader 100 times a second on the same serial
                    line, and the extra reads lined up with "read 39 of 48 bytes" timeouts on 23 Oct
 """
-import asyncio, csv, signal, sys, time
+import asyncio, csv, os, signal, sys, time
 from datetime import datetime
 from pathlib import Path
 
 from viam.robot.client import RobotClient
+
+import config
+config.load_dotenv()  # PILL_TELEOP and friends name the parts on a machine other than pi-arm1
 from viam.components.arm import Arm
 from viam.components.gripper import Gripper
 from viam.services.generic import Generic
@@ -27,7 +30,7 @@ async def main(seconds: float, teleop_on: bool, follower_only: bool = False):
     env = load_env()
     robot = await RobotClient.at_address(env["VIAM_ADDRESS"], RobotClient.Options.with_api_key(
         api_key=env["VIAM_API_KEY"], api_key_id=env["VIAM_API_KEY_ID"]))
-    teleop = Generic.from_robot(robot, "teleop")
+    teleop = Generic.from_robot(robot, os.environ.get("PILL_TELEOP", "teleop"))
     follower, leader = Arm.from_robot(robot, "follower-arm"), Arm.from_robot(robot, "leader-arm")
     jaw = Gripper.from_robot(robot, "follower-gripper")
     out = HERE / "logs" / f"teleop-{datetime.now():%H%M%S}.csv"

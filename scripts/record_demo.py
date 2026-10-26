@@ -5,6 +5,7 @@ Every robot call times out after 3 s; on failure the client reconnects and the g
 so a stalled link shows up as a logged gap instead of a recording that silently stops.
 """
 import asyncio
+import os
 import sys
 import time
 from pathlib import Path
@@ -16,18 +17,25 @@ from viam.components.gripper import Gripper
 from armctl import connect
 
 CALL_TIMEOUT = 3.0
+HZ = float(os.environ.get("RECORD_HZ", 20))
 
 
 async def sample(robot, frames: Path, n: int):
     follower = Arm.from_robot(robot, "follower-arm")
     leader = Arm.from_robot(robot, "leader-arm")
-    f = (await asyncio.wait_for(follower.get_joint_positions(), CALL_TIMEOUT)).values
-    l = (await asyncio.wait_for(leader.get_joint_positions(), CALL_TIMEOUT)).values
-    p = await asyncio.wait_for(follower.get_end_position(), CALL_TIMEOUT)
-    jaw = (await asyncio.wait_for(Gripper.from_robot(robot, "follower-gripper").do_command({"command": "get_position"}), CALL_TIMEOUT))["position_percentage"]
-    res = await asyncio.wait_for(Camera.from_robot(robot, "follower-cam").get_images(), CALL_TIMEOUT)
+    cam = Camera.from_robot(robot, os.environ.get("PILL_CAMERA", "follower-cam"))
+
+    async def grip(name):
+        try:  # the hand's intent: teleop on arm3 mirrors only part of the leader's opening onto the follower
+            return (await Gripper.from_robot(robot, name).do_command({"command": "get_position"}))["position_percentage"]
+        except Exception:
+            return float("nan")
+    # all reads in parallel: one round trip per sample instead of six, which is what 20 frames a second needs
+    f, l, p, jaw, lead, res = await asyncio.wait_for(asyncio.gather(
+        follower.get_joint_positions(), leader.get_joint_positions(), follower.get_end_position(),
+        grip("follower-gripper"), grip("leader-gripper"), cam.get_images()), CALL_TIMEOUT)
     (frames / f"{n:05d}.jpg").write_bytes((res[0] if isinstance(res, tuple) else res)[0].data)
-    return list(f) + list(l) + [p.x, p.y, p.z, p.o_x, p.o_y, p.o_z, p.theta, jaw]
+    return list(f.values) + list(l.values) + [p.x, p.y, p.z, p.o_x, p.o_y, p.o_z, p.theta, jaw, lead]
 
 
 async def main(seconds: float, out: Path):
@@ -35,16 +43,18 @@ async def main(seconds: float, out: Path):
     frames.mkdir(parents=True, exist_ok=True)
     rows = open(out / "samples.csv", "w", buffering=1)
     gaps = open(out / "gaps.csv", "w", buffering=1)
-    rows.write("frame,unix_time,F0,F1,F2,F3,F4,L0,L1,L2,L3,L4,x,y,z,o_x,o_y,o_z,theta,jaw_pct\n")
+    rows.write("frame,unix_time,F0,F1,F2,F3,F4,L0,L1,L2,L3,L4,x,y,z,o_x,o_y,o_z,theta,jaw_pct,leader_jaw_pct\n")
     gaps.write("start,end,error\n")
     t0, n, robot = time.time(), 0, None
     while time.time() - t0 < seconds:
         try:
             if robot is None:
                 robot = await asyncio.wait_for(connect(), 15)
+            tick = time.time()
             vals = await sample(robot, frames, n)
             rows.write(f"{n},{time.time():.3f}," + ",".join(f"{v:.3f}" for v in vals) + "\n")
             n += 1
+            await asyncio.sleep(max(0.0, 1 / HZ - (time.time() - tick)))
             if n % 50 == 0:
                 print(f"{time.time() - t0:5.0f}s  {n} samples", flush=True)
         except Exception as e:

@@ -160,7 +160,12 @@ def real(robot, camera: str, service: str, yolo) -> Viewer:
     """HARDWARE-ONLY. Frames and boxes from the robot's camera and colour detector; yolo runs on this laptop."""
     from viam.components.camera import Camera
     from viam.services.vision import VisionClient
-    cam, vc = Camera.from_robot(robot, camera), VisionClient.from_robot(robot, service)
+    from viam.errors import ResourceNotFoundError
+    cam = Camera.from_robot(robot, camera)
+    try:
+        vc = VisionClient.from_robot(robot, service)
+    except ResourceNotFoundError:  # another kit (pi-arm3) has no colour detector: show the camera, no boxes
+        vc = None
 
     async def grab():
         imgs, _ = await cam.get_images()
@@ -171,10 +176,14 @@ def real(robot, camera: str, service: str, yolo) -> Viewer:
         return data, img
 
     async def day_boxes(_img):
+        if vc is None:
+            return []
         return [{"source": "viam", "label": d.class_name, "confidence": round(d.confidence, 3),
                  "box": [d.x_min, d.y_min, d.x_max, d.y_max]} for d in await vc.get_detections_from_camera(camera)]
 
     async def point(hex_color):
+        if vc is None:  # never rewrite the cloud config of a machine without our detector
+            return
         await aim_detector(robot, service, hex_color)
 
     return Viewer(grab, day_boxes, yolo, point, pill_source="yolov8")
