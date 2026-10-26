@@ -31,6 +31,11 @@
 
   .wrap { padding:0 24px 24px; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:24px;
           max-width:1600px; margin:0 auto; align-items:start; }
+  .rec-why { margin:0 0 14px; font-size:18px; line-height:1.4; }
+  .rec-row { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+  #rec-img { width:240px; max-width:100%; border-radius:14px; background:#000; aspect-ratio:4/3; object-fit:cover; }
+  .rec-stats { display:grid; grid-template-columns:auto auto; gap:6px 16px; margin:12px 0 0; font-size:20px; }
+  .rec-stats dt { opacity:.75; } .rec-stats dd { margin:0; font-weight:700; }
   .card { background:var(--card); border-radius:22px; padding:22px; min-width:0; }
   h2 { margin:0 0 14px; font-size:30px; line-height:1.2; }
   .sub { margin:-6px 0 16px; color:var(--dim); }
@@ -166,6 +171,24 @@
       <details class="rules"><summary>Our rules</summary><ol id="gov-policy"></ol></details>
     </div>
   </section>
+
+  <section class="card rec" aria-labelledby="rec-h">
+    <h2 id="rec-h">Teaching data</h2>
+    <p class="rec-why">Every move made with the black leader arm is saved with the robot's own camera. This is what the arm learns to repeat on its own.</p>
+    <div class="rec-row">
+      <img id="rec-img" alt="Latest frame recorded by the wrist camera">
+      <div>
+        <span id="rec-chip" class="chip">Not recording</span>
+        <dl class="rec-stats">
+          <dt>Samples</dt><dd id="rec-n">0</dd>
+          <dt>Time</dt><dd id="rec-t">0:00</dd>
+          <dt>Claw open</dt><dd id="rec-jaw">-</dd>
+          <dt>Claw at</dt><dd id="rec-tip">-</dd>
+          <dt>Dropped reads</dt><dd id="rec-gaps">0</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
 </div>
 <footer>Demo with candy and vitamins only. Not medical advice. Spooky Civic Hackathon 2026 · Team 02</footer>
 
@@ -216,9 +239,46 @@ function showAlarm(text) {
   el.textContent = text; el.hidden = !text;
 }
 
+
+// Spoken cues for low-vision users: the browser's own voice, so no key, no cost, no network call of ours.
+const DAY_FULL = {sun:"Sunday", mon:"Monday", tue:"Tuesday", wed:"Wednesday", thu:"Thursday", fri:"Friday", sat:"Saturday"};
+let voice = null, lastResult = null, lastGov = null;
+function pickVoice() {
+  const vs = typeof speechSynthesis.getVoices === "function" ? speechSynthesis.getVoices() : [];
+  voice = vs.find(v => v.name === "Google US English") || vs.find(v => /Ava|Zoe|Samantha/.test(v.name))
+       || vs.find(v => v.lang === "en-US") || null;
+}
+const canSpeak = typeof window.speechSynthesis?.speak === "function" && typeof window.SpeechSynthesisUtterance === "function";
+if (canSpeak) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text) {
+  if (!text || !canSpeak) return;
+  const u = new SpeechSynthesisUtterance(text);
+  if (voice) u.voice = voice;
+  u.rate = 0.95;
+  speechSynthesis.speak(u);
+}
+function speakResult(r) {
+  const day = DAY_FULL[r.day] || "";
+  if (!r.ok) return speak(r.say === "stopped" ? "Stopped." : "Something went wrong, so the arm has stopped. Please wait for help.");
+  if (r.action === "place") return speak(`Your pill is in ${day}.`);
+  if (r.action === "close") return speak(`${day} is closed.`);
+  if (r.say) speak(r.say);
+}
+function speakGov(g) {
+  const d = (g.days || []).join(" and ") || "your organizer";
+  const line = {
+    waiting: "Done. I sent a photo to your caretaker to check.",
+    released: `Your caretaker checked it. Your pills for ${d} are ready.`,
+    flagged: `Your caretaker flagged ${d}. Please don't take them yet.`,
+    timed_out: `Your caretaker hasn't checked ${d} yet. Please wait before taking them.`,
+  }[g.state];
+  speak(line);
+}
+
 function heard(text, ok) {
   const el = document.getElementById("heard");
   el.textContent = text; el.className = ok ? "ok" : "bad";
+  speak(text);
 }
 
 async function choose(body) {
@@ -293,14 +353,14 @@ function renderCamera() {
 
 // caretaker check: the server decides; the page only shows the state and asks
 const GOV_CHIP = {idle:"No check yet", waiting:"Waiting for caretaker", released:"Released",
-                  flagged:"Flagged: arm paused", timed_out:"No answer: texted caretaker"};
+                  flagged:"Flagged: arm paused", timed_out:"No answer: caretaker reminded"};
 let govPolicy = false;
 
 function govLine(e) {
   const v = {ok:"approved", flag:"flagged", timeout:"no answer"};
   return e.event === "request" ? `Photo sent to the caretaker${e.days && e.days.length ? ` for ${e.days.join(", ")}` : ""}`
        : e.event === "family" ? `Family group: ${e.text}`
-       : e.event === "sms" ? `Text to caretaker: ${e.text}`
+       : e.event === "sms" ? `Reminder to caretaker: ${e.text}`
        : e.event === "decision" ? `Caretaker: ${v[e.verdict] || e.verdict}`
        : e.event === "approval_error" ? "Caretaker channel failed: counted as no answer" : e.event;
 }
@@ -317,6 +377,8 @@ function renderGov(g) {
   document.getElementById("gov-ev").innerHTML = g.events.length ? g.events.map(e =>
     `<li><time>${new Date(e.t * 1000).toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", second:"2-digit"})}</time><span>${esc(govLine(e))}</span></li>`).join("")
     : `<li><span>Nothing yet. Fill the organizer, then ask the caretaker to check.</span></li>`;
+  if (lastGov !== null && g.state !== lastGov) speakGov(g);
+  lastGov = g.state;
   if (!govPolicy) { document.getElementById("gov-policy").innerHTML = g.policy.map(r => `<li>${esc(r)}</li>`).join(""); govPolicy = true; }
 }
 
@@ -324,6 +386,26 @@ async function govPost(path, body) {
   const j = await post(path, body);
   if (j.say) document.getElementById("gov-said").textContent = j.say;
   poll(true);
+}
+
+
+async function pollRec() {
+  try {
+    const r = await (await fetch("/recording")).json();
+    if (r.found) {
+      const chip = document.getElementById("rec-chip");
+      chip.textContent = r.live ? "Recording" : "Saved";
+      chip.className = `chip ${r.live ? "waiting" : "released"}`;
+      document.getElementById("rec-n").textContent = r.samples.toLocaleString();
+      const s = Math.floor(r.seconds || 0);
+      document.getElementById("rec-t").textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+      document.getElementById("rec-jaw").textContent = r.jaw != null ? `${r.jaw}%` : "-";
+      document.getElementById("rec-tip").textContent = r.tip ? `x ${r.tip[0]}  y ${r.tip[1]}  z ${r.tip[2]} mm` : "-";
+      document.getElementById("rec-gaps").textContent = r.gaps;
+      if (r.frame != null) document.getElementById("rec-img").src = `/recording/frame.jpg?f=${r.frame}`;
+    }
+  } catch (e) {}
+  setTimeout(pollRec, 1500);
 }
 
 async function poll(once) {
@@ -338,6 +420,9 @@ async function poll(once) {
     renderPanel();
     renderCamera();
     renderGov(s.governance);
+    const r = (s.results || [])[0];
+    if (lastResult !== null && r && r.id !== lastResult) speakResult(r);
+    lastResult = r ? r.id : 0;
   } catch (e) {
     document.getElementById("status").textContent = "Robot server not reachable";
     document.getElementById("status").className = "down";
@@ -364,6 +449,7 @@ function build() {
 }
 
 build(); poll();
+pollRec();
 </script>
 </body>
 </html>

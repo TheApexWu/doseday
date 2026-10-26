@@ -16,11 +16,15 @@ Logging runs separately and never changes modes:
   python record_teleop.py 120 --no-teleop
 """
 import asyncio
+import os
 import json
 import sys
 from pathlib import Path
 
 from viam.robot.client import RobotClient
+
+import config
+config.load_dotenv()  # PILL_TELEOP and friends name the parts on a machine other than pi-arm1
 from viam.components.arm import Arm
 from viam.components.gripper import Gripper
 from viam.errors import ResourceNotFoundError
@@ -48,7 +52,7 @@ async def connect():
 def optional_teleop(robot):
     """The teleop service, or None when the leader arm it depends on isn't connected."""
     try:
-        return Generic.from_robot(robot, "teleop")
+        return Generic.from_robot(robot, os.environ.get("PILL_TELEOP", "teleop"))
     except ResourceNotFoundError:
         return None
 

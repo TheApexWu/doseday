@@ -104,8 +104,15 @@ def sms():
     key, secret, sender, to = (os.environ.get(k) for k in ("VONAGE_API_KEY", "VONAGE_API_SECRET", "VONAGE_FROM",
                                                             "CARETAKER_PHONE"))
     if os.environ.get("VONAGE_CHANNEL", "sms").lower() == "whatsapp":
-        return VonageWhatsApp(key, secret, sender, to) if key and secret and to else DryRun("vonage-whatsapp")
-    return VonageSMS(key, secret, sender, to) if key and secret and sender and to else DryRun("vonage-sms")
+        ch = VonageWhatsApp(key, secret, sender, to) if key and secret and to else DryRun("vonage-whatsapp")
+    else:
+        ch = VonageSMS(key, secret, sender, to) if key and secret and sender and to else DryRun("vonage-sms")
+    tok, care = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_CARETAKER_ID")
+    if isinstance(ch, DryRun) and tok and care:
+        # no Vonage account yet: the reminder goes to the caretaker's own Telegram chat instead of nowhere
+        ch = FamilyTelegram(tok, care)
+        ch.name = "caretaker-telegram"
+    return ch
 
 
 def safe_send(ch, text: str):

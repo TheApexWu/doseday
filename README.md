@@ -2,7 +2,9 @@
 
 **A robot arm that fills your weekly pill organizer and snaps the lids shut, while a caretaker approves every fill from their phone.**
 
-Built in two days at the Spooky Civic AI Hackathon (NYC, 23-24 Oct 2026), Viam Physical AI track, by Alex Wu, Sammy Suliman and Alan Wu.
+🏆 **Winner, Physical AI track** at 3percent's Spooky Civic AI Hackathon (NYC, 23-25 Oct 2026), the track run with Viam.
+
+Built in two days by Alex Wu (robot motion and control), Sammy Suliman (pill vision model) and Alan Wu (app design and the demo video).
 
 <p>
   <img src="docs/media/three-picks-wrist-cam.gif" width="360" alt="Wrist camera: the arm grabs three tablets one by one and drops each into its day">
@@ -25,6 +27,8 @@ Pharmacies and factories already sort pills with robots. Doseday brings that int
 4. **A caretaker signs off.** A photo of the organizer goes to the caretaker on Telegram with Approve and Flag buttons. Nothing counts as done until they approve it.
 5. **Nobody is left guessing.** No answer means Vonage texts the caretaker's phone. A flag pauses the arm. The family group chat hears what happened, in words only: nobody but the caretaker sees anyone's medicine.
 6. **STOP always wins.** One button cancels the running move, stops the arm and clears the queue. Every move and every decision is logged.
+7. **It talks.** The page says each step out loud for people who can't read the screen: "Your caretaker checked it. Your pills for Tuesday are ready."
+8. **Teach it by showing it.** Drive the arm with the black leader arm. Every motion is recorded with both grips and the wrist camera, and the arm can replay a recorded pick on its own, on a loop.
 
 ## Proven on the robot (24 Oct)
 
@@ -33,7 +37,8 @@ Pharmacies and factories already sort pills with robots. Doseday brings that int
 | Pick and drop | **3 of 3 tablets, each on the first grab** (red to Sunday, peach to Tuesday, cream to Friday) | `runs/2026-10-24-robot-run-1558`, filmed |
 | Grip check | jaw read 8.9% closed on each held tablet; an empty grab reads under 2% | same run |
 | Lids | **Monday, Tuesday and Wednesday closed by the arm** | `docs/DAY2-FINDINGS.md` |
-| Caretaker check | Approve, Flag, no-answer escalation and STOP alerts | 235 tests, `docs/GOVERNANCE.md` |
+| Caretaker check | Approve, Flag, no-answer escalation and STOP alerts | 238 tests, `docs/GOVERNANCE.md` |
+| Demo Day (25 Oct) | Live teleop on a second kit, about 12,000 recorded samples with the wrist camera, a recorded pick replayed on a loop, caretaker approval live on a phone | `docs/DEMO-DAY.md`, `runs/DATASET.md` |
 
 Picks replay a path taught once by hand, with the grip check and search on top. Next up: capsules, the pale-blue tablet that the gripper still drops, and Thursday to Saturday lids.
 
@@ -64,12 +69,13 @@ flowchart LR
 | | |
 |---|---|
 | **Robot** | SO-101 arm (Feetech servos), Raspberry Pi 5, wrist camera |
-| **[Viam](https://viam.com)** | viam-server on the Pi, `devrel:so101-arm` module, arm, gripper and camera components, leader-follower teleop, built-in colour detector, Python SDK over the cloud |
-| **[Vonage](https://vonage.com)** | SMS API for caretaker escalation and STOP alerts; Messages API sandbox (WhatsApp) for demos |
-| **Telegram Bot API** | caretaker photo with Approve and Flag buttons; text-only family group |
+| **[Viam](https://viam.com)** | viam-server on the Pi, `devrel:so101-arm` module, arm, gripper and camera components, leader-follower teleop service, built-in colour detector, Python SDK over the cloud |
+| **[Vonage](https://vonage.com)** | SMS API for caretaker escalation and STOP alerts; Messages API sandbox (WhatsApp). Without Vonage keys the reminder goes over Telegram |
+| **[Brev](https://brev.dev)** | GPU for training the YOLOv8s pill detector |
+| **Telegram Bot API** | caretaker photo from the arm's camera with Approve and Flag buttons; text-only family group |
 | **Vision** | OpenCV and NumPy pill features; optional Claude vision for pill ID (`app.py --claude`); YOLOv8s pill detector shown on the laptop (`models/`) |
-| **App** | Python standard-library HTTP server, one HTML page, no build step |
-| **Built with** | Python, pytest (235 tests), Claude Code |
+| **App** | Python standard-library HTTP server, one HTML page, no build step; the browser's own speech for spoken status |
+| **Built with** | Python, pytest (238 tests), Claude Code |
 
 ## Try it
 
@@ -87,6 +93,14 @@ Tap a day, tap a pill, press STOP. With no keys set, the caretaker card runs in 
 **Live caretaker notices:** put `VONAGE_API_KEY`, `VONAGE_API_SECRET` and `CARETAKER_PHONE` in `.env` (plus `VONAGE_FROM` for SMS, or `VONAGE_CHANNEL=whatsapp` for the sandbox), then `python notify.py test` sends one message to your phone. `DOSEDAY_APPROVAL_TIMEOUT_S=20` makes the no-answer text arrive 20 seconds after a fill instead of 10 minutes.
 
 **On the robot:** `python app.py` connects to the Viam machine using the keys in `.env`. Rebuilding the table: [`docs/VENUE-SETUP.md`](docs/VENUE-SETUP.md).
+
+**Teach and replay:**
+
+```
+python armctl.py align 15 && python armctl.py teleop          # drive the white arm with the black one
+python scripts/record_demo.py 60 runs/<date>-my-pick          # both arms, both grips, wrist camera
+python scripts/loop_replay.py runs/<date>-my-pick 0 --rate 1.5  # the white arm repeats it until Ctrl-C
+```
 
 ## Repo map
 
@@ -108,6 +122,7 @@ Tap a day, tap a pill, press STOP. With no keys set, the caretaker card runs in 
 | File | Read it for |
 |---|---|
 | [`docs/DAY2-FINDINGS.md`](docs/DAY2-FINDINGS.md) | what worked on the robot and how |
+| [`docs/DEMO-DAY.md`](docs/DEMO-DAY.md) | the winning live demo, what broke and how to run on another kit |
 | [`docs/GOVERNANCE.md`](docs/GOVERNANCE.md) | caretaker approval, family and Vonage notices, what pauses the arm |
 | [`docs/HARDWARE-SETUP.md`](docs/HARDWARE-SETUP.md) | table layout, wiring, photos |
 | [`docs/CONTROL.md`](docs/CONTROL.md) | control logic, safety gates, fallback plans |
