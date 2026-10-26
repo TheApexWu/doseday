@@ -13,6 +13,7 @@ queue and restores full servo torque.
 """
 import argparse
 import asyncio
+import os
 import concurrent.futures
 import json
 import queue
@@ -131,6 +132,26 @@ def select(v: viewer.Viewer, body: dict) -> tuple[dict, int]:
     return {"ok": False, "say": "send text, day, pill or reset"}, 400
 
 
+
+def recording_state(runs=HERE / "runs") -> dict:
+    """The newest teleop recording (scripts/record_demo.py output), read from disk for the page."""
+    csvs = sorted(runs.glob("*/samples.csv"), key=lambda f: f.stat().st_mtime)
+    if not csvs:
+        return {"found": False}
+    f = csvs[-1]
+    lines = f.read_text().splitlines()
+    head, rows = lines[0].split(","), [r.split(",") for r in lines[1:] if r]
+    gaps = max(0, len((f.parent / "gaps.csv").read_text().splitlines()) - 1) if (f.parent / "gaps.csv").exists() else 0
+    out = {"found": True, "run": f.parent.name, "samples": len(rows), "gaps": gaps,
+           "live": time.time() - f.stat().st_mtime < 5}
+    if rows:
+        last = dict(zip(head, rows[-1]))
+        out["seconds"] = round(float(last["unix_time"]) - float(rows[0][1]), 1)
+        out["jaw"] = round(float(last["jaw_pct"]), 1)
+        out["tip"] = [round(float(last[k])) for k in ("x", "y", "z")]
+        out["frame"] = last["frame"]
+    return out
+
 def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> ThreadingHTTPServer:
     class H(BaseHTTPRequestHandler):
         def do_GET(self):
@@ -140,6 +161,14 @@ def make_server(ctl: Controller, port: int, host: str = "127.0.0.1") -> Threadin
                 return self._json(ctl.status())
             if self.path == "/governance":
                 return self._json(ctl.gov.snapshot())
+            if self.path == "/recording":
+                return self._json(recording_state())
+            if self.path.split("?")[0] == "/recording/frame.jpg":
+                r = recording_state()
+                jpg = HERE / "runs" / r["run"] / "frames" / f"{int(r['frame']):05d}.jpg" if r.get("frame") else None
+                if not jpg or not jpg.exists():
+                    return self._json({"error": "no recorded frame yet"}, 404)
+                return self._send(jpg.read_bytes(), "image/jpeg")
             if self.path.split("?")[0] == "/frame.jpg":
                 frame = (ctl.viewer and ctl.viewer.frame) or ctl.station.last_frame
                 if frame is None:
@@ -284,10 +313,10 @@ def real_viewer(weights: Path):
             yolo = yolo_detector(weights)
         except (SystemExit, ImportError) as e:  # the page says which finder drew the pill boxes
             print(f"YOLOv8 off ({e}); pill boxes come from the blob finder")
-            v = viewer.real(robot, "follower-cam", VISION_SERVICE, viewer.blobs)
+            v = viewer.real(robot, os.environ.get("PILL_CAMERA", "follower-cam"), VISION_SERVICE, viewer.blobs)
             v.pill_source = "blobs"
             return v
-        return viewer.real(robot, "follower-cam", VISION_SERVICE, yolo)
+        return viewer.real(robot, os.environ.get("PILL_CAMERA", "follower-cam"), VISION_SERVICE, yolo)
     return make
 
 
@@ -333,6 +362,7 @@ if __name__ == "__main__":
     ap.add_argument("--claude", action="store_true")
     ap.add_argument("--detect", nargs="+", choices=("viam", "yolo"), default=[])
     ap.add_argument("--no-view", action="store_true")
+    ap.add_argument("--live-cam", action="store_true")  # with --fake: real camera, arm left to teleop
     a = ap.parse_args()
     import config
     config.load_dotenv()  # Telegram and Vonage keys live in .env; without this the notices stay dry runs
@@ -343,7 +373,7 @@ if __name__ == "__main__":
     if not a.no_view:
         async def fake_viewer():
             return viewer.fake()
-        ctl.start_view(fake_viewer if a.fake else real_viewer(HERE / "models" / "pill-yolov8s.pt"))
+        ctl.start_view(fake_viewer if a.fake and not a.live_cam else real_viewer(HERE / "models" / "pill-yolov8s.pt"))
     print(f"Doseday on http://localhost:{a.port}  ({'fake arm' if a.fake else 'pi-arm1'}; "
           f"{len(ctl.station.poses)} taught poses)", flush=True)
     make_server(ctl, a.port).serve_forever()

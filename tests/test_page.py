@@ -77,12 +77,12 @@ def posts(out, path):
     return [f for f in out["fetches"] if f["path"] == path]
 
 
-def test_the_page_never_speaks_or_listens():
+def test_the_page_speaks_but_never_listens():
     out = page(op="stop_button", stop=[{"status": 200, "body": {"ok": True, "say": "stopped"}}])
     assert "Stopped" in out["shown"]  # positive control: the action ran
-    assert out["spoken"] == [] and out["recognizer"] is False
+    assert out["spoken"] and out["recognizer"] is False
     html = PAGE.read_text()
-    assert "speechSynthesis" not in html and "SpeechRecognition" not in html and 'id="mic"' not in html
+    assert "SpeechRecognition" not in html and 'id="mic"' not in html
 
 
 def test_stop_button_shows_stopped_only_when_the_server_says_ok():
